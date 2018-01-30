@@ -1,1 +1,19 @@
 Alexa Custom Skills Notes
+
+Intents, set of
+    intents = actions users can do with your skill.
+        Core functionality
+Sample utterances, set of
+    specify words and phrases users can say to invoke ^intents.
+    Map utterances to intents - form the "interaction model" for the skill
+Invocation name
+    identifies the skill, user include this name when
+        initiating a convo w/ skill
+Set of image, audio, and video files to include (OPTIONAL)
+    stored on a publicly accessible site so each may be accessed by unique URL
+Cloud-based service
+    accepts intents as structured requests then acts upon them
+    You (RICS) provide an endpoint for your service when configuring the skill
+Configuration
+    created in "developer portal" https://developer.amazon.com/registration/profile.html
+
