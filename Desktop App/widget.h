@@ -6,6 +6,7 @@
 #include <QPushButton>
 #include <QSerialPort>
 #include <QSerialPortInfo>
+#include <QEnterEvent>
 
 #include <QtCore>
 #include <QMessageBox>
@@ -27,9 +28,14 @@ public slots:
     void rightPressed();
     void upPressed();
     void downPressed();
+    void released();
+/*
+protected:
+    virtual void enterEvent(QEvent* e);
 
-
-
+public Q_SIGNAL:
+    void on_button();
+*/
 private:
     Ui::Widget *ui;
     QPushButton *left_button;

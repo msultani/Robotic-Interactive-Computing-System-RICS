@@ -39,15 +39,21 @@ Widget::Widget(QWidget *parent) :
 
     left_button = ui->leftButton;
     connect(left_button, SIGNAL (pressed()), this, SLOT (leftPressed()));
+    connect(left_button, SIGNAL (released()), this, SLOT (released()));
+
+    //connect(left_button, SIGNAL (on_button();), this, SLOT (leftPressed()));
 
     right_button = ui->rightButton;
     connect(right_button, SIGNAL (pressed()), this, SLOT (rightPressed()));
+    connect(right_button, SIGNAL (released()), this, SLOT (released()));
 
     up_button = ui->upButton;
     connect(up_button, SIGNAL (pressed()), this, SLOT (upPressed()));
+    connect(up_button, SIGNAL (released()), this, SLOT (released()));
 
     down_button = ui->downButton;
     connect(down_button, SIGNAL (pressed()), this, SLOT (downPressed()));
+    connect(down_button, SIGNAL (released()), this, SLOT (released()));
 
 }
 
@@ -58,6 +64,14 @@ Widget::~Widget()
     }
     delete ui;
 }
+
+/*
+void Widget::enterEvent(QEvent *e){
+    Q_EMIT on_button();
+
+    QWidget::enterEvent( e );
+}
+*/
 
 void Widget::write_to_arduino(){
 
@@ -95,4 +109,11 @@ void Widget::downPressed(){
     ui->lineEdit->setText("DOWN BUTTON PRESSED");
     Command = down;
     write_to_arduino();
+}
+
+void Widget::released(){
+    ui->lineEdit->setText("BUTTON RELEASED");
+    Command = stop;
+    write_to_arduino();
+
 }
