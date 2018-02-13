@@ -15,11 +15,11 @@ struct UltrasonicSensor {
 };
 
 //MeArm HAS 4 SERVOS
+UltrasonicSensor sensor;
 Servo xServo;  // create servo object, arm base servo - left right motion
 Servo yServo;  // create servo object, left side servo - forward backwards motion
 Servo zServo;  // create servo object, right side servo - forward backwards motion
 Servo clawServo;  // create servo object, end of arm srevo - open,close the claw hand
-UltrasonicSensor sensor;
 
 //servo positions values, expects 1-180 deg.
 int xPos;
