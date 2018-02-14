@@ -26,6 +26,7 @@ int xPos;
 int yPos;
 int zPos;
 int clawPos;
+bool moving = false;
 
 //*************** INIT AT STARTUP *******************************************************************
 
@@ -65,18 +66,50 @@ void UltrasonicSensor::checkSensorDistance() {
 
 // the setup function runs once when you press reset or power the board
 void setup() {
-  configureServoPins();
-  sensor.configureSensor();
+  //configureServoPins();
+  //sensor.configureSensor();
+  clawServo.attach(6);
   Serial.begin(9600); // initialize serial port
   // Debug only send serial message to host com port terminal window in Arduino IDE
   Serial.print("*** MeCom Test V04 ***.");   // send program name, uncomment for debug connection test
 }
 
 void loop() {
+
+    clawServo.write(0);
+    delay(10000);
+//  int startPt = 0;
+//  int endPt = 160;
+//  int moveDelay = 5000;
+//  
+//  clawServo.write(startPt);
+//  delay(moveDelay);
+//  clawServo.write(endPt);
+//  delay(moveDelay);
+//  clawServo.write(startPt);
+//  delay(moveDelay);
+//  clawServo.write(endPt);
+//  delay(moveDelay);
+//  clawServo.write(startPt);
+//  delay(moveDelay);
+//  clawServo.write(endPt);
+//  delay(moveDelay);
+    
+    
+//  for (int i = 0; i < 180; ++i) {
+//    clawServo.write(i);
+//    delay(100);
+//  }
+  
+  /*
   //serial in packet patern = xVal,yVal,zVal,clawVal + end of packet char 'x'
   while (Serial.available() > 0) {
     checkSensorDistance();
     
+    if (isDigit(Serial.read)) {
+      
+    }
+
     // Move the arm
     xPos = Serial.parseInt();
     yPos = Serial.parseInt();
@@ -90,4 +123,5 @@ void loop() {
       clawServo.write(clawPos);
     }
   }
+  */
 }
