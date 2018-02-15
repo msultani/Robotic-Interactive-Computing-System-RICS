@@ -28,16 +28,6 @@ int zPos;
 int clawPos;
 bool moving = false;
 
-//*************** INIT AT STARTUP *******************************************************************
-
-void configureServoPins() {
-  // assign servo to pin numbers
-  xServo.attach(11);  // attaches the servo on pin 11 to the servo object
-  yServo.attach(10);  // attaches the servo on pin 10 to the servo object
-  zServo.attach(9);  // attaches the servo on pin 9 to the servo object
-  clawServo.attach(6);  // attaches the servo on pin 6 to the servo object
-}
-
 void UltrasonicSensor::configureSensor() {
   pinMode(sensor.trigPin, OUTPUT); // Sets the trigPin as an Output
   pinMode(sensor.echoPin, INPUT); // Sets the echoPin as an Input
@@ -64,11 +54,27 @@ void UltrasonicSensor::checkSensorDistance() {
   Serial.println(distance);  
 }
 
+//*************** INIT AT STARTUP *******************************************************************
+
+void configureServoPins() {
+  // assign servo to pin numbers
+  xServo.attach(11);  // attaches the servo on pin 11 to the servo object
+  yServo.attach(10);  // attaches the servo on pin 10 to the servo object
+  zServo.attach(9);  // attaches the servo on pin 9 to the servo object
+  clawServo.attach(6);  // attaches the servo on pin 6 to the servo object
+}
+
+void checkServoBoundaries(Servo servo, int startPt, int endPt, int moveDelay) {
+    servo.write(startPt);
+    delay(moveDelay);
+    servo.write(endPt);
+    delay(moveDelay);
+}
+
 // the setup function runs once when you press reset or power the board
 void setup() {
-  //configureServoPins();
+  configureServoPins();
   //sensor.configureSensor();
-  clawServo.attach(6);
   Serial.begin(9600); // initialize serial port
   // Debug only send serial message to host com port terminal window in Arduino IDE
   Serial.print("*** MeCom Test V04 ***.");   // send program name, uncomment for debug connection test
@@ -76,31 +82,8 @@ void setup() {
 
 void loop() {
 
-    clawServo.write(0);
-    delay(10000);
-//  int startPt = 0;
-//  int endPt = 160;
-//  int moveDelay = 5000;
-//  
-//  clawServo.write(startPt);
-//  delay(moveDelay);
-//  clawServo.write(endPt);
-//  delay(moveDelay);
-//  clawServo.write(startPt);
-//  delay(moveDelay);
-//  clawServo.write(endPt);
-//  delay(moveDelay);
-//  clawServo.write(startPt);
-//  delay(moveDelay);
-//  clawServo.write(endPt);
-//  delay(moveDelay);
-    
-    
-//  for (int i = 0; i < 180; ++i) {
-//    clawServo.write(i);
-//    delay(100);
-//  }
-  
+  checkServoBoundaries(yServo, 0, 90, 2000);
+  checkServoBoundaries(zServo, 0, 90, 2000);
   /*
   //serial in packet patern = xVal,yVal,zVal,clawVal + end of packet char 'x'
   while (Serial.available() > 0) {
