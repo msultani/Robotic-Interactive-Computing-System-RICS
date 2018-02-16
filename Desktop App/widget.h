@@ -29,13 +29,7 @@ public slots:
     void upPressed();
     void downPressed();
     void released();
-/*
-protected:
-    virtual void enterEvent(QEvent* e);
 
-public Q_SIGNAL:
-    void on_button();
-*/
 private:
     Ui::Widget *ui;
     QPushButton *left_button;
@@ -55,5 +49,6 @@ private:
 
     void write_to_arduino();
 };
+
 
 #endif // WIDGET_H

@@ -1,6 +1,13 @@
 #include "widget.h"
 #include "ui_widget.h"
 
+/* TODO: Implement a mode that allows you
+ * to hover over the buttons without needing
+ * to click on them. Include a way to switch
+ * between these two modes.
+ * */
+
+
 Widget::Widget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Widget)
@@ -33,15 +40,13 @@ Widget::Widget(QWidget *parent) :
         // TODO - properly set up communication
     }
     else {
-        qDebug() << "Error - could not find Arduino";
+        qDebug() << "Arduino not found";
     }
 
 
     left_button = ui->leftButton;
     connect(left_button, SIGNAL (pressed()), this, SLOT (leftPressed()));
     connect(left_button, SIGNAL (released()), this, SLOT (released()));
-
-    //connect(left_button, SIGNAL (on_button();), this, SLOT (leftPressed()));
 
     right_button = ui->rightButton;
     connect(right_button, SIGNAL (pressed()), this, SLOT (rightPressed()));
@@ -56,6 +61,7 @@ Widget::Widget(QWidget *parent) :
     connect(down_button, SIGNAL (released()), this, SLOT (released()));
 
 }
+
 
 Widget::~Widget()
 {
