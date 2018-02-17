@@ -30,13 +30,19 @@ public slots:
     void downPressed();
     void released();
 
+private slots:
+    void on_beginButton_clicked();
+    void on_pushButton_clicked();
+
 private:
     Ui::Widget *ui;
+
     QPushButton *left_button;
     QPushButton *right_button;
     QPushButton *up_button;
     QPushButton *down_button;
     QPushButton *button;
+
     bool found_port;
 
     QSerialPort Ard;

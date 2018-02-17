@@ -13,6 +13,7 @@ Widget::Widget(QWidget *parent) :
     ui(new Ui::Widget)
 {
     ui->setupUi(this);
+    ui->stackedWidget->setCurrentIndex(1);
     found_port = false; // Set to true if the correct port is found
 
     qDebug() << "There are " << QSerialPortInfo::availablePorts().length() << " ports available.";
@@ -122,4 +123,14 @@ void Widget::released(){
     Command = stop;
     write_to_arduino();
 
+}
+
+void Widget::on_beginButton_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+void Widget::on_pushButton_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(1);
 }
