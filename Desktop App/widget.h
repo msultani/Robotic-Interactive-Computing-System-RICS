@@ -29,20 +29,20 @@ public slots:
     void upPressed();
     void downPressed();
     void released();
-/*
-protected:
-    virtual void enterEvent(QEvent* e);
 
-public Q_SIGNAL:
-    void on_button();
-*/
+private slots:
+    void on_beginButton_clicked();
+    void on_pushButton_clicked();
+
 private:
     Ui::Widget *ui;
+
     QPushButton *left_button;
     QPushButton *right_button;
     QPushButton *up_button;
     QPushButton *down_button;
     QPushButton *button;
+
     bool found_port;
 
     QSerialPort Ard;
@@ -55,5 +55,6 @@ private:
 
     void write_to_arduino();
 };
+
 
 #endif // WIDGET_H

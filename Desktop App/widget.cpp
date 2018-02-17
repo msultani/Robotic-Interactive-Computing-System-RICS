@@ -1,11 +1,19 @@
 #include "widget.h"
 #include "ui_widget.h"
 
+/* TODO: Implement a mode that allows you
+ * to hover over the buttons without needing
+ * to click on them. Include a way to switch
+ * between these two modes.
+ * */
+
+
 Widget::Widget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Widget)
 {
     ui->setupUi(this);
+    ui->stackedWidget->setCurrentIndex(1);
     found_port = false; // Set to true if the correct port is found
 
     qDebug() << "There are " << QSerialPortInfo::availablePorts().length() << " ports available.";
@@ -33,15 +41,13 @@ Widget::Widget(QWidget *parent) :
         // TODO - properly set up communication
     }
     else {
-        qDebug() << "Error - could not find Arduino";
+        qDebug() << "Arduino not found";
     }
 
 
     left_button = ui->leftButton;
     connect(left_button, SIGNAL (pressed()), this, SLOT (leftPressed()));
     connect(left_button, SIGNAL (released()), this, SLOT (released()));
-
-    //connect(left_button, SIGNAL (on_button();), this, SLOT (leftPressed()));
 
     right_button = ui->rightButton;
     connect(right_button, SIGNAL (pressed()), this, SLOT (rightPressed()));
@@ -56,6 +62,7 @@ Widget::Widget(QWidget *parent) :
     connect(down_button, SIGNAL (released()), this, SLOT (released()));
 
 }
+
 
 Widget::~Widget()
 {
@@ -116,4 +123,14 @@ void Widget::released(){
     Command = stop;
     write_to_arduino();
 
+}
+
+void Widget::on_beginButton_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+void Widget::on_pushButton_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(1);
 }
