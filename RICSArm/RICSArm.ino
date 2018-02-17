@@ -80,31 +80,33 @@ void setup() {
   Serial.print("*** MeCom Test V04 ***.");   // send program name, uncomment for debug connection test
 }
 
+int count = 0;
 void loop() {
-
-  checkServoBoundaries(yServo, 0, 90, 2000);
-  checkServoBoundaries(zServo, 0, 90, 2000);
-  /*
-  //serial in packet patern = xVal,yVal,zVal,clawVal + end of packet char 'x'
   while (Serial.available() > 0) {
-    checkSensorDistance();
-    
-    if (isDigit(Serial.read)) {
-      
-    }
+    int input = Serial.read();
+    Serial.print(input);
 
-    // Move the arm
-    xPos = Serial.parseInt();
-    yPos = Serial.parseInt();
-    zPos = Serial.parseInt();
-    clawPos = Serial.parseInt();
-    if (Serial.read() == 'x') { // Detect end of packet char 'x', go ahead and update servo positions
-      // UPDATE SERVO POSITIONS
-      xServo.write(xPos);
-      yServo.write(yPos);
-      zServo.write(zPos);
-      clawServo.write(clawPos);
-    }
+    Serial.print("Writing to xServo");
+        xServo.write(input);
+    /*
+    switch(count++ % 4){
+      case 0:
+        Serial.print("Writing to xServo");
+        xServo.write(input);
+        break;
+      case 1:
+        Serial.print("Writing to yServo");
+        yServo.write(input);
+        break;
+      case 2:
+        Serial.print("Writing to zServo");
+        zServo.write(input);
+        break;
+      case 3:
+        Serial.print("Writing to clawServo");
+        clawServo.write(input);
+        break;
+    }*/
+    delay(5000);
   }
-  */
 }
