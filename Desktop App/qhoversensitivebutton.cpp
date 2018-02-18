@@ -1,7 +1,8 @@
 #include "qhoversensitivebutton.h"
 #include "ui_widget.h"
 
-bool QHoverSensitiveButton::hoverMode = true;
+
+bool QHoverSensitiveButton::hoverMode = false;
 
 QHoverSensitiveButton::QHoverSensitiveButton(QWidget *parent) : QPushButton(parent)
 {
@@ -12,22 +13,27 @@ QHoverSensitiveButton::QHoverSensitiveButton(QWidget *parent) : QPushButton(pare
 
 void QHoverSensitiveButton::hoverEnter(QHoverEvent *){
 
-    qDebug() << "Hover Enter";
+    //qDebug() << "Hover Enter";
 
     if (this->objectName() == "hoverButton"){
-        qDebug() << "Hover Button";
+        //qDebug() << "Hover Button";
         t.start();
     }
 
     if (!hoverMode){
-        qDebug() << "Hover mode is off";
+        //qDebug() << "Hover mode is off";
         return;
     }
+
+    //connect(this, SIGNAL (pressed()), this, SLOT (Widget::leftPressed()));
+
+
 }
+
 
 void QHoverSensitiveButton::hoverLeave(QHoverEvent *){
 
-    qDebug() << "Hover Leave";
+    //qDebug() << "Hover Leave";
 
     if (this->objectName() == "hoverButton"){
         qDebug() << "Hover Button";
@@ -38,7 +44,7 @@ void QHoverSensitiveButton::hoverLeave(QHoverEvent *){
             }
             else{
                 hoverMode = true;
-                qDebug() << "Should turn on hovermode";
+                qDebug() << "Turned hovermode on";
             }
         }
         t.setHMS(-1,-1,-1,-1);

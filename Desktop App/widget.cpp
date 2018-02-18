@@ -14,6 +14,26 @@ Widget::Widget(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->stackedWidget->setCurrentIndex(1);
+
+    qDebug() << "Opening Arduino port";
+    Ard.open(QIODevice::ReadWrite);
+    Ard.setPortName("Ard_port");
+    Ard.setBaudRate(QSerialPort::Baud9600);
+    Ard.setDataBits(QSerialPort::Data8);
+    Ard.setParity(QSerialPort::NoParity);
+    Ard.setStopBits(QSerialPort::OneStop);
+    Ard.setFlowControl(QSerialPort::NoFlowControl);
+
+
+    if (Ard.isOpen()){
+        qDebug() << "Arduino port is open";
+    }
+    else{
+        qDebug() << "Arduino port failed to open";
+    }
+
+
+/*
     found_port = false; // Set to true if the correct port is found
 
     qDebug() << "There are " << QSerialPortInfo::availablePorts().length() << " ports available.";
@@ -44,7 +64,7 @@ Widget::Widget(QWidget *parent) :
         qDebug() << "Arduino not found";
     }
 
-
+*/
     left_button = ui->leftButton;
     connect(left_button, SIGNAL (pressed()), this, SLOT (leftPressed()));
     connect(left_button, SIGNAL (released()), this, SLOT (released()));
@@ -67,27 +87,21 @@ Widget::Widget(QWidget *parent) :
 Widget::~Widget()
 {
     if (Ard.isOpen()){
+        qDebug() << "Closing Arduino";
         Ard.close();
     }
     delete ui;
 }
 
-/*
-void Widget::enterEvent(QEvent *e){
-    Q_EMIT on_button();
-
-    QWidget::enterEvent( e );
-}
-*/
 
 void Widget::write_to_arduino(){
-
+/*
     if (!Ard.isOpen()){
         //QMessageBox::critical(this,"Device Not Found","<font color='red'>The Transmiting Arduino Device is not Found.</font>");
         qDebug() << "Error: Arduino not found";
         return;
     }
-
+*/
     Ard_data.clear();
 
     Ard_data.push_back(Command);
