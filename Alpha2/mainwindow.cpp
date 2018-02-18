@@ -9,11 +9,17 @@ MainWindow::MainWindow(QWidget *parent) :
     //ui->stackedWidget->setCurrentIndex(0);
 
     connect(ui->fetchButton, SIGNAL (pressed()), this, SLOT (fetchPressed()));
-    connect(ui->settingButton, SIGNAL (pressed()), this, SLOT (settingsPressed()));
-    connect(ui->tutorialButton, SIGNAL (pressed()), this, SLOT (tutorialPressed()));
-    connect(ui->backButton, SIGNAL (pressed()), this, SLOT (backPressed()));
-
     connect(ui->fetchButton, SIGNAL (hovered()), this, SLOT (fetchPressed()));
+
+    connect(ui->settingButton, SIGNAL (pressed()), this, SLOT (settingsPressed()));
+    connect(ui->settingButton, SIGNAL (hovered()), this, SLOT (settingsPressed()));
+
+    connect(ui->tutorialButton, SIGNAL (pressed()), this, SLOT (tutorialPressed()));
+    connect(ui->tutorialButton, SIGNAL (hovered()), this, SLOT (tutorialPressed()));
+
+    connect(ui->backButton, SIGNAL (pressed()), this, SLOT (backPressed()));
+    connect(ui->backButton, SIGNAL (hovered()), this, SLOT (backPressed()));
+
 }
 
 MainWindow* MainWindow::mainInstance = 0;

@@ -1,18 +1,14 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2018-02-17T18:48:44
+# Project created by QtCreator 2018-02-18T13:20:53
 #
 #-------------------------------------------------
-# Code for creating a static instance of MainWindow from
-# https://stackoverflow.com/questions/26078775/qt-calling-mainwindowui-from-another-class-using-signals-and-slots
 
-
-
-QT       += core gui serialport
+QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = Alpha2
+TARGET = NewestAlpha
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -29,12 +25,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp \
-    qhoversensitivebutton.cpp
+        mainwindow.cpp
 
 HEADERS += \
-        mainwindow.h \
-    qhoversensitivebutton.h
+        mainwindow.h
 
 FORMS += \
         mainwindow.ui

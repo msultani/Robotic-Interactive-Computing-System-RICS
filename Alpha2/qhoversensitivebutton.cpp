@@ -28,11 +28,7 @@ void QHoverSensitiveButton::hoverEnter(QHoverEvent *){
         return;
     }
 
-    if (this->objectName() == "fetchButton"){
-        this->hoverFetch();
-    }
-
-    //connect(this, SIGNAL (pressed()), this, SLOT (Widget::leftPressed()));
+    emitHovered();
 }
 
 
