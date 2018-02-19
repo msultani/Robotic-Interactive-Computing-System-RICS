@@ -46,7 +46,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->leftButton, SIGNAL (hovered()), this, SLOT (move_left()));
 
     connect(ui->rightButton, SIGNAL (pressed()), this, SLOT (move_right()));
-    connect(ui-rightButton, SIGNAL (hovered()), this, SLOT (move_right()));
+    connect(ui->rightButton, SIGNAL (hovered()), this, SLOT (move_right()));
 
     connect(ui->forwardButton, SIGNAL (pressed()), this, SLOT (move_forward()));
     connect(ui->forwardButton, SIGNAL (hovered()), this, SLOT (move_forward()));

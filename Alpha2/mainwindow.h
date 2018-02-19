@@ -44,6 +44,13 @@ public slots:
     void hover_time_down();
     void changeLabel();
 
+    void move_up();
+    void move_backward();
+    void move_down();
+    void move_forward();
+    void move_left();
+    void move_right();
+
 private:
     Ui::MainWindow *ui;
 };
