@@ -1,17 +1,14 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2018-02-17T18:48:44
+# Project created by QtCreator 2018-02-02T14:40:24
 #
 #-------------------------------------------------
-# Some code for qhoversensitivebutton.cpp taken from
-# http://amin-ahmadi.com/2016/02/01/mouse-hover-over-event-qt-widget/
-
 
 QT       += core gui serialport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = Alpha2
+TARGET = Alpha
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -28,12 +25,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp \
+        widget.cpp \
     qhoversensitivebutton.cpp
 
 HEADERS += \
-        mainwindow.h \
+        widget.h \
     qhoversensitivebutton.h
 
 FORMS += \
-        mainwindow.ui
+        widget.ui
