@@ -24,7 +24,7 @@
        <string notr="true">background: rgb(67, 83, 106);</string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="startPage">
        <property name="styleSheet">
@@ -53,6 +53,7 @@
         <property name="styleSheet">
          <string notr="true">background-color: rgb(0, 0, 255);
 border-style: solid;
+
 </string>
         </property>
         <property name="text">
@@ -80,7 +81,8 @@ border-style: solid;
 max-width:100px;
 max-height:100px;
 min-width:100px;
-min-height:100px;</string>
+min-height:100px;
+</string>
         </property>
         <property name="text">
          <string>Settings</string>
@@ -146,7 +148,8 @@ border-style: solid;
 max-width:100px;
 max-height:100px;
 min-width:100px;
-min-height:100px;</string>
+min-height:100px;
+</string>
         </property>
         <property name="text">
          <string>Tutorials</string>
