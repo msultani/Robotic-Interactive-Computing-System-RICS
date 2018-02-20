@@ -1,6 +1,10 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+QSerialPort serial;
+QElapsedTimer timer;
+
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -53,6 +57,26 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->backwardButton, SIGNAL (pressed()), this, SLOT (move_backward()));
     connect(ui->backwardButton, SIGNAL (hovered()), this, SLOT (move_backward()));
+
+
+    serial.setPortName("COM21");
+
+        serial.setBaudRate(QSerialPort::Baud115200);
+        serial.setDataBits(QSerialPort::Data8);
+        serial.setParity(QSerialPort::NoParity);
+        serial.setStopBits(QSerialPort::OneStop);
+        serial.setFlowControl(QSerialPort::NoFlowControl);
+
+        serial.open(QIODevice::ReadWrite);
+
+        if (serial.isOpen()){
+            qDebug() << "OPEN!!!";
+        }
+        else{
+            qDebug() << "Serial port could not open";
+            qDebug() << serial.errorString();
+        }
+
 
 }
 
