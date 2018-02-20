@@ -2,31 +2,28 @@
 //Use With MeCon.exe Ver0.4 Windows Software for MeArm Motion Control
 #include <Servo.h>
 
+enum class Commands : char {
+  UP = 'U', 
+  DOWN = 'D', 
+  LEFT = 'L', 
+  RIGHT = 'R', 
+  FORWARD = 'F', 
+  BACKWARD = 'B', 
+  RETRIEVE = 'E',  // TODO: Confusing naming, rename later
+  STOP = 'S' 
+};
+
 /* UltrasonicSensor will be installed to detect distance to objects
- * in front of the claw.
+ * in front of the claw. TODO: Separate this into another file? not sure if arduinos allow that
   */
 struct UltrasonicSensor {
-  int trigPin = 7;
-  int echoPin = 8;
+  int trigPin = 5;
+  int echoPin = 3;
   int distance;
 
   void configureSensor();
   void checkSensorDistance();
 };
-
-//MeArm HAS 4 SERVOS
-UltrasonicSensor sensor;
-Servo xServo;  // create servo object, arm base servo - left right motion
-Servo yServo;  // create servo object, left side servo - forward backwards motion
-Servo zServo;  // create servo object, right side servo - forward backwards motion
-Servo clawServo;  // create servo object, end of arm srevo - open,close the claw hand
-
-//servo positions values, expects 1-180 deg.
-int xPos;
-int yPos;
-int zPos;
-int clawPos;
-bool moving = false;
 
 void UltrasonicSensor::configureSensor() {
   pinMode(sensor.trigPin, OUTPUT); // Sets the trigPin as an Output
@@ -54,7 +51,30 @@ void UltrasonicSensor::checkSensorDistance() {
   Serial.println(distance);  
 }
 
-//*************** INIT AT STARTUP *******************************************************************
+//MeArm HAS 4 SERVOS
+UltrasonicSensor sensor;
+Servo xServo;  // create servo object, arm base servo - left right motion
+Servo yServo;  // create servo object, left side servo - forward backwards motion
+Servo zServo;  // create servo object, right side servo - forward backwards motion
+Servo clawServo;  // create servo object, end of arm srevo - open,close the claw hand
+
+/* 
+ *  Servo Ranges:
+ *  xServo: 0-180
+ *  yServo: 0-35
+ *  zServo: 0-60
+ */
+
+const int START_X = 90;
+const int START_Y = 45;
+const int START_Z = 60;
+const int START_CLAW = 0;
+
+//servo positions values, expects 1-180 deg.
+int xPos = START_X;
+int yPos = START_Y;
+int zPos = START_Z;
+int clawPos = START_CLAW;
 
 void configureServoPins() {
   // assign servo to pin numbers
@@ -64,49 +84,64 @@ void configureServoPins() {
   clawServo.attach(6);  // attaches the servo on pin 6 to the servo object
 }
 
-void checkServoBoundaries(Servo servo, int startPt, int endPt, int moveDelay) {
-    servo.write(startPt);
-    delay(moveDelay);
-    servo.write(endPt);
-    delay(moveDelay);
+void moveServo(Servo servo, int startPt, int endPt, int moveDelay) {
+    for (; startPt < endPt; ++startPt) {
+      servo.write(startPt);
+      Serial.print(startPt);
+      Serial.print('\n');
+      delay(moveDelay);
+    }
 }
 
-// the setup function runs once when you press reset or power the board
+void resetArmToInitialPosition() {
+  xServo.write(START_X);
+  yServo.write(START_Y);
+  zServo.write(START_Z);
+  clawServo.write(START_CLAW);
+}
+
+//*************** ARDUINO MAIN FUNCTIONS ***************//
+
 void setup() {
   configureServoPins();
-  //sensor.configureSensor();
-  Serial.begin(9600); // initialize serial port
-  // Debug only send serial message to host com port terminal window in Arduino IDE
-  Serial.print("*** MeCom Test V04 ***.");   // send program name, uncomment for debug connection test
+  sensor.configureSensor();
+  resetArmToInitialPosition();
+
+  Serial.begin(9600);
+  Serial.print("*** MeCom Test V04 ***  ");
 }
 
-int count = 0;
+void moveServo(Servo servo, int angle, )
+
 void loop() {
   while (Serial.available() > 0) {
+    // Take in leading command character
     int input = Serial.read();
+    Serial.print("Read in: ");
     Serial.print(input);
-
-    Serial.print("Writing to xServo");
-        xServo.write(input);
-    /*
-    switch(count++ % 4){
-      case 0:
-        Serial.print("Writing to xServo");
-        xServo.write(input);
+    serial.print('\n');
+    
+    switch(input){
+      case UP:
         break;
-      case 1:
-        Serial.print("Writing to yServo");
-        yServo.write(input);
+      case DOWN:
         break;
-      case 2:
-        Serial.print("Writing to zServo");
-        zServo.write(input);
+      case LEFT:
         break;
-      case 3:
-        Serial.print("Writing to clawServo");
-        clawServo.write(input);
+      case RIGHT:
         break;
-    }*/
-    delay(5000);
+      case FORWARD:
+        break;
+      case BACKWARD:
+        break;
+      case RETRIEVE:
+        break;
+      case STOP:
+        Serial.print("Attempted to stop while not moving. ");
+        break;
+      default:
+        Serial.print("Unidentified command character. ");
+    }
+    delay(500);
   }
 }
