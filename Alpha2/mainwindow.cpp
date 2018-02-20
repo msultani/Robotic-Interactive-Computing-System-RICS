@@ -1,8 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-QSerialPort serial;
-QElapsedTimer timer;
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -58,37 +56,52 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->backwardButton, SIGNAL (pressed()), this, SLOT (move_backward()));
     connect(ui->backwardButton, SIGNAL (hovered()), this, SLOT (move_backward()));
 
+    connect(ui->releaseButton, SIGNAL (pressed()), this, SLOT (move_finished()));
+    connect(ui->releaseButton, SIGNAL (hovered()), this, SLOT (move_finished()));
 
-    serial.setPortName("COM21");
+    //Open serial port
+    port.setPortName("COM21");
+    port.setBaudRate(QSerialPort::Baud115200);
+    port.setDataBits(QSerialPort::Data8);
+    port.setParity(QSerialPort::NoParity);
+    port.setStopBits(QSerialPort::OneStop);
+    port.setFlowControl(QSerialPort::NoFlowControl);
 
-        serial.setBaudRate(QSerialPort::Baud115200);
-        serial.setDataBits(QSerialPort::Data8);
-        serial.setParity(QSerialPort::NoParity);
-        serial.setStopBits(QSerialPort::OneStop);
-        serial.setFlowControl(QSerialPort::NoFlowControl);
+    port.open(QIODevice::ReadWrite);
 
-        serial.open(QIODevice::ReadWrite);
-
-        if (serial.isOpen()){
-            qDebug() << "OPEN!!!";
-        }
-        else{
-            qDebug() << "Serial port could not open";
-            qDebug() << serial.errorString();
-        }
-
+    if (port.isOpen()){
+        qDebug() << "OPEN!!!";
+    }
+    else{
+        qDebug() << "Serial port could not open";
+        qDebug() << port.errorString();
+    }
 
 }
 
 
 MainWindow::~MainWindow()
 {
+    if (port.isOpen()){
+        port.close();
+    }
     delete ui;
 }
 
+void MainWindow::write_to_arduino(char data){
+    if (!port.isOpen()){
+        qDebug() << "ERROR! PORT NOT OPEN!";
+    }
+
+    ard_data.clear();
+    ard_data.push_back(data);
+    port.write(ard_data);
+}
 
 void MainWindow::fetchPressed(){
     ui->stackedWidget->setCurrentIndex(1);
+    Command = "T";
+    write_to_arduino(Command);
 }
 
 void MainWindow::tutorialPressed(){
@@ -132,19 +145,39 @@ void MainWindow::changeLabel(){
 
 void MainWindow::move_up(){
     qDebug() << "Move up";
+    Command = 'U';
+    write_to_arduino(Command);
 }
 void MainWindow::move_down(){
     qDebug() << "Move down";
+    Command = 'D';
+    write_to_arduino(Command);
 }
 void MainWindow::move_left(){
     qDebug() << "Move left";
+    Command = 'L';
+    write_to_arduino(Command);
 }
 void MainWindow::move_right(){
     qDebug() << "Move right";
+    Command = 'R';
+    write_to_arduino(Command);
 }
 void MainWindow::move_forward(){
     qDebug() << "Move forward";
+    Command = 'F';
+    write_to_arduino(Command);
 }
 void MainWindow::move_backward(){
     qDebug() << "Move backward";
+    Command = 'B';
+    write_to_arduino(Command);
 }
+
+void MainWindow::move_finished(){
+    qDebug() << "Retract";
+    Command = 'N';
+    write_to_arduino(Command);
+}
+
+

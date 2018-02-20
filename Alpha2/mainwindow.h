@@ -50,9 +50,16 @@ public slots:
     void move_forward();
     void move_left();
     void move_right();
+    void move_finished();
 
 private:
     Ui::MainWindow *ui;
+    QSerialPort port;
+    QByteArray ard_data;
+    char Command;
+
+    void write_to_arduino(char data);
+
 };
 
 #endif // MAINWINDOW_H
