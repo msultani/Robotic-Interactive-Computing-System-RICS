@@ -2,7 +2,6 @@
 #include "ui_mainwindow.h"
 
 
-
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -60,8 +59,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->releaseButton, SIGNAL (hovered()), this, SLOT (move_finished()));
 
     //Open serial port
-    port.setPortName("COM21");
-    port.setBaudRate(QSerialPort::Baud115200);
+    port.setPortName("/dev/cu.usbmodem1421");
+    port.setBaudRate(QSerialPort::Baud9600);
     port.setDataBits(QSerialPort::Data8);
     port.setParity(QSerialPort::NoParity);
     port.setStopBits(QSerialPort::OneStop);
@@ -91,6 +90,7 @@ MainWindow::~MainWindow()
 void MainWindow::write_to_arduino(char data){
     if (!port.isOpen()){
         qDebug() << "ERROR! PORT NOT OPEN!";
+        return;
     }
 
     ard_data.clear();
@@ -100,7 +100,7 @@ void MainWindow::write_to_arduino(char data){
 
 void MainWindow::fetchPressed(){
     ui->stackedWidget->setCurrentIndex(1);
-    Command = "T";
+    Command = 'E';
     write_to_arduino(Command);
 }
 
@@ -176,8 +176,21 @@ void MainWindow::move_backward(){
 
 void MainWindow::move_finished(){
     qDebug() << "Retract";
-    Command = 'N';
+    Command = 'S';
+
     write_to_arduino(Command);
+
+    QHoverSensitiveButton::t.setHMS(-1,-1,-1,-1);
+    QHoverSensitiveButton::hoverButton = "";
+
+    Release popup; // TODO: move code out of setup function
+    popup.setVisible(true);
+    popup.open();
+    popup.setModal(true);
+    qDebug() << "opening";
+    delay(6000);
+    qDebug() << "closing";
+    popup.done(1);
 }
 
 

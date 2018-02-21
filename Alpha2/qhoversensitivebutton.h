@@ -1,6 +1,7 @@
 #ifndef QHOVERSENSATIVEBUTTON_H
 #define QHOVERSENSATIVEBUTTON_H
 #include "mainwindow.h"
+#include "functions.h"
 #include <QtWidgets>
 #include <QTime>
 
@@ -38,7 +39,7 @@ signals:
 private:
     void hoverButtonEntered();
     void buttonEntered();
-    QTime t;
+    static QTime t;
 
 protected:
     void hoverEnter(QHoverEvent *event);

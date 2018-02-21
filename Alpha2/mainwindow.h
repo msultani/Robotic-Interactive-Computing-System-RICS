@@ -1,5 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
+#include "release.h"
+#include "functions.h"
 
 #include <QMainWindow>
 
@@ -27,6 +29,7 @@ class MainWindow;
 class MainWindow : public QMainWindow
 {
     friend class QHoverSensitiveButton;
+    friend class Release;
     Q_OBJECT
 
 public:
