@@ -29,11 +29,16 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    qhoversensitivebutton.cpp
+    qhoversensitivebutton.cpp \
+    release.cpp \
+    functions.cpp
 
 HEADERS += \
         mainwindow.h \
-    qhoversensitivebutton.h
+    qhoversensitivebutton.h \
+    release.h \
+    functions.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    release.ui

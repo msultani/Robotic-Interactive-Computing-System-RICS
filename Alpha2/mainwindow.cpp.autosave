@@ -183,7 +183,7 @@ void MainWindow::move_finished(){
     QHoverSensitiveButton::t.setHMS(-1,-1,-1,-1);
     QHoverSensitiveButton::hoverButton = "";
 
-    Release popup; // TODO: move code out of setup function
+    Release popup; 
     popup.setVisible(true);
     popup.setModal(true);
     popup.open();

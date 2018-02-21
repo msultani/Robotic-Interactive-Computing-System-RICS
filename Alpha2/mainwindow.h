@@ -1,5 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
+#include "release.h"
+#include "functions.h"
 
 #include <QMainWindow>
 
@@ -27,6 +29,7 @@ class MainWindow;
 class MainWindow : public QMainWindow
 {
     friend class QHoverSensitiveButton;
+    friend class Release;
     Q_OBJECT
 
 public:
@@ -50,9 +53,16 @@ public slots:
     void move_forward();
     void move_left();
     void move_right();
+    void move_finished();
 
 private:
     Ui::MainWindow *ui;
+    QSerialPort port;
+    QByteArray ard_data;
+    char Command;
+
+    void write_to_arduino(char data);
+
 };
 
 #endif // MAINWINDOW_H
