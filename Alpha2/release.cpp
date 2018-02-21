@@ -7,16 +7,18 @@ Release::Release(QWidget *parent) :
     ui(new Ui::Release)
 {
     ui->setupUi(this);
-    qDebug() << "HERE";
+}
+
+void Release::countdown(){
     int countdown = 5;
     QString display = QString::number(countdown);
-    ui->countdownLabel->setText(display);
+    this->ui->countdownLabel->setText(display);
 
     while (countdown > 0){
-        qDebug() << "loop";
         delay(1000);
         countdown--;
-        ui->countdownLabel->setText(display);
+        display = QString::number(countdown);
+        this->ui->countdownLabel->setText(display);
     }
 }
 

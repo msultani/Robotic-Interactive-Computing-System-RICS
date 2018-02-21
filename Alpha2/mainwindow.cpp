@@ -185,12 +185,12 @@ void MainWindow::move_finished(){
 
     Release popup; // TODO: move code out of setup function
     popup.setVisible(true);
-    popup.open();
     popup.setModal(true);
+    popup.open();
     qDebug() << "opening";
+    popup.countdown();
+
     delay(6000);
     qDebug() << "closing";
     popup.done(1);
 }
-
-

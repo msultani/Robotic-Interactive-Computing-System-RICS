@@ -16,6 +16,7 @@ class Release : public QDialog
 
 public:
     explicit Release(QWidget *parent = 0);
+    void countdown();
     ~Release();
 
 private:

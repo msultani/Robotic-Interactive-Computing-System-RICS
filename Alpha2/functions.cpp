@@ -1,4 +1,5 @@
 #include "functions.h"
+#include "release.h"
 #include <QTime>
 #include <QCoreApplication>
 
@@ -11,3 +12,4 @@ void delay( int millisecondsToWait )
         QCoreApplication::processEvents( QEventLoop::AllEvents, 100 );
     }
 }
+
