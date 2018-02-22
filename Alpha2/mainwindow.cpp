@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+bool MainWindow::popup_open = false;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -99,21 +100,49 @@ void MainWindow::write_to_arduino(char data){
 }
 
 void MainWindow::fetchPressed(){
+    bool changed = check_hovermode();
+    qDebug() << "CHANGING HOVERMODE";
     ui->stackedWidget->setCurrentIndex(1);
     Command = 'E';
     write_to_arduino(Command);
+
+    if (changed){
+        delay(4000);
+        QHoverSensitiveButton::hoverMode = true;
+        qDebug() << "RESTORING HOVERMODE";
+    }
+
+
 }
 
 void MainWindow::tutorialPressed(){
+    bool changed = check_hovermode();
     ui->stackedWidget->setCurrentIndex(3);
+
+    if (changed){
+        delay(4000);
+        QHoverSensitiveButton::hoverMode = true;
+    }
 }
 
 void MainWindow::settingsPressed(){
+    bool changed = check_hovermode();
     ui->stackedWidget->setCurrentIndex(2);
+
+    if (changed){
+        delay(4000);
+        QHoverSensitiveButton::hoverMode = true;
+    }
 }
 
 void MainWindow::backPressed(){
+    bool changed = check_hovermode();
     ui->stackedWidget->setCurrentIndex(0);
+
+    if (changed){
+        delay(4000);
+        QHoverSensitiveButton::hoverMode = true;
+    }
 }
 
 void MainWindow::hover_time_down(){
@@ -176,24 +205,31 @@ void MainWindow::move_backward(){
 
 void MainWindow::move_finished(){
     qDebug() << "Retract";
-    Command = 'S';
 
-    write_to_arduino(Command);
+    if (!popup_open){
+        popup_open = true;
 
-    QHoverSensitiveButton::t.setHMS(-1,-1,-1,-1);
-    QHoverSensitiveButton::hoverButton = "";
+        Release popup;
+        popup.setVisible(true);
+        popup.setModal(true);
+        popup.open();
+        qDebug() << "opening";
+        popup.countdown();
+        QHoverSensitiveButton::t.setHMS(-1,-1,-1,-1);
+        //qDebug() << "Setting t to " + QHoverSensitiveButton::t.toString();
 
-    Release popup; // TODO: move code out of setup function
-    popup.setVisible(true);
-    popup.setModal(true);
-    popup.open();
-    qDebug() << "opening";
-    popup.countdown();
+        QHoverSensitiveButton::hoverButton = "";
 
-    delay(6000);
-    qDebug() << "closing";
-    popup.done(1);
+        delay(5000);
+        qDebug() << "closing";
+        popup.done(1);
 
-    Command = 'S';
-    write_to_arduino(Command);
+        Command = 'S';
+        write_to_arduino(Command);
+        popup_open = false;
+    }
+    else{
+       return;
+    }
+
 }

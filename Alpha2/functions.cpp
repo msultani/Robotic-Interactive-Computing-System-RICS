@@ -1,7 +1,5 @@
 #include "functions.h"
-#include "release.h"
-#include <QTime>
-#include <QCoreApplication>
+
 
 void delay( int millisecondsToWait )
 {
@@ -13,3 +11,10 @@ void delay( int millisecondsToWait )
     }
 }
 
+bool check_hovermode(){
+    if (QHoverSensitiveButton::hoverMode){
+        QHoverSensitiveButton::hoverMode = false;
+        return true;
+    }
+    return false;
+}
