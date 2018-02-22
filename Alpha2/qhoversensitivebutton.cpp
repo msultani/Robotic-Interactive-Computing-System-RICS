@@ -8,6 +8,8 @@ bool QHoverSensitiveButton::hoverPending = false;
 QString QHoverSensitiveButton::hoverButton = "";
 int QHoverSensitiveButton::hoverTime = 3000;
 
+QList<QString> QHoverSensitiveButton::active_buttons;
+
 
 QHoverSensitiveButton::QHoverSensitiveButton(QWidget *parent) : QPushButton(parent)
 {
@@ -17,7 +19,7 @@ QHoverSensitiveButton::QHoverSensitiveButton(QWidget *parent) : QPushButton(pare
 
 
 void QHoverSensitiveButton::hoverEnter(QHoverEvent *){
-
+    //qDebug() << "hover " << hoverMode;
 
     if (this->objectName() == "hoverButton"){
         if (hoverPending){
@@ -29,11 +31,14 @@ void QHoverSensitiveButton::hoverEnter(QHoverEvent *){
         hoverButtonEntered();
     }
 
-    if (!hoverMode){
+    if (!hoverMode || active_buttons.contains(this->objectName())){
         return;
     }
-
+    active_buttons.append(this->objectName());
     t.start();
+    //qDebug() << "starting t: " + t.toString();
+    //qDebug() << t.isValid();
+    //qDebug() << "adding " + this->objectName() + " to active_buttons";
     hoverButton = this->objectName();
     buttonEntered();
     //emit hovered();
@@ -41,6 +46,8 @@ void QHoverSensitiveButton::hoverEnter(QHoverEvent *){
 
 void QHoverSensitiveButton::hoverLeave(QHoverEvent *){
 
+    //qDebug() << "hoverLeave";
+    active_buttons.removeAll(this->objectName());
     hoverPending = false;
     hoverButton = "";
     t.setHMS(-1,-1,-1,-1);
@@ -49,27 +56,32 @@ void QHoverSensitiveButton::hoverLeave(QHoverEvent *){
 
 void QHoverSensitiveButton::hoverButtonEntered(){
     while (t.isValid() && t.elapsed() < hoverTime){
-        QCoreApplication::processEvents( QEventLoop::WaitForMoreEvents, 100 );
+        QCoreApplication::processEvents( QEventLoop::AllEvents, 100 );
     }
     if (t.isValid() && hoverButton == this->objectName()){
-        qDebug() << "Hover mode toggled";
+        //qDebug() << "Hover mode toggled";
         hoverMode = !hoverMode;
+
         emit changeLabel();
     }
 }
 
 void QHoverSensitiveButton::buttonEntered(){
-    qDebug() << "buttonEntered begin";
+    //qDebug() << "buttonEntered begin";
     while (t.isValid() && t.elapsed() < hoverTime){
-        QCoreApplication::processEvents( QEventLoop::WaitForMoreEvents, 100 );
+        QCoreApplication::processEvents( QEventLoop::AllEvents, 100 );
     }
     if (t.isValid() && hoverButton == this->objectName()){
         //qDebug() << "Button pressed";
-        qDebug() << "Emit hovered";
+        //qDebug() << "Emit hovered from" + this->objectName();
+        //qDebug() << t.toString();
+        //qDebug() << t.isValid();
+
         emit hovered();
         hoverButton = "";
+
     }
-    qDebug() << "buttonEntered finished";
+    //qDebug() << "buttonEntered finished";
 }
 
 bool QHoverSensitiveButton::event(QEvent *event)
