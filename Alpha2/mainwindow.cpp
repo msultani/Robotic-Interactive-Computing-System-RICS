@@ -3,6 +3,13 @@
 
 bool MainWindow::popup_open = false;
 
+int MainWindow::x_pos = 93;
+int MainWindow::y_pos = 40;
+int MainWindow::z_pos = 0;
+int MainWindow::move_speed = 5;
+bool MainWindow::auto_movement= true;
+
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -37,6 +44,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->hover_time_down_button, SIGNAL (hovered()), this, SLOT (hover_time_down()));
 
     connect(ui->hoverButton, SIGNAL (changeLabel()), this, SLOT (changeLabel()));
+    //connect(ui->hoverButton, SIGNAL (pressed()), this, SLOT (hover_pressed()));
 
     connect(ui->upButton, SIGNAL (pressed()), this, SLOT (move_up()));
     connect(ui->upButton, SIGNAL (hovered()), this, SLOT (move_up()));
@@ -58,6 +66,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->releaseButton, SIGNAL (pressed()), this, SLOT (move_finished()));
     connect(ui->releaseButton, SIGNAL (hovered()), this, SLOT (move_finished()));
+
+    connect(ui->autoButton, SIGNAL (pressed()), this, SLOT (auto_move()));
+    connect(ui->autoButton, SIGNAL (hovered()), this, SLOT (auto_move()));
 
     //Open serial port
     port.setPortName("/dev/cu.usbmodem1421");
@@ -88,23 +99,31 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::write_to_arduino(char data){
+void MainWindow::write_to_arduino(QString data){
     if (!port.isOpen()){
         qDebug() << "ERROR! PORT NOT OPEN!";
         return;
     }
 
-    ard_data.clear();
-    ard_data.push_back(data);
-    port.write(ard_data);
+    //ard_data.clear();
+    //ard_data.push_back(data);
+    const char* myChar = data.toStdString().c_str();
+    //ard_data.push_back(myChar);
+    port.write(myChar, data.length());
 }
 
 void MainWindow::fetchPressed(){
     bool changed = check_hovermode();
     qDebug() << "CHANGING HOVERMODE";
     ui->stackedWidget->setCurrentIndex(1);
-    Command = 'E';
-    write_to_arduino(Command);
+    if (auto_movement){
+        x_pos = 10;
+        y_pos = 0;
+        z_pos = 0;
+        write_to_arduino("0" + QString::number(x_pos) + "X");
+        write_to_arduino("1" + QString::number(y_pos) + "X");
+        write_to_arduino("2" + QString::number(z_pos) + "X");
+    }
 
     if (changed){
         delay(4000);
@@ -112,37 +131,18 @@ void MainWindow::fetchPressed(){
         qDebug() << "RESTORING HOVERMODE";
     }
 
-
 }
 
 void MainWindow::tutorialPressed(){
-    bool changed = check_hovermode();
     ui->stackedWidget->setCurrentIndex(3);
-
-    if (changed){
-        delay(4000);
-        QHoverSensitiveButton::hoverMode = true;
-    }
 }
 
 void MainWindow::settingsPressed(){
-    bool changed = check_hovermode();
     ui->stackedWidget->setCurrentIndex(2);
-
-    if (changed){
-        delay(4000);
-        QHoverSensitiveButton::hoverMode = true;
-    }
 }
 
 void MainWindow::backPressed(){
-    bool changed = check_hovermode();
     ui->stackedWidget->setCurrentIndex(0);
-
-    if (changed){
-        delay(4000);
-        QHoverSensitiveButton::hoverMode = true;
-    }
 }
 
 void MainWindow::hover_time_down(){
@@ -166,41 +166,74 @@ void MainWindow::hover_time_up(){
 void MainWindow::changeLabel(){
     if (ui->label->text() == "Hover + Hold"){
         ui->label->setText("Press Button");
+        ui->hoverButton->setText("OFF");
     }
     else{
         ui->label->setText("Hover + Hold");
+        ui->hoverButton->setText("ON");
+    }
+}
+/*
+void MainWindow::hover_pressed(){
+    //qDebug() << QHoverSensitiveButton::hoverMode;
+    if (QHoverSensitiveButton::hoverMode){
+        ui->hoverButton->setText("OFF");
+        QHoverSensitiveButton::hoverMode = false;
+    }
+    else{
+        ui->hoverButton->setText("ON");
+        QHoverSensitiveButton::hoverMode = true;
+    }
+    changeLabel();
+}
+*/
+
+void MainWindow::auto_move(){
+    auto_movement = !auto_movement;
+    if (auto_movement){
+        ui->autoButton->setText("ON");
+    }
+    else{
+        ui->autoButton->setText("OFF");
     }
 }
 
-void MainWindow::move_up(){
-    qDebug() << "Move up";
-    Command = 'U';
-    write_to_arduino(Command);
-}
 void MainWindow::move_down(){
-    qDebug() << "Move down";
-    Command = 'D';
-    write_to_arduino(Command);
+
+    y_pos += move_speed;
+    qDebug() << "Y POS: " + QString::number(y_pos);
+    write_to_arduino("1" + QString::number(y_pos) + "X");
+}
+void MainWindow::move_up(){
+    y_pos -= move_speed;
+    qDebug() << "Y POS: " + QString::number(y_pos);
+    write_to_arduino("1" + QString::number(y_pos) + "X");
 }
 void MainWindow::move_left(){
-    qDebug() << "Move left";
-    Command = 'L';
-    write_to_arduino(Command);
+    x_pos += move_speed;
+    qDebug() << "X POS: " + QString::number(x_pos);
+    write_to_arduino("0" + QString::number(x_pos) + "X");
 }
 void MainWindow::move_right(){
-    qDebug() << "Move right";
-    Command = 'R';
-    write_to_arduino(Command);
-}
-void MainWindow::move_forward(){
-    qDebug() << "Move forward";
-    Command = 'F';
-    write_to_arduino(Command);
+    x_pos -= move_speed;
+    qDebug() << "X POS: " + QString::number(x_pos);
+    write_to_arduino("0" + QString::number(x_pos) + "X");
 }
 void MainWindow::move_backward(){
-    qDebug() << "Move backward";
-    Command = 'B';
-    write_to_arduino(Command);
+    if (z_pos < 70){
+        z_pos -= move_speed;
+        qDebug() << "Z POS: " + QString::number(z_pos);
+        write_to_arduino("2" + QString::number(z_pos) + "X");
+    }
+    else {
+        qDebug() << "CAN'T MOVE ANY FARTHER FORWARD";
+    }
+
+}
+void MainWindow::move_forward(){
+    z_pos += move_speed;
+    qDebug() << "Z POS: " + QString::number(z_pos);
+    write_to_arduino("2" + QString::number(z_pos) + "X");
 }
 
 void MainWindow::move_finished(){
@@ -223,10 +256,14 @@ void MainWindow::move_finished(){
         delay(5000);
         qDebug() << "closing";
         popup.done(1);
-
-        Command = 'S';
-        write_to_arduino(Command);
         popup_open = false;
+
+        x_pos = 93;
+        y_pos = 30;
+        z_pos = 40;
+        write_to_arduino("0" + QString::number(x_pos) + "X");
+        write_to_arduino("1" + QString::number(y_pos) + "X");
+        write_to_arduino("2" + QString::number(z_pos) + "X");
     }
     else{
        return;

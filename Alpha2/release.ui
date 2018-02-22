@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>339</width>
+    <height>159</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,8 +20,8 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>150</y>
-     <width>391</width>
+     <y>80</y>
+     <width>321</width>
      <height>71</height>
     </rect>
    </property>
@@ -41,9 +41,9 @@ qproperty-alignment: AlignCenter;</string>
   <widget class="QLabel" name="countdownLabel">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>60</y>
-     <width>391</width>
+     <x>10</x>
+     <y>0</y>
+     <width>321</width>
      <height>81</height>
     </rect>
    </property>
