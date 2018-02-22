@@ -13,6 +13,7 @@ class Release : public QDialog
 {
     Q_OBJECT
     friend class MainWindow;
+    friend class QHoverSensitiveButton;
 
 public:
     explicit Release(QWidget *parent = 0);
