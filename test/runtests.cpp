@@ -1,7 +1,9 @@
 #include "mock_arduino.h"
-#include <cstdlib>
-
+#include "unistd.h"
 using namespace std;
+
+// TODO test parseCommand()
+
 
 void millis_test() {
   unsigned long start = millis();
