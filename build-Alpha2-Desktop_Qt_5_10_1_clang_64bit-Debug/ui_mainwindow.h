@@ -60,8 +60,14 @@ public:
     QTabWidget *tabWidget;
     QWidget *tab;
     QWidget *widget;
-    QWidget *widget_2;
     QHoverSensitiveButton *fetchButton_2;
+    QLabel *label_5;
+    QLabel *label_8;
+    QWidget *widget_2;
+    QLabel *label_9;
+    QLabel *label_10;
+    QLabel *label_11;
+    QLabel *label_12;
     QWidget *tab_2;
 
     void setupUi(QMainWindow *MainWindow)
@@ -207,7 +213,7 @@ public:
 "border: solid;"));
         hoverButton = new QHoverSensitiveButton(settingsPage);
         hoverButton->setObjectName(QStringLiteral("hoverButton"));
-        hoverButton->setGeometry(QRect(31, 90, 121, 51));
+        hoverButton->setGeometry(QRect(31, 90, 161, 51));
         label_4 = new QLabel(settingsPage);
         label_4->setObjectName(QStringLiteral("label_4"));
         label_4->setGeometry(QRect(240, 100, 91, 21));
@@ -219,25 +225,25 @@ public:
         label_4->setStyleSheet(QStringLiteral("qproperty-alignment: AlignCenter;"));
         hover_time_label = new QLabel(settingsPage);
         hover_time_label->setObjectName(QStringLiteral("hover_time_label"));
-        hover_time_label->setGeometry(QRect(40, 155, 101, 31));
+        hover_time_label->setGeometry(QRect(40, 155, 81, 31));
         QFont font6;
         font6.setPointSize(20);
         hover_time_label->setFont(font6);
         hover_time_label->setStyleSheet(QStringLiteral("qproperty-alignment: AlignCenter;"));
         hover_time_up_button = new QHoverSensitiveButton(settingsPage);
         hover_time_up_button->setObjectName(QStringLiteral("hover_time_up_button"));
-        hover_time_up_button->setGeometry(QRect(150, 140, 51, 32));
+        hover_time_up_button->setGeometry(QRect(130, 150, 51, 32));
         hover_time_up_button->setStyleSheet(QLatin1String("background-color: rgb(240, 223, 51);\n"
 "border: 1px solid black;\n"
 ""));
         hover_time_down_button = new QHoverSensitiveButton(settingsPage);
         hover_time_down_button->setObjectName(QStringLiteral("hover_time_down_button"));
-        hover_time_down_button->setGeometry(QRect(150, 170, 51, 32));
-        hover_time_down_button->setStyleSheet(QLatin1String("background-color: rgb(29, 241, 240);\n"
+        hover_time_down_button->setGeometry(QRect(130, 180, 51, 32));
+        hover_time_down_button->setStyleSheet(QLatin1String("background-color: rgb(127, 169, 255);\n"
 "border: 1px solid black;"));
         label_6 = new QLabel(settingsPage);
         label_6->setObjectName(QStringLiteral("label_6"));
-        label_6->setGeometry(QRect(230, 160, 101, 21));
+        label_6->setGeometry(QRect(230, 170, 101, 21));
         label_6->setFont(font5);
         label_6->setLayoutDirection(Qt::LeftToRight);
         label_6->setStyleSheet(QStringLiteral("qproperty-alignment: AlignCenter;"));
@@ -263,21 +269,52 @@ public:
         widget = new QWidget(tab);
         widget->setObjectName(QStringLiteral("widget"));
         widget->setGeometry(QRect(10, 0, 351, 181));
-        widget_2 = new QWidget(widget);
-        widget_2->setObjectName(QStringLiteral("widget_2"));
-        widget_2->setGeometry(QRect(20, 20, 71, 41));
-        widget_2->setAutoFillBackground(false);
-        widget_2->setStyleSheet(QLatin1String("background-color: rgb(63, 76, 255);\n"
-"border: 1px solid black;"));
+        widget->setStyleSheet(QStringLiteral("background-color: rgb(107, 164, 227)"));
         fetchButton_2 = new QHoverSensitiveButton(widget);
         fetchButton_2->setObjectName(QStringLiteral("fetchButton_2"));
-        fetchButton_2->setGeometry(QRect(100, 90, 211, 61));
-        fetchButton_2->setFont(font);
+        fetchButton_2->setGeometry(QRect(20, 90, 101, 41));
+        QFont font7;
+        font7.setPointSize(14);
+        font7.setBold(false);
+        font7.setItalic(false);
+        font7.setWeight(50);
+        fetchButton_2->setFont(font7);
         fetchButton_2->setMouseTracking(true);
         fetchButton_2->setStyleSheet(QLatin1String("background-color: rgb(63, 76, 255);\n"
-"border-style: solid;\n"
-"\n"
+"border: 1px solid black;\n"
+"font: 14pt ;\n"
 ""));
+        label_5 = new QLabel(widget);
+        label_5->setObjectName(QStringLiteral("label_5"));
+        label_5->setGeometry(QRect(20, 20, 91, 20));
+        QFont font8;
+        font8.setPointSize(18);
+        font8.setBold(false);
+        font8.setItalic(false);
+        font8.setWeight(50);
+        label_5->setFont(font8);
+        label_5->setStyleSheet(QStringLiteral("font: 18pt ;"));
+        label_8 = new QLabel(widget);
+        label_8->setObjectName(QStringLiteral("label_8"));
+        label_8->setGeometry(QRect(40, 40, 61, 16));
+        label_8->setFont(font8);
+        label_8->setStyleSheet(QStringLiteral("font: 18pt;"));
+        widget_2 = new QWidget(widget);
+        widget_2->setObjectName(QStringLiteral("widget_2"));
+        widget_2->setGeometry(QRect(170, 10, 171, 151));
+        widget_2->setStyleSheet(QStringLiteral("background: rgb(212, 212, 212)"));
+        label_9 = new QLabel(widget_2);
+        label_9->setObjectName(QStringLiteral("label_9"));
+        label_9->setGeometry(QRect(10, 0, 171, 31));
+        label_10 = new QLabel(widget_2);
+        label_10->setObjectName(QStringLiteral("label_10"));
+        label_10->setGeometry(QRect(10, 30, 171, 21));
+        label_11 = new QLabel(widget_2);
+        label_11->setObjectName(QStringLiteral("label_11"));
+        label_11->setGeometry(QRect(10, 80, 171, 21));
+        label_12 = new QLabel(widget_2);
+        label_12->setObjectName(QStringLiteral("label_12"));
+        label_12->setGeometry(QRect(10, 100, 171, 21));
         tabWidget->addTab(tab, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QStringLiteral("tab_2"));
@@ -324,6 +361,12 @@ public:
         backButton_2->setText(QApplication::translate("MainWindow", "Back", nullptr));
         label_7->setText(QApplication::translate("MainWindow", "TUTORIALS", nullptr));
         fetchButton_2->setText(QApplication::translate("MainWindow", "Fetch", nullptr));
+        label_5->setText(QApplication::translate("MainWindow", "Hover + Hold", nullptr));
+        label_8->setText(QApplication::translate("MainWindow", "to Select", nullptr));
+        label_9->setText(QApplication::translate("MainWindow", "Move cursor over buttons", nullptr));
+        label_10->setText(QApplication::translate("MainWindow", "Hold for ~3 secs", nullptr));
+        label_11->setText(QApplication::translate("MainWindow", "Fetch will call the arm", nullptr));
+        label_12->setText(QApplication::translate("MainWindow", "to fetch the wand", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("MainWindow", "Controls", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("MainWindow", "Tab 2", nullptr));
     } // retranslateUi

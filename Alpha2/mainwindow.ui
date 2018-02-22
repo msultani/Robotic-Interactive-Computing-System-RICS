@@ -577,7 +577,7 @@ font: 14pt ;
           <widget class="QLabel" name="label_5">
            <property name="geometry">
             <rect>
-             <x>30</x>
+             <x>20</x>
              <y>20</y>
              <width>91</width>
              <height>20</height>
@@ -601,7 +601,7 @@ font: 14pt ;
           <widget class="QLabel" name="label_8">
            <property name="geometry">
             <rect>
-             <x>50</x>
+             <x>40</x>
              <y>40</y>
              <width>61</width>
              <height>16</height>
@@ -625,9 +625,9 @@ font: 14pt ;
           <widget class="QWidget" name="widget_2" native="true">
            <property name="geometry">
             <rect>
-             <x>150</x>
+             <x>170</x>
              <y>10</y>
-             <width>191</width>
+             <width>171</width>
              <height>151</height>
             </rect>
            </property>
