@@ -7,8 +7,7 @@ int MainWindow::x_pos = 93;
 int MainWindow::y_pos = 40;
 int MainWindow::z_pos = 0;
 int MainWindow::move_speed = 5;
-
-
+bool MainWindow::auto_movement= true;
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -45,6 +44,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->hover_time_down_button, SIGNAL (hovered()), this, SLOT (hover_time_down()));
 
     connect(ui->hoverButton, SIGNAL (changeLabel()), this, SLOT (changeLabel()));
+    //connect(ui->hoverButton, SIGNAL (pressed()), this, SLOT (hover_pressed()));
 
     connect(ui->upButton, SIGNAL (pressed()), this, SLOT (move_up()));
     connect(ui->upButton, SIGNAL (hovered()), this, SLOT (move_up()));
@@ -66,6 +66,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->releaseButton, SIGNAL (pressed()), this, SLOT (move_finished()));
     connect(ui->releaseButton, SIGNAL (hovered()), this, SLOT (move_finished()));
+
+    connect(ui->autoButton, SIGNAL (pressed()), this, SLOT (auto_move()));
+    connect(ui->autoButton, SIGNAL (hovered()), this, SLOT (auto_move()));
 
     //Open serial port
     port.setPortName("/dev/cu.usbmodem1421");
@@ -113,14 +116,14 @@ void MainWindow::fetchPressed(){
     bool changed = check_hovermode();
     qDebug() << "CHANGING HOVERMODE";
     ui->stackedWidget->setCurrentIndex(1);
-// z - 0 x - 10 y - 0
-    x_pos = 10;
-    y_pos = 0;
-    z_pos = 0;
-    write_to_arduino("0" + QString::number(x_pos) + "X");
-    write_to_arduino("1" + QString::number(y_pos) + "X");
-    write_to_arduino("2" + QString::number(z_pos) + "X");
-    //write_to_arduino(Command); TODO - pre-planned movement
+    if (auto_movement){
+        x_pos = 10;
+        y_pos = 0;
+        z_pos = 0;
+        write_to_arduino("0" + QString::number(x_pos) + "X");
+        write_to_arduino("1" + QString::number(y_pos) + "X");
+        write_to_arduino("2" + QString::number(z_pos) + "X");
+    }
 
     if (changed){
         delay(4000);
@@ -128,37 +131,18 @@ void MainWindow::fetchPressed(){
         qDebug() << "RESTORING HOVERMODE";
     }
 
-
 }
 
 void MainWindow::tutorialPressed(){
-    bool changed = check_hovermode();
     ui->stackedWidget->setCurrentIndex(3);
-
-    if (changed){
-        delay(4000);
-        QHoverSensitiveButton::hoverMode = true;
-    }
 }
 
 void MainWindow::settingsPressed(){
-    bool changed = check_hovermode();
     ui->stackedWidget->setCurrentIndex(2);
-
-    if (changed){
-        delay(4000);
-        QHoverSensitiveButton::hoverMode = true;
-    }
 }
 
 void MainWindow::backPressed(){
-    bool changed = check_hovermode();
     ui->stackedWidget->setCurrentIndex(0);
-
-    if (changed){
-        delay(4000);
-        QHoverSensitiveButton::hoverMode = true;
-    }
 }
 
 void MainWindow::hover_time_down(){
@@ -182,9 +166,35 @@ void MainWindow::hover_time_up(){
 void MainWindow::changeLabel(){
     if (ui->label->text() == "Hover + Hold"){
         ui->label->setText("Press Button");
+        ui->hoverButton->setText("OFF");
     }
     else{
         ui->label->setText("Hover + Hold");
+        ui->hoverButton->setText("ON");
+    }
+}
+/*
+void MainWindow::hover_pressed(){
+    //qDebug() << QHoverSensitiveButton::hoverMode;
+    if (QHoverSensitiveButton::hoverMode){
+        ui->hoverButton->setText("OFF");
+        QHoverSensitiveButton::hoverMode = false;
+    }
+    else{
+        ui->hoverButton->setText("ON");
+        QHoverSensitiveButton::hoverMode = true;
+    }
+    changeLabel();
+}
+*/
+
+void MainWindow::auto_move(){
+    auto_movement = !auto_movement;
+    if (auto_movement){
+        ui->autoButton->setText("ON");
+    }
+    else{
+        ui->autoButton->setText("OFF");
     }
 }
 

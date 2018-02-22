@@ -51,6 +51,7 @@ public slots:
     void hover_time_up();
     void hover_time_down();
     void changeLabel();
+    //void hover_pressed();
 
     void move_up();
     void move_backward();
@@ -59,11 +60,13 @@ public slots:
     void move_left();
     void move_right();
     void move_finished();
+    void auto_move();
 
 private:
     Ui::MainWindow *ui;
     QSerialPort port;
     QByteArray ard_data;
+    static bool auto_movement;
 
     void write_to_arduino(QString data);
 
