@@ -35,8 +35,12 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     static bool popup_open;
+    static int move_speed;
     ~MainWindow();
     int countdown = 10;
+    static int x_pos;
+    static int y_pos;
+    static int z_pos;
 
 
 public slots:
@@ -60,9 +64,8 @@ private:
     Ui::MainWindow *ui;
     QSerialPort port;
     QByteArray ard_data;
-    char Command;
 
-    void write_to_arduino(char data);
+    void write_to_arduino(QString data);
 
 };
 

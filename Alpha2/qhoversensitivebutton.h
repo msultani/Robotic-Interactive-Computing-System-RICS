@@ -31,6 +31,10 @@ public:
     static QString hoverButton;
     static int hoverTime;
 
+    static int x_pos;
+    static int y_pos;
+    static int z_pos;
+
     void hoverWait();
 
 signals:
@@ -43,7 +47,9 @@ private:
     void buttonEntered();
     static QTime t;
     static QList<QString> active_buttons;
-    enum Robot_cmd{stop=1,forward,backward,left,right,rotate_clockwise,rotate_anticlockwise,set_speed}Command;
+
+
+    //enum Robot_cmd{stop,forward,backward,left,right,rotate_clockwise,rotate_anticlockwise,set_speed}Command;
 
 protected:
     void hoverEnter(QHoverEvent *event);

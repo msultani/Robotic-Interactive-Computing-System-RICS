@@ -3,6 +3,14 @@
 
 bool MainWindow::popup_open = false;
 
+int MainWindow::x_pos = 93;
+int MainWindow::y_pos = 40;
+int MainWindow::z_pos = 0;
+int MainWindow::move_speed = 5;
+
+
+
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -88,23 +96,31 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::write_to_arduino(char data){
+void MainWindow::write_to_arduino(QString data){
     if (!port.isOpen()){
         qDebug() << "ERROR! PORT NOT OPEN!";
         return;
     }
 
-    ard_data.clear();
-    ard_data.push_back(data);
-    port.write(ard_data);
+    //ard_data.clear();
+    //ard_data.push_back(data);
+    const char* myChar = data.toStdString().c_str();
+    //ard_data.push_back(myChar);
+    port.write(myChar, data.length());
 }
 
 void MainWindow::fetchPressed(){
     bool changed = check_hovermode();
     qDebug() << "CHANGING HOVERMODE";
     ui->stackedWidget->setCurrentIndex(1);
-    Command = 'E';
-    write_to_arduino(Command);
+// z - 0 x - 10 y - 0
+    x_pos = 10;
+    y_pos = 0;
+    z_pos = 0;
+    write_to_arduino("0" + QString::number(x_pos) + "X");
+    write_to_arduino("1" + QString::number(y_pos) + "X");
+    write_to_arduino("2" + QString::number(z_pos) + "X");
+    //write_to_arduino(Command); TODO - pre-planned movement
 
     if (changed){
         delay(4000);
@@ -172,35 +188,42 @@ void MainWindow::changeLabel(){
     }
 }
 
-void MainWindow::move_up(){
-    qDebug() << "Move up";
-    Command = 'U';
-    write_to_arduino(Command);
-}
 void MainWindow::move_down(){
-    qDebug() << "Move down";
-    Command = 'D';
-    write_to_arduino(Command);
+
+    y_pos += move_speed;
+    qDebug() << "Y POS: " + QString::number(y_pos);
+    write_to_arduino("1" + QString::number(y_pos) + "X");
+}
+void MainWindow::move_up(){
+    y_pos -= move_speed;
+    qDebug() << "Y POS: " + QString::number(y_pos);
+    write_to_arduino("1" + QString::number(y_pos) + "X");
 }
 void MainWindow::move_left(){
-    qDebug() << "Move left";
-    Command = 'L';
-    write_to_arduino(Command);
+    x_pos += move_speed;
+    qDebug() << "X POS: " + QString::number(x_pos);
+    write_to_arduino("0" + QString::number(x_pos) + "X");
 }
 void MainWindow::move_right(){
-    qDebug() << "Move right";
-    Command = 'R';
-    write_to_arduino(Command);
-}
-void MainWindow::move_forward(){
-    qDebug() << "Move forward";
-    Command = 'F';
-    write_to_arduino(Command);
+    x_pos -= move_speed;
+    qDebug() << "X POS: " + QString::number(x_pos);
+    write_to_arduino("0" + QString::number(x_pos) + "X");
 }
 void MainWindow::move_backward(){
-    qDebug() << "Move backward";
-    Command = 'B';
-    write_to_arduino(Command);
+    if (z_pos < 70){
+        z_pos -= move_speed;
+        qDebug() << "Z POS: " + QString::number(z_pos);
+        write_to_arduino("2" + QString::number(z_pos) + "X");
+    }
+    else {
+        qDebug() << "CAN'T MOVE ANY FARTHER FORWARD";
+    }
+
+}
+void MainWindow::move_forward(){
+    z_pos += move_speed;
+    qDebug() << "Z POS: " + QString::number(z_pos);
+    write_to_arduino("2" + QString::number(z_pos) + "X");
 }
 
 void MainWindow::move_finished(){
@@ -223,10 +246,14 @@ void MainWindow::move_finished(){
         delay(5000);
         qDebug() << "closing";
         popup.done(1);
-
-        Command = 'S';
-        write_to_arduino(Command);
         popup_open = false;
+
+        x_pos = 93;
+        y_pos = 30;
+        z_pos = 40;
+        write_to_arduino("0" + QString::number(x_pos) + "X");
+        write_to_arduino("1" + QString::number(y_pos) + "X");
+        write_to_arduino("2" + QString::number(z_pos) + "X");
     }
     else{
        return;

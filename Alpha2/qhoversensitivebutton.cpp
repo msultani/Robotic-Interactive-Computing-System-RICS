@@ -19,7 +19,7 @@ QHoverSensitiveButton::QHoverSensitiveButton(QWidget *parent) : QPushButton(pare
 
 
 void QHoverSensitiveButton::hoverEnter(QHoverEvent *){
-    qDebug() << "hoverEnter";
+    //qDebug() << "hoverEnter";
 
     if (this->objectName() == "hoverButton"){
         if (hoverPending){
@@ -38,7 +38,7 @@ void QHoverSensitiveButton::hoverEnter(QHoverEvent *){
     t.start();
     //qDebug() << "starting t: " + t.toString();
     //qDebug() << t.isValid();
-    qDebug() << "adding " + this->objectName() + " to active_buttons";
+    //qDebug() << "adding " + this->objectName() + " to active_buttons";
     hoverButton = this->objectName();
     buttonEntered();
     //emit hovered();
@@ -46,7 +46,7 @@ void QHoverSensitiveButton::hoverEnter(QHoverEvent *){
 
 void QHoverSensitiveButton::hoverLeave(QHoverEvent *){
 
-    qDebug() << "hoverLeave";
+    //qDebug() << "hoverLeave";
     active_buttons.removeOne(this->objectName());
     hoverPending = false;
     hoverButton = "";
@@ -59,22 +59,22 @@ void QHoverSensitiveButton::hoverButtonEntered(){
         QCoreApplication::processEvents( QEventLoop::AllEvents, 100 );
     }
     if (t.isValid() && hoverButton == this->objectName()){
-        qDebug() << "Hover mode toggled";
+        //qDebug() << "Hover mode toggled";
         hoverMode = !hoverMode;
         emit changeLabel();
     }
 }
 
 void QHoverSensitiveButton::buttonEntered(){
-    qDebug() << "buttonEntered begin";
+    //qDebug() << "buttonEntered begin";
     while (t.isValid() && t.elapsed() < hoverTime){
         QCoreApplication::processEvents( QEventLoop::AllEvents, 100 );
     }
     if (t.isValid() && hoverButton == this->objectName()){
         //qDebug() << "Button pressed";
-        qDebug() << "Emit hovered from" + this->objectName();
-        qDebug() << t.toString();
-        qDebug() << t.isValid();
+        //qDebug() << "Emit hovered from" + this->objectName();
+        //qDebug() << t.toString();
+        //qDebug() << t.isValid();
 
         emit hovered();
         hoverButton = "";
