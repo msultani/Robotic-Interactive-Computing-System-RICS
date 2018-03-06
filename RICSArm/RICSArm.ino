@@ -31,8 +31,8 @@ Servo clawServo;  // create servo object, end of arm srevo - open,close the claw
  */
 
 const int START_X = 93;
-const int START_Y = 40;
-const int START_Z = 0;
+const int START_Y = 50;
+const int START_Z = 40;
 const int START_CLAW = 0;
 const int MOVE_DELAY = 150;
 
