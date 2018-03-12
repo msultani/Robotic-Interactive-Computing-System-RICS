@@ -30,7 +30,7 @@ def main():
 
         clientsocket.close()
         try:
-            #print(json.loads(all_data))
+            # print(json.loads(all_data))
             handle_requests(json.loads(all_data))
         except Exception as e:
             print(e)
