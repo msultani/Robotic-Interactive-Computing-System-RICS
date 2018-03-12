@@ -4,6 +4,11 @@
 #include "functions.h"
 
 #include <QMainWindow>
+#include <QTcpSocket>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonValue>
 
 #include <QDebug>
 #include <QPushButton>
@@ -44,6 +49,7 @@ public:
 
 
 public slots:
+    void readTCPData();
     void fetchPressed();
     void tutorialPressed();
     void settingsPressed();
@@ -68,7 +74,12 @@ private:
     QByteArray ard_data;
     static bool auto_movement;
 
+    QByteArray TCP_data;
+
     void write_to_arduino(QString data);
+    QTcpSocket * t;
+
+    void establish_TCP_connection();
 
 };
 

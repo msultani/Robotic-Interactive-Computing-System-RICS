@@ -5,10 +5,24 @@ bool MainWindow::popup_open = false;
 
 int MainWindow::x_pos = 93;
 int MainWindow::y_pos = 40;
-int MainWindow::z_pos = 0;
+int MainWindow::z_pos = 40;
 int MainWindow::move_speed = 5;
 bool MainWindow::auto_movement= true;
 
+void MainWindow::establish_TCP_connection(){
+    qDebug() << "Establishing TCP connection";
+    t = new QTcpSocket( this );
+
+    connect(t, SIGNAL (readyRead()), SLOT (readTCPData()));
+
+    t->connectToHost("0.0.0.0", 6000);
+    qDebug() << "TCP connected";
+}
+
+void MainWindow::readTCPData(){
+    qDebug() << "Reading TCP Data";
+    TCP_data = t->readAll();
+}
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -16,6 +30,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->stackedWidget->setCurrentIndex(0);
+
+    establish_TCP_connection();
 
     // List of signals and the appropriate slot that they should connect to
     connect(ui->fetchButton, SIGNAL (pressed()), this, SLOT (fetchPressed()));
@@ -173,20 +189,7 @@ void MainWindow::changeLabel(){
         ui->hoverButton->setText("ON");
     }
 }
-/*
-void MainWindow::hover_pressed(){
-    //qDebug() << QHoverSensitiveButton::hoverMode;
-    if (QHoverSensitiveButton::hoverMode){
-        ui->hoverButton->setText("OFF");
-        QHoverSensitiveButton::hoverMode = false;
-    }
-    else{
-        ui->hoverButton->setText("ON");
-        QHoverSensitiveButton::hoverMode = true;
-    }
-    changeLabel();
-}
-*/
+
 
 void MainWindow::auto_move(){
     auto_movement = !auto_movement;
@@ -219,18 +222,18 @@ void MainWindow::move_right(){
     qDebug() << "X POS: " + QString::number(x_pos);
     write_to_arduino("0" + QString::number(x_pos) + "X");
 }
-void MainWindow::move_backward(){
+void MainWindow::move_forward(){
     if (z_pos < 70){
         z_pos -= move_speed;
         qDebug() << "Z POS: " + QString::number(z_pos);
         write_to_arduino("2" + QString::number(z_pos) + "X");
     }
     else {
-        qDebug() << "CAN'T MOVE ANY FARTHER FORWARD";
+        qDebug() << "CAN'T MOVE ANY FARTHER";
     }
 
 }
-void MainWindow::move_forward(){
+void MainWindow::move_backward(){
     z_pos += move_speed;
     qDebug() << "Z POS: " + QString::number(z_pos);
     write_to_arduino("2" + QString::number(z_pos) + "X");
@@ -259,7 +262,7 @@ void MainWindow::move_finished(){
         popup_open = false;
 
         x_pos = 93;
-        y_pos = 30;
+        y_pos = 40;
         z_pos = 40;
         write_to_arduino("0" + QString::number(x_pos) + "X");
         write_to_arduino("1" + QString::number(y_pos) + "X");
