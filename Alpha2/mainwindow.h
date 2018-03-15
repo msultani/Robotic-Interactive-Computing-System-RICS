@@ -51,6 +51,7 @@ public:
 
 public slots:
     void readTCPData();
+    void connection();
     void fetchPressed();
     void tutorialPressed();
     void settingsPressed();
@@ -70,12 +71,14 @@ public slots:
     void auto_move();
 
 private:
+
     Ui::MainWindow *ui;
     QSerialPort port;
     QByteArray ard_data;
     static bool auto_movement;
 
     QByteArray TCP_data;
+    QTcpSocket *sock;
 
     void write_to_arduino(QString data);
     QTcpServer * t;

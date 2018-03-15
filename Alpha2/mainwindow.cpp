@@ -20,7 +20,7 @@ bool MainWindow::auto_movement= true;
 void MainWindow::establish_TCP_connection(){
     qDebug() << "Establishing TCP connection";
     t = new QTcpServer( this );
-    connect(t, SIGNAL (newConnection()), this, SLOT (readTCPData()));
+    connect(t, SIGNAL (newConnection()), this, SLOT (connection()));
 
     if (!t->listen(QHostAddress::Any, 6000)){
         qDebug() << "Server did not start";
@@ -31,13 +31,40 @@ void MainWindow::establish_TCP_connection(){
 
 }
 
-void MainWindow::readTCPData(){
-    qDebug() << "Reading TCP Data";
-    QTcpSocket *sock = t->nextPendingConnection();
+void MainWindow::connection(){
+    qDebug() << "Establishing connection";
+    sock = t->nextPendingConnection();
 
-    sock->waitForBytesWritten(3000);
-    //Do something with the data received
-    sock->close();
+    connect(sock, SIGNAL(readyRead()), this, SLOT(readTCPData()));
+
+    //qDebug() << "closing socket";
+    //sock->close();
+}
+
+void MainWindow::readTCPData(){
+    qDebug() << "here";
+    TCP_data = this->sock->readAll();
+    qDebug() << TCP_data;
+    TCP_data = "";
+
+ /*
+    qDebug() << "Reading TCP Data";
+
+    TCP_data += sock->readAll();
+    qDebug() << TCP_data;
+
+    if(TCP_data.contains('\n')) {
+        qDebug() << "TCP_data finished";
+        TCP_data = "";
+        return;
+    }
+    readTCPData(sock);
+
+  sock->waitForBytesWritten(3000);
+    QByteArray data = sock->readAll();
+    qDebug() << data;
+*/
+
 }
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -128,6 +155,7 @@ MainWindow::~MainWindow()
     if (port.isOpen()){
         port.close();
     }
+    this->sock->close();
     delete ui;
 }
 
