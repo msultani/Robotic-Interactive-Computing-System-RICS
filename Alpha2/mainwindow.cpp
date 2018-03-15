@@ -17,6 +17,9 @@ bool MainWindow::auto_movement= true;
  * STOP: 5
  */
 
+//PYTHON COMMANDS: fetch, up, down, left, right, forward, backward
+
+
 void MainWindow::establish_TCP_connection(){
     qDebug() << "Establishing TCP connection";
     t = new QTcpServer( this );
@@ -43,16 +46,43 @@ void MainWindow::connection(){
 
 void MainWindow::readTCPData(){
     qDebug() << "here";
-    TCP_data = this->sock->readAll();
-    qDebug() << TCP_data;
-    TCP_data = "";
+    QByteArray TCP_data = this->sock->readAll();
+    qDebug() << "TCP command is:" << TCP_data;
+    parse_TCP_command(TCP_data);
 
 }
 
-void MainWindow::create_arduino_command(QByteArray TCP_data){
-    QString data;
-    //TODO - figure out what we're going to get from the python code
-    write_to_arduino(data);
+void MainWindow::parse_TCP_command(QByteArray TCP_data){
+
+    ui->stackedWidget->setCurrentIndex(1);
+    qDebug() << TCP_data;
+
+    switch(voice_commands.indexOf(TCP_data)){
+        case 0:
+            fetchPressed();
+            break;
+        case 1:
+            move_up();
+            break;
+        case 2:
+            move_down();
+            break;
+        case 3:
+            move_left();
+            break;
+        case 4:
+            move_right();
+            break;
+        case 5:
+            move_forward();
+            break;
+        case 6:
+            move_backward();
+        default:
+            qDebug() << "This shouldn't be called... something went wrong";
+            break;
+    }
+
 }
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -61,6 +91,9 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->stackedWidget->setCurrentIndex(0);
+
+    //Initialize voice_commands list
+    voice_commands << "fetch" << "up" << "down" << "left" << "right" << "forward" << "backward";
 
     establish_TCP_connection();
 
@@ -234,23 +267,26 @@ void MainWindow::auto_move(){
 }
 
 void MainWindow::move_down(){
-
+    ui->downButton->setStyleSheet("QPushButton { background-color: red; }\n");
     y_pos += move_speed;
     qDebug() << "Y POS: " + QString::number(y_pos);
     write_to_arduino("1" + QString::number(y_pos) + "X");
 }
 void MainWindow::move_up(){
+    ui->upButton->setStyleSheet("QPushButton { background-color: red; }\n");
     y_pos -= move_speed;
     qDebug() << "Y POS: " + QString::number(y_pos);
     write_to_arduino("1" + QString::number(y_pos) + "X");
 }
 void MainWindow::move_left(){
+    ui->leftButton->setStyleSheet("QPushButton { background-color: red; }\n");
     x_pos += move_speed;
     qDebug() << "X POS: " + QString::number(x_pos);
     write_to_arduino("0" + QString::number(x_pos) + "X");
 }
 void MainWindow::move_right(){
     x_pos -= move_speed;
+    ui->rightButton->setStyleSheet("QPushButton { background-color: red; }\n");
     qDebug() << "X POS: " + QString::number(x_pos);
     write_to_arduino("0" + QString::number(x_pos) + "X");
 }
