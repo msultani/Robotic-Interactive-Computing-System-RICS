@@ -40,12 +40,9 @@ def listen():
 def send_message(command_value):
 
     sender = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sender.connect(("0.0.0.0", 6000))
+    sender.connect(("127.0.0.1", 6000))
 
-    temp = command_value.split(" ")
-    message_value = temp[1]
-
-    data = json.dumps( {"message_value" : message_value} )
+    data = "testing"
 
     sender.sendall(str.encode(data))
     sender.close()
