@@ -79,7 +79,7 @@ private:
 
     QByteArray TCP_data;
     QTcpSocket *sock;
-
+    void create_arduino_command(QByteArray TCP_data);
     void write_to_arduino(QString data);
     QTcpServer * t;
 

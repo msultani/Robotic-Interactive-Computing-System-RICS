@@ -47,24 +47,12 @@ void MainWindow::readTCPData(){
     qDebug() << TCP_data;
     TCP_data = "";
 
- /*
-    qDebug() << "Reading TCP Data";
+}
 
-    TCP_data += sock->readAll();
-    qDebug() << TCP_data;
-
-    if(TCP_data.contains('\n')) {
-        qDebug() << "TCP_data finished";
-        TCP_data = "";
-        return;
-    }
-    readTCPData(sock);
-
-  sock->waitForBytesWritten(3000);
-    QByteArray data = sock->readAll();
-    qDebug() << data;
-*/
-
+void MainWindow::create_arduino_command(QByteArray TCP_data){
+    QString data;
+    //TODO - figure out what we're going to get from the python code
+    write_to_arduino(data);
 }
 
 MainWindow::MainWindow(QWidget *parent) :
