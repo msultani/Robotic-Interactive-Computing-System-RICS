@@ -5,6 +5,7 @@
 
 #include <QMainWindow>
 #include <QTcpSocket>
+#include <QTcpServer>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -77,7 +78,7 @@ private:
     QByteArray TCP_data;
 
     void write_to_arduino(QString data);
-    QTcpSocket * t;
+    QTcpServer * t;
 
     void establish_TCP_connection();
 

@@ -9,19 +9,35 @@ int MainWindow::z_pos = 40;
 int MainWindow::move_speed = 5;
 bool MainWindow::auto_movement= true;
 
+/* X SERVO: 0
+ * Y SERVO: 1
+ * Z SERVO: 2
+ * CLAW SERVO: 3
+ * RETRIEVE: 4
+ * STOP: 5
+ */
+
 void MainWindow::establish_TCP_connection(){
     qDebug() << "Establishing TCP connection";
-    t = new QTcpSocket( this );
+    t = new QTcpServer( this );
+    connect(t, SIGNAL (newConnection()), this, SLOT (readTCPData()));
 
-    connect(t, SIGNAL (readyRead()), SLOT (readTCPData()));
+    if (!t->listen(QHostAddress::Any, 6000)){
+        qDebug() << "Server did not start";
+    }
+    else{
+        qDebug() << "TCP connected";
+    }
 
-    t->connectToHost("0.0.0.0", 6000);
-    qDebug() << "TCP connected";
 }
 
 void MainWindow::readTCPData(){
     qDebug() << "Reading TCP Data";
-    TCP_data = t->readAll();
+    QTcpSocket *sock = t->nextPendingConnection();
+
+    sock->waitForBytesWritten(3000);
+    //Do something with the data received
+    sock->close();
 }
 
 MainWindow::MainWindow(QWidget *parent) :
