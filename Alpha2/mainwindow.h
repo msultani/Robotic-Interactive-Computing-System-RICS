@@ -5,6 +5,7 @@
 
 #include <QMainWindow>
 #include <QTcpSocket>
+#include <QTcpServer>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -50,6 +51,7 @@ public:
 
 public slots:
     void readTCPData();
+    void connection();
     void fetchPressed();
     void tutorialPressed();
     void settingsPressed();
@@ -69,15 +71,17 @@ public slots:
     void auto_move();
 
 private:
+
     Ui::MainWindow *ui;
     QSerialPort port;
     QByteArray ard_data;
     static bool auto_movement;
 
     QByteArray TCP_data;
-
+    QTcpSocket *sock;
+    void create_arduino_command(QByteArray TCP_data);
     void write_to_arduino(QString data);
-    QTcpSocket * t;
+    QTcpServer * t;
 
     void establish_TCP_connection();
 

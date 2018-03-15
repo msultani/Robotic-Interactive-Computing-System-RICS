@@ -9,19 +9,50 @@ int MainWindow::z_pos = 40;
 int MainWindow::move_speed = 5;
 bool MainWindow::auto_movement= true;
 
+/* X SERVO: 0
+ * Y SERVO: 1
+ * Z SERVO: 2
+ * CLAW SERVO: 3
+ * RETRIEVE: 4
+ * STOP: 5
+ */
+
 void MainWindow::establish_TCP_connection(){
     qDebug() << "Establishing TCP connection";
-    t = new QTcpSocket( this );
+    t = new QTcpServer( this );
+    connect(t, SIGNAL (newConnection()), this, SLOT (connection()));
 
-    connect(t, SIGNAL (readyRead()), SLOT (readTCPData()));
+    if (!t->listen(QHostAddress::Any, 6000)){
+        qDebug() << "Server did not start";
+    }
+    else{
+        qDebug() << "TCP connected";
+    }
 
-    t->connectToHost("0.0.0.0", 6000);
-    qDebug() << "TCP connected";
+}
+
+void MainWindow::connection(){
+    qDebug() << "Establishing connection";
+    sock = t->nextPendingConnection();
+
+    connect(sock, SIGNAL(readyRead()), this, SLOT(readTCPData()));
+
+    //qDebug() << "closing socket";
+    //sock->close();
 }
 
 void MainWindow::readTCPData(){
-    qDebug() << "Reading TCP Data";
-    TCP_data = t->readAll();
+    qDebug() << "here";
+    TCP_data = this->sock->readAll();
+    qDebug() << TCP_data;
+    TCP_data = "";
+
+}
+
+void MainWindow::create_arduino_command(QByteArray TCP_data){
+    QString data;
+    //TODO - figure out what we're going to get from the python code
+    write_to_arduino(data);
 }
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -112,6 +143,7 @@ MainWindow::~MainWindow()
     if (port.isOpen()){
         port.close();
     }
+    this->sock->close();
     delete ui;
 }
 
