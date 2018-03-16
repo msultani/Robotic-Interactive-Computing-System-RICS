@@ -228,19 +228,19 @@ void MainWindow::backPressed(){
 
 void MainWindow::hover_time_down(){
 
-    QHoverSensitiveButton::hoverTime -= 1000;
+    QHoverSensitiveButton::hoverTime -= 200;
 
     if (QHoverSensitiveButton::hoverTime <= 0){
         QHoverSensitiveButton::hoverTime = 0;
     }
-    QString display = QString::number(QHoverSensitiveButton::hoverTime / 1000) + " secs";
+    QString display = QString::number(double(QHoverSensitiveButton::hoverTime) / 1000.0, 'f', 1) + " secs";
     ui->hover_time_label->setText(display);
 }
 
 void MainWindow::hover_time_up(){
-    QHoverSensitiveButton::hoverTime += 1000;
+    QHoverSensitiveButton::hoverTime += 200;
 
-    QString display = QString::number(QHoverSensitiveButton::hoverTime / 1000) + " secs";
+    QString display = QString::number(double(QHoverSensitiveButton::hoverTime) / 1000.0, 'f', 1) + " secs";
     ui->hover_time_label->setText(display);
 }
 
