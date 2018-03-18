@@ -26,6 +26,7 @@
 #include <QMessageBox>
 
 #include <QString>
+#include <QStringList>
 #include <string>
 
 namespace Ui {
@@ -47,6 +48,7 @@ public:
     static int x_pos;
     static int y_pos;
     static int z_pos;
+    QStringList voice_commands;
 
 
 public slots:
@@ -77,9 +79,8 @@ private:
     QByteArray ard_data;
     static bool auto_movement;
 
-    QByteArray TCP_data;
     QTcpSocket *sock;
-    void create_arduino_command(QByteArray TCP_data);
+    void parse_TCP_command(QByteArray TCP_data);
     void write_to_arduino(QString data);
     QTcpServer * t;
 
