@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>406</width>
-    <height>326</height>
+    <height>355</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -24,7 +24,7 @@
        <string notr="true">background: rgb(67, 83, 106);</string>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="startPage">
        <property name="styleSheet">
@@ -160,8 +160,8 @@ min-height:100px;
        <widget class="QHoverSensitiveButton" name="releaseButton">
         <property name="geometry">
          <rect>
-          <x>250</x>
-          <y>170</y>
+          <x>230</x>
+          <y>200</y>
           <width>122</width>
           <height>102</height>
          </rect>
@@ -208,7 +208,7 @@ border: solid;</string>
         <property name="geometry">
          <rect>
           <x>20</x>
-          <y>160</y>
+          <y>190</y>
           <width>131</width>
           <height>61</height>
          </rect>
@@ -225,7 +225,7 @@ border: solid;</string>
         <property name="geometry">
          <rect>
           <x>20</x>
-          <y>230</y>
+          <y>260</y>
           <width>131</width>
           <height>61</height>
          </rect>
@@ -242,7 +242,7 @@ border: solid;</string>
         <property name="geometry">
          <rect>
           <x>160</x>
-          <y>10</y>
+          <y>30</y>
           <width>81</width>
           <height>41</height>
          </rect>
@@ -259,7 +259,7 @@ border: solid;</string>
         <property name="geometry">
          <rect>
           <x>100</x>
-          <y>60</y>
+          <y>80</y>
           <width>81</width>
           <height>41</height>
          </rect>
@@ -276,7 +276,7 @@ border: solid;</string>
         <property name="geometry">
          <rect>
           <x>220</x>
-          <y>60</y>
+          <y>80</y>
           <width>81</width>
           <height>41</height>
          </rect>
@@ -293,7 +293,7 @@ border: solid;</string>
         <property name="geometry">
          <rect>
           <x>160</x>
-          <y>110</y>
+          <y>130</y>
           <width>81</width>
           <height>41</height>
          </rect>
@@ -306,6 +306,22 @@ border: solid;</string>
          <string>Down</string>
         </property>
        </widget>
+       <widget class="QLabel" name="ready_label">
+        <property name="geometry">
+         <rect>
+          <x>100</x>
+          <y>0</y>
+          <width>201</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">qproperty-alignment: AlignCenter;</string>
+        </property>
+        <property name="text">
+         <string>Ready for commands!</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="settingsPage">
        <property name="styleSheet">
@@ -314,9 +330,9 @@ border: solid;</string>
        <widget class="QLabel" name="label_3">
         <property name="geometry">
          <rect>
-          <x>6</x>
+          <x>-4</x>
           <y>30</y>
-          <width>391</width>
+          <width>401</width>
           <height>41</height>
          </rect>
         </property>
