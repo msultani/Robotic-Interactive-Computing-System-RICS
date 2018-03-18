@@ -3,6 +3,8 @@ import socket
 import threading
 import json
 import os
+from google.cloud import storage
+from io import StringIO
 
 r = sr.Recognizer()
 m = sr.Microphone()
@@ -50,11 +52,16 @@ try:
         with m as source: audio = r.listen(source)
         print("Got it! Now to recognize it...")
         try:
-            with open("RICS-1cde6e998337.json") as json_data:
-                d = json.load(json_data)
-                # print(d)
+            # storage_client = storage.Client.from_service_account_json(
+            #     'RICS-1cde6e998337.json')
+            # print(storage_client)
+            with open("RICS-1cde6e998337.json", 'r') as json_data:
+                
+
+                cereal = json.dumps(json.load(json_data))
+                # print(cereal)
+                value = r.recognize_google_cloud(audio, cereal, "en-US", commands)
                 # recognize speech using Google Speech Recognition
-                value = r.recognize_google_cloud(audio, credentials_json=json.dumps(d), language="en-US", preferred_phrases=commands, show_all=False)
 
             # TODO RICS: process and send value
             send = socket.socket()
