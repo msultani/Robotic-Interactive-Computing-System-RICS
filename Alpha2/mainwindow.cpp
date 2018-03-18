@@ -191,11 +191,12 @@ void MainWindow::write_to_arduino(QString data){
     const char* myChar = data.toStdString().c_str();
     //ard_data.push_back(myChar);
     port.write(myChar, data.length());
+
 }
 
 void MainWindow::fetchPressed(){
     bool changed = check_hovermode();
-    qDebug() << "CHANGING HOVERMODE";
+
     ui->stackedWidget->setCurrentIndex(1);
     if (auto_movement){
         x_pos = 10;
@@ -207,11 +208,13 @@ void MainWindow::fetchPressed(){
     }
 
     if (changed){
+        qDebug() << "CHANGING HOVERMODE";
+        ui->ready_label->setText("Please wait.");
         delay(4000);
         QHoverSensitiveButton::hoverMode = true;
         qDebug() << "RESTORING HOVERMODE";
+        ui->ready_label->setText("Ready for commands!");
     }
-
 }
 
 void MainWindow::tutorialPressed(){
@@ -267,26 +270,28 @@ void MainWindow::auto_move(){
 }
 
 void MainWindow::move_down(){
-    ui->downButton->setStyleSheet("QPushButton { background-color: red; }\n");
+    //ui->downButton->setStyleSheet("QPushButton { background-color: red; }\n");
     y_pos += move_speed;
     qDebug() << "Y POS: " + QString::number(y_pos);
     write_to_arduino("1" + QString::number(y_pos) + "X");
+    //ui->downButton->setStyleSheet("QPushButton { background-color: rgb(205, 205, 205); }\n");
+
 }
 void MainWindow::move_up(){
-    ui->upButton->setStyleSheet("QPushButton { background-color: red; }\n");
+    //ui->upButton->setStyleSheet("QPushButton { background-color: red; }\n");
     y_pos -= move_speed;
     qDebug() << "Y POS: " + QString::number(y_pos);
     write_to_arduino("1" + QString::number(y_pos) + "X");
 }
 void MainWindow::move_left(){
-    ui->leftButton->setStyleSheet("QPushButton { background-color: red; }\n");
+    //ui->leftButton->setStyleSheet("QPushButton { background-color: red; }\n");
     x_pos += move_speed;
     qDebug() << "X POS: " + QString::number(x_pos);
     write_to_arduino("0" + QString::number(x_pos) + "X");
 }
 void MainWindow::move_right(){
     x_pos -= move_speed;
-    ui->rightButton->setStyleSheet("QPushButton { background-color: red; }\n");
+    //ui->rightButton->setStyleSheet("QPushButton { background-color: red; }\n");
     qDebug() << "X POS: " + QString::number(x_pos);
     write_to_arduino("0" + QString::number(x_pos) + "X");
 }
