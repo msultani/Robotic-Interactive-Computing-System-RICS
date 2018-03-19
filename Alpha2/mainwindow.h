@@ -78,6 +78,8 @@ private:
     QSerialPort port;
     QByteArray ard_data;
     static bool auto_movement;
+    static bool voice_command_given;
+    static QByteArray TCP_data;
 
     QTcpSocket *sock;
     void parse_TCP_command(QByteArray TCP_data);

@@ -34,7 +34,7 @@
         <property name="geometry">
          <rect>
           <x>90</x>
-          <y>60</y>
+          <y>90</y>
           <width>211</width>
           <height>61</height>
          </rect>
@@ -64,7 +64,7 @@ border-style: solid;
         <property name="geometry">
          <rect>
           <x>240</x>
-          <y>160</y>
+          <y>190</y>
           <width>100</width>
           <height>100</height>
          </rect>
@@ -92,7 +92,7 @@ min-height:100px;
         <property name="geometry">
          <rect>
           <x>160</x>
-          <y>10</y>
+          <y>20</y>
           <width>71</width>
           <height>20</height>
          </rect>
@@ -112,7 +112,7 @@ min-height:100px;
         <property name="geometry">
          <rect>
           <x>170</x>
-          <y>30</y>
+          <y>40</y>
           <width>51</width>
           <height>16</height>
          </rect>
@@ -131,7 +131,7 @@ min-height:100px;
         <property name="geometry">
          <rect>
           <x>50</x>
-          <y>160</y>
+          <y>190</y>
           <width>100</width>
           <height>100</height>
          </rect>
