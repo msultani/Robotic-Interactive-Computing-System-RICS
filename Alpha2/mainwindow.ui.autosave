@@ -21,7 +21,7 @@
     <item row="0" column="1">
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="styleSheet">
-       <string notr="true">background: rgb(51, 64, 88);</string>
+       <string notr="true">background: rgba(51, 64, 88, 0%);</string>
       </property>
       <property name="currentIndex">
        <number>1</number>
@@ -201,9 +201,10 @@ border-style: solid;
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: red;
-font: 20pt &quot;.Helvetica Neue DeskInterface&quot;;
-border: solid;</string>
+         <string notr="true">font: 20pt &quot;.Helvetica Neue DeskInterface&quot;;
+border: solid;
+background-image: url(:/images/up.png);
+</string>
         </property>
         <property name="text">
          <string>Back</string>
