@@ -17,7 +17,7 @@ bool MainWindow::auto_movement= true;
  * STOP: 5
  */
 
-//PYTHON COMMANDS: fetch, up, down, left, right, forward, backward
+//PYTHON COMMANDS: wake, retrieve, up, down, left, right, forward, backward
 
 
 void MainWindow::establish_TCP_connection(){

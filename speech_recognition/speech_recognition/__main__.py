@@ -5,13 +5,12 @@ import json
 import os
 from google.cloud import storage
 from io import StringIO
-from speech_recognition import Recognizer
 
-r = Recognizer()
+r = sr.Recognizer()
 m = sr.Microphone()
 
 commands = ["wake",
-            "fetch",
+            "retrieve",
             "up", # move? 
             "down", # move?
             "left", # move?
@@ -24,11 +23,8 @@ commands = ["wake",
 def process_text(text):
     words = text.split()
     keep = []
-    for word, num in enumerate(words):
-        if word is "move":
-            if words[num+1] in commands:
-                keep.append(word)
-        elif word is "wake" or word is "fetch":
+    for word in words:
+        if word in commands:
             keep.append(word)
     return keep
 
@@ -38,10 +34,9 @@ def send_message(command_value):
     sender = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sender.connect(("0.0.0.0", 6000))
     data = json.dumps( {"message_value" : command_value} )
-
+    print(data)
     sender.sendall(str.encode(data))
     sender.close()
-
 
 
 try:
@@ -53,17 +48,8 @@ try:
         with m as source: audio = r.listen(source)
         print("Got it! Now to recognize it...")
         try:
-            # storage_client = storage.Client.from_service_account_json(
-            #     'RICS-1cde6e998337.json')
-            # print(storage_client)
-            # /Users/marksultani/Documents/College/eecs498/Robotic-Interactive-Computing-System-RICS-/speech_recognition/speech_recognition/RICS-23240d7b6989.json
-            with open("RICS-23240d7b6989.json", 'r') as json_data:
-
-                cereal = json.dumps(json.load(json_data))
-                # print(cereal)
-                value = r.recognize_google_cloud(audio, cereal, "en-US", commands)
-                print('AM I WORKING')
-                # recognize speech using Google Speech Recognition
+            # recognize speech using Google Speech Recognition
+            value = r.recognize_google(audio)
 
             # TODO RICS: process and send value
             send = socket.socket()
@@ -74,9 +60,9 @@ try:
             else:  # this version of Python uses unicode for strings (Python 3+)
                 print("You said {}".format(value))
                 val = format(value)
-                f.write(val)
                 valid = process_text(val)
                 print(valid)
+                send_message(valid)
         except sr.UnknownValueError:
             print("Oops! Didn't catch that")
         except sr.RequestError as e:
