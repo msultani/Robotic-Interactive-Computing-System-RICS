@@ -11,12 +11,13 @@ m = sr.Microphone()
 
 commands = ["wake",
             "retrieve",
-            "up", # move? 
-            "down", # move?
-            "left", # move?
-            "right", # move?
-            "forward", # move?
-            "backward" # move?
+            "up",
+            "down",
+            "left",
+            "right",
+            "forward",
+            "backward",
+            "stop"
             ]
 
 
@@ -59,10 +60,12 @@ try:
                 print(u"You said {}".format(value).encode("utf-8"))
             else:  # this version of Python uses unicode for strings (Python 3+)
                 print("You said {}".format(value))
-                val = format(value)
-                valid = process_text(val)
-                print(valid)
-                send_message(valid)
+            # RICS code
+            val = format(value)
+            valid = process_text(val)
+            print(valid)
+            for word in valid:
+                send_message(word)
         except sr.UnknownValueError:
             print("Oops! Didn't catch that")
         except sr.RequestError as e:
