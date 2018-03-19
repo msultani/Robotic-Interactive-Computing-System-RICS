@@ -8,6 +8,8 @@ int MainWindow::y_pos = 40;
 int MainWindow::z_pos = 40;
 int MainWindow::move_speed = 5;
 bool MainWindow::auto_movement= true;
+bool MainWindow::voice_command_given = false;
+QByteArray MainWindow::TCP_data = "";
 
 /* X SERVO: 0
  * Y SERVO: 1
@@ -17,7 +19,7 @@ bool MainWindow::auto_movement= true;
  * STOP: 5
  */
 
-//PYTHON COMMANDS: wake, retrieve, up, down, left, right, forward, backward
+//PYTHON COMMANDS: fetch, up, down, left, right, forward, backward, stop
 
 
 void MainWindow::establish_TCP_connection(){
@@ -46,8 +48,9 @@ void MainWindow::connection(){
 
 void MainWindow::readTCPData(){
     qDebug() << "here";
-    QByteArray TCP_data = this->sock->readAll();
+    TCP_data = this->sock->readAll();
     qDebug() << "TCP command is:" << TCP_data;
+    voice_command_given = true;
     parse_TCP_command(TCP_data);
 
 }
@@ -82,6 +85,46 @@ void MainWindow::parse_TCP_command(QByteArray TCP_data){
             qDebug() << "This shouldn't be called... something went wrong";
             break;
     }
+
+    /*
+     * Working code for the "stop" method
+     * Reads in a voice command, continues to (slowly) move the arm
+     * until "stop" command is received
+     * Need to ensure that this method can be implemented safely - waiting for Omega
+    while (voice_command_given){
+        qDebug() << "entering while loop";
+        switch(voice_commands.indexOf(TCP_data)){
+            case 0:
+                fetchPressed();
+                break;
+            case 1:
+                move_up();
+                break;
+            case 2:
+                move_down();
+                break;
+            case 3:
+                move_left();
+                break;
+            case 4:
+                move_right();
+                break;
+            case 5:
+                move_forward();
+                break;
+            case 6:
+                move_backward();
+            case 7:
+                voice_command_given = false;
+                qDebug() << "Stopping";
+                break;
+            default:
+                qDebug() << "This shouldn't be called... something went wrong";
+                break;
+        }
+        delay(2000);
+    }
+*/
 
 }
 
