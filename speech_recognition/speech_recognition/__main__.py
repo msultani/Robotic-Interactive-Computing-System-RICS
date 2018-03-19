@@ -5,8 +5,9 @@ import json
 import os
 from google.cloud import storage
 from io import StringIO
+from speech_recognition import Recognizer
 
-r = sr.Recognizer()
+r = Recognizer()
 m = sr.Microphone()
 
 commands = ["wake",
@@ -55,12 +56,13 @@ try:
             # storage_client = storage.Client.from_service_account_json(
             #     'RICS-1cde6e998337.json')
             # print(storage_client)
-            with open("RICS-1cde6e998337.json", 'r') as json_data:
-                
+            # /Users/marksultani/Documents/College/eecs498/Robotic-Interactive-Computing-System-RICS-/speech_recognition/speech_recognition/RICS-23240d7b6989.json
+            with open("RICS-23240d7b6989.json", 'r') as json_data:
 
                 cereal = json.dumps(json.load(json_data))
                 # print(cereal)
                 value = r.recognize_google_cloud(audio, cereal, "en-US", commands)
+                print('AM I WORKING')
                 # recognize speech using Google Speech Recognition
 
             # TODO RICS: process and send value
