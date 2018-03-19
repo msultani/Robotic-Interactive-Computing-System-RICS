@@ -3,8 +3,7 @@ import socket
 import threading
 import json
 import os
-from google.cloud import storage
-from io import StringIO
+import time
 
 r = sr.Recognizer()
 m = sr.Microphone()
@@ -34,9 +33,9 @@ def process_text(text):
 def send_message(command_value):
     sender = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sender.connect(("0.0.0.0", 6000))
-    data = json.dumps( {"message_value" : command_value} )
-    print(data)
-    sender.sendall(str.encode(data))
+    #data = json.dumps( {"message_value" : command_value} )
+    print("sending " + command_value)
+    sender.sendall(command_value)
     sender.close()
 
 
@@ -66,6 +65,7 @@ try:
             print(valid)
             for word in valid:
                 send_message(word)
+                time.sleep(1)
         except sr.UnknownValueError:
             print("Oops! Didn't catch that")
         except sr.RequestError as e:
