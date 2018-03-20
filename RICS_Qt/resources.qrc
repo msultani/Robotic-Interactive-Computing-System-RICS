@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>back.png</file>
+        <file>backward.png</file>
+        <file>down.png</file>
+        <file>forward.png</file>
+        <file>right.png</file>
+        <file>up.png</file>
+        <file>release.png</file>
+        <file>left.png</file>
+        <file>fetch.png</file>
+        <file>settings.png</file>
+        <file>tutorials.png</file>
+    </qresource>
+</RCC>

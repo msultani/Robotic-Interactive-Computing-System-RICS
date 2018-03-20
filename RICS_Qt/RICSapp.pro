@@ -39,3 +39,6 @@ HEADERS += \
 FORMS += \
         mainwindow.ui \
     release.ui
+
+RESOURCES += \
+    resources.qrc
