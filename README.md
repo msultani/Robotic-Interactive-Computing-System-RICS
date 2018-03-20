@@ -5,6 +5,18 @@ The purpose of this project is to create a program to control an Arduino-powered
 
 The most recent code is currently located on the "voice" branch. 
 
-All code for the desktop application is found within the "RICSapp" folder.
-All code for controlling the Arduino is found within the "RICS ARM" folder.
-All code for the voice application is found within the "speech_recognition" folder.
+Please navigate to branch "voice". Run "RICSapp.app" in the "RICS_Beta" directory to launch the GUI application. Run "python3 speech_recognition/speech_recognition/__main__.py" to run the voice application. Speak a command listed below to move the arm as desired.
+[
+            "retrieve",
+            "up",
+            "down",
+            "left",
+            "right",
+            "forward",
+            "backward",
+            "stop",
+            "open", # claw
+            "close" # claw
+]
+
+Arduino code is found in the "RICS_Arduino" directory.
