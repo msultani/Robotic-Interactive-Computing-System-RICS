@@ -6,7 +6,9 @@ bool MainWindow::popup_open = false;
 int MainWindow::x_pos = 93;
 int MainWindow::y_pos = 40;
 int MainWindow::z_pos = 40;
+int MainWindow::claw_pos = 17;
 int MainWindow::move_speed = 5;
+int MainWindow::rotation_degrees = 3;
 bool MainWindow::auto_movement= true;
 bool MainWindow::voice_command_given = false;
 QByteArray MainWindow::TCP_data = "";
@@ -82,6 +84,10 @@ void MainWindow::parse_TCP_command(QByteArray TCP_data){
             break;
         case 6:
             move_backward();
+        case 7:
+            on_clawLeft_pressed();
+        case 8:
+            on_clawRight_pressed();
         default:
             qDebug() << "This shouldn't be called... something went wrong";
             break;
@@ -137,16 +143,19 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->stackedWidget->setCurrentIndex(0);
 
     //Initialize voice_commands list
-    voice_commands << "fetch" << "up" << "down" << "left" << "right" << "forward" << "backward";
+    voice_commands << "fetch" << "up" << "down" << "left" << "right" << "forward" << "backward" << "open" << "close";
 
     establish_TCP_connection();
+
+ /*
+
     p.setWorkingDirectory(QDir::currentPath());
     qDebug() << QDir::currentPath();
     p.start("python ../../../../qpython.py");
     p.waitForFinished();
     QString output(p.readAllStandardOutput());
     qDebug() << output;
-    /*
+
      * speech_recognition/speech_recognition/__main__.py
     p.setWorkingDirectory("speech_recognition/");
     p.start("python ");
@@ -206,6 +215,12 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->autoButton, SIGNAL (pressed()), this, SLOT (auto_move()));
     connect(ui->autoButton, SIGNAL (hovered()), this, SLOT (auto_move()));
+
+    connect(ui->clawLeft, SIGNAL (pressed()), this, SLOT (on_clawLeft_pressed()));
+    connect(ui->clawLeft, SIGNAL (hovered()), this, SLOT (on_clawLeft_pressed()));
+
+    connect(ui->clawRight, SIGNAL (pressed()), this, SLOT (on_clawRight_pressed()));
+    connect(ui->clawRight, SIGNAL (hovered()), this, SLOT (on_clawRight_pressed()));
 
     //Open serial port
     port.setPortName("/dev/cu.usbmodem1421");
@@ -402,4 +417,24 @@ void MainWindow::move_finished(){
        return;
     }
 
+}
+
+void MainWindow::on_clawLeft_pressed() {
+    if (claw_pos >= 140){
+        return;
+    }
+    claw_pos += rotation_degrees;
+    //ui->rightButton->setStyleSheet("QPushButton { background-color: red; }\n");
+    qDebug() << "CLAW POS: " + QString::number(claw_pos);
+    write_to_arduino("3" + QString::number(claw_pos) + "X");
+}
+
+void MainWindow::on_clawRight_pressed() {
+    if (claw_pos <= 20){
+        return;
+    }
+    claw_pos -= rotation_degrees;
+    //ui->rightButton->setStyleSheet("QPushButton { background-color: red; }\n");
+    qDebug() << "CLAW POS: " + QString::number(claw_pos);
+    write_to_arduino("3" + QString::number(claw_pos) + "X");
 }

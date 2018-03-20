@@ -44,11 +44,13 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     static bool popup_open;
     static int move_speed;
+    static int rotation_degrees;
     ~MainWindow();
     int countdown = 10;
     static int x_pos;
     static int y_pos;
     static int z_pos;
+    static int claw_pos;
     QStringList voice_commands;
 
 
@@ -72,6 +74,11 @@ public slots:
     void move_right();
     void move_finished();
     void auto_move();
+
+private slots:
+    void on_clawLeft_pressed();
+
+    void on_clawRight_pressed();
 
 private:
     QProcess p;

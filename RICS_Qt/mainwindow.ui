@@ -24,7 +24,7 @@
        <string notr="true">background: rgb(51, 64, 88);</string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="startPage">
        <property name="styleSheet">
