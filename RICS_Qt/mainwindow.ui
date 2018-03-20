@@ -499,7 +499,8 @@ color: white;
         </property>
         <property name="styleSheet">
          <string notr="true">qproperty-alignment: AlignCenter;
-font: 30pt &quot;Helvetica&quot;;</string>
+font: 30pt &quot;Helvetica&quot;;
+color: white;</string>
         </property>
         <property name="text">
          <string>SETTINGS</string>
@@ -569,7 +570,8 @@ border: solid;
         </property>
         <property name="styleSheet">
          <string notr="true">qproperty-alignment: AlignCenter;
-font: 29pt &quot;Helvetica&quot;;</string>
+font: 29pt &quot;Helvetica&quot;;
+color: white;</string>
         </property>
         <property name="text">
          <string>Hover Mode</string>
@@ -660,7 +662,8 @@ border: 1px solid black;</string>
         </property>
         <property name="styleSheet">
          <string notr="true">qproperty-alignment: AlignCenter;
-font: 29pt &quot;Helvetica&quot;;</string>
+font: 29pt &quot;Helvetica&quot;;
+color: white;</string>
         </property>
         <property name="text">
          <string>Hover Time</string>
@@ -702,7 +705,8 @@ font: 29pt &quot;Helvetica&quot;;</string>
         </property>
         <property name="styleSheet">
          <string notr="true">qproperty-alignment: AlignCenter;
-font: 29pt &quot;Helvetica&quot;;</string>
+font: 29pt &quot;Helvetica&quot;;
+color: white;</string>
         </property>
         <property name="text">
          <string>Auto Movement</string>
