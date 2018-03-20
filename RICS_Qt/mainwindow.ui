@@ -24,7 +24,7 @@
        <string notr="true">background: rgb(51, 64, 88);</string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="startPage">
        <property name="styleSheet">
@@ -160,8 +160,8 @@ min-height:100px;
        <widget class="QHoverSensitiveButton" name="releaseButton">
         <property name="geometry">
          <rect>
-          <x>410</x>
-          <y>220</y>
+          <x>420</x>
+          <y>230</y>
           <width>162</width>
           <height>102</height>
          </rect>
@@ -176,19 +176,22 @@ min-height:100px;
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(90, 225, 143);
-font: 29pt &quot;Helvetica&quot;;
+         <string notr="true">background-color: rgba(90, 225, 143, 0%);
 border-style: solid;
- border-width:1px;
- border-radius:50px;
- border-color: rgb(18, 121, 65);
- max-width:180px;
- max-height:100px;
- min-width:160px;
- min-height:100px;</string>
+</string>
         </property>
         <property name="text">
-         <string>Release</string>
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/images/release.png</normaloff>:/images/release.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>120</width>
+          <height>120</height>
+         </size>
         </property>
        </widget>
        <widget class="QHoverSensitiveButton" name="backButton_3">
@@ -196,17 +199,26 @@ border-style: solid;
          <rect>
           <x>20</x>
           <y>10</y>
-          <width>81</width>
-          <height>51</height>
+          <width>91</width>
+          <height>41</height>
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: red;
-font: 20pt &quot;.Helvetica Neue DeskInterface&quot;;
+         <string notr="true">background-color: rgba(0, 0, 0, 0%);
 border: solid;</string>
         </property>
         <property name="text">
-         <string>Back</string>
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/images/back.png</normaloff>:/images/back.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>60</width>
+          <height>60</height>
+         </size>
         </property>
        </widget>
        <widget class="QHoverSensitiveButton" name="forwardButton">
@@ -232,7 +244,7 @@ border: solid;</string>
         </property>
         <property name="iconSize">
          <size>
-          <width>120</width>
+          <width>100</width>
           <height>100</height>
          </size>
         </property>
@@ -260,7 +272,7 @@ border: solid;</string>
         </property>
         <property name="iconSize">
          <size>
-          <width>120</width>
+          <width>100</width>
           <height>100</height>
          </size>
         </property>
