@@ -395,6 +395,32 @@ font: 20pt &quot;.Helvetica Neue DeskInterface&quot;;
          <string>Ready for commands!</string>
         </property>
        </widget>
+       <widget class="QHoverSensitiveButton" name="clawLeft">
+        <property name="geometry">
+         <rect>
+          <x>290</x>
+          <y>240</y>
+          <width>112</width>
+          <height>32</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Left</string>
+        </property>
+       </widget>
+       <widget class="QHoverSensitiveButton" name="clawRight">
+        <property name="geometry">
+         <rect>
+          <x>280</x>
+          <y>280</y>
+          <width>112</width>
+          <height>32</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Right</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="settingsPage">
        <property name="styleSheet">
