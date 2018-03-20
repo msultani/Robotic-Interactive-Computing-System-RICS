@@ -13,5 +13,7 @@
         <file>tutorials.png</file>
         <file>claw_right.png</file>
         <file>claw_left.png</file>
+        <file>tutorial_page.png</file>
+        <file>settings-title.png</file>
     </qresource>
 </RCC>
