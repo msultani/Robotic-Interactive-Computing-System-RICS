@@ -2,7 +2,7 @@
 //Use With MeCon.exe Ver0.4 Windows Software for MeArm Motion Control
 #include <Servo.h>
 
-enum Commands { X, Y, Z, RETRIEVE, STOP };
+enum Commands { X, Y, Z, CLAW, RETRIEVE, STOP };
 
 /* UltrasonicSensor will be installed to detect distance to objects
  * in front of the claw. TODO: Separate this into another file? not sure if arduinos allow that
@@ -33,7 +33,7 @@ Servo clawServo;  // create servo object, end of arm srevo - open,close the claw
 const int START_X = 93;
 const int START_Y = 40;
 const int START_Z = 0;
-const int START_CLAW = 0;
+const int START_CLAW = 17;
 const int MOVE_DELAY = 150;
 
 //servo positions values, expects 1-180 deg.
@@ -183,6 +183,11 @@ void executeCommand(String command) {
       Serial.print("executeCommand() Z");
       moveServo(zServo, zPos, angle);
       zPos = angle;
+      break;
+    case CLAW:
+      Serial.print("executeCommand() CLAW");
+      moveServo(clawServo, clawPos, angle);
+      clawPos = angle;
       break;
     case RETRIEVE:
       resetArmToInitialPosition();
