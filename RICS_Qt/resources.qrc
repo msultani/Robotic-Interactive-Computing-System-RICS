@@ -11,5 +11,7 @@
         <file>fetch.png</file>
         <file>settings.png</file>
         <file>tutorials.png</file>
+        <file>claw_right.png</file>
+        <file>claw_left.png</file>
     </qresource>
 </RCC>

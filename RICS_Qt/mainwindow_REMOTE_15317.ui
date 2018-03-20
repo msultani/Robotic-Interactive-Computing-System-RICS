@@ -24,7 +24,7 @@
        <string notr="true">background: rgba(51, 64, 88, 0%);</string>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="startPage">
        <property name="styleSheet">
@@ -33,8 +33,8 @@
        <widget class="QHoverSensitiveButton" name="fetchButton">
         <property name="geometry">
          <rect>
-          <x>170</x>
-          <y>80</y>
+          <x>190</x>
+          <y>90</y>
           <width>271</width>
           <height>81</height>
          </rect>
@@ -73,8 +73,8 @@ border-style: solid;
        <widget class="QHoverSensitiveButton" name="settingButton">
         <property name="geometry">
          <rect>
-          <x>340</x>
-          <y>170</y>
+          <x>330</x>
+          <y>180</y>
           <width>131</width>
           <height>131</height>
          </rect>
@@ -108,7 +108,7 @@ border-style: solid;
        <widget class="QLabel" name="label">
         <property name="geometry">
          <rect>
-          <x>240</x>
+          <x>260</x>
           <y>20</y>
           <width>121</width>
           <height>20</height>
@@ -134,7 +134,7 @@ color: white;</string>
        <widget class="QLabel" name="label_2">
         <property name="geometry">
          <rect>
-          <x>260</x>
+          <x>280</x>
           <y>50</y>
           <width>81</width>
           <height>20</height>
@@ -160,8 +160,8 @@ color: white;</string>
        <widget class="QHoverSensitiveButton" name="tutorialButton">
         <property name="geometry">
          <rect>
-          <x>140</x>
-          <y>170</y>
+          <x>190</x>
+          <y>180</y>
           <width>131</width>
           <height>131</height>
          </rect>
@@ -448,33 +448,27 @@ color: white;
        <widget class="QHoverSensitiveButton" name="clawLeft">
         <property name="geometry">
          <rect>
-          <x>210</x>
-          <y>230</y>
-          <width>91</width>
-          <height>81</height>
+          <x>290</x>
+          <y>240</y>
+          <width>112</width>
+          <height>32</height>
          </rect>
         </property>
         <property name="text">
-         <string>Claw Left</string>
-        </property>
-        <property name="icon">
-         <iconset theme="claw_left.png"/>
+         <string>Left</string>
         </property>
        </widget>
        <widget class="QHoverSensitiveButton" name="clawRight">
         <property name="geometry">
          <rect>
-          <x>310</x>
-          <y>230</y>
-          <width>91</width>
-          <height>81</height>
+          <x>280</x>
+          <y>280</y>
+          <width>112</width>
+          <height>32</height>
          </rect>
         </property>
-        <property name="styleSheet">
-         <string notr="true"/>
-        </property>
         <property name="text">
-         <string>Claw Right</string>
+         <string>Right</string>
         </property>
        </widget>
       </widget>
