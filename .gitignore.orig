@@ -1,0 +1,9 @@
+.DS_Store
+.vscode/
+<<<<<<< HEAD
+Alpha2/.DS_Store
+*.user
+=======
+*.user
+build*
+>>>>>>> 53c0af6adac146f666f29da806bad5ff54d394bc
