@@ -16,7 +16,9 @@ commands = ["wake",
             "right",
             "forward",
             "backward",
-            "stop"
+            "stop",
+            "open", # claw
+            "close" # claw
             ]
 
 
