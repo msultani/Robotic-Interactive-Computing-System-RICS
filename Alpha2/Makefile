@@ -53,13 +53,15 @@ OBJECTS_DIR   = ./
 SOURCES       = main.cpp \
 		mainwindow.cpp \
 		qhoversensitivebutton.cpp \
-		release.cpp moc_mainwindow.cpp \
+		release.cpp qrc_resource.cpp \
+		moc_mainwindow.cpp \
 		moc_qhoversensitivebutton.cpp \
 		moc_release.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		qhoversensitivebutton.o \
 		release.o \
+		qrc_resource.o \
 		moc_mainwindow.o \
 		moc_qhoversensitivebutton.o \
 		moc_release.o
@@ -198,6 +200,7 @@ DIST          = /Users/amytseng1/Qt5.10.1/5.10.1/clang_64/mkspecs/features/spec_
 		/Users/amytseng1/Qt5.10.1/5.10.1/clang_64/mkspecs/features/qt_config.prf \
 		/Users/amytseng1/Qt5.10.1/5.10.1/clang_64/mkspecs/macx-clang/qmake.conf \
 		/Users/amytseng1/Qt5.10.1/5.10.1/clang_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/Users/amytseng1/Qt5.10.1/5.10.1/clang_64/mkspecs/features/exclusive_builds.prf \
 		/Users/amytseng1/Qt5.10.1/5.10.1/clang_64/mkspecs/features/mac/sdk.prf \
 		/Users/amytseng1/Qt5.10.1/5.10.1/clang_64/mkspecs/features/toolchain.prf \
@@ -384,6 +387,7 @@ Makefile: Alpha2.pro /Users/amytseng1/Qt5.10.1/5.10.1/clang_64/mkspecs/macx-clan
 		/Users/amytseng1/Qt5.10.1/5.10.1/clang_64/mkspecs/features/qt_config.prf \
 		/Users/amytseng1/Qt5.10.1/5.10.1/clang_64/mkspecs/macx-clang/qmake.conf \
 		/Users/amytseng1/Qt5.10.1/5.10.1/clang_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/Users/amytseng1/Qt5.10.1/5.10.1/clang_64/mkspecs/features/exclusive_builds.prf \
 		/Users/amytseng1/Qt5.10.1/5.10.1/clang_64/mkspecs/features/mac/sdk.prf \
 		/Users/amytseng1/Qt5.10.1/5.10.1/clang_64/mkspecs/features/toolchain.prf \
@@ -412,6 +416,7 @@ Makefile: Alpha2.pro /Users/amytseng1/Qt5.10.1/5.10.1/clang_64/mkspecs/macx-clan
 		/Users/amytseng1/Qt5.10.1/5.10.1/clang_64/mkspecs/features/yacc.prf \
 		/Users/amytseng1/Qt5.10.1/5.10.1/clang_64/mkspecs/features/lex.prf \
 		Alpha2.pro \
+		resource.qrc \
 		/Users/amytseng1/Qt5.10.1/5.10.1/clang_64/lib/QtWidgets.framework/QtWidgets.prl \
 		/Users/amytseng1/Qt5.10.1/5.10.1/clang_64/lib/QtGui.framework/QtGui.prl \
 		/Users/amytseng1/Qt5.10.1/5.10.1/clang_64/lib/QtSerialPort.framework/QtSerialPort.prl \
@@ -553,6 +558,7 @@ Makefile: Alpha2.pro /Users/amytseng1/Qt5.10.1/5.10.1/clang_64/mkspecs/macx-clan
 /Users/amytseng1/Qt5.10.1/5.10.1/clang_64/mkspecs/features/qt_config.prf:
 /Users/amytseng1/Qt5.10.1/5.10.1/clang_64/mkspecs/macx-clang/qmake.conf:
 /Users/amytseng1/Qt5.10.1/5.10.1/clang_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /Users/amytseng1/Qt5.10.1/5.10.1/clang_64/mkspecs/features/exclusive_builds.prf:
 /Users/amytseng1/Qt5.10.1/5.10.1/clang_64/mkspecs/features/mac/sdk.prf:
 /Users/amytseng1/Qt5.10.1/5.10.1/clang_64/mkspecs/features/toolchain.prf:
@@ -581,6 +587,7 @@ Makefile: Alpha2.pro /Users/amytseng1/Qt5.10.1/5.10.1/clang_64/mkspecs/macx-clan
 /Users/amytseng1/Qt5.10.1/5.10.1/clang_64/mkspecs/features/yacc.prf:
 /Users/amytseng1/Qt5.10.1/5.10.1/clang_64/mkspecs/features/lex.prf:
 Alpha2.pro:
+resource.qrc:
 /Users/amytseng1/Qt5.10.1/5.10.1/clang_64/lib/QtWidgets.framework/QtWidgets.prl:
 /Users/amytseng1/Qt5.10.1/5.10.1/clang_64/lib/QtGui.framework/QtGui.prl:
 /Users/amytseng1/Qt5.10.1/5.10.1/clang_64/lib/QtSerialPort.framework/QtSerialPort.prl:
@@ -615,6 +622,7 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
+	$(COPY_FILE) --parents resource.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /Users/amytseng1/Qt5.10.1/5.10.1/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents mainwindow.h qhoversensitivebutton.h release.h functions.h $(DISTDIR)/
 	$(COPY_FILE) --parents main.cpp mainwindow.cpp qhoversensitivebutton.cpp release.cpp $(DISTDIR)/
@@ -628,6 +636,7 @@ clean: compiler_clean
 
 distclean: clean 
 	-$(DEL_FILE) -r Alpha2.app
+	-$(DEL_FILE) .qmake.stash
 	-$(DEL_FILE) Makefile
 
 
@@ -641,8 +650,19 @@ check: first
 
 benchmark: first
 
-compiler_rcc_make_all:
+compiler_rcc_make_all: qrc_resource.cpp
 compiler_rcc_clean:
+	-$(DEL_FILE) qrc_resource.cpp
+qrc_resource.cpp: resource.qrc \
+		/Users/amytseng1/Qt5.10.1/5.10.1/clang_64/bin/rcc \
+		images/up.png \
+		images/down.png \
+		images/forward.png \
+		images/backward.png \
+		images/right.png \
+		images/left.png
+	/Users/amytseng1/Qt5.10.1/5.10.1/clang_64/bin/rcc -name resource resource.qrc -o qrc_resource.cpp
+
 compiler_moc_predefs_make_all: moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) moc_predefs.h
@@ -2019,7 +2039,7 @@ compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
+compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
 
 ####### Compile
 
@@ -3363,6 +3383,9 @@ release.o: release.cpp release.h \
 		ui_release.h \
 		functions.cpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release.o release.cpp
+
+qrc_resource.o: qrc_resource.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_resource.o qrc_resource.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

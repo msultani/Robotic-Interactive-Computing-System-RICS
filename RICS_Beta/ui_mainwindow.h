@@ -65,7 +65,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(628, 388);
+        MainWindow->resize(406, 355);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         centralWidget->setStyleSheet(QStringLiteral("background: rgb(67, 83, 106);"));
@@ -75,7 +75,7 @@ public:
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         stackedWidget = new QStackedWidget(centralWidget);
         stackedWidget->setObjectName(QStringLiteral("stackedWidget"));
-        stackedWidget->setStyleSheet(QStringLiteral("background: rgb(51, 64, 88);"));
+        stackedWidget->setStyleSheet(QStringLiteral("background: rgb(67, 83, 106);"));
         startPage = new QWidget();
         startPage->setObjectName(QStringLiteral("startPage"));
         startPage->setStyleSheet(QStringLiteral("background: rgb(67, 83, 106)"));
@@ -138,171 +138,118 @@ public:
         movementPage->setObjectName(QStringLiteral("movementPage"));
         releaseButton = new QHoverSensitiveButton(movementPage);
         releaseButton->setObjectName(QStringLiteral("releaseButton"));
-        releaseButton->setGeometry(QRect(410, 220, 162, 102));
-        QFont font4;
-        font4.setFamily(QStringLiteral("Helvetica"));
-        font4.setPointSize(29);
-        font4.setBold(false);
-        font4.setItalic(false);
-        font4.setWeight(50);
-        releaseButton->setFont(font4);
+        releaseButton->setGeometry(QRect(230, 200, 122, 102));
+        releaseButton->setFont(font1);
         releaseButton->setStyleSheet(QLatin1String("background-color: rgb(90, 225, 143);\n"
-"font: 29pt \"Helvetica\";\n"
 "border-style: solid;\n"
 " border-width:1px;\n"
 " border-radius:50px;\n"
 " border-color: rgb(18, 121, 65);\n"
-" max-width:180px;\n"
+" max-width:120px;\n"
 " max-height:100px;\n"
-" min-width:160px;\n"
+" min-width:120px;\n"
 " min-height:100px;"));
         backButton_3 = new QHoverSensitiveButton(movementPage);
         backButton_3->setObjectName(QStringLiteral("backButton_3"));
-        backButton_3->setGeometry(QRect(20, 10, 81, 51));
+        backButton_3->setGeometry(QRect(10, 10, 51, 21));
         backButton_3->setStyleSheet(QLatin1String("background-color: red;\n"
-"font: 20pt \".Helvetica Neue DeskInterface\";\n"
 "border: solid;"));
         forwardButton = new QHoverSensitiveButton(movementPage);
         forwardButton->setObjectName(QStringLiteral("forwardButton"));
-        forwardButton->setGeometry(QRect(30, 200, 161, 71));
-        forwardButton->setStyleSheet(QLatin1String("background-color: rgba(38, 48, 71, 0%);\n"
-"font: 29pt \"Helvetica\";\n"
+        forwardButton->setGeometry(QRect(20, 190, 131, 61));
+        forwardButton->setStyleSheet(QLatin1String("background-color: rgb(240, 223, 51);\n"
 "border: solid;"));
-        QIcon icon;
-        icon.addFile(QStringLiteral(":/images/forward.png"), QSize(), QIcon::Normal, QIcon::Off);
-        forwardButton->setIcon(icon);
-        forwardButton->setIconSize(QSize(120, 100));
         backwardButton = new QHoverSensitiveButton(movementPage);
         backwardButton->setObjectName(QStringLiteral("backwardButton"));
-        backwardButton->setGeometry(QRect(30, 270, 161, 91));
-        backwardButton->setStyleSheet(QLatin1String("background-color: rgba(38, 48, 71, 0%);\n"
-"font: 29pt \"Helvetica\";\n"
+        backwardButton->setGeometry(QRect(20, 260, 131, 61));
+        backwardButton->setStyleSheet(QLatin1String("background-color: rgb(29, 241, 240);\n"
 "border: solid;"));
-        QIcon icon1;
-        icon1.addFile(QStringLiteral(":/images/backward.png"), QSize(), QIcon::Normal, QIcon::Off);
-        backwardButton->setIcon(icon1);
-        backwardButton->setIconSize(QSize(120, 100));
         upButton = new QHoverSensitiveButton(movementPage);
         upButton->setObjectName(QStringLiteral("upButton"));
-        upButton->setGeometry(QRect(250, 70, 111, 51));
-        upButton->setStyleSheet(QLatin1String("background-color: rgba(38, 48, 71, 0%);\n"
-"font: 20pt \"Helvetica\";\n"
+        upButton->setGeometry(QRect(160, 30, 81, 41));
+        upButton->setStyleSheet(QLatin1String("background-color: rgb(205, 205, 205);\n"
 "border: solid;"));
-        QIcon icon2;
-        icon2.addFile(QStringLiteral("images/up.png"), QSize(), QIcon::Normal, QIcon::Off);
-        upButton->setIcon(icon2);
-        upButton->setIconSize(QSize(80, 75));
         leftButton = new QHoverSensitiveButton(movementPage);
         leftButton->setObjectName(QStringLiteral("leftButton"));
-        leftButton->setGeometry(QRect(160, 80, 71, 101));
-        leftButton->setStyleSheet(QLatin1String("background-color: rgba(38, 48, 71, 0%);\n"
-"font: 20pt \"Helvetica\";\n"
+        leftButton->setGeometry(QRect(100, 80, 81, 41));
+        leftButton->setStyleSheet(QLatin1String("background-color: rgb(205, 205, 205);\n"
 "border: solid;"));
-        QIcon icon3;
-        icon3.addFile(QStringLiteral("images/left.png"), QSize(), QIcon::Normal, QIcon::Off);
-        leftButton->setIcon(icon3);
-        leftButton->setIconSize(QSize(60, 120));
         rightButton = new QHoverSensitiveButton(movementPage);
         rightButton->setObjectName(QStringLiteral("rightButton"));
-        rightButton->setGeometry(QRect(380, 80, 71, 101));
-        rightButton->setStyleSheet(QLatin1String("background-color: rgba(38, 48, 71, 0%);\n"
-"font: 20pt \"Helvetica\";\n"
+        rightButton->setGeometry(QRect(220, 80, 81, 41));
+        rightButton->setStyleSheet(QLatin1String("background-color: rgb(205, 205, 205);\n"
 "border: solid;"));
-        QIcon icon4;
-        icon4.addFile(QStringLiteral("images/right.png"), QSize(), QIcon::Normal, QIcon::Off);
-        rightButton->setIcon(icon4);
-        rightButton->setIconSize(QSize(60, 120));
         downButton = new QHoverSensitiveButton(movementPage);
         downButton->setObjectName(QStringLiteral("downButton"));
-        downButton->setGeometry(QRect(250, 140, 111, 51));
-        downButton->setStyleSheet(QLatin1String("background-color: rgba(38, 48, 71, 0%);\n"
-"font: 20pt \"Helvetica\";\n"
+        downButton->setGeometry(QRect(160, 130, 81, 41));
+        downButton->setStyleSheet(QLatin1String("background-color: rgb(205, 205, 205);\n"
 "border: solid;"));
-        QIcon icon5;
-        icon5.addFile(QStringLiteral("images/down.png"), QSize(), QIcon::Normal, QIcon::Off);
-        downButton->setIcon(icon5);
-        downButton->setIconSize(QSize(80, 75));
         ready_label = new QLabel(movementPage);
         ready_label->setObjectName(QStringLiteral("ready_label"));
-        ready_label->setGeometry(QRect(210, 10, 201, 20));
-        ready_label->setStyleSheet(QLatin1String("qproperty-alignment: AlignCenter;\n"
-"font: 20pt \".Helvetica Neue DeskInterface\";\n"
-""));
+        ready_label->setGeometry(QRect(100, 0, 201, 20));
+        ready_label->setStyleSheet(QStringLiteral("qproperty-alignment: AlignCenter;"));
         stackedWidget->addWidget(movementPage);
         settingsPage = new QWidget();
         settingsPage->setObjectName(QStringLiteral("settingsPage"));
         settingsPage->setStyleSheet(QStringLiteral("background: rgb(67, 83, 106)"));
         label_3 = new QLabel(settingsPage);
         label_3->setObjectName(QStringLiteral("label_3"));
-        label_3->setGeometry(QRect(110, 10, 401, 41));
-        QFont font5;
-        font5.setFamily(QStringLiteral("Helvetica"));
-        font5.setPointSize(30);
-        font5.setBold(false);
-        font5.setItalic(false);
-        font5.setWeight(50);
-        label_3->setFont(font5);
+        label_3->setGeometry(QRect(-4, 30, 401, 41));
+        QFont font4;
+        font4.setFamily(QStringLiteral("Arial Rounded MT Bold"));
+        font4.setPointSize(25);
+        label_3->setFont(font4);
         label_3->setLayoutDirection(Qt::LeftToRight);
-        label_3->setStyleSheet(QLatin1String("qproperty-alignment: AlignCenter;\n"
-"font: 30pt \"Helvetica\";"));
+        label_3->setStyleSheet(QStringLiteral("qproperty-alignment: AlignCenter;"));
         backButton = new QHoverSensitiveButton(settingsPage);
         backButton->setObjectName(QStringLiteral("backButton"));
-        backButton->setGeometry(QRect(20, 10, 81, 51));
+        backButton->setGeometry(QRect(10, 10, 51, 21));
         backButton->setStyleSheet(QLatin1String("background-color: red;\n"
-"font: 20pt \".Helvetica Neue DeskInterface\";\n"
-"border: solid;\n"
-""));
+"border: solid;"));
         hoverButton = new QHoverSensitiveButton(settingsPage);
         hoverButton->setObjectName(QStringLiteral("hoverButton"));
-        hoverButton->setGeometry(QRect(100, 160, 121, 51));
+        hoverButton->setGeometry(QRect(30, 150, 121, 51));
         label_4 = new QLabel(settingsPage);
         label_4->setObjectName(QStringLiteral("label_4"));
-        label_4->setGeometry(QRect(270, 170, 191, 41));
-        label_4->setFont(font4);
+        label_4->setGeometry(QRect(240, 160, 91, 21));
+        QFont font5;
+        font5.setFamily(QStringLiteral("Arial Rounded MT Bold"));
+        font5.setPointSize(15);
+        label_4->setFont(font5);
         label_4->setLayoutDirection(Qt::LeftToRight);
-        label_4->setStyleSheet(QLatin1String("qproperty-alignment: AlignCenter;\n"
-"font: 29pt \"Helvetica\";"));
+        label_4->setStyleSheet(QStringLiteral("qproperty-alignment: AlignCenter;"));
         hover_time_label = new QLabel(settingsPage);
         hover_time_label->setObjectName(QStringLiteral("hover_time_label"));
-        hover_time_label->setGeometry(QRect(40, 270, 101, 31));
+        hover_time_label->setGeometry(QRect(40, 220, 101, 31));
         QFont font6;
-        font6.setFamily(QStringLiteral("Helvetica"));
-        font6.setPointSize(24);
-        font6.setBold(false);
-        font6.setItalic(false);
-        font6.setWeight(50);
+        font6.setPointSize(20);
         hover_time_label->setFont(font6);
-        hover_time_label->setStyleSheet(QLatin1String("qproperty-alignment: AlignCenter;\n"
-"font: 24pt \"Helvetica\";"));
+        hover_time_label->setStyleSheet(QStringLiteral("qproperty-alignment: AlignCenter;"));
         hover_time_up_button = new QHoverSensitiveButton(settingsPage);
         hover_time_up_button->setObjectName(QStringLiteral("hover_time_up_button"));
-        hover_time_up_button->setGeometry(QRect(160, 240, 51, 51));
+        hover_time_up_button->setGeometry(QRect(150, 200, 51, 32));
         hover_time_up_button->setStyleSheet(QLatin1String("background-color: rgb(240, 223, 51);\n"
-"font: 30pt \".Helvetica Neue DeskInterface\";\n"
 "border: 1px solid black;"));
         hover_time_down_button = new QHoverSensitiveButton(settingsPage);
         hover_time_down_button->setObjectName(QStringLiteral("hover_time_down_button"));
-        hover_time_down_button->setGeometry(QRect(160, 290, 51, 51));
+        hover_time_down_button->setGeometry(QRect(150, 230, 51, 32));
         hover_time_down_button->setStyleSheet(QLatin1String("background-color: rgb(29, 241, 240);\n"
-"font: 30pt \".Helvetica Neue DeskInterface\";\n"
 "border: 1px solid black;"));
         label_6 = new QLabel(settingsPage);
         label_6->setObjectName(QStringLiteral("label_6"));
-        label_6->setGeometry(QRect(250, 240, 221, 41));
-        label_6->setFont(font4);
+        label_6->setGeometry(QRect(230, 220, 111, 21));
+        label_6->setFont(font5);
         label_6->setLayoutDirection(Qt::LeftToRight);
-        label_6->setStyleSheet(QLatin1String("qproperty-alignment: AlignCenter;\n"
-"font: 29pt \"Helvetica\";"));
+        label_6->setStyleSheet(QStringLiteral("qproperty-alignment: AlignCenter;"));
         autoButton = new QHoverSensitiveButton(settingsPage);
         autoButton->setObjectName(QStringLiteral("autoButton"));
-        autoButton->setGeometry(QRect(100, 90, 121, 51));
+        autoButton->setGeometry(QRect(30, 100, 121, 51));
         label_8 = new QLabel(settingsPage);
         label_8->setObjectName(QStringLiteral("label_8"));
-        label_8->setGeometry(QRect(270, 90, 231, 51));
-        label_8->setFont(font4);
+        label_8->setGeometry(QRect(230, 110, 121, 21));
+        label_8->setFont(font5);
         label_8->setLayoutDirection(Qt::LeftToRight);
-        label_8->setStyleSheet(QLatin1String("qproperty-alignment: AlignCenter;\n"
-"font: 29pt \"Helvetica\";"));
+        label_8->setStyleSheet(QStringLiteral("qproperty-alignment: AlignCenter;"));
         stackedWidget->addWidget(settingsPage);
         tutorialPage = new QWidget();
         tutorialPage->setObjectName(QStringLiteral("tutorialPage"));
@@ -319,13 +266,13 @@ public:
         label_7->setGeometry(QRect(130, 130, 57, 16));
         stackedWidget->addWidget(tutorialPage);
 
-        gridLayout->addWidget(stackedWidget, 0, 1, 1, 1);
+        gridLayout->addWidget(stackedWidget, 0, 0, 1, 1);
 
         MainWindow->setCentralWidget(centralWidget);
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(1);
+        stackedWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -341,20 +288,20 @@ public:
         tutorialButton->setText(QApplication::translate("MainWindow", "Tutorials", nullptr));
         releaseButton->setText(QApplication::translate("MainWindow", "Release", nullptr));
         backButton_3->setText(QApplication::translate("MainWindow", "Back", nullptr));
-        forwardButton->setText(QString());
-        backwardButton->setText(QString());
-        upButton->setText(QString());
-        leftButton->setText(QString());
-        rightButton->setText(QString());
-        downButton->setText(QString());
+        forwardButton->setText(QApplication::translate("MainWindow", "Forward", nullptr));
+        backwardButton->setText(QApplication::translate("MainWindow", "Backward", nullptr));
+        upButton->setText(QApplication::translate("MainWindow", "Up", nullptr));
+        leftButton->setText(QApplication::translate("MainWindow", "Left", nullptr));
+        rightButton->setText(QApplication::translate("MainWindow", "Right", nullptr));
+        downButton->setText(QApplication::translate("MainWindow", "Down", nullptr));
         ready_label->setText(QApplication::translate("MainWindow", "Ready for commands!", nullptr));
         label_3->setText(QApplication::translate("MainWindow", "SETTINGS", nullptr));
         backButton->setText(QApplication::translate("MainWindow", "Back", nullptr));
         hoverButton->setText(QApplication::translate("MainWindow", "ON", nullptr));
         label_4->setText(QApplication::translate("MainWindow", "Hover Mode", nullptr));
         hover_time_label->setText(QApplication::translate("MainWindow", "3.0 secs", nullptr));
-        hover_time_up_button->setText(QApplication::translate("MainWindow", "+", nullptr));
-        hover_time_down_button->setText(QApplication::translate("MainWindow", "-", nullptr));
+        hover_time_up_button->setText(QApplication::translate("MainWindow", "U", nullptr));
+        hover_time_down_button->setText(QApplication::translate("MainWindow", "D", nullptr));
         label_6->setText(QApplication::translate("MainWindow", "Hover Time", nullptr));
         autoButton->setText(QApplication::translate("MainWindow", "ON", nullptr));
         label_8->setText(QApplication::translate("MainWindow", "Auto Movement", nullptr));

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>628</width>
-    <height>388</height>
+    <width>406</width>
+    <height>355</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,13 +18,13 @@
     <string notr="true">background: rgb(67, 83, 106);</string>
    </property>
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="1">
+    <item row="0" column="0">
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="styleSheet">
-       <string notr="true">background: rgb(51, 64, 88);</string>
+       <string notr="true">background: rgb(67, 83, 106);</string>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="startPage">
        <property name="styleSheet">
@@ -160,31 +160,27 @@ min-height:100px;
        <widget class="QHoverSensitiveButton" name="releaseButton">
         <property name="geometry">
          <rect>
-          <x>410</x>
-          <y>220</y>
-          <width>162</width>
+          <x>230</x>
+          <y>200</y>
+          <width>122</width>
           <height>102</height>
          </rect>
         </property>
         <property name="font">
          <font>
-          <family>Helvetica</family>
-          <pointsize>29</pointsize>
-          <weight>50</weight>
-          <italic>false</italic>
-          <bold>false</bold>
+          <family>Arial Rounded MT Bold</family>
+          <pointsize>20</pointsize>
          </font>
         </property>
         <property name="styleSheet">
          <string notr="true">background-color: rgb(90, 225, 143);
-font: 29pt &quot;Helvetica&quot;;
 border-style: solid;
  border-width:1px;
  border-radius:50px;
  border-color: rgb(18, 121, 65);
- max-width:180px;
+ max-width:120px;
  max-height:100px;
- min-width:160px;
+ min-width:120px;
  min-height:100px;</string>
         </property>
         <property name="text">
@@ -194,15 +190,14 @@ border-style: solid;
        <widget class="QHoverSensitiveButton" name="backButton_3">
         <property name="geometry">
          <rect>
-          <x>20</x>
+          <x>10</x>
           <y>10</y>
-          <width>81</width>
-          <height>51</height>
+          <width>51</width>
+          <height>21</height>
          </rect>
         </property>
         <property name="styleSheet">
          <string notr="true">background-color: red;
-font: 20pt &quot;.Helvetica Neue DeskInterface&quot;;
 border: solid;</string>
         </property>
         <property name="text">
@@ -212,184 +207,116 @@ border: solid;</string>
        <widget class="QHoverSensitiveButton" name="forwardButton">
         <property name="geometry">
          <rect>
-          <x>30</x>
-          <y>200</y>
-          <width>161</width>
-          <height>71</height>
+          <x>20</x>
+          <y>190</y>
+          <width>131</width>
+          <height>61</height>
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgba(38, 48, 71, 0%);
-font: 29pt &quot;Helvetica&quot;;
+         <string notr="true">background-color: rgb(240, 223, 51);
 border: solid;</string>
         </property>
         <property name="text">
-         <string/>
-        </property>
-        <property name="icon">
-         <iconset resource="resource.qrc">
-          <normaloff>:/images/forward.png</normaloff>:/images/forward.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>120</width>
-          <height>100</height>
-         </size>
+         <string>Forward</string>
         </property>
        </widget>
        <widget class="QHoverSensitiveButton" name="backwardButton">
         <property name="geometry">
          <rect>
-          <x>30</x>
-          <y>270</y>
-          <width>161</width>
-          <height>91</height>
+          <x>20</x>
+          <y>260</y>
+          <width>131</width>
+          <height>61</height>
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgba(38, 48, 71, 0%);
-font: 29pt &quot;Helvetica&quot;;
+         <string notr="true">background-color: rgb(29, 241, 240);
 border: solid;</string>
         </property>
         <property name="text">
-         <string/>
-        </property>
-        <property name="icon">
-         <iconset resource="resource.qrc">
-          <normaloff>:/images/backward.png</normaloff>:/images/backward.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>120</width>
-          <height>100</height>
-         </size>
+         <string>Backward</string>
         </property>
        </widget>
        <widget class="QHoverSensitiveButton" name="upButton">
         <property name="geometry">
          <rect>
-          <x>250</x>
-          <y>70</y>
-          <width>111</width>
-          <height>51</height>
+          <x>160</x>
+          <y>30</y>
+          <width>81</width>
+          <height>41</height>
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgba(38, 48, 71, 0%);
-font: 20pt &quot;Helvetica&quot;;
+         <string notr="true">background-color: rgb(205, 205, 205);
 border: solid;</string>
         </property>
         <property name="text">
-         <string/>
-        </property>
-        <property name="icon">
-         <iconset resource="resource.qrc">
-          <normaloff>:/images/up.png</normaloff>:/images/up.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>80</width>
-          <height>75</height>
-         </size>
+         <string>Up</string>
         </property>
        </widget>
        <widget class="QHoverSensitiveButton" name="leftButton">
         <property name="geometry">
          <rect>
-          <x>160</x>
+          <x>100</x>
           <y>80</y>
-          <width>71</width>
-          <height>101</height>
+          <width>81</width>
+          <height>41</height>
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgba(38, 48, 71, 0%);
-font: 20pt &quot;Helvetica&quot;;
+         <string notr="true">background-color: rgb(205, 205, 205);
 border: solid;</string>
         </property>
         <property name="text">
-         <string/>
-        </property>
-        <property name="icon">
-         <iconset resource="resource.qrc">
-          <normaloff>:/images/left.png</normaloff>:/images/left.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>60</width>
-          <height>120</height>
-         </size>
+         <string>Left</string>
         </property>
        </widget>
        <widget class="QHoverSensitiveButton" name="rightButton">
         <property name="geometry">
          <rect>
-          <x>380</x>
+          <x>220</x>
           <y>80</y>
-          <width>71</width>
-          <height>101</height>
+          <width>81</width>
+          <height>41</height>
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgba(38, 48, 71, 0%);
-font: 20pt &quot;Helvetica&quot;;
+         <string notr="true">background-color: rgb(205, 205, 205);
 border: solid;</string>
         </property>
         <property name="text">
-         <string/>
-        </property>
-        <property name="icon">
-         <iconset resource="resource.qrc">
-          <normaloff>:/images/right.png</normaloff>:/images/right.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>60</width>
-          <height>120</height>
-         </size>
+         <string>Right</string>
         </property>
        </widget>
        <widget class="QHoverSensitiveButton" name="downButton">
         <property name="geometry">
          <rect>
-          <x>250</x>
-          <y>140</y>
-          <width>111</width>
-          <height>51</height>
+          <x>160</x>
+          <y>130</y>
+          <width>81</width>
+          <height>41</height>
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgba(38, 48, 71, 0%);
-font: 20pt &quot;Helvetica&quot;;
+         <string notr="true">background-color: rgb(205, 205, 205);
 border: solid;</string>
         </property>
         <property name="text">
-         <string/>
-        </property>
-        <property name="icon">
-         <iconset resource="resource.qrc">
-          <normaloff>:/images/down.png</normaloff>:/images/down.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>80</width>
-          <height>75</height>
-         </size>
+         <string>Down</string>
         </property>
        </widget>
        <widget class="QLabel" name="ready_label">
         <property name="geometry">
          <rect>
-          <x>210</x>
-          <y>10</y>
+          <x>100</x>
+          <y>0</y>
           <width>201</width>
           <height>20</height>
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">qproperty-alignment: AlignCenter;
-font: 20pt &quot;.Helvetica Neue DeskInterface&quot;;
-</string>
+         <string notr="true">qproperty-alignment: AlignCenter;</string>
         </property>
         <property name="text">
          <string>Ready for commands!</string>
@@ -403,27 +330,23 @@ font: 20pt &quot;.Helvetica Neue DeskInterface&quot;;
        <widget class="QLabel" name="label_3">
         <property name="geometry">
          <rect>
-          <x>110</x>
-          <y>10</y>
+          <x>-4</x>
+          <y>30</y>
           <width>401</width>
           <height>41</height>
          </rect>
         </property>
         <property name="font">
          <font>
-          <family>Helvetica</family>
-          <pointsize>30</pointsize>
-          <weight>50</weight>
-          <italic>false</italic>
-          <bold>false</bold>
+          <family>Arial Rounded MT Bold</family>
+          <pointsize>25</pointsize>
          </font>
         </property>
         <property name="layoutDirection">
          <enum>Qt::LeftToRight</enum>
         </property>
         <property name="styleSheet">
-         <string notr="true">qproperty-alignment: AlignCenter;
-font: 30pt &quot;Helvetica&quot;;</string>
+         <string notr="true">qproperty-alignment: AlignCenter;</string>
         </property>
         <property name="text">
          <string>SETTINGS</string>
@@ -432,17 +355,15 @@ font: 30pt &quot;Helvetica&quot;;</string>
        <widget class="QHoverSensitiveButton" name="backButton">
         <property name="geometry">
          <rect>
-          <x>20</x>
+          <x>10</x>
           <y>10</y>
-          <width>81</width>
-          <height>51</height>
+          <width>51</width>
+          <height>21</height>
          </rect>
         </property>
         <property name="styleSheet">
          <string notr="true">background-color: red;
-font: 20pt &quot;.Helvetica Neue DeskInterface&quot;;
-border: solid;
-</string>
+border: solid;</string>
         </property>
         <property name="text">
          <string>Back</string>
@@ -451,8 +372,8 @@ border: solid;
        <widget class="QHoverSensitiveButton" name="hoverButton">
         <property name="geometry">
          <rect>
-          <x>100</x>
-          <y>160</y>
+          <x>30</x>
+          <y>150</y>
           <width>121</width>
           <height>51</height>
          </rect>
@@ -464,27 +385,23 @@ border: solid;
        <widget class="QLabel" name="label_4">
         <property name="geometry">
          <rect>
-          <x>270</x>
-          <y>170</y>
-          <width>191</width>
-          <height>41</height>
+          <x>240</x>
+          <y>160</y>
+          <width>91</width>
+          <height>21</height>
          </rect>
         </property>
         <property name="font">
          <font>
-          <family>Helvetica</family>
-          <pointsize>29</pointsize>
-          <weight>50</weight>
-          <italic>false</italic>
-          <bold>false</bold>
+          <family>Arial Rounded MT Bold</family>
+          <pointsize>15</pointsize>
          </font>
         </property>
         <property name="layoutDirection">
          <enum>Qt::LeftToRight</enum>
         </property>
         <property name="styleSheet">
-         <string notr="true">qproperty-alignment: AlignCenter;
-font: 29pt &quot;Helvetica&quot;;</string>
+         <string notr="true">qproperty-alignment: AlignCenter;</string>
         </property>
         <property name="text">
          <string>Hover Mode</string>
@@ -494,23 +411,18 @@ font: 29pt &quot;Helvetica&quot;;</string>
         <property name="geometry">
          <rect>
           <x>40</x>
-          <y>270</y>
+          <y>220</y>
           <width>101</width>
           <height>31</height>
          </rect>
         </property>
         <property name="font">
          <font>
-          <family>Helvetica</family>
-          <pointsize>24</pointsize>
-          <weight>50</weight>
-          <italic>false</italic>
-          <bold>false</bold>
+          <pointsize>20</pointsize>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">qproperty-alignment: AlignCenter;
-font: 24pt &quot;Helvetica&quot;;</string>
+         <string notr="true">qproperty-alignment: AlignCenter;</string>
         </property>
         <property name="text">
          <string>3.0 secs</string>
@@ -519,63 +431,57 @@ font: 24pt &quot;Helvetica&quot;;</string>
        <widget class="QHoverSensitiveButton" name="hover_time_up_button">
         <property name="geometry">
          <rect>
-          <x>160</x>
-          <y>240</y>
+          <x>150</x>
+          <y>200</y>
           <width>51</width>
-          <height>51</height>
+          <height>32</height>
          </rect>
         </property>
         <property name="styleSheet">
          <string notr="true">background-color: rgb(240, 223, 51);
-font: 30pt &quot;.Helvetica Neue DeskInterface&quot;;
 border: 1px solid black;</string>
         </property>
         <property name="text">
-         <string>+</string>
+         <string>U</string>
         </property>
        </widget>
        <widget class="QHoverSensitiveButton" name="hover_time_down_button">
         <property name="geometry">
          <rect>
-          <x>160</x>
-          <y>290</y>
+          <x>150</x>
+          <y>230</y>
           <width>51</width>
-          <height>51</height>
+          <height>32</height>
          </rect>
         </property>
         <property name="styleSheet">
          <string notr="true">background-color: rgb(29, 241, 240);
-font: 30pt &quot;.Helvetica Neue DeskInterface&quot;;
 border: 1px solid black;</string>
         </property>
         <property name="text">
-         <string>-</string>
+         <string>D</string>
         </property>
        </widget>
        <widget class="QLabel" name="label_6">
         <property name="geometry">
          <rect>
-          <x>250</x>
-          <y>240</y>
-          <width>221</width>
-          <height>41</height>
+          <x>230</x>
+          <y>220</y>
+          <width>111</width>
+          <height>21</height>
          </rect>
         </property>
         <property name="font">
          <font>
-          <family>Helvetica</family>
-          <pointsize>29</pointsize>
-          <weight>50</weight>
-          <italic>false</italic>
-          <bold>false</bold>
+          <family>Arial Rounded MT Bold</family>
+          <pointsize>15</pointsize>
          </font>
         </property>
         <property name="layoutDirection">
          <enum>Qt::LeftToRight</enum>
         </property>
         <property name="styleSheet">
-         <string notr="true">qproperty-alignment: AlignCenter;
-font: 29pt &quot;Helvetica&quot;;</string>
+         <string notr="true">qproperty-alignment: AlignCenter;</string>
         </property>
         <property name="text">
          <string>Hover Time</string>
@@ -584,8 +490,8 @@ font: 29pt &quot;Helvetica&quot;;</string>
        <widget class="QHoverSensitiveButton" name="autoButton">
         <property name="geometry">
          <rect>
-          <x>100</x>
-          <y>90</y>
+          <x>30</x>
+          <y>100</y>
           <width>121</width>
           <height>51</height>
          </rect>
@@ -597,27 +503,23 @@ font: 29pt &quot;Helvetica&quot;;</string>
        <widget class="QLabel" name="label_8">
         <property name="geometry">
          <rect>
-          <x>270</x>
-          <y>90</y>
-          <width>231</width>
-          <height>51</height>
+          <x>230</x>
+          <y>110</y>
+          <width>121</width>
+          <height>21</height>
          </rect>
         </property>
         <property name="font">
          <font>
-          <family>Helvetica</family>
-          <pointsize>29</pointsize>
-          <weight>50</weight>
-          <italic>false</italic>
-          <bold>false</bold>
+          <family>Arial Rounded MT Bold</family>
+          <pointsize>15</pointsize>
          </font>
         </property>
         <property name="layoutDirection">
          <enum>Qt::LeftToRight</enum>
         </property>
         <property name="styleSheet">
-         <string notr="true">qproperty-alignment: AlignCenter;
-font: 29pt &quot;Helvetica&quot;;</string>
+         <string notr="true">qproperty-alignment: AlignCenter;</string>
         </property>
         <property name="text">
          <string>Auto Movement</string>
@@ -682,8 +584,6 @@ border: solid;</string>
    <header>qhoversensitivebutton.h</header>
   </customwidget>
  </customwidgets>
- <resources>
-  <include location="resource.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

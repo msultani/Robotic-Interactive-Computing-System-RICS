@@ -1,17 +1,14 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2018-02-17T18:48:44
+# Project created by QtCreator 2018-03-19T16:17:38
 #
 #-------------------------------------------------
-# Some code for qhoversensitivebutton.cpp taken from
-# http://amin-ahmadi.com/2016/02/01/mouse-hover-over-event-qt-widget/
-
 
 QT       += core gui serialport network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = Alpha2
+TARGET = RICSapp
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -42,6 +39,3 @@ HEADERS += \
 FORMS += \
         mainwindow.ui \
     release.ui
-
-RESOURCES += \
-    resource.qrc

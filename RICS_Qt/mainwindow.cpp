@@ -50,7 +50,8 @@ void MainWindow::readTCPData(){
     qDebug() << "here";
     TCP_data = this->sock->readAll();
     qDebug() << "TCP command is:" << TCP_data;
-    voice_command_given = true;
+    //voice_command_given = true;
+    this->sock->close();
     parse_TCP_command(TCP_data);
 
 }
@@ -139,7 +140,20 @@ MainWindow::MainWindow(QWidget *parent) :
     voice_commands << "fetch" << "up" << "down" << "left" << "right" << "forward" << "backward";
 
     establish_TCP_connection();
-
+    p.setWorkingDirectory(QDir::currentPath());
+    qDebug() << QDir::currentPath();
+    p.start("python ../../../../qpython.py");
+    p.waitForFinished();
+    QString output(p.readAllStandardOutput());
+    qDebug() << output;
+    /*
+     * speech_recognition/speech_recognition/__main__.py
+    p.setWorkingDirectory("speech_recognition/");
+    p.start("python ");
+    p.waitForFinished();
+    QString output(p.readAllStandardOutput());
+    qDebug() << output;
+*/
     // List of signals and the appropriate slot that they should connect to
     connect(ui->fetchButton, SIGNAL (pressed()), this, SLOT (fetchPressed()));
     connect(ui->fetchButton, SIGNAL (hovered()), this, SLOT (fetchPressed()));
@@ -219,7 +233,7 @@ MainWindow::~MainWindow()
     if (port.isOpen()){
         port.close();
     }
-    this->sock->close();
+    //this->sock->close();
     delete ui;
 }
 

@@ -16,7 +16,7 @@
 #include <QSerialPort>
 #include <QSerialPortInfo>
 #include <QEnterEvent>
-
+#include <QDir>
 #include <QIODevice>
 
 #include <QCoreApplication>
@@ -28,6 +28,7 @@
 #include <QString>
 #include <QStringList>
 #include <string>
+#include <QProcess>
 
 namespace Ui {
 class MainWindow;
@@ -73,7 +74,7 @@ public slots:
     void auto_move();
 
 private:
-
+    QProcess p;
     Ui::MainWindow *ui;
     QSerialPort port;
     QByteArray ard_data;
