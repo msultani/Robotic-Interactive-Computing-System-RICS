@@ -24,7 +24,7 @@
        <string notr="true">background: rgba(51, 64, 88, 0%);</string>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="startPage">
        <property name="styleSheet">
@@ -598,7 +598,8 @@ color: white;</string>
         </property>
         <property name="styleSheet">
          <string notr="true">qproperty-alignment: AlignCenter;
-font: 24pt &quot;Helvetica&quot;;</string>
+font: 24pt &quot;Helvetica&quot;;
+color: white;</string>
         </property>
         <property name="text">
          <string>3.0 secs</string>
