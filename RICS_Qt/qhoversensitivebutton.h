@@ -27,26 +27,21 @@ class QHoverSensitiveButton : public QPushButton
 public:
     explicit QHoverSensitiveButton(QWidget *parent = 0);
     static bool hoverMode;
-    static bool hoverPending;
+    //static bool hoverPending;
     static QString hoverButton;
     static int hoverTime;
-
-    static int x_pos;
-    static int y_pos;
-    static int z_pos;
 
     void hoverWait();
 
 signals:
-    void hovered();
     void changeLabel();
 
 
 private:
     void hoverButtonEntered();
     void buttonEntered();
-    static QTime t;
-    static QList<QString> active_buttons;
+    static QTime activationTime;
+    static QList<QString> activeButtons;
 
 
     //enum Robot_cmd{stop,forward,backward,left,right,rotate_clockwise,rotate_anticlockwise,set_speed}Command;

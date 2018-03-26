@@ -448,23 +448,7 @@ color: white;
        <widget class="QHoverSensitiveButton" name="clawLeft">
         <property name="geometry">
          <rect>
-          <x>210</x>
-          <y>230</y>
-          <width>91</width>
-          <height>81</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Claw Left</string>
-        </property>
-        <property name="icon">
-         <iconset theme="claw_left.png"/>
-        </property>
-       </widget>
-       <widget class="QHoverSensitiveButton" name="clawRight">
-        <property name="geometry">
-         <rect>
-          <x>310</x>
+          <x>320</x>
           <y>230</y>
           <width>91</width>
           <height>81</height>
@@ -474,7 +458,44 @@ color: white;
          <string notr="true"/>
         </property>
         <property name="text">
-         <string>Claw Right</string>
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/images/claw_left.png</normaloff>:/images/claw_left.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>60</width>
+          <height>60</height>
+         </size>
+        </property>
+       </widget>
+       <widget class="QHoverSensitiveButton" name="clawRight">
+        <property name="geometry">
+         <rect>
+          <x>210</x>
+          <y>230</y>
+          <width>91</width>
+          <height>81</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgba(0, 48, 71, 0%);
+</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/images/claw_right.png</normaloff>:/images/claw_right.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>60</width>
+          <height>60</height>
+         </size>
         </property>
        </widget>
       </widget>
