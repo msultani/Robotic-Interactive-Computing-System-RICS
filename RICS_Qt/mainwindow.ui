@@ -24,7 +24,7 @@
        <string notr="true">background: rgba(51, 64, 88, 0%);</string>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="startPage">
        <property name="styleSheet">
@@ -430,9 +430,9 @@ border: solid;</string>
         <property name="geometry">
          <rect>
           <x>200</x>
-          <y>20</y>
+          <y>10</y>
           <width>201</width>
-          <height>20</height>
+          <height>31</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -448,14 +448,17 @@ color: white;
        <widget class="QHoverSensitiveButton" name="clawLeft">
         <property name="geometry">
          <rect>
-          <x>320</x>
+          <x>210</x>
           <y>230</y>
           <width>91</width>
           <height>81</height>
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true"/>
+         <string notr="true">border-style: solid;
+background-color: rgb(183, 183, 183);
+
+</string>
         </property>
         <property name="text">
          <string/>
@@ -474,14 +477,15 @@ color: white;
        <widget class="QHoverSensitiveButton" name="clawRight">
         <property name="geometry">
          <rect>
-          <x>210</x>
+          <x>310</x>
           <y>230</y>
           <width>91</width>
           <height>81</height>
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgba(0, 48, 71, 0%);
+         <string notr="true">background-color: rgb(183, 183, 183);
+border-style: solid;
 </string>
         </property>
         <property name="text">
@@ -503,36 +507,6 @@ color: white;
        <property name="styleSheet">
         <string notr="true">background: rgb(67, 83, 106)</string>
        </property>
-       <widget class="QLabel" name="label_3">
-        <property name="geometry">
-         <rect>
-          <x>110</x>
-          <y>10</y>
-          <width>401</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Helvetica</family>
-          <pointsize>30</pointsize>
-          <weight>50</weight>
-          <italic>false</italic>
-          <bold>false</bold>
-         </font>
-        </property>
-        <property name="layoutDirection">
-         <enum>Qt::LeftToRight</enum>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">qproperty-alignment: AlignCenter;
-font: 30pt &quot;Helvetica&quot;;
-color: white;</string>
-        </property>
-        <property name="text">
-         <string>SETTINGS</string>
-        </property>
-       </widget>
        <widget class="QHoverSensitiveButton" name="backButton">
         <property name="geometry">
          <rect>
@@ -624,7 +598,8 @@ color: white;</string>
         </property>
         <property name="styleSheet">
          <string notr="true">qproperty-alignment: AlignCenter;
-font: 24pt &quot;Helvetica&quot;;</string>
+font: 24pt &quot;Helvetica&quot;;
+color: white;</string>
         </property>
         <property name="text">
          <string>3.0 secs</string>
@@ -739,49 +714,89 @@ color: white;</string>
          <string>Auto Movement</string>
         </property>
        </widget>
-      </widget>
-      <widget class="QWidget" name="tutorialPage">
-       <widget class="QLabel" name="label_5">
+       <widget class="QPushButton" name="pushButton_2">
         <property name="geometry">
          <rect>
-          <x>170</x>
-          <y>30</y>
-          <width>57</width>
-          <height>16</height>
+          <x>150</x>
+          <y>0</y>
+          <width>331</width>
+          <height>91</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgba(0,0,0,0%);
+border: solid;
+</string>
+        </property>
         <property name="text">
-         <string>Tutorials</string>
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/images/settings-title.png</normaloff>:/images/settings-title.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>100</width>
+          <height>100</height>
+         </size>
         </property>
        </widget>
+      </widget>
+      <widget class="QWidget" name="tutorialPage">
        <widget class="QHoverSensitiveButton" name="backButton_2">
         <property name="geometry">
          <rect>
           <x>10</x>
           <y>10</y>
-          <width>51</width>
-          <height>21</height>
+          <width>91</width>
+          <height>51</height>
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: red;
+         <string notr="true">background-color: rgba(0,0,0,0%);
 border: solid;</string>
         </property>
         <property name="text">
-         <string>Back</string>
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/images/back.png</normaloff>:/images/back.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>60</width>
+          <height>60</height>
+         </size>
         </property>
        </widget>
-       <widget class="QLabel" name="label_7">
+       <widget class="QPushButton" name="pushButton">
         <property name="geometry">
          <rect>
-          <x>130</x>
-          <y>130</y>
-          <width>57</width>
-          <height>16</height>
+          <x>60</x>
+          <y>20</y>
+          <width>491</width>
+          <height>331</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">background: rgba(0, 0, 0, 0%);
+border-style: solid;
+</string>
+        </property>
         <property name="text">
-         <string>TextLabel</string>
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/images/tutorial_page.png</normaloff>:/images/tutorial_page.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>400</width>
+          <height>400</height>
+         </size>
         </property>
        </widget>
       </widget>

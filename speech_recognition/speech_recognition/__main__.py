@@ -8,9 +8,8 @@ import time
 r = sr.Recognizer()
 m = sr.Microphone()
 
-commands = ["wake",
-            "retrieve",
-            "up",
+commands = ["retrieve",
+            "rise",
             "down",
             "left",
             "right",
@@ -25,9 +24,13 @@ commands = ["wake",
 def process_text(text):
     words = text.split()
     keep = []
+    awake = False
     for word in words:
-        if word in commands:
-            keep.append(word)
+        if word == "echo":
+            awake = True
+        if awake:
+            if word in commands:
+                keep.append(word)
     return keep
 
 
