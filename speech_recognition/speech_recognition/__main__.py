@@ -24,13 +24,13 @@ commands = ["retrieve",
 def process_text(text):
     words = text.split()
     keep = []
-    awake = False
+    # awake = False
     for word in words:
-        if word == "echo":
-            awake = True
-        if awake:
-            if word in commands:
-                keep.append(word)
+        # if word == "echo":
+        #     awake = True
+        # if awake:
+        if word in commands:
+            keep.append(word)
     return keep
 
 
