@@ -165,62 +165,44 @@ MainWindow::MainWindow(QWidget *parent) :
 */
     // List of signals and the appropriate slot that they should connect to
     connect(ui->fetchButton, SIGNAL (pressed()), this, SLOT (fetchPressed()));
-    connect(ui->fetchButton, SIGNAL (hovered()), this, SLOT (fetchPressed()));
 
     connect(ui->settingButton, SIGNAL (pressed()), this, SLOT (settingsPressed()));
-    connect(ui->settingButton, SIGNAL (hovered()), this, SLOT (settingsPressed()));
 
     connect(ui->tutorialButton, SIGNAL (pressed()), this, SLOT (tutorialPressed()));
-    connect(ui->tutorialButton, SIGNAL (hovered()), this, SLOT (tutorialPressed()));
 
     connect(ui->backButton, SIGNAL (pressed()), this, SLOT (backPressed()));
-    connect(ui->backButton, SIGNAL (hovered()), this, SLOT (backPressed()));
+
     connect(ui->backButton_2, SIGNAL (pressed()), this, SLOT (backPressed()));
-    connect(ui->backButton_2, SIGNAL (hovered()), this, SLOT (backPressed()));
+
     connect(ui->backButton_3, SIGNAL (pressed()), this, SLOT (backPressed()));
-    connect(ui->backButton_3, SIGNAL (hovered()), this, SLOT (backPressed()));
 
     connect(ui->tutorialButton, SIGNAL (pressed()), this, SLOT (tutorialPressed()));
-    connect(ui->tutorialButton, SIGNAL (hovered()), this, SLOT (tutorialPressed()));
 
     connect(ui->hover_time_up_button, SIGNAL (pressed()), this, SLOT (hover_time_up()));
-    connect(ui->hover_time_up_button, SIGNAL (hovered()), this, SLOT (hover_time_up()));
 
     connect(ui->hover_time_down_button, SIGNAL (pressed()), this, SLOT (hover_time_down()));
-    connect(ui->hover_time_down_button, SIGNAL (hovered()), this, SLOT (hover_time_down()));
 
     connect(ui->hoverButton, SIGNAL (changeLabel()), this, SLOT (changeLabel()));
-    //connect(ui->hoverButton, SIGNAL (pressed()), this, SLOT (hover_pressed()));
 
     connect(ui->upButton, SIGNAL (pressed()), this, SLOT (move_up()));
-    connect(ui->upButton, SIGNAL (hovered()), this, SLOT (move_up()));
 
     connect(ui->downButton, SIGNAL (pressed()), this, SLOT (move_down()));
-    connect(ui->downButton, SIGNAL (hovered()), this, SLOT (move_down()));
 
     connect(ui->leftButton, SIGNAL (pressed()), this, SLOT (move_left()));
-    connect(ui->leftButton, SIGNAL (hovered()), this, SLOT (move_left()));
 
     connect(ui->rightButton, SIGNAL (pressed()), this, SLOT (move_right()));
-    connect(ui->rightButton, SIGNAL (hovered()), this, SLOT (move_right()));
 
     connect(ui->forwardButton, SIGNAL (pressed()), this, SLOT (move_forward()));
-    connect(ui->forwardButton, SIGNAL (hovered()), this, SLOT (move_forward()));
 
     connect(ui->backwardButton, SIGNAL (pressed()), this, SLOT (move_backward()));
-    connect(ui->backwardButton, SIGNAL (hovered()), this, SLOT (move_backward()));
 
     connect(ui->releaseButton, SIGNAL (pressed()), this, SLOT (move_finished()));
-    connect(ui->releaseButton, SIGNAL (hovered()), this, SLOT (move_finished()));
 
     connect(ui->autoButton, SIGNAL (pressed()), this, SLOT (auto_move()));
-    connect(ui->autoButton, SIGNAL (hovered()), this, SLOT (auto_move()));
 
     connect(ui->clawLeft, SIGNAL (pressed()), this, SLOT (on_clawLeft_pressed()));
-    connect(ui->clawLeft, SIGNAL (hovered()), this, SLOT (on_clawLeft_pressed()));
 
     connect(ui->clawRight, SIGNAL (pressed()), this, SLOT (on_clawRight_pressed()));
-    connect(ui->clawRight, SIGNAL (hovered()), this, SLOT (on_clawRight_pressed()));
 
     //Open serial port
     port.setPortName("/dev/cu.usbmodem1421");
@@ -396,10 +378,11 @@ void MainWindow::move_finished(){
         popup.open();
         qDebug() << "opening";
         popup.countdown();
-        QHoverSensitiveButton::t.setHMS(-1,-1,-1,-1);
+        //QHoverSensitiveButton::activationTime.setHMS(-1,-1,-1,-1);
+        QHoverSensitiveButton::hoverMode = false;
         //qDebug() << "Setting t to " + QHoverSensitiveButton::t.toString();
 
-        QHoverSensitiveButton::hoverButton = "";
+        //QHoverSensitiveButton::hoverButton = "";
 
         delay(5000);
         qDebug() << "closing";
@@ -412,6 +395,7 @@ void MainWindow::move_finished(){
         write_to_arduino("0" + QString::number(x_pos) + "X");
         write_to_arduino("1" + QString::number(y_pos) + "X");
         write_to_arduino("2" + QString::number(z_pos) + "X");
+        QHoverSensitiveButton::hoverMode = true;
     }
     else{
        return;
