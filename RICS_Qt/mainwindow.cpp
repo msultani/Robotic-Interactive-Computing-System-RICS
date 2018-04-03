@@ -84,10 +84,13 @@ void MainWindow::parse_TCP_command(QByteArray TCP_data){
             break;
         case 6:
             move_backward();
+            break;
         case 7:
             on_clawLeft_pressed();
+            break;
         case 8:
             on_clawRight_pressed();
+            break;
         default:
             qDebug() << "This shouldn't be called... something went wrong";
             break;
@@ -143,7 +146,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->stackedWidget->setCurrentIndex(0);
 
     //Initialize voice_commands list
-    voice_commands << "fetch" << "up" << "down" << "left" << "right" << "forward" << "backward" << "open" << "close";
+    voice_commands << "fetch" << "rise" << "down" << "left" << "right" << "forward" << "backward" << "open" << "close";
 
     establish_TCP_connection();
 
@@ -368,7 +371,37 @@ void MainWindow::move_backward(){
 
 void MainWindow::move_finished(){
     qDebug() << "Retract";
+    ui->stackedWidget->setCurrentIndex(4);
+    QHoverSensitiveButton::activationTime.setHMS(-1,-1,-1,-1);
 
+    bool restore = QHoverSensitiveButton::hoverMode;
+    QHoverSensitiveButton::hoverMode = false;
+
+    int countdown = 5;
+    QString display = QString::number(countdown);
+    this->ui->countdownLabel->setText(display);
+
+    while (countdown > 0){
+        delay(1000);
+        countdown--;
+        display = QString::number(countdown);
+        this->ui->countdownLabel->setText(display);
+    }
+
+     ui->stackedWidget->setCurrentIndex(1);
+
+     x_pos = 93;
+     y_pos = 40;
+     z_pos = 40;
+     write_to_arduino("0" + QString::number(x_pos) + "X");
+     write_to_arduino("1" + QString::number(y_pos) + "X");
+     write_to_arduino("2" + QString::number(z_pos) + "X");
+
+     if (restore){
+         QHoverSensitiveButton::hoverMode = true;
+     }
+
+    /*
     if (!popup_open){
         popup_open = true;
 
@@ -400,7 +433,7 @@ void MainWindow::move_finished(){
     else{
        return;
     }
-
+    */
 }
 
 void MainWindow::on_clawLeft_pressed() {
