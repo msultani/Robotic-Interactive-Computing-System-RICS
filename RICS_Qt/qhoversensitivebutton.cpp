@@ -3,11 +3,11 @@
 
 QTime QHoverSensitiveButton::activationTime(-1, -1, -1, -1);
 bool QHoverSensitiveButton::hoverMode = true;
-//bool QHoverSensitiveButton::hoverPending = false;
+bool QHoverSensitiveButton::hoverPending = false;
 QString QHoverSensitiveButton::hoverButton = "";
 int QHoverSensitiveButton::hoverTime = 3000;
 
-QList<QString> QHoverSensitiveButton::activeButtons;
+QList<QString> QHoverSensitiveButton::active_buttons;
 
 
 QHoverSensitiveButton::QHoverSensitiveButton(QWidget *parent) : QPushButton(parent)
@@ -19,7 +19,7 @@ QHoverSensitiveButton::QHoverSensitiveButton(QWidget *parent) : QPushButton(pare
 
 void QHoverSensitiveButton::hoverEnter(QHoverEvent *){
     //qDebug() << "hover " << hoverMode;
-/*
+
     if (this->objectName() == "hoverButton"){
         if (hoverPending){
             return;
@@ -29,30 +29,25 @@ void QHoverSensitiveButton::hoverEnter(QHoverEvent *){
         hoverButton = this->objectName();
         hoverButtonEntered();
     }
-*/
-    if (!hoverMode || activeButtons.contains(this->objectName())){
+
+    if (!hoverMode || active_buttons.contains(this->objectName())){
         return;
     }
-
+    active_buttons.append(this->objectName());
+    activationTime.start();
     //qDebug() << "starting t: " + activationTime.toString();
     //qDebug() << activationTime.isValid();
-    //qDebug() << "adding " + this->objectName() + " to activeButtons";
-    activationTime.start();
+    //qDebug() << "adding " + this->objectName() + " to active_buttons";
     hoverButton = this->objectName();
-
-    if (this->objectName() == "hoverButton"){
-        hoverButtonEntered();
-    }
-    else{
-        buttonEntered();
-    }
-
+    buttonEntered();
+    //emit hovered();
 }
 
 void QHoverSensitiveButton::hoverLeave(QHoverEvent *){
 
     //qDebug() << "hoverLeave";
-    activeButtons.removeAll(this->objectName());
+    active_buttons.removeAll(this->objectName());
+    hoverPending = false;
     hoverButton = "";
     activationTime.setHMS(-1,-1,-1,-1);
 
@@ -82,7 +77,9 @@ void QHoverSensitiveButton::buttonEntered(){
         //qDebug() << activationTime.isValid();
 
         emit pressed();
-        hoverButton = "";
+        activationTime.start();
+        buttonEntered();
+        //hoverButton = "";
 
     }
     //qDebug() << "buttonEntered finished";
