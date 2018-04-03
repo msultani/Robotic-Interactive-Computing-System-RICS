@@ -1,7 +1,6 @@
 #ifndef FUNCTIONS_H
 #define FUNCTIONS_H
 
-#include "release.h"
 #include "qhoversensitivebutton.h"
 #include "mainwindow.h"
 #include <QTime>
