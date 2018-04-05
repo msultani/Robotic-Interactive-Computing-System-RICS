@@ -8,7 +8,7 @@ import time
 r = sr.Recognizer()
 m = sr.Microphone()
 
-commands = ["retrieve",
+commands = ["retract", # or Retrieve?
             "rise",
             "down",
             "left",
@@ -16,8 +16,8 @@ commands = ["retrieve",
             "forward",
             "backward",
             "stop",
-            "open", # claw
-            "close" # claw
+            "near", # claw
+            "away" # claw
             ]
 
 
