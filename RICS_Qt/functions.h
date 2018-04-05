@@ -8,5 +8,6 @@
 
 void delay(int millisecondsToWait);
 bool check_hovermode();
+void change_values();
 
 #endif // FUNCTIONS_H
