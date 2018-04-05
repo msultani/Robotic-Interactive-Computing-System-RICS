@@ -148,7 +148,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->stackedWidget->setCurrentIndex(0);
 
     //Initialize voice_commands list
-    voice_commands << "fetch" << "rise" << "down" << "left" << "right" << "forward" << "backward" << "open" << "close";
+    voice_commands << "retract" << "rise" << "down" << "left" << "right" << "forward" << "backward" << "near" << "away";
     directional_commands << "X" << "Y" << "Z";
 
     establish_TCP_connection();
@@ -271,7 +271,7 @@ void MainWindow::commandsPressed(){
 
 void MainWindow::fetchPressed(){
     //change_values(x_pos, y_pos, z_pos);
-    move_direction = "fetch";
+    move_direction = "retract";
 
 // TODO - work out what "write_to_arduino" should do, and how
 
@@ -349,8 +349,8 @@ void MainWindow::move_down(){
 void MainWindow::move_up(){
     //ui->upButton->setStyleSheet("QPushButton { background-color: red; }\n");
 
-    if (move_direction != "up"){
-        move_direction = "up";
+    if (move_direction != "rise"){
+        move_direction = "rise";
         command_queue.clear();
     }
 

@@ -8,7 +8,7 @@ import time
 r = sr.Recognizer()
 m = sr.Microphone()
 
-commands = ["retrieve",
+commands = ["retract",
             "rise",
             "down",
             "left",
@@ -16,21 +16,21 @@ commands = ["retrieve",
             "forward",
             "backward",
             "stop",
-            "open", # claw
-            "close" # claw
+            "near", # claw
+            "away" # claw
             ]
 
 
 def process_text(text):
     words = text.split()
     keep = []
-    # awake = False
+    awake = False
     for word in words:
-        # if word == "echo":
-        #     awake = True
-        # if awake:
-        if word in commands:
-            keep.append(word)
+        if word == "echo" or word == "ecco" or word == "Echo":
+            awake = True
+        if awake:
+            if word in commands:
+                keep.append(word)
     return keep
 
 
@@ -69,7 +69,7 @@ try:
             valid = process_text(val)
             print(valid)
             for word in valid:
-                send_message(word)
+                # send_message(word)
                 time.sleep(1)
         except sr.UnknownValueError:
             print("Oops! Didn't catch that")
