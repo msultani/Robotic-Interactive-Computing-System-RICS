@@ -19,8 +19,7 @@ QString MainWindow::move_direction = "";
  * Y SERVO: 1
  * Z SERVO: 2
  * CLAW SERVO: 3
- * RETRIEVE: 4
- * STOP: 5
+ * DELAY: 4
  */
 
 //PYTHON COMMANDS: fetch, up, down, left, right, forward, backward, stop
@@ -437,7 +436,7 @@ void MainWindow::move_finished(){
         this->ui->countdownLabel->setText(display);
     }
 
-     ui->stackedWidget->setCurrentIndex(1);
+     ui->stackedWidget->setCurrentIndex(0);
 
      x_pos = 93;
      y_pos = 40;
