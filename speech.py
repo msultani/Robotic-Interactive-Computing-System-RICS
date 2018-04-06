@@ -1,3 +1,5 @@
+"""Must go into __init__.py in speech_recognition library and change line 924 'speechContext' to 'speechContexts'"""
+
 import speech_recognition as sr
 import socket
 import threading
