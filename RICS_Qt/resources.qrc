@@ -16,5 +16,7 @@
         <file>tutorial_page.png</file>
         <file>settings-title.png</file>
         <file>controls.png</file>
+        <file>away.png</file>
+        <file>near.png</file>
     </qresource>
 </RCC>

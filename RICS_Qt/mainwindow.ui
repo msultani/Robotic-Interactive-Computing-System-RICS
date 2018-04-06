@@ -448,44 +448,44 @@ color: white;
        <widget class="QHoverSensitiveButton" name="clawLeft">
         <property name="geometry">
          <rect>
-          <x>480</x>
-          <y>370</y>
-          <width>91</width>
-          <height>81</height>
+          <x>340</x>
+          <y>350</y>
+          <width>111</width>
+          <height>131</height>
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">border-style: solid;
-background-color: rgb(183, 183, 183);
-
-</string>
+         <string notr="true">background-color: rgba(38, 48, 71, 0%);
+font: 29pt &quot;Helvetica&quot;;
+border: solid;</string>
         </property>
         <property name="text">
          <string/>
         </property>
         <property name="icon">
          <iconset resource="resources.qrc">
-          <normaloff>:/images/claw_left.png</normaloff>:/images/claw_left.png</iconset>
+          <normaloff>:/images/away.png</normaloff>:/images/away.png</iconset>
         </property>
         <property name="iconSize">
          <size>
-          <width>60</width>
-          <height>60</height>
+          <width>120</width>
+          <height>120</height>
          </size>
         </property>
        </widget>
        <widget class="QHoverSensitiveButton" name="clawRight">
         <property name="geometry">
          <rect>
-          <x>620</x>
-          <y>370</y>
-          <width>91</width>
-          <height>81</height>
+          <x>480</x>
+          <y>340</y>
+          <width>121</width>
+          <height>141</height>
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(183, 183, 183);
-border-style: solid;
+         <string notr="true">background-color: rgba(38, 48, 71, 0%);
+font: 29pt &quot;Helvetica&quot;;
+border: solid;
 </string>
         </property>
         <property name="text">
@@ -493,12 +493,12 @@ border-style: solid;
         </property>
         <property name="icon">
          <iconset resource="resources.qrc">
-          <normaloff>:/images/claw_right.png</normaloff>:/images/claw_right.png</iconset>
+          <normaloff>:/images/near.png</normaloff>:/images/near.png</iconset>
         </property>
         <property name="iconSize">
          <size>
-          <width>60</width>
-          <height>60</height>
+          <width>120</width>
+          <height>120</height>
          </size>
         </property>
        </widget>
