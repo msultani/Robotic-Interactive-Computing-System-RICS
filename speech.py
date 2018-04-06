@@ -20,6 +20,8 @@ commands = ["retract",
             "away" # claw
             ]
 
+preferred_phrases = commands
+preferred_phrases.append("echo")
 
 def process_text(text):
     words = text.split()
@@ -54,9 +56,10 @@ try:
         print("Got it! Now to recognize it...")
         try:
             # recognize speech using Google Speech Recognition
-            value = r.recognize_google(audio)
+            with open("RICS-8b2cdf068357.json", 'r') as json_data:
+                cereal = json.dumps(json.load(json_data))
+                value = r.recognize_google_cloud(audio, cereal, "en-US", preferred_phrases)
 
-            # TODO RICS: process and send value
             send = socket.socket()
             f = open('words.txt', 'w')
             # we need some special handling here to correctly print unicode characters to standard output
