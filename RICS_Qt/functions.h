@@ -8,6 +8,6 @@
 
 void delay(int millisecondsToWait);
 bool check_hovermode();
-void change_values();
+void push_command(QString command_char, int target_pos, int current_pos);
 
 #endif // FUNCTIONS_H

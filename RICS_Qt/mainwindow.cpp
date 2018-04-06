@@ -62,6 +62,7 @@ void MainWindow::readTCPData(){
 
 void MainWindow::parse_TCP_command(QByteArray TCP_data){
 
+    this->ui->readyLabel->setText("Receiving Vocal Input...");
     ui->stackedWidget->setCurrentIndex(1);
     qDebug() << TCP_data;
 
@@ -210,6 +211,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->clawRight, SIGNAL (pressed()), this, SLOT (on_clawRight_pressed()));
 
+    connect(ui->stopButton, SIGNAL (pressed()), this, SLOT (stopPressed()));
+
     //Open serial port
     port.setPortName("/dev/cu.usbmodem1421");
     port.setBaudRate(QSerialPort::Baud9600);
@@ -228,6 +231,8 @@ MainWindow::MainWindow(QWidget *parent) :
         qDebug() << port.errorString();
     }
 
+    //connect(port, SIGNAL (readyRead()), this, SLOT (wait_for_confimation()));
+    connect(&port, SIGNAL(readyRead()), this, SLOT(received_confimation()));
 }
 
 
@@ -316,9 +321,16 @@ void MainWindow::auto_move(){
     }
 }
 
-void wait_for_confimation(){
-    // Figure out what I need to do to listen for the arduino's response
-    // Continue to process events in the meantime
+// Called when we receive confirmation that the Arduino has finished processing a message
+void MainWindow::received_confimation(){
+
+    QByteArray data = port.readAll();
+    qDebug() << data;
+
+    // Check that the data was correct/from Arduino?
+
+    ready_to_send = true;
+    write_to_arduino();
 
 }
 
@@ -351,19 +363,17 @@ void MainWindow::send_next_command(){
     QString data_to_send = command_data.first + QString::number(command_data.second) + "X";
     port.write(data_to_send.toStdString().c_str(), data_to_send.length());
 
-    wait_for_confimation();
+    //wait_for_confimation();
 }
 
 // Called whenever a new command is added to the queue
 void MainWindow::write_to_arduino(){
 
-    if (!command_data.empty() && ready_to_send){
+    if (!command_queue.empty() && ready_to_send){
         ready_to_send = false;
         send_next_command();
     }
 
-    //const char* myChar = command_char.toStdString().c_str();
-    //port.write(myChar, data.length());
 }
 
 void MainWindow::move_down(){
@@ -454,8 +464,8 @@ void MainWindow::move_backward(){
 }
 
 void MainWindow::move_finished(){
-    // TODO!!!!!
     qDebug() << "Retract";
+    command_queue.clear();
     ui->stackedWidget->setCurrentIndex(4);
     QHoverSensitiveButton::activationTime.setHMS(-1,-1,-1,-1);
 
@@ -465,6 +475,7 @@ void MainWindow::move_finished(){
     int countdown = 5;
     QString display = QString::number(countdown);
     this->ui->countdownLabel->setText(display);
+    this->ui->countdownLabel2->setText("seconds remaining");
 
     while (countdown > 0){
         delay(1000);
@@ -473,12 +484,27 @@ void MainWindow::move_finished(){
         this->ui->countdownLabel->setText(display);
     }
 
+    while (!ready_to_send){
+        qDebug() << "ERROR - Can't move arm yet\n";
+        this->ui->countdownLabel->setText("");
+        this->ui->countdownLabel2->setText("Oops! Please wait...");
+        delay(200);
+    }
+
+    push_command("0", 93, x_pos);
+    push_command("1", 40, y_pos);
+    push_command("2", 40, z_pos);
+    // Actually send the correct values
+
+/*      x_pos = 93;
+        y_pos = 40;
+        z_pos = 40;
+        write_to_arduino();
+ */
+
      ui->stackedWidget->setCurrentIndex(0);
 
-     x_pos = 93;
-     y_pos = 40;
-     z_pos = 40;
-     write_to_arduino();
+
 
 
      if (restore){
@@ -520,6 +546,10 @@ void MainWindow::on_clawRight_pressed() {
 void MainWindow::invalid_commands(QByteArray TCP_data){
     QString invalid_data = QTextCodec::codecForMib(1015)->toUnicode(TCP_data);
 
-//readyLabel
+    this->ui->readyLabel->setText("Vocal Input: " + invalid_data);
 
+}
+
+void MainWindow::stopPressed() {
+    command_queue.clear();
 }

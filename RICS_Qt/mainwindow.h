@@ -78,6 +78,8 @@ public slots:
     void move_finished();
     void auto_move();
     void invalid_commands(QByteArray TCP_data);
+    void received_confimation();
+    void stopPressed();
 
 private slots:
     void on_clawLeft_pressed();
@@ -98,7 +100,6 @@ private:
     void parse_TCP_command(QByteArray TCP_data);
     void write_to_arduino();
     void send_next_command();
-    void wait_for_confimation();
     static bool ready_to_send;
     QTcpServer * t;
 
