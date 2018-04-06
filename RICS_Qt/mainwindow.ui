@@ -197,8 +197,8 @@ border-style: solid;
        <widget class="QHoverSensitiveButton" name="releaseButton">
         <property name="geometry">
          <rect>
-          <x>790</x>
-          <y>390</y>
+          <x>720</x>
+          <y>370</y>
           <width>162</width>
           <height>102</height>
          </rect>
@@ -261,7 +261,7 @@ border: solid;</string>
        <widget class="QHoverSensitiveButton" name="forwardButton">
         <property name="geometry">
          <rect>
-          <x>50</x>
+          <x>20</x>
           <y>270</y>
           <width>211</width>
           <height>101</height>
@@ -289,7 +289,7 @@ border: solid;</string>
        <widget class="QHoverSensitiveButton" name="backwardButton">
         <property name="geometry">
          <rect>
-          <x>50</x>
+          <x>20</x>
           <y>380</y>
           <width>211</width>
           <height>91</height>
@@ -318,7 +318,7 @@ border: solid;</string>
         <property name="geometry">
          <rect>
           <x>400</x>
-          <y>110</y>
+          <y>90</y>
           <width>171</width>
           <height>71</height>
          </rect>
@@ -346,7 +346,7 @@ border: solid;</string>
         <property name="geometry">
          <rect>
           <x>290</x>
-          <y>130</y>
+          <y>110</y>
           <width>101</width>
           <height>131</height>
          </rect>
@@ -374,7 +374,7 @@ border: solid;</string>
         <property name="geometry">
          <rect>
           <x>590</x>
-          <y>130</y>
+          <y>110</y>
           <width>91</width>
           <height>131</height>
          </rect>
@@ -402,7 +402,7 @@ border: solid;</string>
         <property name="geometry">
          <rect>
           <x>400</x>
-          <y>210</y>
+          <y>190</y>
           <width>171</width>
           <height>81</height>
          </rect>
@@ -429,8 +429,8 @@ border: solid;</string>
        <widget class="QLabel" name="ready_label">
         <property name="geometry">
          <rect>
-          <x>390</x>
-          <y>20</y>
+          <x>380</x>
+          <y>0</y>
           <width>201</width>
           <height>31</height>
          </rect>
@@ -448,8 +448,8 @@ color: white;
        <widget class="QHoverSensitiveButton" name="clawLeft">
         <property name="geometry">
          <rect>
-          <x>340</x>
-          <y>350</y>
+          <x>290</x>
+          <y>340</y>
           <width>111</width>
           <height>131</height>
          </rect>
@@ -476,10 +476,10 @@ border: solid;</string>
        <widget class="QHoverSensitiveButton" name="clawRight">
         <property name="geometry">
          <rect>
-          <x>480</x>
+          <x>420</x>
           <y>340</y>
           <width>121</width>
-          <height>141</height>
+          <height>131</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -506,7 +506,7 @@ border: solid;
         <property name="geometry">
          <rect>
           <x>440</x>
-          <y>70</y>
+          <y>50</y>
           <width>91</width>
           <height>31</height>
          </rect>
@@ -525,7 +525,7 @@ color: white;
         <property name="geometry">
          <rect>
           <x>680</x>
-          <y>180</y>
+          <y>160</y>
           <width>91</width>
           <height>31</height>
          </rect>
@@ -544,7 +544,7 @@ color: white;
         <property name="geometry">
          <rect>
           <x>440</x>
-          <y>300</y>
+          <y>280</y>
           <width>91</width>
           <height>31</height>
          </rect>
@@ -563,7 +563,7 @@ color: white;
         <property name="geometry">
          <rect>
           <x>210</x>
-          <y>180</y>
+          <y>160</y>
           <width>91</width>
           <height>31</height>
          </rect>
@@ -588,8 +588,8 @@ color: white;
          <rect>
           <x>20</x>
           <y>10</y>
-          <width>81</width>
-          <height>51</height>
+          <width>141</width>
+          <height>71</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -606,18 +606,18 @@ border: solid;
         </property>
         <property name="iconSize">
          <size>
-          <width>60</width>
-          <height>60</height>
+          <width>100</width>
+          <height>100</height>
          </size>
         </property>
        </widget>
        <widget class="QHoverSensitiveButton" name="hoverButton">
         <property name="geometry">
          <rect>
-          <x>100</x>
-          <y>160</y>
-          <width>121</width>
-          <height>51</height>
+          <x>260</x>
+          <y>230</y>
+          <width>171</width>
+          <height>71</height>
          </rect>
         </property>
         <property name="text">
@@ -627,8 +627,8 @@ border: solid;
        <widget class="QLabel" name="label_4">
         <property name="geometry">
          <rect>
-          <x>270</x>
-          <y>170</y>
+          <x>550</x>
+          <y>240</y>
           <width>191</width>
           <height>41</height>
          </rect>
@@ -657,8 +657,8 @@ color: white;</string>
        <widget class="QLabel" name="hover_time_label">
         <property name="geometry">
          <rect>
-          <x>40</x>
-          <y>270</y>
+          <x>250</x>
+          <y>380</y>
           <width>101</width>
           <height>31</height>
          </rect>
@@ -684,8 +684,8 @@ color: white;</string>
        <widget class="QHoverSensitiveButton" name="hover_time_up_button">
         <property name="geometry">
          <rect>
-          <x>160</x>
-          <y>240</y>
+          <x>370</x>
+          <y>350</y>
           <width>51</width>
           <height>51</height>
          </rect>
@@ -702,8 +702,8 @@ border: 1px solid black;</string>
        <widget class="QHoverSensitiveButton" name="hover_time_down_button">
         <property name="geometry">
          <rect>
-          <x>160</x>
-          <y>290</y>
+          <x>370</x>
+          <y>400</y>
           <width>51</width>
           <height>51</height>
          </rect>
@@ -720,8 +720,8 @@ border: 1px solid black;</string>
        <widget class="QLabel" name="label_6">
         <property name="geometry">
          <rect>
-          <x>250</x>
-          <y>240</y>
+          <x>530</x>
+          <y>350</y>
           <width>221</width>
           <height>41</height>
          </rect>
@@ -750,10 +750,10 @@ color: white;</string>
        <widget class="QHoverSensitiveButton" name="autoButton">
         <property name="geometry">
          <rect>
-          <x>100</x>
-          <y>90</y>
-          <width>121</width>
-          <height>51</height>
+          <x>260</x>
+          <y>110</y>
+          <width>171</width>
+          <height>81</height>
          </rect>
         </property>
         <property name="text">
@@ -763,8 +763,8 @@ color: white;</string>
        <widget class="QLabel" name="label_8">
         <property name="geometry">
          <rect>
-          <x>270</x>
-          <y>90</y>
+          <x>520</x>
+          <y>110</y>
           <width>231</width>
           <height>51</height>
          </rect>
@@ -793,7 +793,7 @@ color: white;</string>
        <widget class="QPushButton" name="pushButton_2">
         <property name="geometry">
          <rect>
-          <x>150</x>
+          <x>330</x>
           <y>0</y>
           <width>331</width>
           <height>91</height>
@@ -823,10 +823,10 @@ border: solid;
        <widget class="QHoverSensitiveButton" name="backButton_2">
         <property name="geometry">
          <rect>
-          <x>10</x>
-          <y>10</y>
-          <width>91</width>
-          <height>51</height>
+          <x>12</x>
+          <y>12</y>
+          <width>151</width>
+          <height>61</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -842,18 +842,18 @@ border: solid;</string>
         </property>
         <property name="iconSize">
          <size>
-          <width>60</width>
-          <height>60</height>
+          <width>100</width>
+          <height>100</height>
          </size>
         </property>
        </widget>
        <widget class="QPushButton" name="pushButton">
         <property name="geometry">
          <rect>
-          <x>60</x>
-          <y>20</y>
-          <width>491</width>
-          <height>331</height>
+          <x>180</x>
+          <y>50</y>
+          <width>561</width>
+          <height>371</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -870,8 +870,8 @@ border-style: solid;
         </property>
         <property name="iconSize">
          <size>
-          <width>400</width>
-          <height>400</height>
+          <width>450</width>
+          <height>450</height>
          </size>
         </property>
        </widget>
