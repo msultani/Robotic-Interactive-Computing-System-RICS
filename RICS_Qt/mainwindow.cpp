@@ -14,6 +14,7 @@ bool MainWindow::voice_command_given = false;
 QByteArray MainWindow::TCP_data = "";
 QVector<QPair<QString, int> > MainWindow::command_queue;
 QString MainWindow::move_direction = "";
+bool MainWindow::ready_to_send = true;
 
 /* X SERVO: 0
  * Y SERVO: 1
@@ -239,19 +240,6 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::write_to_arduino(){
-    if (!port.isOpen()){
-        qDebug() << "ERROR! PORT NOT OPEN!";
-        return;
-    }
-
-    //ard_data.clear();
-    //ard_data.push_back(data);
-    //const char* myChar = command_char.toStdString().c_str();
-    //ard_data.push_back(myChar);
-    //port.write(myChar, data.length());
-
-}
 
 void MainWindow::commandsPressed(){
     bool changed = check_hovermode();
@@ -328,6 +316,56 @@ void MainWindow::auto_move(){
     }
 }
 
+void wait_for_confimation(){
+    // Figure out what I need to do to listen for the arduino's response
+    // Continue to process events in the meantime
+
+}
+
+void MainWindow::send_next_command(){
+    if (!port.isOpen()){
+        qDebug() << "ERROR! PORT NOT OPEN!";
+        return;
+    }
+
+    QPair<QString, int> command_data = command_queue[0];
+    command_queue.pop_front();
+    switch(command_data.first.toInt()){
+        case 0:
+            x_pos = command_data.second;
+            break;
+        case 1:
+            y_pos = command_data.second;
+            break;
+        case 2:
+            z_pos = command_data.second;
+            break;
+        case 3:
+            claw_pos = command_data.second;
+            break;
+        default:
+            qDebug() << "This shouldn't be called... something went wrong";
+            break;
+    }
+
+    QString data_to_send = command_data.first + QString::number(command_data.second) + "X";
+    port.write(data_to_send.toStdString().c_str(), data_to_send.length());
+
+    wait_for_confimation();
+}
+
+// Called whenever a new command is added to the queue
+void MainWindow::write_to_arduino(){
+
+    if (!command_data.empty() && ready_to_send){
+        ready_to_send = false;
+        send_next_command();
+    }
+
+    //const char* myChar = command_char.toStdString().c_str();
+    //port.write(myChar, data.length());
+}
+
 void MainWindow::move_down(){
     //ui->downButton->setStyleSheet("QPushButton { background-color: red; }\n");
 
@@ -336,10 +374,8 @@ void MainWindow::move_down(){
         command_queue.clear();
     }
 
-    y_pos += move_speed;
-
     qDebug() << "Y POS: " + QString::number(y_pos);
-    command_queue.push_back(QPair<QString, int>("1", y_pos));
+    command_queue.push_back(QPair<QString, int>("1", y_pos + move_speed));
 
     write_to_arduino();
     //ui->downButton->setStyleSheet("QPushButton { background-color: rgb(205, 205, 205); }\n");
@@ -353,12 +389,13 @@ void MainWindow::move_up(){
         command_queue.clear();
     }
 
-    y_pos -= move_speed;
+
     qDebug() << "Y POS: " + QString::number(y_pos);
 
-    command_queue.push_back(QPair<QString, int>("1", y_pos));
+    command_queue.push_back(QPair<QString, int>("1", y_pos - move_speed));
     write_to_arduino();
 }
+
 void MainWindow::move_left(){
 
     if (move_direction != "left"){
@@ -366,8 +403,8 @@ void MainWindow::move_left(){
         command_queue.clear();
     }
     //ui->leftButton->setStyleSheet("QPushButton { background-color: red; }\n");
-    x_pos += move_speed;
-    command_queue.push_back(QPair<QString, int>("0", x_pos));
+
+    command_queue.push_back(QPair<QString, int>("0", x_pos + move_speed));
 
     qDebug() << "X POS: " + QString::number(x_pos);
     write_to_arduino();
@@ -378,8 +415,8 @@ void MainWindow::move_right(){
         move_direction = "right";
         command_queue.clear();
     }
-    x_pos -= move_speed;
-    command_queue.push_back(QPair<QString, int>("0", x_pos));
+
+    command_queue.push_back(QPair<QString, int>("0", x_pos - move_speed));
 
     //ui->rightButton->setStyleSheet("QPushButton { background-color: red; }\n");
     qDebug() << "X POS: " + QString::number(x_pos);
@@ -392,9 +429,9 @@ void MainWindow::move_forward(){
             move_direction = "forward";
             command_queue.clear();
         }
-        z_pos -= move_speed;
 
-        command_queue.push_back(QPair<QString, int>("2", z_pos));
+
+        command_queue.push_back(QPair<QString, int>("2", z_pos - move_speed));
         qDebug() << "Z POS: " + QString::number(z_pos);
         write_to_arduino();
     }
@@ -409,8 +446,8 @@ void MainWindow::move_backward(){
         move_direction = "backward";
         command_queue.clear();
     }
-    z_pos += move_speed;
-    command_queue.push_back(QPair<QString, int>("2", z_pos));
+
+    command_queue.push_back(QPair<QString, int>("2", z_pos + move_speed));
 
     qDebug() << "Z POS: " + QString::number(z_pos);
     write_to_arduino();
@@ -447,40 +484,6 @@ void MainWindow::move_finished(){
      if (restore){
          QHoverSensitiveButton::hoverMode = true;
      }
-
-    /*
-    if (!popup_open){
-        popup_open = true;
-
-        Release popup;
-        popup.setVisible(true);
-        popup.setModal(true);
-        popup.open();
-        qDebug() << "opening";
-        popup.countdown();
-        //QHoverSensitiveButton::activationTime.setHMS(-1,-1,-1,-1);
-        QHoverSensitiveButton::hoverMode = false;
-        //qDebug() << "Setting t to " + QHoverSensitiveButton::t.toString();
-
-        //QHoverSensitiveButton::hoverButton = "";
-
-        delay(5000);
-        qDebug() << "closing";
-        popup.done(1);
-        popup_open = false;
-
-        x_pos = 93;
-        y_pos = 40;
-        z_pos = 40;
-        write_to_arduino("0" + QString::number(x_pos) + "X");
-        write_to_arduino("1" + QString::number(y_pos) + "X");
-        write_to_arduino("2" + QString::number(z_pos) + "X");
-        QHoverSensitiveButton::hoverMode = true;
-    }
-    else{
-       return;
-    }
-    */
 }
 
 void MainWindow::on_clawLeft_pressed() {
@@ -492,8 +495,8 @@ void MainWindow::on_clawLeft_pressed() {
         move_direction = "claw_left";
         command_queue.clear();
     }
-    claw_pos += rotation_degrees;
-    command_queue.push_back(QPair<QString, int>("3", claw_pos));
+
+    command_queue.push_back(QPair<QString, int>("3", claw_pos + rotation_degrees));
     //ui->rightButton->setStyleSheet("QPushButton { background-color: red; }\n");
     qDebug() << "CLAW POS: " + QString::number(claw_pos);
     write_to_arduino();
@@ -508,8 +511,7 @@ void MainWindow::on_clawRight_pressed() {
         move_direction = "claw_right";
         command_queue.clear();
     }
-    claw_pos -= rotation_degrees;
-    command_queue.push_back(QPair<QString, int>("3", claw_pos));
+    command_queue.push_back(QPair<QString, int>("3", claw_pos - rotation_degrees));
     //ui->rightButton->setStyleSheet("QPushButton { background-color: red; }\n");
     qDebug() << "CLAW POS: " + QString::number(claw_pos);
     write_to_arduino();

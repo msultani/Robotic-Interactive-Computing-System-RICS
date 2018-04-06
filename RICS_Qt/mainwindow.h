@@ -97,6 +97,9 @@ private:
     QTcpSocket *sock;
     void parse_TCP_command(QByteArray TCP_data);
     void write_to_arduino();
+    void send_next_command();
+    void wait_for_confimation();
+    static bool ready_to_send;
     QTcpServer * t;
 
     void establish_TCP_connection();

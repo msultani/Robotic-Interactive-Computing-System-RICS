@@ -24,7 +24,7 @@
        <string notr="true">background: rgba(51, 64, 88, 0%);</string>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="startPage">
        <property name="styleSheet">
@@ -60,7 +60,7 @@ border-style: solid;
          <string/>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="resources.qrc">
           <normaloff>:/images/fetch.png</normaloff>:/images/fetch.png</iconset>
         </property>
         <property name="iconSize">
@@ -95,7 +95,7 @@ border-style: solid;
          <string/>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="resources.qrc">
           <normaloff>:/images/settings.png</normaloff>:/images/settings.png</iconset>
         </property>
         <property name="iconSize">
@@ -182,7 +182,7 @@ border-style: solid;
          <string/>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="resources.qrc">
           <normaloff>:/images/tutorials.png</normaloff>:/images/tutorials.png</iconset>
         </property>
         <property name="iconSize">
@@ -221,7 +221,7 @@ border-style: solid;
          <string/>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="resources.qrc">
           <normaloff>:/images/release.png</normaloff>:/images/release.png</iconset>
         </property>
         <property name="iconSize">
@@ -248,7 +248,7 @@ border: solid;</string>
          <string/>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="resources.qrc">
           <normaloff>:/images/back.png</normaloff>:/images/back.png</iconset>
         </property>
         <property name="iconSize">
@@ -276,7 +276,7 @@ border: solid;</string>
          <string/>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="resources.qrc">
           <normaloff>:/images/forward.png</normaloff>:/images/forward.png</iconset>
         </property>
         <property name="iconSize">
@@ -304,7 +304,7 @@ border: solid;</string>
          <string/>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="resources.qrc">
           <normaloff>:/images/backward.png</normaloff>:/images/backward.png</iconset>
         </property>
         <property name="iconSize">
@@ -332,7 +332,7 @@ border: solid;</string>
          <string/>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="resources.qrc">
           <normaloff>:/images/up.png</normaloff>:/images/up.png</iconset>
         </property>
         <property name="iconSize">
@@ -360,7 +360,7 @@ border: solid;</string>
          <string/>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="resources.qrc">
           <normaloff>:/images/left.png</normaloff>:/images/left.png</iconset>
         </property>
         <property name="iconSize">
@@ -388,7 +388,7 @@ border: solid;</string>
          <string/>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="resources.qrc">
           <normaloff>:/images/right.png</normaloff>:/images/right.png</iconset>
         </property>
         <property name="iconSize">
@@ -416,7 +416,7 @@ border: solid;</string>
          <string/>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="resources.qrc">
           <normaloff>:/images/down.png</normaloff>:/images/down.png</iconset>
         </property>
         <property name="iconSize">
@@ -464,7 +464,7 @@ background-color: rgb(183, 183, 183);
          <string/>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="resources.qrc">
           <normaloff>:/images/claw_left.png</normaloff>:/images/claw_left.png</iconset>
         </property>
         <property name="iconSize">
@@ -492,7 +492,7 @@ border-style: solid;
          <string/>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="resources.qrc">
           <normaloff>:/images/claw_right.png</normaloff>:/images/claw_right.png</iconset>
         </property>
         <property name="iconSize">
@@ -525,7 +525,7 @@ border: solid;
          <string/>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="resources.qrc">
           <normaloff>:/images/back.png</normaloff>:/images/back.png</iconset>
         </property>
         <property name="iconSize">
@@ -732,7 +732,7 @@ border: solid;
          <string/>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="resources.qrc">
           <normaloff>:/images/settings-title.png</normaloff>:/images/settings-title.png</iconset>
         </property>
         <property name="iconSize">
@@ -761,7 +761,7 @@ border: solid;</string>
          <string/>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="resources.qrc">
           <normaloff>:/images/back.png</normaloff>:/images/back.png</iconset>
         </property>
         <property name="iconSize">
@@ -789,7 +789,7 @@ border-style: solid;
          <string/>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="resources.qrc">
           <normaloff>:/images/tutorial_page.png</normaloff>:/images/tutorial_page.png</iconset>
         </property>
         <property name="iconSize">
@@ -861,6 +861,8 @@ qproperty-alignment: AlignCenter;</string>
    <header>qhoversensitivebutton.h</header>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
