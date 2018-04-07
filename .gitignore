@@ -1,5 +1,5 @@
 .DS_Store
 .vscode/
-*.user*
+*
 build*
 RICS-8b2cdf068357.json

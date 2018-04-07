@@ -18,7 +18,10 @@ bool MainWindow::voice_command_given = false;
 QByteArray MainWindow::TCP_data = "";
 QVector<QPair<QString, int> > MainWindow::command_queue;
 QString MainWindow::move_direction = "";
+<<<<<<< HEAD
 bool MainWindow::ready_to_send = true;
+=======
+>>>>>>> master
 
 /* X SERVO: 0
  * Y SERVO: 1
@@ -251,7 +254,6 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
 void MainWindow::commandsPressed(){
     bool changed = check_hovermode();
 
@@ -479,6 +481,7 @@ void MainWindow::move_backward(){
 }
 
 void MainWindow::move_finished(){
+    // TODO!!!!!
     qDebug() << "Retract";
     reset_targets();
     ui->stackedWidget->setCurrentIndex(4);
