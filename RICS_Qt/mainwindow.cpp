@@ -464,9 +464,6 @@ void MainWindow::move_forward(){
         move_direction = "forward";
         reset_targets();
     }
-
-
-
     target_z -= move_speed;
     if (target_z >= 0){
         command_queue.push_back(QPair<QString, int>("2", target_z));
@@ -550,26 +547,30 @@ void MainWindow::on_clawLeft_pressed() {
         move_direction = "claw_left";
         reset_targets();
     }
+    target_claw += rotation_degrees;
 
-    command_queue.push_back(QPair<QString, int>("3", claw_pos + rotation_degrees));
-    //ui->rightButton->setStyleSheet("QPushButton { background-color: red; }\n");
-    qDebug() << "CLAW POS: " + QString::number(claw_pos);
-    write_to_arduino();
+    if (target_claw <= 140){
+        command_queue.push_back(QPair<QString, int>("3", target_claw));
+        //ui->rightButton->setStyleSheet("QPushButton { background-color: red; }\n");
+        qDebug() << "CLAW POS: " + QString::number(claw_pos);
+        write_to_arduino();
+    }
+
 }
 
 void MainWindow::on_clawRight_pressed() {
-    if (claw_pos <= 20){
-        return;
-    }
-
     if (move_direction != "claw_right"){
         move_direction = "claw_right";
         reset_targets();
     }
-    command_queue.push_back(QPair<QString, int>("3", claw_pos - rotation_degrees));
-    //ui->rightButton->setStyleSheet("QPushButton { background-color: red; }\n");
-    qDebug() << "CLAW POS: " + QString::number(claw_pos);
-    write_to_arduino();
+    target_claw -= rotation_degrees;
+    if (target_claw >= 17){
+        command_queue.push_back(QPair<QString, int>("3", claw_pos - rotation_degrees));
+        //ui->rightButton->setStyleSheet("QPushButton { background-color: red; }\n");
+        qDebug() << "CLAW POS: " + QString::number(claw_pos);
+        write_to_arduino();
+    }
+
 }
 
 void MainWindow::invalid_commands(QByteArray TCP_data){
@@ -588,5 +589,6 @@ void MainWindow::reset_targets(){
     target_x = x_pos;
     target_y = y_pos;
     target_z = z_pos;
+    target_claw = claw_pos;
     command_queue.clear();
 }
