@@ -11,6 +11,7 @@ int MainWindow::target_y = y_pos;
 int MainWindow::target_z = z_pos;
 
 int MainWindow::claw_pos = 20;
+int MainWindow::target_claw = claw_pos;
 int MainWindow::move_speed = 5;
 int MainWindow::rotation_degrees = 3;
 bool MainWindow::auto_movement= true;
@@ -397,11 +398,15 @@ void MainWindow::move_down(){
         move_direction = "down";
         reset_targets();
     }
-    target_y += move_speed;
-    qDebug() << "Y POS: " + QString::number(target_y);
-    command_queue.push_back(QPair<QString, int>("1", target_y));
 
-    write_to_arduino();
+    target_y += move_speed;
+    if (target_y <= 35){
+        qDebug() << "Y POS: " + QString::number(target_y);
+        command_queue.push_back(QPair<QString, int>("1", target_y));
+
+        write_to_arduino();
+    }
+
     //ui->downButton->setStyleSheet("QPushButton { background-color: rgb(205, 205, 205); }\n");
 
 }
@@ -414,10 +419,13 @@ void MainWindow::move_up(){
     }
 
     target_y -= move_speed;
-    qDebug() << "Y POS: " + QString::number(target_y);
+    if (target_y >= 0){
+        qDebug() << "Y POS: " + QString::number(target_y);
 
-    command_queue.push_back(QPair<QString, int>("1", target_y));
-    write_to_arduino();
+        command_queue.push_back(QPair<QString, int>("1", target_y));
+        write_to_arduino();
+    }
+
 }
 
 void MainWindow::move_left(){
@@ -428,10 +436,13 @@ void MainWindow::move_left(){
     }
     //ui->leftButton->setStyleSheet("QPushButton { background-color: red; }\n");
     target_x += move_speed;
-    command_queue.push_back(QPair<QString, int>("0", target_x));
+    if (target_x <= 180){
+        command_queue.push_back(QPair<QString, int>("0", target_x));
 
-    qDebug() << "X POS: " + QString::number(target_x);
-    write_to_arduino();
+        qDebug() << "X POS: " + QString::number(target_x);
+        write_to_arduino();
+    }
+
 }
 void MainWindow::move_right(){
 
@@ -440,22 +451,25 @@ void MainWindow::move_right(){
         reset_targets();
     }
     target_x -= move_speed;
-    command_queue.push_back(QPair<QString, int>("0", target_x));
+    if (target_x >= 0){
+        command_queue.push_back(QPair<QString, int>("0", target_x));
 
-    //ui->rightButton->setStyleSheet("QPushButton { background-color: red; }\n");
-    qDebug() << "X POS: " + QString::number(target_x);
-    write_to_arduino();
+        //ui->rightButton->setStyleSheet("QPushButton { background-color: red; }\n");
+        qDebug() << "X POS: " + QString::number(target_x);
+        write_to_arduino();
+    }
 }
 void MainWindow::move_forward(){
-    if (z_pos < 70){
-
-        if (move_direction != "forward"){
-            move_direction = "forward";
-            reset_targets();
-        }
+    if (move_direction != "forward"){
+        move_direction = "forward";
+        reset_targets();
+    }
 
 
-        command_queue.push_back(QPair<QString, int>("2", z_pos - move_speed));
+
+    target_z -= move_speed;
+    if (target_z >= 0){
+        command_queue.push_back(QPair<QString, int>("2", target_z));
         qDebug() << "Z POS: " + QString::number(z_pos);
         write_to_arduino();
     }
@@ -470,11 +484,13 @@ void MainWindow::move_backward(){
         move_direction = "backward";
         reset_targets();
     }
+    target_z += move_speed;
+    if (target_z <= 60){
+        command_queue.push_back(QPair<QString, int>("2", target_z));
 
-    command_queue.push_back(QPair<QString, int>("2", z_pos + move_speed));
-
-    qDebug() << "Z POS: " + QString::number(z_pos);
-    write_to_arduino();
+        qDebug() << "Z POS: " + QString::number(z_pos);
+        write_to_arduino();
+    }
 }
 
 void MainWindow::move_finished(){
@@ -529,15 +545,12 @@ void MainWindow::move_finished(){
 }
 
 void MainWindow::on_clawLeft_pressed() {
-    if (claw_pos >= 140){
-        return;
-    }
 
     if (move_direction != "claw_left"){
         move_direction = "claw_left";
         reset_targets();
     }
-
+    target_claw;
     command_queue.push_back(QPair<QString, int>("3", claw_pos + rotation_degrees));
     //ui->rightButton->setStyleSheet("QPushButton { background-color: red; }\n");
     qDebug() << "CLAW POS: " + QString::number(claw_pos);

@@ -54,6 +54,7 @@ public:
     static int target_y;
     static int target_z;
     static int claw_pos;
+    static int target_claw;
     QStringList voice_commands;
     QStringList directional_commands;
     static QVector<QPair<QString, int> > command_queue;
