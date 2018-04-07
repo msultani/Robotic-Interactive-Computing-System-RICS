@@ -352,11 +352,10 @@ void MainWindow::auto_move(){
 
 // Called when we receive confirmation that the Arduino has finished processing a message
 void MainWindow::received_confimation(){
-    qDebug() << "FUNCTION CALLED";
     QByteArray data = port.readAll();
     qDebug() << data;
 
-    if (data == "aaaa"){
+    if (data == "X"){
         qDebug() << "Success";
     }
 
@@ -422,7 +421,6 @@ void MainWindow::move_down(){
 
     target_y += move_speed;
     if (target_y <= 35){
-        qDebug() << "Y POS: " + QString::number(target_y);
         command_queue.push_back(QPair<QString, int>("1", target_y));
 
         write_to_arduino();
@@ -441,8 +439,6 @@ void MainWindow::move_up(){
 
     target_y -= move_speed;
     if (target_y >= 0){
-        qDebug() << "Y POS: " + QString::number(target_y);
-
         command_queue.push_back(QPair<QString, int>("1", target_y));
         write_to_arduino();
     }
@@ -459,8 +455,6 @@ void MainWindow::move_left(){
     target_x += move_speed;
     if (target_x <= 180){
         command_queue.push_back(QPair<QString, int>("0", target_x));
-
-        qDebug() << "X POS: " + QString::number(target_x);
         write_to_arduino();
     }
 
@@ -476,7 +470,6 @@ void MainWindow::move_right(){
         command_queue.push_back(QPair<QString, int>("0", target_x));
 
         //ui->rightButton->setStyleSheet("QPushButton { background-color: red; }\n");
-        qDebug() << "X POS: " + QString::number(target_x);
         write_to_arduino();
     }
 }
@@ -486,11 +479,9 @@ void MainWindow::move_forward() {
         move_direction = "forward";
         reset_targets();
     }
-
     target_z -= move_speed;
     if (target_z >= 0) {
         command_queue.push_back(QPair<QString, int>("2", target_z));
-        qDebug() << "Z POS: " + QString::number(z_pos);
         write_to_arduino();
     }
     else {
@@ -508,7 +499,6 @@ void MainWindow::move_backward() {
     if (target_z <= 60){
         command_queue.push_back(QPair<QString, int>("2", target_z));
 
-        qDebug() << "Z POS: " + QString::number(z_pos);
         write_to_arduino();
     }
 }
@@ -556,9 +546,6 @@ void MainWindow::move_finished(){
 
      ui->stackedWidget->setCurrentIndex(0);
 
-
-
-
      if (restore){
          QHoverSensitiveButton::hoverMode = true;
      }
@@ -566,30 +553,36 @@ void MainWindow::move_finished(){
 
 void MainWindow::on_clawLeft_pressed() {
 
+    qDebug() << "left";
     if (move_direction != "claw_left"){
         move_direction = "claw_left";
         reset_targets();
     }
+    target_claw += rotation_degrees;
 
-    command_queue.push_back(QPair<QString, int>("3", claw_pos + rotation_degrees));
-    //ui->rightButton->setStyleSheet("QPushButton { background-color: red; }\n");
-    qDebug() << "CLAW POS: " + QString::number(claw_pos);
-    write_to_arduino();
+    if (target_claw <= 140){
+        command_queue.push_back(QPair<QString, int>("3", target_claw));
+        //ui->rightButton->setStyleSheet("QPushButton { background-color: red; }\n");
+        //qDebug() << "CLAW POS: " + QString::number(claw_pos);
+        write_to_arduino();
+    }
+
 }
 
 void MainWindow::on_clawRight_pressed() {
-    if (claw_pos <= 20){
-        return;
-    }
-
+    qDebug() << "right";
     if (move_direction != "claw_right"){
         move_direction = "claw_right";
         reset_targets();
     }
-    command_queue.push_back(QPair<QString, int>("3", claw_pos - rotation_degrees));
-    //ui->rightButton->setStyleSheet("QPushButton { background-color: red; }\n");
-    qDebug() << "CLAW POS: " + QString::number(claw_pos);
-    write_to_arduino();
+    target_claw -= rotation_degrees;
+    if (target_claw >= 17){
+        command_queue.push_back(QPair<QString, int>("3", target_claw));
+        //ui->rightButton->setStyleSheet("QPushButton { background-color: red; }\n");
+        //qDebug() << "TARGET CLAW POS: " + QString::number(target_claw);
+        write_to_arduino();
+    }
+
 }
 
 void MainWindow::invalid_commands(QByteArray TCP_data){
@@ -608,5 +601,6 @@ void MainWindow::reset_targets(){
     target_x = x_pos;
     target_y = y_pos;
     target_z = z_pos;
+    target_claw = claw_pos;
     command_queue.clear();
 }
