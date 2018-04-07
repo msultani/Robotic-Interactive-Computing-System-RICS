@@ -30,7 +30,7 @@
        <property name="styleSheet">
         <string notr="true">background: rgb(67, 83, 106)</string>
        </property>
-       <widget class="QHoverSensitiveButton" name="fetchButton">
+       <widget class="QHoverSensitiveButton" name="commandButton">
         <property name="geometry">
          <rect>
           <x>190</x>
@@ -576,6 +576,30 @@ color: white;
         </property>
         <property name="text">
          <string>Left</string>
+       <widget class="QHoverSensitiveButton" name="stopButton">
+        <property name="geometry">
+         <rect>
+          <x>232</x>
+          <y>110</y>
+          <width>151</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Stop</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="fetchButton">
+        <property name="geometry">
+         <rect>
+          <x>440</x>
+          <y>180</y>
+          <width>113</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>FETCH</string>
         </property>
        </widget>
       </widget>
