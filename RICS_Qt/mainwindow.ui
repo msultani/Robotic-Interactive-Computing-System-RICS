@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>628</width>
-    <height>388</height>
+    <width>943</width>
+    <height>520</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -24,7 +24,7 @@
        <string notr="true">background: rgba(51, 64, 88, 0%);</string>
       </property>
       <property name="currentIndex">
-       <number>4</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="startPage">
        <property name="styleSheet">
@@ -33,10 +33,10 @@
        <widget class="QHoverSensitiveButton" name="fetchButton">
         <property name="geometry">
          <rect>
-          <x>170</x>
+          <x>190</x>
           <y>80</y>
-          <width>271</width>
-          <height>81</height>
+          <width>541</width>
+          <height>161</height>
          </rect>
         </property>
         <property name="font">
@@ -60,23 +60,23 @@ border-style: solid;
          <string/>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>:/images/fetch.png</normaloff>:/images/fetch.png</iconset>
+         <iconset resource="resources.qrc">
+          <normaloff>:/images/controls.png</normaloff>:/images/controls.png</iconset>
         </property>
         <property name="iconSize">
          <size>
-          <width>180</width>
-          <height>150</height>
+          <width>350</width>
+          <height>350</height>
          </size>
         </property>
        </widget>
        <widget class="QHoverSensitiveButton" name="settingButton">
         <property name="geometry">
          <rect>
-          <x>340</x>
-          <y>170</y>
-          <width>131</width>
-          <height>131</height>
+          <x>530</x>
+          <y>260</y>
+          <width>191</width>
+          <height>201</height>
          </rect>
         </property>
         <property name="font">
@@ -95,21 +95,21 @@ border-style: solid;
          <string/>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="resources.qrc">
           <normaloff>:/images/settings.png</normaloff>:/images/settings.png</iconset>
         </property>
         <property name="iconSize">
          <size>
-          <width>120</width>
-          <height>120</height>
+          <width>200</width>
+          <height>200</height>
          </size>
         </property>
        </widget>
        <widget class="QLabel" name="label">
         <property name="geometry">
          <rect>
-          <x>240</x>
-          <y>20</y>
+          <x>400</x>
+          <y>10</y>
           <width>121</width>
           <height>20</height>
          </rect>
@@ -134,8 +134,8 @@ color: white;</string>
        <widget class="QLabel" name="label_2">
         <property name="geometry">
          <rect>
-          <x>260</x>
-          <y>50</y>
+          <x>420</x>
+          <y>40</y>
           <width>81</width>
           <height>20</height>
          </rect>
@@ -160,10 +160,10 @@ color: white;</string>
        <widget class="QHoverSensitiveButton" name="tutorialButton">
         <property name="geometry">
          <rect>
-          <x>140</x>
-          <y>170</y>
-          <width>131</width>
-          <height>131</height>
+          <x>190</x>
+          <y>260</y>
+          <width>211</width>
+          <height>201</height>
          </rect>
         </property>
         <property name="font">
@@ -182,13 +182,13 @@ border-style: solid;
          <string/>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="resources.qrc">
           <normaloff>:/images/tutorials.png</normaloff>:/images/tutorials.png</iconset>
         </property>
         <property name="iconSize">
          <size>
-          <width>120</width>
-          <height>130</height>
+          <width>200</width>
+          <height>200</height>
          </size>
         </property>
        </widget>
@@ -197,8 +197,8 @@ border-style: solid;
        <widget class="QHoverSensitiveButton" name="releaseButton">
         <property name="geometry">
          <rect>
-          <x>420</x>
-          <y>230</y>
+          <x>720</x>
+          <y>370</y>
           <width>162</width>
           <height>102</height>
          </rect>
@@ -221,7 +221,7 @@ border-style: solid;
          <string/>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="resources.qrc">
           <normaloff>:/images/release.png</normaloff>:/images/release.png</iconset>
         </property>
         <property name="iconSize">
@@ -236,8 +236,8 @@ border-style: solid;
          <rect>
           <x>20</x>
           <y>10</y>
-          <width>91</width>
-          <height>41</height>
+          <width>141</width>
+          <height>71</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -248,23 +248,23 @@ border: solid;</string>
          <string/>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="resources.qrc">
           <normaloff>:/images/back.png</normaloff>:/images/back.png</iconset>
         </property>
         <property name="iconSize">
          <size>
-          <width>60</width>
-          <height>60</height>
+          <width>100</width>
+          <height>100</height>
          </size>
         </property>
        </widget>
        <widget class="QHoverSensitiveButton" name="forwardButton">
         <property name="geometry">
          <rect>
-          <x>30</x>
-          <y>200</y>
-          <width>161</width>
-          <height>71</height>
+          <x>20</x>
+          <y>270</y>
+          <width>211</width>
+          <height>101</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -276,22 +276,22 @@ border: solid;</string>
          <string/>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="resources.qrc">
           <normaloff>:/images/forward.png</normaloff>:/images/forward.png</iconset>
         </property>
         <property name="iconSize">
          <size>
-          <width>100</width>
-          <height>100</height>
+          <width>150</width>
+          <height>150</height>
          </size>
         </property>
        </widget>
        <widget class="QHoverSensitiveButton" name="backwardButton">
         <property name="geometry">
          <rect>
-          <x>30</x>
-          <y>270</y>
-          <width>161</width>
+          <x>20</x>
+          <y>380</y>
+          <width>211</width>
           <height>91</height>
          </rect>
         </property>
@@ -304,23 +304,23 @@ border: solid;</string>
          <string/>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="resources.qrc">
           <normaloff>:/images/backward.png</normaloff>:/images/backward.png</iconset>
         </property>
         <property name="iconSize">
          <size>
-          <width>100</width>
-          <height>100</height>
+          <width>150</width>
+          <height>150</height>
          </size>
         </property>
        </widget>
        <widget class="QHoverSensitiveButton" name="upButton">
         <property name="geometry">
          <rect>
-          <x>250</x>
-          <y>70</y>
-          <width>111</width>
-          <height>51</height>
+          <x>400</x>
+          <y>90</y>
+          <width>171</width>
+          <height>71</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -332,23 +332,23 @@ border: solid;</string>
          <string/>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="resources.qrc">
           <normaloff>:/images/up.png</normaloff>:/images/up.png</iconset>
         </property>
         <property name="iconSize">
          <size>
-          <width>80</width>
-          <height>75</height>
+          <width>120</width>
+          <height>120</height>
          </size>
         </property>
        </widget>
        <widget class="QHoverSensitiveButton" name="leftButton">
         <property name="geometry">
          <rect>
-          <x>160</x>
-          <y>80</y>
-          <width>71</width>
-          <height>101</height>
+          <x>290</x>
+          <y>110</y>
+          <width>101</width>
+          <height>131</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -360,12 +360,12 @@ border: solid;</string>
          <string/>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="resources.qrc">
           <normaloff>:/images/left.png</normaloff>:/images/left.png</iconset>
         </property>
         <property name="iconSize">
          <size>
-          <width>60</width>
+          <width>100</width>
           <height>120</height>
          </size>
         </property>
@@ -373,10 +373,10 @@ border: solid;</string>
        <widget class="QHoverSensitiveButton" name="rightButton">
         <property name="geometry">
          <rect>
-          <x>380</x>
-          <y>80</y>
-          <width>71</width>
-          <height>101</height>
+          <x>590</x>
+          <y>110</y>
+          <width>91</width>
+          <height>131</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -388,12 +388,12 @@ border: solid;</string>
          <string/>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="resources.qrc">
           <normaloff>:/images/right.png</normaloff>:/images/right.png</iconset>
         </property>
         <property name="iconSize">
          <size>
-          <width>60</width>
+          <width>100</width>
           <height>120</height>
          </size>
         </property>
@@ -401,10 +401,10 @@ border: solid;</string>
        <widget class="QHoverSensitiveButton" name="downButton">
         <property name="geometry">
          <rect>
-          <x>250</x>
-          <y>140</y>
-          <width>111</width>
-          <height>51</height>
+          <x>400</x>
+          <y>190</y>
+          <width>171</width>
+          <height>81</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -416,21 +416,21 @@ border: solid;</string>
          <string/>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="resources.qrc">
           <normaloff>:/images/down.png</normaloff>:/images/down.png</iconset>
         </property>
         <property name="iconSize">
          <size>
-          <width>80</width>
-          <height>75</height>
+          <width>120</width>
+          <height>120</height>
          </size>
         </property>
        </widget>
        <widget class="QLabel" name="ready_label">
         <property name="geometry">
          <rect>
-          <x>200</x>
-          <y>10</y>
+          <x>380</x>
+          <y>0</y>
           <width>201</width>
           <height>31</height>
          </rect>
@@ -448,58 +448,134 @@ color: white;
        <widget class="QHoverSensitiveButton" name="clawLeft">
         <property name="geometry">
          <rect>
-          <x>210</x>
-          <y>230</y>
-          <width>91</width>
-          <height>81</height>
+          <x>290</x>
+          <y>340</y>
+          <width>111</width>
+          <height>131</height>
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">border-style: solid;
-background-color: rgb(183, 183, 183);
-
-</string>
+         <string notr="true">background-color: rgba(38, 48, 71, 0%);
+font: 29pt &quot;Helvetica&quot;;
+border: solid;</string>
         </property>
         <property name="text">
          <string/>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>:/images/claw_left.png</normaloff>:/images/claw_left.png</iconset>
+         <iconset resource="resources.qrc">
+          <normaloff>:/images/away.png</normaloff>:/images/away.png</iconset>
         </property>
         <property name="iconSize">
          <size>
-          <width>60</width>
-          <height>60</height>
+          <width>120</width>
+          <height>120</height>
          </size>
         </property>
        </widget>
        <widget class="QHoverSensitiveButton" name="clawRight">
         <property name="geometry">
          <rect>
-          <x>310</x>
-          <y>230</y>
-          <width>91</width>
-          <height>81</height>
+          <x>420</x>
+          <y>340</y>
+          <width>121</width>
+          <height>131</height>
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(183, 183, 183);
-border-style: solid;
+         <string notr="true">background-color: rgba(38, 48, 71, 0%);
+font: 29pt &quot;Helvetica&quot;;
+border: solid;
 </string>
         </property>
         <property name="text">
          <string/>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>:/images/claw_right.png</normaloff>:/images/claw_right.png</iconset>
+         <iconset resource="resources.qrc">
+          <normaloff>:/images/near.png</normaloff>:/images/near.png</iconset>
         </property>
         <property name="iconSize">
          <size>
-          <width>60</width>
-          <height>60</height>
+          <width>120</width>
+          <height>120</height>
          </size>
+        </property>
+       </widget>
+       <widget class="QLabel" name="ready_label_2">
+        <property name="geometry">
+         <rect>
+          <x>440</x>
+          <y>50</y>
+          <width>91</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">qproperty-alignment: AlignCenter;
+font: 20pt &quot;.Helvetica Neue DeskInterface&quot;;
+color: white;
+</string>
+        </property>
+        <property name="text">
+         <string>Rise</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="ready_label_3">
+        <property name="geometry">
+         <rect>
+          <x>680</x>
+          <y>160</y>
+          <width>91</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">qproperty-alignment: AlignCenter;
+font: 20pt &quot;.Helvetica Neue DeskInterface&quot;;
+color: white;
+</string>
+        </property>
+        <property name="text">
+         <string>Right</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="ready_label_4">
+        <property name="geometry">
+         <rect>
+          <x>440</x>
+          <y>280</y>
+          <width>91</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">qproperty-alignment: AlignCenter;
+font: 20pt &quot;.Helvetica Neue DeskInterface&quot;;
+color: white;
+</string>
+        </property>
+        <property name="text">
+         <string>Down</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="ready_label_5">
+        <property name="geometry">
+         <rect>
+          <x>210</x>
+          <y>160</y>
+          <width>91</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">qproperty-alignment: AlignCenter;
+font: 20pt &quot;.Helvetica Neue DeskInterface&quot;;
+color: white;
+</string>
+        </property>
+        <property name="text">
+         <string>Left</string>
         </property>
        </widget>
       </widget>
@@ -512,8 +588,8 @@ border-style: solid;
          <rect>
           <x>20</x>
           <y>10</y>
-          <width>81</width>
-          <height>51</height>
+          <width>141</width>
+          <height>71</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -525,23 +601,23 @@ border: solid;
          <string/>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="resources.qrc">
           <normaloff>:/images/back.png</normaloff>:/images/back.png</iconset>
         </property>
         <property name="iconSize">
          <size>
-          <width>60</width>
-          <height>60</height>
+          <width>100</width>
+          <height>100</height>
          </size>
         </property>
        </widget>
        <widget class="QHoverSensitiveButton" name="hoverButton">
         <property name="geometry">
          <rect>
-          <x>100</x>
-          <y>160</y>
-          <width>121</width>
-          <height>51</height>
+          <x>260</x>
+          <y>230</y>
+          <width>171</width>
+          <height>71</height>
          </rect>
         </property>
         <property name="text">
@@ -551,8 +627,8 @@ border: solid;
        <widget class="QLabel" name="label_4">
         <property name="geometry">
          <rect>
-          <x>270</x>
-          <y>170</y>
+          <x>550</x>
+          <y>240</y>
           <width>191</width>
           <height>41</height>
          </rect>
@@ -581,8 +657,8 @@ color: white;</string>
        <widget class="QLabel" name="hover_time_label">
         <property name="geometry">
          <rect>
-          <x>40</x>
-          <y>270</y>
+          <x>250</x>
+          <y>380</y>
           <width>101</width>
           <height>31</height>
          </rect>
@@ -608,8 +684,8 @@ color: white;</string>
        <widget class="QHoverSensitiveButton" name="hover_time_up_button">
         <property name="geometry">
          <rect>
-          <x>160</x>
-          <y>240</y>
+          <x>370</x>
+          <y>350</y>
           <width>51</width>
           <height>51</height>
          </rect>
@@ -626,8 +702,8 @@ border: 1px solid black;</string>
        <widget class="QHoverSensitiveButton" name="hover_time_down_button">
         <property name="geometry">
          <rect>
-          <x>160</x>
-          <y>290</y>
+          <x>370</x>
+          <y>400</y>
           <width>51</width>
           <height>51</height>
          </rect>
@@ -644,8 +720,8 @@ border: 1px solid black;</string>
        <widget class="QLabel" name="label_6">
         <property name="geometry">
          <rect>
-          <x>250</x>
-          <y>240</y>
+          <x>530</x>
+          <y>350</y>
           <width>221</width>
           <height>41</height>
          </rect>
@@ -674,10 +750,10 @@ color: white;</string>
        <widget class="QHoverSensitiveButton" name="autoButton">
         <property name="geometry">
          <rect>
-          <x>100</x>
-          <y>90</y>
-          <width>121</width>
-          <height>51</height>
+          <x>260</x>
+          <y>110</y>
+          <width>171</width>
+          <height>81</height>
          </rect>
         </property>
         <property name="text">
@@ -687,8 +763,8 @@ color: white;</string>
        <widget class="QLabel" name="label_8">
         <property name="geometry">
          <rect>
-          <x>270</x>
-          <y>90</y>
+          <x>520</x>
+          <y>110</y>
           <width>231</width>
           <height>51</height>
          </rect>
@@ -717,7 +793,7 @@ color: white;</string>
        <widget class="QPushButton" name="pushButton_2">
         <property name="geometry">
          <rect>
-          <x>150</x>
+          <x>330</x>
           <y>0</y>
           <width>331</width>
           <height>91</height>
@@ -732,7 +808,7 @@ border: solid;
          <string/>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="resources.qrc">
           <normaloff>:/images/settings-title.png</normaloff>:/images/settings-title.png</iconset>
         </property>
         <property name="iconSize">
@@ -747,10 +823,10 @@ border: solid;
        <widget class="QHoverSensitiveButton" name="backButton_2">
         <property name="geometry">
          <rect>
-          <x>10</x>
-          <y>10</y>
-          <width>91</width>
-          <height>51</height>
+          <x>12</x>
+          <y>12</y>
+          <width>151</width>
+          <height>61</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -761,23 +837,23 @@ border: solid;</string>
          <string/>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="resources.qrc">
           <normaloff>:/images/back.png</normaloff>:/images/back.png</iconset>
         </property>
         <property name="iconSize">
          <size>
-          <width>60</width>
-          <height>60</height>
+          <width>100</width>
+          <height>100</height>
          </size>
         </property>
        </widget>
        <widget class="QPushButton" name="pushButton">
         <property name="geometry">
          <rect>
-          <x>60</x>
-          <y>20</y>
-          <width>491</width>
-          <height>331</height>
+          <x>180</x>
+          <y>50</y>
+          <width>561</width>
+          <height>371</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -789,13 +865,13 @@ border-style: solid;
          <string/>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="resources.qrc">
           <normaloff>:/images/tutorial_page.png</normaloff>:/images/tutorial_page.png</iconset>
         </property>
         <property name="iconSize">
          <size>
-          <width>400</width>
-          <height>400</height>
+          <width>450</width>
+          <height>450</height>
          </size>
         </property>
        </widget>
@@ -804,8 +880,8 @@ border-style: solid;
        <widget class="QLabel" name="countdownLabel">
         <property name="geometry">
          <rect>
-          <x>0</x>
-          <y>30</y>
+          <x>180</x>
+          <y>90</y>
           <width>601</width>
           <height>151</height>
          </rect>
@@ -819,7 +895,9 @@ border-style: solid;
         </property>
         <property name="styleSheet">
          <string notr="true">background: rgb(67, 83, 106);
-qproperty-alignment: AlignCenter;</string>
+qproperty-alignment: AlignCenter;
+color: white;
+</string>
         </property>
         <property name="text">
          <string>5</string>
@@ -828,8 +906,8 @@ qproperty-alignment: AlignCenter;</string>
        <widget class="QLabel" name="countdownLabel2">
         <property name="geometry">
          <rect>
-          <x>0</x>
-          <y>180</y>
+          <x>180</x>
+          <y>240</y>
           <width>611</width>
           <height>151</height>
          </rect>
@@ -841,7 +919,8 @@ qproperty-alignment: AlignCenter;</string>
         </property>
         <property name="styleSheet">
          <string notr="true">background: rgb(67, 83, 106);
-qproperty-alignment: AlignCenter;</string>
+qproperty-alignment: AlignCenter;
+color: white;</string>
         </property>
         <property name="text">
          <string>SECONDS REMAINING</string>
@@ -861,6 +940,8 @@ qproperty-alignment: AlignCenter;</string>
    <header>qhoversensitivebutton.h</header>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
