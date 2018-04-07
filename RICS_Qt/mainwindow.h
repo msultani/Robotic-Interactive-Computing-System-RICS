@@ -102,7 +102,7 @@ private:
     static bool voice_command_given;
     static QByteArray TCP_data;
     static QString move_direction;
-    int move_delay = 0;
+    int move_delay = 150;
 
     QTcpSocket *sock;
     void parse_TCP_command(QByteArray TCP_data);
