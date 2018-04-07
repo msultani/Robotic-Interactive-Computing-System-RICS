@@ -316,6 +316,24 @@ void MainWindow::hover_time_up(){
     ui->hover_time_label->setText(display);
 }
 
+void MainWindow::move_delay_up() {
+    int new_move_delay = move_delay + 10;
+    if (new_move_delay <= 999){
+        qDebug() << "Move delay: " + QString::number(new_move_delay);
+        command_queue.push_back(QPair<QString, int>("4", new_move_delay));
+        write_to_arduino();
+    }
+}
+
+void MainWindow::move_delay_down() {
+    int new_move_delay = move_delay - 10;
+    if (new_move_delay >= 0) {
+        qDebug() << "Move delay: " + QString::number(new_move_delay);
+        command_queue.push_back(QPair<QString, int>("4", new_move_delay));
+        write_to_arduino();
+    }
+}
+
 void MainWindow::changeLabel(){
     if (ui->label->text() == "Hover + Hold"){
         ui->label->setText("Press Button");
@@ -374,6 +392,9 @@ void MainWindow::send_next_command(){
             break;
         case 3:
             claw_pos = command_data.second;
+            break;
+        case 4:
+            move_delay = command_data.second;
             break;
         default:
             qDebug() << "This shouldn't be called... something went wrong";
@@ -458,13 +479,14 @@ void MainWindow::move_right(){
         write_to_arduino();
     }
 }
-void MainWindow::move_forward(){
-    if (move_direction != "forward"){
+void MainWindow::move_forward() {
+
+    if (move_direction != "forward") {
         move_direction = "forward";
         reset_targets();
     }
     target_z -= move_speed;
-    if (target_z >= 0){
+    if (target_z >= 0) {
         command_queue.push_back(QPair<QString, int>("2", target_z));
         write_to_arduino();
     }
@@ -473,9 +495,9 @@ void MainWindow::move_forward(){
     }
 
 }
-void MainWindow::move_backward(){
+void MainWindow::move_backward() {
 
-    if (move_direction != "backward"){
+    if (move_direction != "backward") {
         move_direction = "backward";
         reset_targets();
     }
