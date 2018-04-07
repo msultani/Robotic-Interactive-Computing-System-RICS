@@ -550,7 +550,7 @@ void MainWindow::on_clawLeft_pressed() {
         move_direction = "claw_left";
         reset_targets();
     }
-    target_claw;
+
     command_queue.push_back(QPair<QString, int>("3", claw_pos + rotation_degrees));
     //ui->rightButton->setStyleSheet("QPushButton { background-color: red; }\n");
     qDebug() << "CLAW POS: " + QString::number(claw_pos);
