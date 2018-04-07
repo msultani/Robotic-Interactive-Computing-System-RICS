@@ -71,6 +71,8 @@ public slots:
     void backPressed();
     void hover_time_up();
     void hover_time_down();
+    void move_delay_up();
+    void move_delay_down();
     void changeLabel();
     //void hover_pressed();
 
@@ -100,6 +102,7 @@ private:
     static bool voice_command_given;
     static QByteArray TCP_data;
     static QString move_direction;
+    int move_delay = 0;
 
     QTcpSocket *sock;
     void parse_TCP_command(QByteArray TCP_data);
