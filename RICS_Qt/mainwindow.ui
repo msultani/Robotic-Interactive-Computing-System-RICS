@@ -33,10 +33,10 @@
        <widget class="QHoverSensitiveButton" name="commandButton">
         <property name="geometry">
          <rect>
-          <x>190</x>
+          <x>120</x>
           <y>80</y>
-          <width>541</width>
-          <height>161</height>
+          <width>681</width>
+          <height>211</height>
          </rect>
         </property>
         <property name="font">
@@ -65,18 +65,18 @@ border-style: solid;
         </property>
         <property name="iconSize">
          <size>
-          <width>350</width>
-          <height>350</height>
+          <width>450</width>
+          <height>400</height>
          </size>
         </property>
        </widget>
        <widget class="QHoverSensitiveButton" name="settingButton">
         <property name="geometry">
          <rect>
-          <x>530</x>
-          <y>260</y>
-          <width>191</width>
-          <height>201</height>
+          <x>520</x>
+          <y>270</y>
+          <width>171</width>
+          <height>171</height>
          </rect>
         </property>
         <property name="font">
@@ -100,7 +100,7 @@ border-style: solid;
         </property>
         <property name="iconSize">
          <size>
-          <width>200</width>
+          <width>150</width>
           <height>200</height>
          </size>
         </property>
@@ -160,10 +160,10 @@ color: white;</string>
        <widget class="QHoverSensitiveButton" name="tutorialButton">
         <property name="geometry">
          <rect>
-          <x>190</x>
-          <y>260</y>
-          <width>211</width>
-          <height>201</height>
+          <x>230</x>
+          <y>270</y>
+          <width>171</width>
+          <height>171</height>
          </rect>
         </property>
         <property name="font">
@@ -187,7 +187,7 @@ border-style: solid;
         </property>
         <property name="iconSize">
          <size>
-          <width>200</width>
+          <width>150</width>
           <height>200</height>
          </size>
         </property>
@@ -261,10 +261,10 @@ border: solid;</string>
        <widget class="QHoverSensitiveButton" name="forwardButton">
         <property name="geometry">
          <rect>
-          <x>20</x>
+          <x>0</x>
           <y>270</y>
-          <width>211</width>
-          <height>101</height>
+          <width>281</width>
+          <height>131</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -281,18 +281,18 @@ border: solid;</string>
         </property>
         <property name="iconSize">
          <size>
-          <width>150</width>
-          <height>150</height>
+          <width>200</width>
+          <height>200</height>
          </size>
         </property>
        </widget>
        <widget class="QHoverSensitiveButton" name="backwardButton">
         <property name="geometry">
          <rect>
-          <x>20</x>
+          <x>0</x>
           <y>380</y>
-          <width>211</width>
-          <height>91</height>
+          <width>281</width>
+          <height>121</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -309,8 +309,8 @@ border: solid;</string>
         </property>
         <property name="iconSize">
          <size>
-          <width>150</width>
-          <height>150</height>
+          <width>200</width>
+          <height>200</height>
          </size>
         </property>
        </widget>
@@ -318,7 +318,7 @@ border: solid;</string>
         <property name="geometry">
          <rect>
           <x>400</x>
-          <y>90</y>
+          <y>60</y>
           <width>171</width>
           <height>71</height>
          </rect>
@@ -345,9 +345,9 @@ border: solid;</string>
        <widget class="QHoverSensitiveButton" name="leftButton">
         <property name="geometry">
          <rect>
-          <x>290</x>
+          <x>310</x>
           <y>110</y>
-          <width>101</width>
+          <width>91</width>
           <height>131</height>
          </rect>
         </property>
@@ -373,7 +373,7 @@ border: solid;</string>
        <widget class="QHoverSensitiveButton" name="rightButton">
         <property name="geometry">
          <rect>
-          <x>590</x>
+          <x>580</x>
           <y>110</y>
           <width>91</width>
           <height>131</height>
@@ -402,7 +402,7 @@ border: solid;</string>
         <property name="geometry">
          <rect>
           <x>400</x>
-          <y>190</y>
+          <y>230</y>
           <width>171</width>
           <height>81</height>
          </rect>
@@ -506,7 +506,7 @@ border: solid;
         <property name="geometry">
          <rect>
           <x>440</x>
-          <y>50</y>
+          <y>30</y>
           <width>91</width>
           <height>31</height>
          </rect>
@@ -524,7 +524,7 @@ color: white;
        <widget class="QLabel" name="ready_label_3">
         <property name="geometry">
          <rect>
-          <x>680</x>
+          <x>670</x>
           <y>160</y>
           <width>91</width>
           <height>31</height>
@@ -544,7 +544,7 @@ color: white;
         <property name="geometry">
          <rect>
           <x>440</x>
-          <y>280</y>
+          <y>310</y>
           <width>91</width>
           <height>31</height>
          </rect>
@@ -562,7 +562,7 @@ color: white;
        <widget class="QLabel" name="ready_label_5">
         <property name="geometry">
          <rect>
-          <x>210</x>
+          <x>220</x>
           <y>160</y>
           <width>91</width>
           <height>31</height>
@@ -581,14 +581,28 @@ color: white;
        <widget class="QPushButton" name="stopButton">
         <property name="geometry">
          <rect>
-          <x>392</x>
-          <y>150</y>
-          <width>191</width>
-          <height>61</height>
+          <x>430</x>
+          <y>130</y>
+          <width>111</width>
+          <height>101</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgba(90, 225, 143, 0%);
+border: solid;</string>
+        </property>
         <property name="text">
-         <string>Stop</string>
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/images/cancel.png</normaloff>:/images/cancel.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>100</width>
+          <height>100</height>
+         </size>
         </property>
        </widget>
        <widget class="QPushButton" name="fetchButton">
@@ -646,6 +660,9 @@ border: solid;
           <height>71</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">font: 36pt &quot;.Helvetica Neue DeskInterface&quot;;</string>
+        </property>
         <property name="text">
          <string>ON</string>
         </property>
@@ -653,7 +670,7 @@ border: solid;
        <widget class="QLabel" name="label_4">
         <property name="geometry">
          <rect>
-          <x>550</x>
+          <x>520</x>
           <y>240</y>
           <width>191</width>
           <height>41</height>
@@ -683,7 +700,7 @@ color: white;</string>
        <widget class="QLabel" name="hover_time_label">
         <property name="geometry">
          <rect>
-          <x>250</x>
+          <x>230</x>
           <y>380</y>
           <width>101</width>
           <height>31</height>
@@ -710,14 +727,14 @@ color: white;</string>
        <widget class="QHoverSensitiveButton" name="hover_time_up_button">
         <property name="geometry">
          <rect>
-          <x>370</x>
-          <y>350</y>
-          <width>51</width>
-          <height>51</height>
+          <x>350</x>
+          <y>320</y>
+          <width>71</width>
+          <height>71</height>
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(240, 223, 51);
+         <string notr="true">background-color: rgb(255, 248, 102);
 font: 30pt &quot;.Helvetica Neue DeskInterface&quot;;
 border: 1px solid black;</string>
         </property>
@@ -728,10 +745,10 @@ border: 1px solid black;</string>
        <widget class="QHoverSensitiveButton" name="hover_time_down_button">
         <property name="geometry">
          <rect>
-          <x>370</x>
+          <x>350</x>
           <y>400</y>
-          <width>51</width>
-          <height>51</height>
+          <width>71</width>
+          <height>71</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -746,9 +763,9 @@ border: 1px solid black;</string>
        <widget class="QLabel" name="label_6">
         <property name="geometry">
          <rect>
-          <x>530</x>
+          <x>540</x>
           <y>350</y>
-          <width>221</width>
+          <width>151</width>
           <height>41</height>
          </rect>
         </property>
@@ -781,6 +798,9 @@ color: white;</string>
           <width>171</width>
           <height>81</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 36pt &quot;.Helvetica Neue DeskInterface&quot;;</string>
         </property>
         <property name="text">
          <string>ON</string>

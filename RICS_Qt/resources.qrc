@@ -18,5 +18,6 @@
         <file>controls.png</file>
         <file>away.png</file>
         <file>near.png</file>
+        <file>cancel.png</file>
     </qresource>
 </RCC>
