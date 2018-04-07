@@ -2,3 +2,4 @@
 .vscode/
 build*
 RICS-8b2cdf068357.json
+google-cloud-sdk/*

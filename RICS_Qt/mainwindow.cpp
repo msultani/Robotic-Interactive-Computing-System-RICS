@@ -28,7 +28,8 @@ bool MainWindow::ready_to_send = true;
  * DELAY: 4
  */
 
-//PYTHON COMMANDS: fetch, up, down, left, right, forward, backward, stop
+// PYTHON COMMANDS: retract, rise, down, left, right,
+    // forward, backward, cancel, near, away
 
 
 void MainWindow::establish_TCP_connection(){
