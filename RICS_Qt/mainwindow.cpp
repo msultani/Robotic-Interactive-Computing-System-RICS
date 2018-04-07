@@ -11,7 +11,7 @@ int MainWindow::target_y = y_pos;
 int MainWindow::target_z = z_pos;
 
 int MainWindow::claw_pos = 20;
-int MainWindow::move_speed = 35;
+int MainWindow::move_speed = 5;
 int MainWindow::rotation_degrees = 3;
 bool MainWindow::auto_movement= true;
 bool MainWindow::voice_command_given = false;
@@ -175,7 +175,9 @@ MainWindow::MainWindow(QWidget *parent) :
     qDebug() << output;
 */
     // List of signals and the appropriate slot that they should connect to
-    connect(ui->fetchButton, SIGNAL (pressed()), this, SLOT (commandsPressed()));
+    connect(ui->commandButton, SIGNAL (pressed()), this, SLOT (commandsPressed()));
+
+    connect(ui->fetchButton, SIGNAL (pressed()), this, SLOT (fetchPressed()));
 
     connect(ui->settingButton, SIGNAL (pressed()), this, SLOT (settingsPressed()));
 
@@ -276,9 +278,6 @@ void MainWindow::fetchPressed(){
     push_command("3", 0, claw_pos); // TODO - target_claw
 
     write_to_arduino();
-
-
-
 }
 
 void MainWindow::tutorialPressed(){
