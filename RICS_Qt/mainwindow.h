@@ -50,10 +50,14 @@ public:
     static int x_pos;
     static int y_pos;
     static int z_pos;
+    static int target_x;
+    static int target_y;
+    static int target_z;
     static int claw_pos;
     QStringList voice_commands;
     QStringList directional_commands;
     static QVector<QPair<QString, int> > command_queue;
+    void reset_targets();
 
 
 public slots:

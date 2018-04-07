@@ -3,11 +3,15 @@
 
 bool MainWindow::popup_open = false;
 
-int MainWindow::x_pos = 93;
-int MainWindow::y_pos = 40;
-int MainWindow::z_pos = 40;
-int MainWindow::claw_pos = 17;
-int MainWindow::move_speed = 5;
+int MainWindow::x_pos = 90;
+int MainWindow::y_pos = 35;
+int MainWindow::z_pos = 35;
+int MainWindow::target_x = x_pos;
+int MainWindow::target_y = y_pos;
+int MainWindow::target_z = z_pos;
+
+int MainWindow::claw_pos = 20;
+int MainWindow::move_speed = 35;
 int MainWindow::rotation_degrees = 3;
 bool MainWindow::auto_movement= true;
 bool MainWindow::voice_command_given = false;
@@ -62,7 +66,7 @@ void MainWindow::readTCPData(){
 
 void MainWindow::parse_TCP_command(QByteArray TCP_data){
 
-    this->ui->readyLabel->setText("Receiving Vocal Input...");
+    this->ui->ready_label->setText("Receiving Vocal Input...");
     ui->stackedWidget->setCurrentIndex(1);
     qDebug() << TCP_data;
 
@@ -263,9 +267,17 @@ void MainWindow::commandsPressed(){
 
 void MainWindow::fetchPressed(){
     //change_values(x_pos, y_pos, z_pos);
-    move_direction = "retract";
+    move_direction = "fetch";
+    reset_targets();
 
-// TODO - work out what "write_to_arduino" should do, and how
+    push_command("0", 10, x_pos);
+    push_command("1", 0, y_pos);
+    push_command("2", 0, z_pos);
+    push_command("3", 0, claw_pos); // TODO - target_claw
+
+    write_to_arduino();
+
+
 
 }
 
@@ -323,9 +335,13 @@ void MainWindow::auto_move(){
 
 // Called when we receive confirmation that the Arduino has finished processing a message
 void MainWindow::received_confimation(){
-
+    qDebug() << "FUNCTION CALLED";
     QByteArray data = port.readAll();
     qDebug() << data;
+
+    if (data == "aaaa"){
+        qDebug() << "Success";
+    }
 
     // Check that the data was correct/from Arduino?
 
@@ -381,11 +397,11 @@ void MainWindow::move_down(){
 
     if (move_direction != "down"){
         move_direction = "down";
-        command_queue.clear();
+        reset_targets();
     }
-
-    qDebug() << "Y POS: " + QString::number(y_pos);
-    command_queue.push_back(QPair<QString, int>("1", y_pos + move_speed));
+    target_y += move_speed;
+    qDebug() << "Y POS: " + QString::number(target_y);
+    command_queue.push_back(QPair<QString, int>("1", target_y));
 
     write_to_arduino();
     //ui->downButton->setStyleSheet("QPushButton { background-color: rgb(205, 205, 205); }\n");
@@ -396,13 +412,13 @@ void MainWindow::move_up(){
 
     if (move_direction != "rise"){
         move_direction = "rise";
-        command_queue.clear();
+        reset_targets();
     }
 
+    target_y -= move_speed;
+    qDebug() << "Y POS: " + QString::number(target_y);
 
-    qDebug() << "Y POS: " + QString::number(y_pos);
-
-    command_queue.push_back(QPair<QString, int>("1", y_pos - move_speed));
+    command_queue.push_back(QPair<QString, int>("1", target_y));
     write_to_arduino();
 }
 
@@ -410,26 +426,26 @@ void MainWindow::move_left(){
 
     if (move_direction != "left"){
         move_direction = "left";
-        command_queue.clear();
+        reset_targets();
     }
     //ui->leftButton->setStyleSheet("QPushButton { background-color: red; }\n");
+    target_x += move_speed;
+    command_queue.push_back(QPair<QString, int>("0", target_x));
 
-    command_queue.push_back(QPair<QString, int>("0", x_pos + move_speed));
-
-    qDebug() << "X POS: " + QString::number(x_pos);
+    qDebug() << "X POS: " + QString::number(target_x);
     write_to_arduino();
 }
 void MainWindow::move_right(){
 
     if (move_direction != "right"){
         move_direction = "right";
-        command_queue.clear();
+        reset_targets();
     }
-
-    command_queue.push_back(QPair<QString, int>("0", x_pos - move_speed));
+    target_x -= move_speed;
+    command_queue.push_back(QPair<QString, int>("0", target_x));
 
     //ui->rightButton->setStyleSheet("QPushButton { background-color: red; }\n");
-    qDebug() << "X POS: " + QString::number(x_pos);
+    qDebug() << "X POS: " + QString::number(target_x);
     write_to_arduino();
 }
 void MainWindow::move_forward(){
@@ -437,7 +453,7 @@ void MainWindow::move_forward(){
 
         if (move_direction != "forward"){
             move_direction = "forward";
-            command_queue.clear();
+            reset_targets();
         }
 
 
@@ -454,7 +470,7 @@ void MainWindow::move_backward(){
 
     if (move_direction != "backward"){
         move_direction = "backward";
-        command_queue.clear();
+        reset_targets();
     }
 
     command_queue.push_back(QPair<QString, int>("2", z_pos + move_speed));
@@ -465,7 +481,7 @@ void MainWindow::move_backward(){
 
 void MainWindow::move_finished(){
     qDebug() << "Retract";
-    command_queue.clear();
+    reset_targets();
     ui->stackedWidget->setCurrentIndex(4);
     QHoverSensitiveButton::activationTime.setHMS(-1,-1,-1,-1);
 
@@ -491,9 +507,10 @@ void MainWindow::move_finished(){
         delay(200);
     }
 
-    push_command("0", 93, x_pos);
-    push_command("1", 40, y_pos);
-    push_command("2", 40, z_pos);
+    push_command("0", 90, x_pos);
+    push_command("1", 35, y_pos);
+    push_command("2", 35, z_pos);
+    write_to_arduino();
     // Actually send the correct values
 
 /*      x_pos = 93;
@@ -519,7 +536,7 @@ void MainWindow::on_clawLeft_pressed() {
 
     if (move_direction != "claw_left"){
         move_direction = "claw_left";
-        command_queue.clear();
+        reset_targets();
     }
 
     command_queue.push_back(QPair<QString, int>("3", claw_pos + rotation_degrees));
@@ -535,7 +552,7 @@ void MainWindow::on_clawRight_pressed() {
 
     if (move_direction != "claw_right"){
         move_direction = "claw_right";
-        command_queue.clear();
+        reset_targets();
     }
     command_queue.push_back(QPair<QString, int>("3", claw_pos - rotation_degrees));
     //ui->rightButton->setStyleSheet("QPushButton { background-color: red; }\n");
@@ -546,10 +563,18 @@ void MainWindow::on_clawRight_pressed() {
 void MainWindow::invalid_commands(QByteArray TCP_data){
     QString invalid_data = QTextCodec::codecForMib(1015)->toUnicode(TCP_data);
 
-    this->ui->readyLabel->setText("Vocal Input: " + invalid_data);
+    this->ui->ready_label->setText("Vocal Input: " + invalid_data);
 
 }
 
 void MainWindow::stopPressed() {
+    qDebug() << "STOP PRESSED";
+    reset_targets();
+}
+
+void MainWindow::reset_targets(){
+    target_x = x_pos;
+    target_y = y_pos;
+    target_z = z_pos;
     command_queue.clear();
 }
