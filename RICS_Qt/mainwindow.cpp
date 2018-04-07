@@ -99,6 +99,12 @@ void MainWindow::parse_TCP_command(QByteArray TCP_data){
         case 8:
             on_clawRight_pressed();
             break;
+        case 9:
+            //TODO - add recording symbol
+            break;
+        case 10:
+            //TODO - remove recording symbol
+            break;
         default:
             qDebug() << "This shouldn't be called... something went wrong";
             break;
@@ -154,7 +160,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->stackedWidget->setCurrentIndex(0);
 
     //Initialize voice_commands list
-    voice_commands << "retract" << "rise" << "down" << "left" << "right" << "forward" << "backward" << "near" << "away";
+    voice_commands << "retract" << "rise" << "down" << "left" << "right" << "forward" << "backward" << "near" << "away" << "Recording on" << "Recording off";
     directional_commands << "X" << "Y" << "Z";
 
     establish_TCP_connection();
