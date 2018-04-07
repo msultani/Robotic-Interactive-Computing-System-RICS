@@ -30,7 +30,7 @@
        <property name="styleSheet">
         <string notr="true">background: rgb(67, 83, 106)</string>
        </property>
-       <widget class="QHoverSensitiveButton" name="fetchButton">
+       <widget class="QHoverSensitiveButton" name="commandButton">
         <property name="geometry">
          <rect>
           <x>190</x>

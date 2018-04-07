@@ -9,6 +9,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonValue>
+#include <QPair>
 
 #include <QDebug>
 #include <QPushButton>
@@ -49,14 +50,21 @@ public:
     static int x_pos;
     static int y_pos;
     static int z_pos;
+    static int target_x;
+    static int target_y;
+    static int target_z;
     static int claw_pos;
     QStringList voice_commands;
+    QStringList directional_commands;
+    static QVector<QPair<QString, int> > command_queue;
+    void reset_targets();
 
 
 public slots:
     void readTCPData();
     void connection();
     void fetchPressed();
+    void commandsPressed();
     void tutorialPressed();
     void settingsPressed();
     void backPressed();
@@ -73,6 +81,9 @@ public slots:
     void move_right();
     void move_finished();
     void auto_move();
+    void invalid_commands(QByteArray TCP_data);
+    void received_confimation();
+    void stopPressed();
 
 private slots:
     void on_clawLeft_pressed();
@@ -87,10 +98,13 @@ private:
     static bool auto_movement;
     static bool voice_command_given;
     static QByteArray TCP_data;
+    static QString move_direction;
 
     QTcpSocket *sock;
     void parse_TCP_command(QByteArray TCP_data);
-    void write_to_arduino(QString data);
+    void write_to_arduino();
+    void send_next_command();
+    static bool ready_to_send;
     QTcpServer * t;
 
     void establish_TCP_connection();
