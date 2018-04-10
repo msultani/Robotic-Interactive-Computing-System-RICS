@@ -364,12 +364,11 @@ void MainWindow::received_confimation(){
 
     if (data == "X"){
         qDebug() << "Success";
+        ready_to_send = true;
+        write_to_arduino();
     }
 
-    // Check that the data was correct/from Arduino?
 
-    ready_to_send = true;
-    write_to_arduino();
 
 }
 
