@@ -13,6 +13,7 @@ m = sr.Microphone()
 DEBUG = 1
 
 commands = ["retract",
+            "extend", # fetch?
             "rise",
             "down",
             "left",
@@ -21,21 +22,13 @@ commands = ["retract",
             "backward",
             "cancel",
             "near", # claw
-            "away" # claw
+            "away", # claw
+            "next page",
+            "previous page"
             ]
 
 hints = ["Echo start",  # activation word
         "Echo stop",    # deactivation word
-        "retract",
-        "rise",
-        "down",
-        "left",
-        "right",
-        "forward",
-        "backward",
-        "cancel",
-        "near", # claw
-        "away"
         ]
 
 hints.extend(commands)
@@ -57,6 +50,9 @@ def process_text(text):
 
         if activated:
             if word in commands:
+                keep.append(word)
+            elif words[idx+1] == "page":
+                # Sends "next" and "previous" to Qt to move through pages
                 keep.append(word)
     return keep
 
