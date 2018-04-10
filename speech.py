@@ -10,6 +10,8 @@ import time
 r = sr.Recognizer()
 m = sr.Microphone()
 
+DEBUG = 1
+
 commands = ["retract",
             "rise",
             "down",
@@ -22,29 +24,38 @@ commands = ["retract",
             "away" # claw
             ]
 
-hints = ["Echo",
-        "Echo retract",
-        "Echo rise",
-        "Echo down",
-        "Echo left",
-        "Echo right",
-        "Echo forward",
-        "Echo backward",
-        "Echo cancel",
-        "Echo near", # claw
-        "Echo away"
+hints = ["Echo start",  # activation word
+        "Echo stop",    # deactivation word
+        "retract",
+        "rise",
+        "down",
+        "left",
+        "right",
+        "forward",
+        "backward",
+        "cancel",
+        "near", # claw
+        "away"
         ]
 
 hints.extend(commands)
 
+activated = False
+
 def process_text(text):
+    global activated
     words = text.split()
     keep = []
-    awake = False
-    for word in words:
-        if word == "echo" or word == "ecco" or word == "Echo":
-            awake = True
-        if awake:
+    for idx, word in enumerate(words):
+        if word == "Echo":   
+            if words[idx+1] == "start":
+                activated = True
+                print("Voice commands turned ON.")
+            elif words[idx+1] == "stop":
+                activated = False
+                print("Voice commands turned OFF.")
+
+        if activated:
             if word in commands:
                 keep.append(word)
     return keep
@@ -52,12 +63,13 @@ def process_text(text):
 
 # See python_ports.py from kccla@umich.edu
 def send_message(command_value):
-    sender = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sender.connect(("0.0.0.0", 6000))
-    #data = json.dumps( {"message_value" : command_value} )
-    print("sending " + command_value)
-    sender.sendall(command_value)
-    sender.close()
+    if DEBUG:
+        sender = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sender.connect(("0.0.0.0", 6000))
+        #data = json.dumps( {"message_value" : command_value} )
+        print("sending " + command_value)
+        sender.sendall(command_value)
+        sender.close()
 
 
 try:
