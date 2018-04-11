@@ -64,7 +64,7 @@ public:
 public slots:
     void readTCPData();
     void connection();
-    void fetchPressed();
+    void extendPressed();
     void commandsPressed();
     void tutorialPressed();
     void settingsPressed();
