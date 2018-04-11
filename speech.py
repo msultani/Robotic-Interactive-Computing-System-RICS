@@ -10,7 +10,7 @@ import time
 r = sr.Recognizer()
 m = sr.Microphone()
 
-DEBUG = 0
+DEBUG = 1
 
 commands = ["retract",
             "extend",
