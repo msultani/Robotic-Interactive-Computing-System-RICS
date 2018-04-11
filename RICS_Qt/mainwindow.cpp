@@ -12,8 +12,9 @@ int MainWindow::target_z = z_pos;
 
 int MainWindow::claw_pos = 20;
 int MainWindow::target_claw = claw_pos;
-int MainWindow::move_speed = 5;
-int MainWindow::rotation_degrees = 3;
+int MainWindow::arm_movement_degrees = 5;
+int MainWindow::claw_movement_degrees = 3;
+int MainWindow::move_delay = 150;
 bool MainWindow::auto_movement= true;
 bool MainWindow::voice_command_given = false;
 QByteArray MainWindow::TCP_data = "";
@@ -74,7 +75,7 @@ void MainWindow::parse_TCP_command(QByteArray TCP_data){
 
     switch(voice_commands.indexOf(TCP_data)){
         case 0:
-            extendPressed();
+            fetchPressed();
             break;
         case 1:
             move_up();
@@ -120,7 +121,7 @@ void MainWindow::parse_TCP_command(QByteArray TCP_data){
         qDebug() << "entering while loop";
         switch(voice_commands.indexOf(TCP_data)){
             case 0:
-                extendPressed();
+                fetchPressed();
                 break;
             case 1:
                 move_up();
@@ -183,49 +184,49 @@ MainWindow::MainWindow(QWidget *parent) :
     qDebug() << output;
 */
     // List of signals and the appropriate slot that they should connect to
-    connect(ui->commandButton, SIGNAL (pressed()), this, SLOT (commandsPressed()));
+    connect(ui->commandButton, SIGNAL (clicked()), this, SLOT (commandsPressed()));
 
-    connect(ui->fetchButton, SIGNAL (pressed()), this, SLOT (extendPressed()));
+    connect(ui->fetchButton, SIGNAL (clicked()), this, SLOT (fetchPressed()));
 
-    connect(ui->settingButton, SIGNAL (pressed()), this, SLOT (settingsPressed()));
+    connect(ui->settingButton, SIGNAL (clicked()), this, SLOT (settingsPressed()));
 
-    connect(ui->tutorialButton, SIGNAL (pressed()), this, SLOT (tutorialPressed()));
+    connect(ui->tutorialButton, SIGNAL (clicked()), this, SLOT (tutorialPressed()));
 
-    connect(ui->backButton, SIGNAL (pressed()), this, SLOT (backPressed()));
+    connect(ui->backButton, SIGNAL (clicked()), this, SLOT (backPressed()));
 
-    connect(ui->backButton_2, SIGNAL (pressed()), this, SLOT (backPressed()));
+    connect(ui->backButton_2, SIGNAL (clicked()), this, SLOT (backPressed()));
 
-    connect(ui->backButton_3, SIGNAL (pressed()), this, SLOT (backPressed()));
+    connect(ui->backButton_3, SIGNAL (clicked()), this, SLOT (backPressed()));
 
-    connect(ui->tutorialButton, SIGNAL (pressed()), this, SLOT (tutorialPressed()));
+    connect(ui->tutorialButton, SIGNAL (clicked()), this, SLOT (tutorialPressed()));
 
-    connect(ui->hover_time_up_button, SIGNAL (pressed()), this, SLOT (hover_time_up()));
+    connect(ui->hover_time_up_button, SIGNAL (clicked()), this, SLOT (hover_time_up()));
 
-    connect(ui->hover_time_down_button, SIGNAL (pressed()), this, SLOT (hover_time_down()));
+    connect(ui->hover_time_down_button, SIGNAL (clicked()), this, SLOT (hover_time_down()));
 
     connect(ui->hoverButton, SIGNAL (changeLabel()), this, SLOT (changeLabel()));
 
-    connect(ui->upButton, SIGNAL (pressed()), this, SLOT (move_up()));
+    connect(ui->upButton, SIGNAL (clicked()), this, SLOT (move_up()));
 
-    connect(ui->downButton, SIGNAL (pressed()), this, SLOT (move_down()));
+    connect(ui->downButton, SIGNAL (clicked()), this, SLOT (move_down()));
 
-    connect(ui->leftButton, SIGNAL (pressed()), this, SLOT (move_left()));
+    connect(ui->leftButton, SIGNAL (clicked()), this, SLOT (move_left()));
 
-    connect(ui->rightButton, SIGNAL (pressed()), this, SLOT (move_right()));
+    connect(ui->rightButton, SIGNAL (clicked()), this, SLOT (move_right()));
 
-    connect(ui->forwardButton, SIGNAL (pressed()), this, SLOT (move_forward()));
+    connect(ui->forwardButton, SIGNAL (clicked()), this, SLOT (move_forward()));
 
-    connect(ui->backwardButton, SIGNAL (pressed()), this, SLOT (move_backward()));
+    connect(ui->backwardButton, SIGNAL (clicked()), this, SLOT (move_backward()));
 
-    connect(ui->releaseButton, SIGNAL (pressed()), this, SLOT (move_finished()));
+    connect(ui->releaseButton, SIGNAL (clicked()), this, SLOT (move_finished()));
 
-    connect(ui->autoButton, SIGNAL (pressed()), this, SLOT (auto_move()));
+    connect(ui->autoButton, SIGNAL (clicked()), this, SLOT (auto_move()));
 
-    connect(ui->clawLeft, SIGNAL (pressed()), this, SLOT (on_clawLeft_pressed()));
+    connect(ui->clawLeft, SIGNAL (clicked()), this, SLOT (on_clawLeft_pressed()));
 
-    connect(ui->clawRight, SIGNAL (pressed()), this, SLOT (on_clawRight_pressed()));
+    connect(ui->clawRight, SIGNAL (clicked()), this, SLOT (on_clawRight_pressed()));
 
-    connect(ui->stopButton, SIGNAL (pressed()), this, SLOT (stopPressed()));
+    connect(ui->stopButton, SIGNAL (clicked()), this, SLOT (stopPressed()));
 
     connect(ui->hoverButton, SIGNAL (clicked()), this, SLOT (hoverButtonEntered()));
 
@@ -276,7 +277,7 @@ void MainWindow::commandsPressed(){
     }
 }
 
-void MainWindow::extendPressed(){
+void MainWindow::fetchPressed(){
     //change_values(x_pos, y_pos, z_pos);
     move_direction = "extend";
     reset_targets();
@@ -334,6 +335,30 @@ void MainWindow::move_delay_down() {
         qDebug() << "Move delay: " + QString::number(new_move_delay);
         command_queue.push_back(QPair<QString, int>("4", new_move_delay));
         write_to_arduino();
+    }
+}
+
+void MainWindow::arm_movement_degrees_up() {
+    if (arm_movement_degrees + 1 <= 15) {
+        qDebug() << "Arm movement degrees: " + QString::number(++arm_movement_degrees);
+    }
+}
+
+void MainWindow::arm_movement_degrees_down() {
+    if (arm_movement_degrees - 1 >= 3) {
+        qDebug() << "Arm movement degrees: " + QString::number(--arm_movement_degrees);
+    }
+}
+
+void MainWindow::claw_movement_degrees_up() {
+    if (claw_movement_degrees + 1 <= 10) {
+        qDebug() << "Claw movement degrees: " + QString::number(++claw_movement_degrees);
+    }
+}
+
+void MainWindow::claw_movement_degrees_down() {
+    if (claw_movement_degrees - 1 >= 3) {
+        qDebug() << "Claw movement degrees: " + QString::number(--claw_movement_degrees);
     }
 }
 
@@ -427,7 +452,7 @@ void MainWindow::move_down(){
         reset_targets();
     }
 
-    target_y += move_speed;
+    target_y += arm_movement_degrees;
     if (target_y <= 35){
         command_queue.push_back(QPair<QString, int>("1", target_y));
 
@@ -445,7 +470,7 @@ void MainWindow::move_up(){
         reset_targets();
     }
 
-    target_y -= move_speed;
+    target_y -= arm_movement_degrees;
     if (target_y >= 0){
         command_queue.push_back(QPair<QString, int>("1", target_y));
         write_to_arduino();
@@ -460,7 +485,7 @@ void MainWindow::move_left(){
         reset_targets();
     }
     //ui->leftButton->setStyleSheet("QPushButton { background-color: red; }\n");
-    target_x += move_speed;
+    target_x += arm_movement_degrees;
     if (target_x <= 180){
         command_queue.push_back(QPair<QString, int>("0", target_x));
         write_to_arduino();
@@ -473,7 +498,7 @@ void MainWindow::move_right(){
         move_direction = "right";
         reset_targets();
     }
-    target_x -= move_speed;
+    target_x -= arm_movement_degrees;
     if (target_x >= 0){
         command_queue.push_back(QPair<QString, int>("0", target_x));
 
@@ -487,7 +512,7 @@ void MainWindow::move_forward() {
         move_direction = "forward";
         reset_targets();
     }
-    target_z -= move_speed;
+    target_z -= arm_movement_degrees;
     if (target_z >= 0) {
         command_queue.push_back(QPair<QString, int>("2", target_z));
         write_to_arduino();
@@ -503,7 +528,7 @@ void MainWindow::move_backward() {
         move_direction = "backward";
         reset_targets();
     }
-    target_z += move_speed;
+    target_z += arm_movement_degrees;
     if (target_z <= 60){
         command_queue.push_back(QPair<QString, int>("2", target_z));
 
@@ -566,7 +591,7 @@ void MainWindow::on_clawLeft_pressed() {
         move_direction = "claw_left";
         reset_targets();
     }
-    target_claw += rotation_degrees;
+    target_claw += claw_movement_degrees;
 
     if (target_claw <= 140){
         command_queue.push_back(QPair<QString, int>("3", target_claw));
@@ -583,7 +608,7 @@ void MainWindow::on_clawRight_pressed() {
         move_direction = "claw_right";
         reset_targets();
     }
-    target_claw -= rotation_degrees;
+    target_claw -= claw_movement_degrees;
     if (target_claw >= 17){
         command_queue.push_back(QPair<QString, int>("3", target_claw));
         //ui->rightButton->setStyleSheet("QPushButton { background-color: red; }\n");
