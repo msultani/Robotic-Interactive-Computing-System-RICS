@@ -227,6 +227,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->stopButton, SIGNAL (pressed()), this, SLOT (stopPressed()));
 
+    connect(ui->hoverButton, SIGNAL (clicked()), this, SLOT (hoverButtonEntered()));
+
     //Open serial port
     port.setPortName("/dev/cu.usbmodem1421");
     port.setBaudRate(QSerialPort::Baud9600);
@@ -610,3 +612,10 @@ void MainWindow::reset_targets(){
     target_claw = claw_pos;
     command_queue.clear();
 }
+
+void MainWindow::hoverButtonEntered(){
+        QHoverSensitiveButton::hoverMode = !QHoverSensitiveButton::hoverMode;
+
+        emit changeLabel();
+}
+

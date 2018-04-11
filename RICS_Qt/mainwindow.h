@@ -74,6 +74,7 @@ public slots:
     void move_delay_up();
     void move_delay_down();
     void changeLabel();
+    void hoverButtonEntered();
     //void hover_pressed();
 
     void move_up();
