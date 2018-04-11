@@ -10,10 +10,10 @@ import time
 r = sr.Recognizer()
 m = sr.Microphone()
 
-DEBUG = 1
+DEBUG = 0
 
 commands = ["retract",
-            "extend", # fetch?
+            "extend",
             "rise",
             "down",
             "left",
@@ -23,8 +23,6 @@ commands = ["retract",
             "cancel",
             "near", # claw
             "away", # claw
-            "next page",
-            "previous page"
             ]
 
 hints = ["Echo start",  # activation word
@@ -48,16 +46,11 @@ def process_text(text):
                 activated = False
                 print("Voice commands turned OFF.")
 
-        if activated:
-            if word in commands:
-                keep.append(word)
-            elif words[idx+1] == "page":
-                # Sends "next" and "previous" to Qt to move through pages
-                keep.append(word)
+        if activated and word in commands:
+            keep.append(word)
     return keep
 
 
-# See python_ports.py from kccla@umich.edu
 def send_message(command_value):
     if DEBUG:
         sender = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
