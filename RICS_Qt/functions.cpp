@@ -25,7 +25,7 @@ void push_command(QString command_char, int target_pos, int current_pos){
 
     if (target_pos > current_pos){
         while (target_pos > current_pos){
-            current_pos += MainWindow::move_speed;
+            current_pos += MainWindow::arm_movement_degrees;
             MainWindow::command_queue.push_back(QPair<QString, int>(command_char, current_pos));
         }
 
@@ -33,7 +33,7 @@ void push_command(QString command_char, int target_pos, int current_pos){
     }
 
     while (target_pos < current_pos){
-        current_pos -= MainWindow::move_speed;
+        current_pos -= MainWindow::arm_movement_degrees;
         MainWindow::command_queue.push_back(QPair<QString, int>(command_char, current_pos));
     }
 
