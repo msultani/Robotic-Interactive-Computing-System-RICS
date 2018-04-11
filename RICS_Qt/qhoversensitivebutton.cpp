@@ -14,6 +14,7 @@ QHoverSensitiveButton::QHoverSensitiveButton(QWidget *parent) : QPushButton(pare
 {
     setMouseTracking(true);
     setAttribute(Qt::WA_Hover);
+    setCheckable(true);
 }
 
 
@@ -76,7 +77,7 @@ void QHoverSensitiveButton::buttonEntered(){
         //qDebug() << activationTime.toString();
         //qDebug() << activationTime.isValid();
 
-        emit pressed();
+        emit clicked();
         activationTime.start();
         buttonEntered();
         //hoverButton = "";

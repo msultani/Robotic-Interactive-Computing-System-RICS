@@ -55,6 +55,9 @@ public:
     static int target_z;
     static int claw_pos;
     static int target_claw;
+    static int arm_movement_degrees;
+    static int claw_movement_degrees;
+    static int move_delay;
     QStringList voice_commands;
     QStringList directional_commands;
     static QVector<QPair<QString, int> > command_queue;
@@ -73,6 +76,10 @@ public slots:
     void hover_time_down();
     void move_delay_up();
     void move_delay_down();
+    void arm_movement_degrees_up();
+    void arm_movement_degrees_down();
+    void claw_movement_degrees_up();
+    void claw_movement_degrees_down();
     void changeLabel();
     //void hover_pressed();
 
@@ -102,7 +109,6 @@ private:
     static bool voice_command_given;
     static QByteArray TCP_data;
     static QString move_direction;
-    int move_delay = 150;
 
     QTcpSocket *sock;
     void parse_TCP_command(QByteArray TCP_data);
