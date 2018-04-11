@@ -29,7 +29,8 @@ bool MainWindow::ready_to_send = true;
  * DELAY: 4
  */
 
-//PYTHON COMMANDS: fetch, up, down, left, right, forward, backward, stop
+// PYTHON COMMANDS: retract, rise, down, left, right,
+    // forward, backward, cancel, near, away
 
 
 void MainWindow::establish_TCP_connection(){
@@ -227,6 +228,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->stopButton, SIGNAL (clicked()), this, SLOT (stopPressed()));
 
+    connect(ui->hoverButton, SIGNAL (clicked()), this, SLOT (hoverButtonEntered()));
+
     //Open serial port
     port.setPortName("/dev/cu.usbmodem1421");
     port.setBaudRate(QSerialPort::Baud9600);
@@ -388,12 +391,11 @@ void MainWindow::received_confimation(){
 
     if (data == "X"){
         qDebug() << "Success";
+        ready_to_send = true;
+        write_to_arduino();
     }
 
-    // Check that the data was correct/from Arduino?
 
-    ready_to_send = true;
-    write_to_arduino();
 
 }
 
@@ -635,3 +637,10 @@ void MainWindow::reset_targets(){
     target_claw = claw_pos;
     command_queue.clear();
 }
+
+void MainWindow::hoverButtonEntered(){
+        QHoverSensitiveButton::hoverMode = !QHoverSensitiveButton::hoverMode;
+
+        emit changeLabel();
+}
+

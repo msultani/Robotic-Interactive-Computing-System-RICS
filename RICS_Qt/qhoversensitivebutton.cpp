@@ -20,7 +20,7 @@ QHoverSensitiveButton::QHoverSensitiveButton(QWidget *parent) : QPushButton(pare
 
 void QHoverSensitiveButton::hoverEnter(QHoverEvent *){
     //qDebug() << "hover " << hoverMode;
-
+/*
     if (this->objectName() == "hoverButton"){
         if (hoverPending){
             return;
@@ -30,10 +30,11 @@ void QHoverSensitiveButton::hoverEnter(QHoverEvent *){
         hoverButton = this->objectName();
         hoverButtonEntered();
     }
-
+*/
     if (!hoverMode || active_buttons.contains(this->objectName())){
         return;
     }
+
     active_buttons.append(this->objectName());
     activationTime.start();
     //qDebug() << "starting t: " + activationTime.toString();
@@ -53,7 +54,7 @@ void QHoverSensitiveButton::hoverLeave(QHoverEvent *){
     activationTime.setHMS(-1,-1,-1,-1);
 
 }
-
+/*
 void QHoverSensitiveButton::hoverButtonEntered(){
     while (activationTime.isValid() && activationTime.elapsed() < hoverTime){
         QCoreApplication::processEvents( QEventLoop::AllEvents, 100 );
@@ -65,7 +66,7 @@ void QHoverSensitiveButton::hoverButtonEntered(){
         emit changeLabel();
     }
 }
-
+*/
 void QHoverSensitiveButton::buttonEntered(){
     //qDebug() << "buttonEntered begin";
     while (activationTime.isValid() && activationTime.elapsed() < hoverTime){

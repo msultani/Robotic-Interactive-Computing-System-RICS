@@ -81,6 +81,7 @@ public slots:
     void claw_movement_degrees_up();
     void claw_movement_degrees_down();
     void changeLabel();
+    void hoverButtonEntered();
     //void hover_pressed();
 
     void move_up();
