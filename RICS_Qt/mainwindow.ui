@@ -581,9 +581,9 @@ color: white;
        <widget class="QPushButton" name="stopButton">
         <property name="geometry">
          <rect>
-          <x>430</x>
+          <x>410</x>
           <y>130</y>
-          <width>111</width>
+          <width>161</width>
           <height>101</height>
          </rect>
         </property>
@@ -600,7 +600,7 @@ border: solid;</string>
         </property>
         <property name="iconSize">
          <size>
-          <width>100</width>
+          <width>150</width>
           <height>100</height>
          </size>
         </property>
@@ -896,10 +896,10 @@ border: solid;</string>
        <widget class="QPushButton" name="pushButton">
         <property name="geometry">
          <rect>
-          <x>180</x>
-          <y>50</y>
-          <width>561</width>
-          <height>371</height>
+          <x>160</x>
+          <y>-20</y>
+          <width>731</width>
+          <height>541</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -912,12 +912,12 @@ border-style: solid;
         </property>
         <property name="icon">
          <iconset resource="resources.qrc">
-          <normaloff>:/images/tutorial_page.png</normaloff>:/images/tutorial_page.png</iconset>
+          <normaloff>:/images/tutorial-new.png</normaloff>:/images/tutorial-new.png</iconset>
         </property>
         <property name="iconSize">
          <size>
-          <width>450</width>
-          <height>450</height>
+          <width>600</width>
+          <height>600</height>
          </size>
         </property>
        </widget>
