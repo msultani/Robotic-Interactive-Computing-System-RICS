@@ -13,6 +13,7 @@ m = sr.Microphone()
 DEBUG = 1
 
 commands = ["retract",
+            "extend",
             "rise",
             "down",
             "left",
@@ -21,21 +22,11 @@ commands = ["retract",
             "backward",
             "cancel",
             "near", # claw
-            "away" # claw
+            "away", # claw
             ]
 
 hints = ["Echo start",  # activation word
         "Echo stop",    # deactivation word
-        "retract",
-        "rise",
-        "down",
-        "left",
-        "right",
-        "forward",
-        "backward",
-        "cancel",
-        "near", # claw
-        "away"
         ]
 
 hints.extend(commands)
@@ -55,13 +46,11 @@ def process_text(text):
                 activated = False
                 print("Voice commands turned OFF.")
 
-        if activated:
-            if word in commands:
-                keep.append(word)
+        if activated and word in commands:
+            keep.append(word)
     return keep
 
 
-# See python_ports.py from kccla@umich.edu
 def send_message(command_value):
     if DEBUG:
         sender = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

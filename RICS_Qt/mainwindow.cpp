@@ -74,7 +74,7 @@ void MainWindow::parse_TCP_command(QByteArray TCP_data){
 
     switch(voice_commands.indexOf(TCP_data)){
         case 0:
-            fetchPressed();
+            extendPressed();
             break;
         case 1:
             move_up();
@@ -120,7 +120,7 @@ void MainWindow::parse_TCP_command(QByteArray TCP_data){
         qDebug() << "entering while loop";
         switch(voice_commands.indexOf(TCP_data)){
             case 0:
-                fetchPressed();
+                extendPressed();
                 break;
             case 1:
                 move_up();
@@ -185,7 +185,7 @@ MainWindow::MainWindow(QWidget *parent) :
     // List of signals and the appropriate slot that they should connect to
     connect(ui->commandButton, SIGNAL (pressed()), this, SLOT (commandsPressed()));
 
-    connect(ui->fetchButton, SIGNAL (pressed()), this, SLOT (fetchPressed()));
+    connect(ui->fetchButton, SIGNAL (pressed()), this, SLOT (extendPressed()));
 
     connect(ui->settingButton, SIGNAL (pressed()), this, SLOT (settingsPressed()));
 
@@ -276,9 +276,9 @@ void MainWindow::commandsPressed(){
     }
 }
 
-void MainWindow::fetchPressed(){
+void MainWindow::extendPressed(){
     //change_values(x_pos, y_pos, z_pos);
-    move_direction = "fetch";
+    move_direction = "extend";
     reset_targets();
 
     push_command("0", 10, x_pos);
