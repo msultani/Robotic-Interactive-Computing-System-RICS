@@ -624,7 +624,7 @@ border-style: solid;
         </property>
         <property name="icon">
          <iconset resource="resources.qrc">
-          <normaloff>:/images/fetch 2.png</normaloff>:/images/fetch 2.png</iconset>
+          <normaloff>:/images/fetch-2 copy.png</normaloff>:/images/fetch-2 copy.png</iconset>
         </property>
         <property name="iconSize">
          <size>
