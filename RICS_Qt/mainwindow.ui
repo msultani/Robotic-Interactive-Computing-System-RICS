@@ -24,7 +24,7 @@
        <string notr="true">background: rgba(51, 64, 88, 0%);</string>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="startPage">
        <property name="styleSheet">
@@ -624,7 +624,7 @@ border-style: solid;
         </property>
         <property name="icon">
          <iconset resource="resources.qrc">
-          <normaloff>:/images/fetch-2 copy.png</normaloff>:/images/fetch-2 copy.png</iconset>
+          <normaloff>:/images/fetch-2.png</normaloff>:/images/fetch-2.png</iconset>
         </property>
         <property name="iconSize">
          <size>
