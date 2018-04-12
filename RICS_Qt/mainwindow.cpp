@@ -171,6 +171,10 @@ void MainWindow::read_settings(){
     fetch_claw = settings.value("fetch_claw", 0).toInt();
     change_hover_vals = settings.value("change_hover_vals", true).toBool();
 
+    arm_movement_degrees = settings.value("arm_movement_degrees", 10).toInt();
+    claw_movement_degrees = settings.value("claw_movement_degrees", 3).toInt();
+    move_delay = settings.value("move_delay", 150).toInt();
+
 }
 
 void MainWindow::write_settings(){
@@ -183,7 +187,9 @@ void MainWindow::write_settings(){
     settings.setValue("fetch_z", fetch_z);
     settings.setValue("fetch_claw", fetch_claw);
     settings.setValue("change_hover_vals", change_hover_vals);
-
+    settings.setValue("arm_movement_degrees", arm_movement_degrees);
+    settings.setValue("claw_movement_degrees", claw_movement_degrees);
+    settings.setValue("move_delay", move_delay);
 }
 
 
@@ -196,8 +202,12 @@ MainWindow::MainWindow(QWidget *parent) :
 
     read_settings();
 
+    // Set UI
     QString display = QString::number(double(QHoverSensitiveButton::hoverTime) / 1000.0, 'f', 1) + " secs";
     ui->hover_time_label->setText(display);
+    ui->arm_rotation_label->setText(QString::number(arm_movement_degrees) + " degrees");
+    ui->claw_rotation_label->setText(QString::number(claw_movement_degrees) + " degrees");
+    ui->move_delay_label->setText(QString::number(double(move_delay) / 1000.0, 'f', 2) + " secs");
 
     //Initialize voice_commands list
     voice_commands << "retract" << "rise" << "down" << "left" << "right" << "forward" << "backward" << "near" << "away" << "Recording on" << "Recording off";
@@ -269,6 +279,18 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->hoverButton, SIGNAL (clicked()), this, SLOT (hoverButtonEntered()));
 
     connect(ui->change_fetch_vals_button, SIGNAL (clicked()), this, SLOT (toggle_change_to_fetch_vals()));
+
+    connect(ui->claw_rotation_up_button, SIGNAL (clicked()), this, SLOT (claw_movement_degrees_up()));
+
+    connect(ui->claw_rotation_down_button, SIGNAL (clicked()), this, SLOT (claw_movement_degrees_down()));
+
+    connect(ui->arm_rotation_up_button, SIGNAL (clicked()), this, SLOT (arm_movement_degrees_up()));
+
+    connect(ui->arm_rotation_down_button, SIGNAL (clicked()), this, SLOT (arm_movement_degrees_down()));
+
+    connect(ui->move_delay_up_button, SIGNAL (clicked()), this, SLOT (move_delay_up()));
+
+    connect(ui->move_delay_down_button, SIGNAL (clicked()), this, SLOT (move_delay_down()));
 
     //Open serial port
     port.setPortName("/dev/cu.usbmodem1421");
@@ -363,15 +385,18 @@ void MainWindow::hover_time_down(){
 void MainWindow::hover_time_up(){
     QHoverSensitiveButton::hoverTime += 200;
 
-    QString display = QString::number(double(QHoverSensitiveButton::hoverTime) / 1000.0, 'f', 1) + " secs";
-    ui->hover_time_label->setText(display);
 }
+
 
 void MainWindow::move_delay_up() {
     int new_move_delay = move_delay + 10;
     if (new_move_delay <= 999){
+        move_delay = new_move_delay;
         qDebug() << "Move delay: " + QString::number(new_move_delay);
         command_queue.push_back(QPair<QString, int>("4", new_move_delay));
+
+        ui->move_delay_label->setText(QString::number(double(move_delay) / 1000.0, 'f', 2) + " secs");
+
         write_to_arduino();
     }
 }
@@ -379,8 +404,10 @@ void MainWindow::move_delay_up() {
 void MainWindow::move_delay_down() {
     int new_move_delay = move_delay - 10;
     if (new_move_delay >= 0) {
+        move_delay = new_move_delay;
         qDebug() << "Move delay: " + QString::number(new_move_delay);
         command_queue.push_back(QPair<QString, int>("4", new_move_delay));
+        ui->move_delay_label->setText(QString::number(double(move_delay) / 1000.0, 'f', 2) + " secs");
         write_to_arduino();
     }
 }
@@ -388,24 +415,28 @@ void MainWindow::move_delay_down() {
 void MainWindow::arm_movement_degrees_up() {
     if (arm_movement_degrees + 1 <= 15) {
         qDebug() << "Arm movement degrees: " + QString::number(++arm_movement_degrees);
+        ui->arm_rotation_label->setText(QString::number(arm_movement_degrees) + " degrees");
     }
 }
 
 void MainWindow::arm_movement_degrees_down() {
     if (arm_movement_degrees - 1 >= 3) {
         qDebug() << "Arm movement degrees: " + QString::number(--arm_movement_degrees);
+        ui->arm_rotation_label->setText(QString::number(arm_movement_degrees) + " degrees");
     }
 }
 
 void MainWindow::claw_movement_degrees_up() {
     if (claw_movement_degrees + 1 <= 10) {
         qDebug() << "Claw movement degrees: " + QString::number(++claw_movement_degrees);
+        ui->claw_rotation_label->setText(QString::number(claw_movement_degrees) + " degrees");
     }
 }
 
 void MainWindow::claw_movement_degrees_down() {
     if (claw_movement_degrees - 1 >= 3) {
         qDebug() << "Claw movement degrees: " + QString::number(--claw_movement_degrees);
+        ui->claw_rotation_label->setText(QString::number(claw_movement_degrees) + " degrees");
     }
 }
 
