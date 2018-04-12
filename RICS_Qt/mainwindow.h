@@ -29,6 +29,7 @@
 #include <QStringList>
 #include <string>
 #include <QProcess>
+#include <QSettings>
 
 namespace Ui {
 class MainWindow;
@@ -58,6 +59,10 @@ public:
     static int arm_movement_degrees;
     static int claw_movement_degrees;
     static int move_delay;
+    static int fetch_x;
+    static int fetch_y;
+    static int fetch_z;
+    static int fetch_claw;
     QStringList voice_commands;
     QStringList directional_commands;
     static QVector<QPair<QString, int> > command_queue;
@@ -119,6 +124,9 @@ private:
     QTcpServer * t;
 
     void establish_TCP_connection();
+
+    void read_settings();
+    void write_settings();
 
 };
 
