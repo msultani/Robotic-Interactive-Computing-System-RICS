@@ -315,7 +315,7 @@ void MainWindow::commandsPressed(){
 
 void MainWindow::fetchPressed(){
     //change_values(x_pos, y_pos, z_pos);
-    move_direction = "fetch";
+    move_direction = "extend";
     reset_targets();
 
     push_command("0", fetch_x, x_pos);
