@@ -87,6 +87,7 @@ public slots:
     void claw_movement_degrees_down();
     void changeLabel();
     void hoverButtonEntered();
+    void toggle_change_to_fetch_vals();
     //void hover_pressed();
 
     void move_up();
@@ -115,6 +116,7 @@ private:
     static bool voice_command_given;
     static QByteArray TCP_data;
     static QString move_direction;
+    static bool change_hover_vals;
 
     QTcpSocket *sock;
     void parse_TCP_command(QByteArray TCP_data);

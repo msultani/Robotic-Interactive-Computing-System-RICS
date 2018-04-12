@@ -9,6 +9,7 @@ int MainWindow::z_pos = 35;
 int MainWindow::target_x = x_pos;
 int MainWindow::target_y = y_pos;
 int MainWindow::target_z = z_pos;
+bool MainWindow::change_hover_vals;
 
 int MainWindow::claw_pos = 20;
 int MainWindow::target_claw = claw_pos;
@@ -168,6 +169,7 @@ void MainWindow::read_settings(){
     fetch_y = settings.value("fetch_y", 0).toInt();
     fetch_z = settings.value("fetch_z", 0).toInt();
     fetch_claw = settings.value("fetch_claw", 0).toInt();
+    change_hover_vals = settings.value("change_hover_vals", true).toBool();
 
 }
 
@@ -180,6 +182,7 @@ void MainWindow::write_settings(){
     settings.setValue("fetch_y", fetch_y);
     settings.setValue("fetch_z", fetch_z);
     settings.setValue("fetch_claw", fetch_claw);
+    settings.setValue("change_hover_vals", change_hover_vals);
 
 }
 
@@ -265,6 +268,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->hoverButton, SIGNAL (clicked()), this, SLOT (hoverButtonEntered()));
 
+    connect(ui->change_fetch_vals_button, SIGNAL (clicked()), this, SLOT (toggle_change_to_fetch_vals()));
+
     //Open serial port
     port.setPortName("/dev/cu.usbmodem1421");
     port.setBaudRate(QSerialPort::Baud9600);
@@ -332,6 +337,12 @@ void MainWindow::tutorialPressed(){
 
 void MainWindow::settingsPressed(){
     ui->stackedWidget->setCurrentIndex(2);
+    if (change_hover_vals){
+        ui->change_fetch_vals_button->setText("ON");
+    }
+    else{
+        ui->change_fetch_vals_button->setText("OFF");
+    }
 }
 
 void MainWindow::backPressed(){
@@ -573,11 +584,18 @@ void MainWindow::move_backward() {
 }
 
 void MainWindow::move_finished(){
-    // TODO!!!!!
     qDebug() << "Retract";
     reset_targets();
     ui->stackedWidget->setCurrentIndex(4);
     QHoverSensitiveButton::activationTime.setHMS(-1,-1,-1,-1);
+
+    if (change_hover_vals){
+        fetch_x = x_pos;
+        fetch_y = y_pos;
+        fetch_z = z_pos;
+        fetch_claw = claw_pos;
+    }
+
 
     bool restore = QHoverSensitiveButton::hoverMode;
     QHoverSensitiveButton::hoverMode = false;
@@ -587,18 +605,18 @@ void MainWindow::move_finished(){
     this->ui->countdownLabel->setText(display);
     this->ui->countdownLabel2->setText("seconds remaining");
 
-    while (countdown > 0){
-        delay(1000);
-        countdown--;
-        display = QString::number(countdown);
-        this->ui->countdownLabel->setText(display);
-    }
-
     while (!ready_to_send){
         qDebug() << "ERROR - Can't move arm yet\n";
         this->ui->countdownLabel->setText("");
         this->ui->countdownLabel2->setText("Oops! Please wait...");
         delay(200);
+    }
+
+    while (countdown > 0){
+        delay(1000);
+        countdown--;
+        display = QString::number(countdown);
+        this->ui->countdownLabel->setText(display);
     }
 
     push_command("0", 90, x_pos);
@@ -678,5 +696,15 @@ void MainWindow::hoverButtonEntered(){
         QHoverSensitiveButton::hoverMode = !QHoverSensitiveButton::hoverMode;
 
         emit changeLabel();
+}
+
+void MainWindow::toggle_change_to_fetch_vals(){
+    change_hover_vals = !change_hover_vals;
+    if (change_hover_vals){
+        ui->change_fetch_vals_button->setText("ON");
+    }
+    else{
+        ui->change_fetch_vals_button->setText("OFF");
+    }
 }
 
