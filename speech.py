@@ -1,5 +1,7 @@
-"""Must go into __init__.py in speech_recognition library and change line 924 'speechContext' to 'speechContexts'"""
-
+"""Must go into __init__.py in speech_recognition library and change line 924
+    'speechContext' to 'speechContexts'
+/Library/Frameworks/Python.framework/Versions/3.6/
+      lib/python3.6/site-packages/speech_recognition."""
 import speech_recognition as sr
 import socket
 import threading
@@ -9,10 +11,6 @@ import time
 
 r = sr.Recognizer()
 m = sr.Microphone()
-
-# To edit __init__.py, find it here.
-# /Library/Frameworks/Python.framework/Versions/3.6/
-#       lib/python3.6/site-packages/speech_recognition
 
 DEBUG = 1 # := 1 when done testing
 
