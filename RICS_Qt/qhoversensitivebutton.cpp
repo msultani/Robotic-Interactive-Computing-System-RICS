@@ -5,7 +5,7 @@ QTime QHoverSensitiveButton::activationTime(-1, -1, -1, -1);
 bool QHoverSensitiveButton::hoverMode = true;
 bool QHoverSensitiveButton::hoverPending = false;
 QString QHoverSensitiveButton::hoverButton = "";
-int QHoverSensitiveButton::hoverTime = 3000;
+int QHoverSensitiveButton::hoverTime;
 
 QList<QString> QHoverSensitiveButton::active_buttons;
 
