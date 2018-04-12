@@ -29,6 +29,7 @@
 #include <QStringList>
 #include <string>
 #include <QProcess>
+#include <QSettings>
 
 namespace Ui {
 class MainWindow;
@@ -58,6 +59,10 @@ public:
     static int arm_movement_degrees;
     static int claw_movement_degrees;
     static int move_delay;
+    static int fetch_x;
+    static int fetch_y;
+    static int fetch_z;
+    static int fetch_claw;
     QStringList voice_commands;
     QStringList directional_commands;
     static QVector<QPair<QString, int> > command_queue;
@@ -82,6 +87,7 @@ public slots:
     void claw_movement_degrees_down();
     void changeLabel();
     void hoverButtonEntered();
+    void toggle_change_to_fetch_vals();
     //void hover_pressed();
 
     void move_up();
@@ -110,6 +116,7 @@ private:
     static bool voice_command_given;
     static QByteArray TCP_data;
     static QString move_direction;
+    static bool change_hover_vals;
 
     QTcpSocket *sock;
     void parse_TCP_command(QByteArray TCP_data);
@@ -119,6 +126,9 @@ private:
     QTcpServer * t;
 
     void establish_TCP_connection();
+
+    void read_settings();
+    void write_settings();
 
 };
 

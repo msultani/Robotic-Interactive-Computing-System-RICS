@@ -24,7 +24,7 @@
        <string notr="true">background: rgba(51, 64, 88, 0%);</string>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="startPage">
        <property name="styleSheet">
@@ -624,7 +624,7 @@ border-style: solid;
         </property>
         <property name="icon">
          <iconset resource="resources.qrc">
-          <normaloff>:/images/fetch 2.png</normaloff>:/images/fetch 2.png</iconset>
+          <normaloff>:/images/fetch-2.png</normaloff>:/images/fetch-2.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -670,7 +670,7 @@ border: solid;
         <property name="geometry">
          <rect>
           <x>260</x>
-          <y>230</y>
+          <y>140</y>
           <width>171</width>
           <height>71</height>
          </rect>
@@ -686,7 +686,7 @@ border: solid;
         <property name="geometry">
          <rect>
           <x>520</x>
-          <y>240</y>
+          <y>160</y>
           <width>191</width>
           <height>41</height>
          </rect>
@@ -716,7 +716,7 @@ color: white;</string>
         <property name="geometry">
          <rect>
           <x>230</x>
-          <y>380</y>
+          <y>260</y>
           <width>101</width>
           <height>31</height>
          </rect>
@@ -743,7 +743,7 @@ color: white;</string>
         <property name="geometry">
          <rect>
           <x>350</x>
-          <y>320</y>
+          <y>210</y>
           <width>71</width>
           <height>71</height>
          </rect>
@@ -761,7 +761,7 @@ border: 1px solid black;</string>
         <property name="geometry">
          <rect>
           <x>350</x>
-          <y>400</y>
+          <y>290</y>
           <width>71</width>
           <height>71</height>
          </rect>
@@ -779,7 +779,7 @@ border: 1px solid black;</string>
         <property name="geometry">
          <rect>
           <x>540</x>
-          <y>350</y>
+          <y>260</y>
           <width>151</width>
           <height>41</height>
          </rect>
@@ -809,7 +809,7 @@ color: white;</string>
         <property name="geometry">
          <rect>
           <x>260</x>
-          <y>110</y>
+          <y>60</y>
           <width>171</width>
           <height>81</height>
          </rect>
@@ -825,7 +825,7 @@ color: white;</string>
         <property name="geometry">
          <rect>
           <x>520</x>
-          <y>110</y>
+          <y>70</y>
           <width>231</width>
           <height>51</height>
          </rect>
@@ -877,6 +877,49 @@ border: solid;
           <width>100</width>
           <height>100</height>
          </size>
+        </property>
+       </widget>
+       <widget class="QHoverSensitiveButton" name="change_fetch_vals_button">
+        <property name="geometry">
+         <rect>
+          <x>270</x>
+          <y>370</y>
+          <width>161</width>
+          <height>71</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_7">
+        <property name="geometry">
+         <rect>
+          <x>470</x>
+          <y>380</y>
+          <width>291</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Helvetica</family>
+          <pointsize>29</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">qproperty-alignment: AlignCenter;
+font: 29pt &quot;Helvetica&quot;;
+color: white;</string>
+        </property>
+        <property name="text">
+         <string>Set New Fetch Values</string>
         </property>
        </widget>
       </widget>
