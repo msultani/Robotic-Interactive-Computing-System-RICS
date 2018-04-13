@@ -113,50 +113,9 @@ void MainWindow::parse_TCP_command(QByteArray TCP_data){
             //TODO - remove recording symbol
             break;
         default:
-            qDebug() << "This shouldn't be called... something went wrong";
+            invalid_commands(TCP_data);
             break;
     }
-
-    /*
-     * Working code for the "stop" method
-     * Reads in a voice command, continues to (slowly) move the arm
-     * until "stop" command is received
-     * Need to ensure that this method can be implemented safely - waiting for Omega
-    while (voice_command_given){
-        qDebug() << "entering while loop";
-        switch(voice_commands.indexOf(TCP_data)){
-            case 0:
-                fetchPressed();
-                break;
-            case 1:
-                move_up();
-                break;
-            case 2:
-                move_down();
-                break;
-            case 3:
-                move_left();
-                break;
-            case 4:
-                move_right();
-                break;
-            case 5:
-                move_forward();
-                break;
-            case 6:
-                move_backward();
-            case 7:
-                voice_command_given = false;
-                qDebug() << "Stopping";
-                break;
-            default:
-                qDebug() << "This shouldn't be called... something went wrong";
-                break;
-        }
-        delay(2000);
-    }
-*/
-
 }
 
 void MainWindow::read_settings(){
@@ -214,22 +173,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     establish_TCP_connection();
 
- /*
-
-    p.setWorkingDirectory(QDir::currentPath());
-    qDebug() << QDir::currentPath();
-    p.start("python ../../../../qpython.py");
-    p.waitForFinished();
-    QString output(p.readAllStandardOutput());
-    qDebug() << output;
-
-     * speech_recognition/speech_recognition/__main__.py
-    p.setWorkingDirectory("speech_recognition/");
-    p.start("python ");
-    p.waitForFinished();
-    QString output(p.readAllStandardOutput());
-    qDebug() << output;
-*/
     // List of signals and the appropriate slot that they should connect to
     connect(ui->commandButton, SIGNAL (clicked()), this, SLOT (commandsPressed()));
 
@@ -685,7 +628,7 @@ void MainWindow::on_clawRight_pressed() {
     target_claw -= claw_movement_degrees;
     if (target_claw >= 17){
         command_queue.push_back(QPair<QString, int>("3", target_claw));
-        //ui->rightButton->setStyleSheet("QPushButton { background-color: red; }\n");
+        ui->rightButton->setStyleSheet("QPushButton { background-color: red; }\n");
         //qDebug() << "TARGET CLAW POS: " + QString::number(target_claw);
         write_to_arduino();
     }
@@ -693,10 +636,15 @@ void MainWindow::on_clawRight_pressed() {
 }
 
 void MainWindow::invalid_commands(QByteArray TCP_data){
-    QString invalid_data = QTextCodec::codecForMib(1015)->toUnicode(TCP_data);
-
-    this->ui->ready_label->setText("Vocal Input: " + invalid_data);
-
+    QString full_voice_transcript = QTextCodec::codecForMib(1015)->toUnicode(TCP_data);
+    // Check to see if the first two characters are "m:"
+    // If yes, this is the full transcript. Otherwise, this is an invalid command.
+    if (full_voice_transcript.size() > 2 && full_voice_transcript.chopped(2) == "m:") {
+        ui->ready_label->setText(full_voice_transcript.mid(2));
+        this->ui->ready_label->setText("You said: " + full_voice_transcript);
+    } else {
+        qDebug() << "Error in parse_TCP_command: Could not recognize TCP_Data";
+    }
 }
 
 void MainWindow::stopPressed() {
