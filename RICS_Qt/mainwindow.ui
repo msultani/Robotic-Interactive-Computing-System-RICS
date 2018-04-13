@@ -24,7 +24,7 @@
        <string notr="true">background: rgba(51, 64, 88, 0%);</string>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="startPage">
        <property name="styleSheet">
@@ -33,10 +33,10 @@
        <widget class="QHoverSensitiveButton" name="commandButton">
         <property name="geometry">
          <rect>
-          <x>120</x>
+          <x>230</x>
           <y>80</y>
-          <width>681</width>
-          <height>211</height>
+          <width>451</width>
+          <height>151</height>
          </rect>
         </property>
         <property name="font">
@@ -76,7 +76,7 @@ border-style: solid;
           <x>520</x>
           <y>270</y>
           <width>171</width>
-          <height>171</height>
+          <height>161</height>
          </rect>
         </property>
         <property name="font">
@@ -101,7 +101,7 @@ border-style: solid;
         <property name="iconSize">
          <size>
           <width>150</width>
-          <height>200</height>
+          <height>170</height>
          </size>
         </property>
        </widget>
