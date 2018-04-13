@@ -97,7 +97,6 @@ public slots:
     void move_left();
     void move_right();
     void move_finished();
-    void auto_move();
     void invalid_commands(QByteArray TCP_data);
     void received_confimation();
     void stopPressed();
@@ -112,7 +111,6 @@ private:
     Ui::MainWindow *ui;
     QSerialPort port;
     QByteArray ard_data;
-    static bool auto_movement;
     static bool voice_command_given;
     static QByteArray TCP_data;
     static QString move_direction;

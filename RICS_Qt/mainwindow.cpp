@@ -16,7 +16,6 @@ int MainWindow::target_claw = claw_pos;
 int MainWindow::arm_movement_degrees;
 int MainWindow::claw_movement_degrees = 3;
 int MainWindow::move_delay = 150;
-bool MainWindow::auto_movement= true;
 bool MainWindow::voice_command_given = false;
 QByteArray MainWindow::TCP_data = "";
 QVector<QPair<QString, int> > MainWindow::command_queue;
@@ -268,8 +267,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->releaseButton, SIGNAL (clicked()), this, SLOT (move_finished()));
 
-    connect(ui->autoButton, SIGNAL (clicked()), this, SLOT (auto_move()));
-
     connect(ui->clawLeft, SIGNAL (clicked()), this, SLOT (on_clawLeft_pressed()));
 
     connect(ui->clawRight, SIGNAL (clicked()), this, SLOT (on_clawRight_pressed()));
@@ -384,6 +381,8 @@ void MainWindow::hover_time_down(){
 
 void MainWindow::hover_time_up(){
     QHoverSensitiveButton::hoverTime += 200;
+    QString display = QString::number(double(QHoverSensitiveButton::hoverTime) / 1000.0, 'f', 1) + " secs";
+    ui->hover_time_label->setText(display);
 
 }
 
@@ -451,16 +450,6 @@ void MainWindow::changeLabel(){
     }
 }
 
-
-void MainWindow::auto_move(){
-    auto_movement = !auto_movement;
-    if (auto_movement){
-        ui->autoButton->setText("ON");
-    }
-    else{
-        ui->autoButton->setText("OFF");
-    }
-}
 
 // Called when we receive confirmation that the Arduino has finished processing a message
 void MainWindow::received_confimation(){
