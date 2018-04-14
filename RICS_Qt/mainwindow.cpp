@@ -74,7 +74,7 @@ void MainWindow::readTCPData(){
 void MainWindow::parse_TCP_command(QByteArray TCP_data){
 
     this->ui->ready_label->setText("Receiving Vocal Input...");
-    ui->stackedWidget->setCurrentIndex(1);
+    //ui->stackedWidget->setCurrentIndex(1);
     qDebug() << TCP_data;
 
     switch(voice_commands.indexOf(TCP_data)){
@@ -618,11 +618,11 @@ void MainWindow::invalid_commands(QByteArray TCP_data){
 }
 
 void MainWindow::message_too_long_error() {
-    ui->ready_label->setText("Uh oh! Couldn't request results from Google Speech Recognition service");
+    ui->voice_label->setText("Uh oh! Couldn't request results from Google Speech Recognition service");
 }
 
 void MainWindow::parsing_error(){
-    ui->ready_label->setText("Oops! I couldn't understand. Please retry your message.");
+    ui->voice_label->setText("Oops! I couldn't understand. Please retry your message.");
 }
 
 void MainWindow::stopPressed() {
