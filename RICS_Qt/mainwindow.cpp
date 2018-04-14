@@ -659,7 +659,7 @@ void MainWindow::message_too_long_error() {
 }
 
 void MainWindow::parsing_error(){
-    ui->ready_label->setText("Oops! I couldn't understand. Please retry your message.")
+    ui->ready_label->setText("Oops! I couldn't understand. Please retry your message.");
 }
 
 void MainWindow::stopPressed() {
