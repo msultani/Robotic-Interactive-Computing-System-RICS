@@ -27,15 +27,6 @@ void QHoverSensitiveButton::mouseReleaseEvent(QMouseEvent *e) {
 }
 
 void QHoverSensitiveButton::hoverEnter(QHoverEvent *){
-    if (this->objectName() == "hoverButton"){
-        if (hoverPending){
-            return;
-        }
-        activationTime.start();
-        hoverPending = true;
-        hoverButton = this->objectName();
-    }
-
     if (!hoverMode || active_buttons.contains(this->objectName())){
         return;
     }

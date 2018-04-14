@@ -12,7 +12,7 @@ import time
 r = sr.Recognizer()
 m = sr.Microphone()
 
-DEBUG = 1 # := 1 when done testing
+DEBUG = 0 # 1 for debugging, 0 for release
 
 commands = ["retract",
             "extend",
@@ -33,7 +33,7 @@ hints = ["Echo start",  # activation word
 
 hints.extend(commands)
 
-activated = False # := False when done testing
+activated = False # True for debugging, False for release
 
 def process_text(text):
     global activated
@@ -60,7 +60,7 @@ def process_text(text):
 
 
 def send_message(command_value):
-    if DEBUG:
+    if not DEBUG:
         sender = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sender.connect(("0.0.0.0", 6000))
         print("sending " + command_value)
@@ -92,6 +92,11 @@ try:
                 print("You said {}".format(value))
             # RICS code
             val = format(value)
+
+            # Send entire audio to Qt
+            if activated:
+                send_message("m:" + str(val))
+
             valid = process_text(val)
             print(valid)
             for word in valid:
@@ -99,8 +104,10 @@ try:
                 time.sleep(1)
         except sr.UnknownValueError:
             print("Oops! Didn't catch that")
+            send_message("unintelligible_message")
         except sr.RequestError as e:
             print("Uh oh! Couldn't request results from Google Speech Recognition service; {0}".format(e))
+            send_message("message_too_long")
 except KeyboardInterrupt:
     pass
 

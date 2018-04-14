@@ -98,6 +98,8 @@ public slots:
     void move_right();
     void move_finished();
     void invalid_commands(QByteArray TCP_data);
+    void message_too_long_error();
+    void parsing_error();
     void received_confimation();
     void stopPressed();
 

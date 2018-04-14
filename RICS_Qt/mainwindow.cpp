@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QSettings>
 
 bool MainWindow::popup_open = false;
 
@@ -110,6 +111,12 @@ void MainWindow::parse_TCP_command(QByteArray TCP_data){
         case 10:
             //TODO - remove recording symbol
             break;
+        case 11:
+            message_too_long_error();
+            break;
+        case 12:
+            parsing_error();
+            break;
         default:
             invalid_commands(TCP_data);
             break;
@@ -166,7 +173,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->move_delay_label->setText(QString::number(double(move_delay) / 1000.0, 'f', 2) + " secs");
 
     //Initialize voice_commands list
-    voice_commands << "retract" << "rise" << "down" << "left" << "right" << "forward" << "backward" << "near" << "away" << "Recording on" << "Recording off";
+    voice_commands << "retract" << "rise" << "down" << "left" << "right" << "forward" << "backward" << "near" << "away" << "Recording on" << "Recording off" << "message_too_long" << "unintelligible_message";
     directional_commands << "X" << "Y" << "Z";
 
     establish_TCP_connection();
@@ -611,6 +618,14 @@ void MainWindow::invalid_commands(QByteArray TCP_data){
     } else {
         qDebug() << "Error in parse_TCP_command: Could not recognize TCP_Data";
     }
+}
+
+void MainWindow::message_too_long_error() {
+    ui->ready_label->setText("Uh oh! Couldn't request results from Google Speech Recognition service");
+}
+
+void MainWindow::parsing_error(){
+    ui->ready_label->setText("Oops! I couldn't understand. Please retry your message.");
 }
 
 void MainWindow::stopPressed() {
