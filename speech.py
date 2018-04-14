@@ -40,7 +40,7 @@ def process_text(text):
     words = text.split()
     keep = []
     for idx, word in enumerate(words):
-        if word == "Echo":   
+        if word == "Echo":
             if words[idx+1] == "start":
                 if activated:
                     print("Voice commands are already on.")
@@ -80,7 +80,7 @@ try:
         send_message("Recording off")
         try:
             # recognize speech using Google Speech Recognition
-            with open("RICS-8b2cdf068357.json", 'r') as json_data:
+            with open("RICS-462ded3248b5.json", 'r') as json_data:
                 cereal = json.dumps(json.load(json_data))
                 value = r.recognize_google_cloud(audio, cereal, "en-US", hints)
 

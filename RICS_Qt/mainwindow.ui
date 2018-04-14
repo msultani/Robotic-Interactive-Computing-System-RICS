@@ -24,7 +24,7 @@
        <string notr="true">background: rgba(51, 64, 88, 0%);</string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="startPage">
        <property name="styleSheet">
@@ -318,7 +318,7 @@ border: solid;</string>
         <property name="geometry">
          <rect>
           <x>400</x>
-          <y>60</y>
+          <y>100</y>
           <width>171</width>
           <height>71</height>
          </rect>
@@ -346,7 +346,7 @@ border: solid;</string>
         <property name="geometry">
          <rect>
           <x>310</x>
-          <y>110</y>
+          <y>160</y>
           <width>91</width>
           <height>131</height>
          </rect>
@@ -374,7 +374,7 @@ border: solid;</string>
         <property name="geometry">
          <rect>
           <x>580</x>
-          <y>110</y>
+          <y>160</y>
           <width>91</width>
           <height>131</height>
          </rect>
@@ -402,7 +402,7 @@ border: solid;</string>
         <property name="geometry">
          <rect>
           <x>400</x>
-          <y>230</y>
+          <y>270</y>
           <width>171</width>
           <height>81</height>
          </rect>
@@ -429,9 +429,9 @@ border: solid;</string>
        <widget class="QLabel" name="ready_label">
         <property name="geometry">
          <rect>
-          <x>380</x>
+          <x>140</x>
           <y>0</y>
-          <width>201</width>
+          <width>711</width>
           <height>31</height>
          </rect>
         </property>
@@ -448,7 +448,7 @@ color: white;
        <widget class="QHoverSensitiveButton" name="clawLeft">
         <property name="geometry">
          <rect>
-          <x>290</x>
+          <x>270</x>
           <y>340</y>
           <width>111</width>
           <height>131</height>
@@ -476,7 +476,7 @@ border: solid;</string>
        <widget class="QHoverSensitiveButton" name="clawRight">
         <property name="geometry">
          <rect>
-          <x>420</x>
+          <x>590</x>
           <y>340</y>
           <width>121</width>
           <height>131</height>
@@ -506,7 +506,7 @@ border: solid;
         <property name="geometry">
          <rect>
           <x>440</x>
-          <y>30</y>
+          <y>70</y>
           <width>91</width>
           <height>31</height>
          </rect>
@@ -524,8 +524,8 @@ color: white;
        <widget class="QLabel" name="ready_label_3">
         <property name="geometry">
          <rect>
-          <x>670</x>
-          <y>160</y>
+          <x>680</x>
+          <y>210</y>
           <width>91</width>
           <height>31</height>
          </rect>
@@ -544,7 +544,7 @@ color: white;
         <property name="geometry">
          <rect>
           <x>440</x>
-          <y>310</y>
+          <y>350</y>
           <width>91</width>
           <height>31</height>
          </rect>
@@ -562,8 +562,8 @@ color: white;
        <widget class="QLabel" name="ready_label_5">
         <property name="geometry">
          <rect>
-          <x>220</x>
-          <y>160</y>
+          <x>210</x>
+          <y>210</y>
           <width>91</width>
           <height>31</height>
          </rect>
@@ -582,7 +582,7 @@ color: white;
         <property name="geometry">
          <rect>
           <x>410</x>
-          <y>130</y>
+          <y>170</y>
           <width>161</width>
           <height>101</height>
          </rect>
@@ -631,6 +631,25 @@ border-style: solid;
           <width>120</width>
           <height>120</height>
          </size>
+        </property>
+       </widget>
+       <widget class="QLabel" name="voice_label">
+        <property name="geometry">
+         <rect>
+          <x>150</x>
+          <y>40</y>
+          <width>731</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">qproperty-alignment: AlignCenter;
+font: 20pt &quot;.Helvetica Neue DeskInterface&quot;;
+color: white;
+</string>
+        </property>
+        <property name="text">
+         <string> </string>
         </property>
        </widget>
       </widget>

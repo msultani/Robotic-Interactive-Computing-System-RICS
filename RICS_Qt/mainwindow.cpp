@@ -647,8 +647,8 @@ void MainWindow::invalid_commands(QByteArray TCP_data){
     // Check to see if the first two characters are "m:"
     // If yes, this is the full transcript. Otherwise, this is an invalid command.
     if (full_voice_transcript.size() > 2 && full_voice_transcript.chopped(2) == "m:") {
-        ui->ready_label->setText(full_voice_transcript.mid(2));
-        this->ui->ready_label->setText("You said: " + full_voice_transcript);
+        //ui->ready_label->setText(full_voice_transcript.mid(2));
+        this->ui->voice_label->setText("You said: " + full_voice_transcript.mid(2));
     } else {
         qDebug() << "Error in parse_TCP_command: Could not recognize TCP_Data";
     }
