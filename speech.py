@@ -63,7 +63,7 @@ def send_message(command_value):
     if not DEBUG:
         sender = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sender.connect(("0.0.0.0", 6000))
-        print("sending " + command_value)
+        # print("sending " + str(command_value))
         sender.sendall(command_value)
         sender.close()
 
@@ -74,10 +74,10 @@ try:
     print("Set minimum energy threshold to {}".format(r.energy_threshold))
     while True:
         print("Say something!")
-        send_message("Recording on")
+        send_message(str.encode("Recording on"))
         with m as source: audio = r.listen(source)
         print("Got it! Now to recognize it...")
-        send_message("Recording off")
+        send_message(str.encode("Recording off"))
         try:
             # recognize speech using Google Speech Recognition
             with open("RICS-8b2cdf068357.json", 'r') as json_data:
@@ -95,19 +95,20 @@ try:
 
             # Send entire audio to Qt
             if activated:
-                send_message("m:" + str(val))
+                whole_message = "m:" + str(val)
+                send_message(str.encode(whole_message))
 
             valid = process_text(val)
             print(valid)
             for word in valid:
-                send_message(word)
+                send_message(str.encode(word))
                 time.sleep(1)
         except sr.UnknownValueError:
             print("Oops! Didn't catch that")
-            send_message("unintelligible_message")
+            send_message(str.encode("unintelligible_message"))
         except sr.RequestError as e:
             print("Uh oh! Couldn't request results from Google Speech Recognition service; {0}".format(e))
-            send_message("message_too_long")
+            send_message(str.encode("message_too_long"))
 except KeyboardInterrupt:
     pass
 
