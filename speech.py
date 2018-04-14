@@ -80,7 +80,7 @@ try:
         send_message(str.encode("Recording off"))
         try:
             # recognize speech using Google Speech Recognition
-            with open("RICS-462ded3248b5.json", 'r') as json_data:
+            with open("RICS-8b2cdf068357.json", 'r') as json_data:
                 cereal = json.dumps(json.load(json_data))
                 value = r.recognize_google_cloud(audio, cereal, "en-US", hints)
 
