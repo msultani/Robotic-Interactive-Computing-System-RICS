@@ -93,6 +93,7 @@ try:
             # RICS code
             val = format(value)
 
+            # Send entire audio to Qt
             if activated:
                 send_message("m:" + str(val))
 
@@ -103,10 +104,10 @@ try:
                 time.sleep(1)
         except sr.UnknownValueError:
             print("Oops! Didn't catch that")
+            send_message("unintelligible_message")
         except sr.RequestError as e:
             print("Uh oh! Couldn't request results from Google Speech Recognition service; {0}".format(e))
-            send_message("""m:Recording too long for Google Cloud Speech API.
-                Please send a shorter message.""")
+            send_message("message_too_long")
 except KeyboardInterrupt:
     pass
 
