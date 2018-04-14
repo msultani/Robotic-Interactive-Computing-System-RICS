@@ -23,5 +23,7 @@
         <file>fetch-2.png</file>
         <file>gear.png</file>
         <file>help.png</file>
+        <file>minus.png</file>
+        <file>plus.png</file>
     </qresource>
 </RCC>

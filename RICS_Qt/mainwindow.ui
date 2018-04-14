@@ -24,7 +24,7 @@
        <string notr="true">background: rgba(51, 64, 88, 0%);</string>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="startPage">
        <property name="styleSheet">
@@ -649,7 +649,7 @@ color: white;
 </string>
         </property>
         <property name="text">
-         <string> </string>
+         <string/>
         </property>
        </widget>
       </widget>
@@ -689,7 +689,7 @@ border: solid;
         <property name="geometry">
          <rect>
           <x>20</x>
-          <y>190</y>
+          <y>150</y>
           <width>141</width>
           <height>71</height>
          </rect>
@@ -705,7 +705,7 @@ border: solid;
         <property name="geometry">
          <rect>
           <x>170</x>
-          <y>210</y>
+          <y>170</y>
           <width>191</width>
           <height>41</height>
          </rect>
@@ -762,18 +762,28 @@ color: white;</string>
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>280</y>
-          <width>71</width>
-          <height>71</height>
+          <y>290</y>
+          <width>61</width>
+          <height>61</height>
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(255, 248, 102);
+         <string notr="true">background-color: rgba(255, 248, 102, 0%);
 font: 30pt &quot;.Helvetica Neue DeskInterface&quot;;
-border: 1px solid black;</string>
+border: solid;</string>
         </property>
         <property name="text">
-         <string>+</string>
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/images/plus.png</normaloff>:/images/plus.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>60</width>
+          <height>60</height>
+         </size>
         </property>
        </widget>
        <widget class="QHoverSensitiveButton" name="hover_time_down_button">
@@ -781,23 +791,33 @@ border: 1px solid black;</string>
          <rect>
           <x>120</x>
           <y>360</y>
-          <width>71</width>
-          <height>71</height>
+          <width>61</width>
+          <height>61</height>
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(29, 241, 240);
+         <string notr="true">background-color: rgba(29, 241, 240, 0%);
 font: 30pt &quot;.Helvetica Neue DeskInterface&quot;;
-border: 1px solid black;</string>
+border: solid</string>
         </property>
         <property name="text">
-         <string>-</string>
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/images/minus.png</normaloff>:/images/minus.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>60</width>
+          <height>60</height>
+         </size>
         </property>
        </widget>
        <widget class="QLabel" name="label_6">
         <property name="geometry">
          <rect>
-          <x>240</x>
+          <x>200</x>
           <y>330</y>
           <width>151</width>
           <height>41</height>
@@ -928,53 +948,113 @@ color: white;</string>
        <widget class="QHoverSensitiveButton" name="claw_rotation_up_button">
         <property name="geometry">
          <rect>
-          <x>510</x>
+          <x>520</x>
           <y>180</y>
-          <width>71</width>
+          <width>61</width>
           <height>61</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgba(29, 241, 240, 0%);
+font: 30pt &quot;.Helvetica Neue DeskInterface&quot;;
+border: solid</string>
+        </property>
         <property name="text">
-         <string>+</string>
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/images/plus.png</normaloff>:/images/plus.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>60</width>
+          <height>60</height>
+         </size>
         </property>
        </widget>
        <widget class="QHoverSensitiveButton" name="claw_rotation_down_button">
         <property name="geometry">
          <rect>
-          <x>580</x>
+          <x>590</x>
           <y>180</y>
-          <width>71</width>
+          <width>61</width>
           <height>61</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgba(29, 241, 240, 0%);
+font: 30pt &quot;.Helvetica Neue DeskInterface&quot;;
+border: solid</string>
+        </property>
         <property name="text">
-         <string>-</string>
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/images/minus.png</normaloff>:/images/minus.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>60</width>
+          <height>60</height>
+         </size>
         </property>
        </widget>
        <widget class="QHoverSensitiveButton" name="move_delay_up_button">
         <property name="geometry">
          <rect>
-          <x>510</x>
+          <x>520</x>
           <y>370</y>
-          <width>71</width>
+          <width>61</width>
           <height>61</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgba(29, 241, 240, 0%);
+font: 30pt &quot;.Helvetica Neue DeskInterface&quot;;
+border: solid</string>
+        </property>
         <property name="text">
-         <string>+</string>
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/images/plus.png</normaloff>:/images/plus.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>60</width>
+          <height>60</height>
+         </size>
         </property>
        </widget>
        <widget class="QHoverSensitiveButton" name="move_delay_down_button">
         <property name="geometry">
          <rect>
-          <x>580</x>
+          <x>590</x>
           <y>370</y>
-          <width>71</width>
+          <width>61</width>
           <height>61</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgba(29, 241, 240, 0%);
+font: 30pt &quot;.Helvetica Neue DeskInterface&quot;;
+border: solid</string>
+        </property>
         <property name="text">
-         <string>-</string>
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/images/minus.png</normaloff>:/images/minus.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>60</width>
+          <height>60</height>
+         </size>
         </property>
        </widget>
        <widget class="QLabel" name="label_9">
@@ -1091,14 +1171,29 @@ color: white;</string>
        <widget class="QHoverSensitiveButton" name="arm_rotation_up_button">
         <property name="geometry">
          <rect>
-          <x>510</x>
+          <x>520</x>
           <y>280</y>
-          <width>71</width>
+          <width>61</width>
           <height>61</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgba(29, 241, 240, 0%);
+font: 30pt &quot;.Helvetica Neue DeskInterface&quot;;
+border: solid</string>
+        </property>
         <property name="text">
-         <string>+</string>
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/images/plus.png</normaloff>:/images/plus.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>60</width>
+          <height>60</height>
+         </size>
         </property>
        </widget>
        <widget class="QLabel" name="label_10">
@@ -1134,14 +1229,29 @@ color: white;</string>
        <widget class="QHoverSensitiveButton" name="arm_rotation_down_button">
         <property name="geometry">
          <rect>
-          <x>580</x>
+          <x>590</x>
           <y>280</y>
-          <width>71</width>
+          <width>61</width>
           <height>61</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgba(29, 241, 240, 0%);
+font: 30pt &quot;.Helvetica Neue DeskInterface&quot;;
+border: solid</string>
+        </property>
         <property name="text">
-         <string>-</string>
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/images/minus.png</normaloff>:/images/minus.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>60</width>
+          <height>60</height>
+         </size>
         </property>
        </widget>
       </widget>
