@@ -10,41 +10,46 @@ int QHoverSensitiveButton::hoverTime;
 QList<QString> QHoverSensitiveButton::active_buttons;
 
 
-QHoverSensitiveButton::QHoverSensitiveButton(QWidget *parent) : QPushButton(parent)
-{
+QHoverSensitiveButton::QHoverSensitiveButton(QWidget *parent) : QPushButton(parent) {
     setMouseTracking(true);
     setAttribute(Qt::WA_Hover);
 }
 
 void QHoverSensitiveButton::mousePressEvent(QMouseEvent *e) {
+    // Change the screen to the commands screen here
     setStyleSheet("QPushButton { border-style: solid; border-width: 5px; border-color: red;}");
     QPushButton::mousePressEvent(e);
 }
 
 void QHoverSensitiveButton::mouseReleaseEvent(QMouseEvent *e) {
+    // Change the screen to the commands screen here
     setStyleSheet("QPushButton {}");
     QPushButton::mouseReleaseEvent(e);
 }
 
-void QHoverSensitiveButton::hoverEnter(QHoverEvent *){
-    if (!hoverMode || active_buttons.contains(this->objectName())){
+void QHoverSensitiveButton::hoverEnter(QHoverEvent *) {
+    if (!hoverMode || active_buttons.contains(this->objectName())) {
         return;
     }
+    setStyleSheet("QPushButton { border-style: solid; border-width: 5px; border-color: red;}");
     active_buttons.append(this->objectName());
     activationTime.start();
     hoverButton = this->objectName();
     buttonEntered();
 }
 
-void QHoverSensitiveButton::hoverLeave(QHoverEvent *){
+void QHoverSensitiveButton::hoverLeave(QHoverEvent *) {
+    if (!hoverMode) {
+        return;
+    }
+    setStyleSheet("QPushButton {}");
     active_buttons.removeAll(this->objectName());
     hoverPending = false;
     hoverButton = "";
     activationTime.setHMS(-1,-1,-1,-1);
-
 }
 
-void QHoverSensitiveButton::buttonEntered(){
+void QHoverSensitiveButton::buttonEntered() {
     while (activationTime.isValid() && activationTime.elapsed() < hoverTime){
         QCoreApplication::processEvents( QEventLoop::AllEvents, 100 );
     }
@@ -55,8 +60,7 @@ void QHoverSensitiveButton::buttonEntered(){
     }
 }
 
-bool QHoverSensitiveButton::event(QEvent *event)
-{
+bool QHoverSensitiveButton::event(QEvent *event) {
     switch(event->type())
     {
     case QEvent::HoverEnter:

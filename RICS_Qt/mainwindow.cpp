@@ -27,7 +27,8 @@ int MainWindow::fetch_y;
 int MainWindow::fetch_z;
 int MainWindow::fetch_claw;
 
-/* X SERVO: 0
+/*
+ * X SERVO: 0
  * Y SERVO: 1
  * Z SERVO: 2
  * CLAW SERVO: 3
@@ -49,7 +50,6 @@ void MainWindow::establish_TCP_connection(){
     else{
         qDebug() << "TCP connected";
     }
-
 }
 
 void MainWindow::connection(){
@@ -510,7 +510,6 @@ void MainWindow::move_forward() {
 
 }
 void MainWindow::move_backward() {
-
     if (move_direction != "backward") {
         move_direction = "backward";
         reset_targets();
@@ -535,7 +534,6 @@ void MainWindow::move_finished(){
         fetch_z = z_pos;
         fetch_claw = claw_pos;
     }
-
 
     bool restore = QHoverSensitiveButton::hoverMode;
     QHoverSensitiveButton::hoverMode = false;
@@ -579,7 +577,6 @@ void MainWindow::move_finished(){
 }
 
 void MainWindow::on_clawLeft_pressed() {
-
     qDebug() << "on_clawLeft_pressed()";
     if (move_direction != "claw_left"){
         move_direction = "claw_left";
@@ -613,8 +610,8 @@ void MainWindow::invalid_commands(QByteArray TCP_data){
     // Check to see if the first two characters are "m:"
     // If yes, this is the full transcript. Otherwise, this is an invalid command.
     if (full_voice_transcript.size() > 2 && full_voice_transcript.chopped(2) == "m:") {
-        ui->ready_label->setText(full_voice_transcript.mid(2));
-        this->ui->ready_label->setText("You said: " + full_voice_transcript);
+        //ui->ready_label->setText(full_voice_transcript.mid(2));
+        this->ui->voice_label->setText("You said: " + full_voice_transcript.mid(2));
     } else {
         qDebug() << "Error in parse_TCP_command: Could not recognize TCP_Data";
     }
