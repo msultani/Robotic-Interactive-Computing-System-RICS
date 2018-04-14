@@ -29,6 +29,7 @@
 #include <QStringList>
 #include <string>
 #include <QProcess>
+#include <QSettings>
 
 namespace Ui {
 class MainWindow;
@@ -55,6 +56,13 @@ public:
     static int target_z;
     static int claw_pos;
     static int target_claw;
+    static int arm_movement_degrees;
+    static int claw_movement_degrees;
+    static int move_delay;
+    static int fetch_x;
+    static int fetch_y;
+    static int fetch_z;
+    static int fetch_claw;
     QStringList voice_commands;
     QStringList directional_commands;
     static QVector<QPair<QString, int> > command_queue;
@@ -64,7 +72,7 @@ public:
 public slots:
     void readTCPData();
     void connection();
-    void extendPressed();
+    void fetchPressed();
     void commandsPressed();
     void tutorialPressed();
     void settingsPressed();
@@ -73,7 +81,13 @@ public slots:
     void hover_time_down();
     void move_delay_up();
     void move_delay_down();
+    void arm_movement_degrees_up();
+    void arm_movement_degrees_down();
+    void claw_movement_degrees_up();
+    void claw_movement_degrees_down();
     void changeLabel();
+    void hoverButtonEntered();
+    void toggle_change_to_fetch_vals();
     //void hover_pressed();
 
     void move_up();
@@ -83,7 +97,6 @@ public slots:
     void move_left();
     void move_right();
     void move_finished();
-    void auto_move();
     void invalid_commands(QByteArray TCP_data);
     void received_confimation();
     void stopPressed();
@@ -98,11 +111,10 @@ private:
     Ui::MainWindow *ui;
     QSerialPort port;
     QByteArray ard_data;
-    static bool auto_movement;
     static bool voice_command_given;
     static QByteArray TCP_data;
     static QString move_direction;
-    int move_delay = 150;
+    static bool change_hover_vals;
 
     QTcpSocket *sock;
     void parse_TCP_command(QByteArray TCP_data);
@@ -112,6 +124,9 @@ private:
     QTcpServer * t;
 
     void establish_TCP_connection();
+
+    void read_settings();
+    void write_settings();
 
 };
 

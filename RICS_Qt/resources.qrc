@@ -6,7 +6,6 @@
         <file>forward.png</file>
         <file>right.png</file>
         <file>up.png</file>
-        <file>release.png</file>
         <file>left.png</file>
         <file>fetch.png</file>
         <file>settings.png</file>
@@ -18,5 +17,9 @@
         <file>controls.png</file>
         <file>away.png</file>
         <file>near.png</file>
+        <file>tutorial-new.png</file>
+        <file>cancel.png</file>
+        <file>retract.png</file>
+        <file>fetch-2.png</file>
     </qresource>
 </RCC>

@@ -1,5 +1,7 @@
-"""Must go into __init__.py in speech_recognition library and change line 924 'speechContext' to 'speechContexts'"""
-
+"""Must go into __init__.py in speech_recognition library and change line 924
+    'speechContext' to 'speechContexts'
+/Library/Frameworks/Python.framework/Versions/3.6/
+      lib/python3.6/site-packages/speech_recognition."""
 import speech_recognition as sr
 import socket
 import threading
@@ -10,7 +12,7 @@ import time
 r = sr.Recognizer()
 m = sr.Microphone()
 
-DEBUG = 1
+DEBUG = 1 # := 1 when done testing
 
 commands = ["retract",
             "extend",
@@ -31,7 +33,7 @@ hints = ["Echo start",  # activation word
 
 hints.extend(commands)
 
-activated = False
+activated = False # := False when done testing
 
 def process_text(text):
     global activated
@@ -40,11 +42,17 @@ def process_text(text):
     for idx, word in enumerate(words):
         if word == "Echo":   
             if words[idx+1] == "start":
-                activated = True
-                print("Voice commands turned ON.")
+                if activated:
+                    print("Voice commands are already on.")
+                else:
+                    activated = True
+                    print("Voice commands turned ON.")
             elif words[idx+1] == "stop":
-                activated = False
-                print("Voice commands turned OFF.")
+                if activated:
+                    activated = False
+                    print("Voice commands turned OFF.")
+                else:
+                    print("Voice commands are already off.")
 
         if activated and word in commands:
             keep.append(word)
@@ -55,7 +63,6 @@ def send_message(command_value):
     if DEBUG:
         sender = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sender.connect(("0.0.0.0", 6000))
-        #data = json.dumps( {"message_value" : command_value} )
         print("sending " + command_value)
         sender.sendall(command_value)
         sender.close()

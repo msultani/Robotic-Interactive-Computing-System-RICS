@@ -10,17 +10,23 @@ int MainWindow::z_pos = 35;
 int MainWindow::target_x = x_pos;
 int MainWindow::target_y = y_pos;
 int MainWindow::target_z = z_pos;
+bool MainWindow::change_hover_vals;
 
 int MainWindow::claw_pos = 20;
 int MainWindow::target_claw = claw_pos;
-int MainWindow::move_speed = 5;
-int MainWindow::rotation_degrees = 3;
-bool MainWindow::auto_movement= true;
+int MainWindow::arm_movement_degrees;
+int MainWindow::claw_movement_degrees = 3;
+int MainWindow::move_delay = 150;
 bool MainWindow::voice_command_given = false;
 QByteArray MainWindow::TCP_data = "";
 QVector<QPair<QString, int> > MainWindow::command_queue;
 QString MainWindow::move_direction = "";
 bool MainWindow::ready_to_send = true;
+
+int MainWindow::fetch_x;
+int MainWindow::fetch_y;
+int MainWindow::fetch_z;
+int MainWindow::fetch_claw;
 
 /* X SERVO: 0
  * Y SERVO: 1
@@ -75,7 +81,7 @@ void MainWindow::parse_TCP_command(QByteArray TCP_data){
 
     switch(voice_commands.indexOf(TCP_data)){
         case 0:
-            extendPressed();
+            fetchPressed();
             break;
         case 1:
             move_up();
@@ -108,51 +114,43 @@ void MainWindow::parse_TCP_command(QByteArray TCP_data){
             //TODO - remove recording symbol
             break;
         default:
-            qDebug() << "This shouldn't be called... something went wrong";
+            invalid_commands(TCP_data);
             break;
     }
+}
 
-    /*
-     * Working code for the "stop" method
-     * Reads in a voice command, continues to (slowly) move the arm
-     * until "stop" command is received
-     * Need to ensure that this method can be implemented safely - waiting for Omega
-    while (voice_command_given){
-        qDebug() << "entering while loop";
-        switch(voice_commands.indexOf(TCP_data)){
-            case 0:
-                extendPressed();
-                break;
-            case 1:
-                move_up();
-                break;
-            case 2:
-                move_down();
-                break;
-            case 3:
-                move_left();
-                break;
-            case 4:
-                move_right();
-                break;
-            case 5:
-                move_forward();
-                break;
-            case 6:
-                move_backward();
-            case 7:
-                voice_command_given = false;
-                qDebug() << "Stopping";
-                break;
-            default:
-                qDebug() << "This shouldn't be called... something went wrong";
-                break;
-        }
-        delay(2000);
-    }
-*/
+void MainWindow::read_settings(){
+    QSettings settings("RICS", "RICS");
+
+    arm_movement_degrees = settings.value("arm_movement_degrees", 5).toInt();
+    QHoverSensitiveButton::hoverTime = settings.value("hoverTime", 3000).toInt();
+    fetch_x = settings.value("fetch_x", 10).toInt();
+    fetch_y = settings.value("fetch_y", 0).toInt();
+    fetch_z = settings.value("fetch_z", 0).toInt();
+    fetch_claw = settings.value("fetch_claw", 0).toInt();
+    change_hover_vals = settings.value("change_hover_vals", true).toBool();
+
+    arm_movement_degrees = settings.value("arm_movement_degrees", 10).toInt();
+    claw_movement_degrees = settings.value("claw_movement_degrees", 3).toInt();
+    move_delay = settings.value("move_delay", 150).toInt();
 
 }
+
+void MainWindow::write_settings(){
+    QSettings settings("RICS", "RICS");
+
+    settings.setValue("arm_movement_degrees", arm_movement_degrees);
+    settings.setValue("hoverTime", QHoverSensitiveButton::hoverTime);
+    settings.setValue("fetch_x", fetch_x);
+    settings.setValue("fetch_y", fetch_y);
+    settings.setValue("fetch_z", fetch_z);
+    settings.setValue("fetch_claw", fetch_claw);
+    settings.setValue("change_hover_vals", change_hover_vals);
+    settings.setValue("arm_movement_degrees", arm_movement_degrees);
+    settings.setValue("claw_movement_degrees", claw_movement_degrees);
+    settings.setValue("move_delay", move_delay);
+}
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -161,72 +159,79 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     ui->stackedWidget->setCurrentIndex(0);
 
+    read_settings();
+
+    // Set UI
+    QString display = QString::number(double(QHoverSensitiveButton::hoverTime) / 1000.0, 'f', 1) + " secs";
+    ui->hover_time_label->setText(display);
+    ui->arm_rotation_label->setText(QString::number(arm_movement_degrees) + " degrees");
+    ui->claw_rotation_label->setText(QString::number(claw_movement_degrees) + " degrees");
+    ui->move_delay_label->setText(QString::number(double(move_delay) / 1000.0, 'f', 2) + " secs");
+
     //Initialize voice_commands list
     voice_commands << "retract" << "rise" << "down" << "left" << "right" << "forward" << "backward" << "near" << "away" << "Recording on" << "Recording off";
     directional_commands << "X" << "Y" << "Z";
 
     establish_TCP_connection();
 
- /*
-
-    p.setWorkingDirectory(QDir::currentPath());
-    qDebug() << QDir::currentPath();
-    p.start("python ../../../../qpython.py");
-    p.waitForFinished();
-    QString output(p.readAllStandardOutput());
-    qDebug() << output;
-
-     * speech_recognition/speech_recognition/__main__.py
-    p.setWorkingDirectory("speech_recognition/");
-    p.start("python ");
-    p.waitForFinished();
-    QString output(p.readAllStandardOutput());
-    qDebug() << output;
-*/
     // List of signals and the appropriate slot that they should connect to
-    connect(ui->commandButton, SIGNAL (pressed()), this, SLOT (commandsPressed()));
+    connect(ui->commandButton, SIGNAL (clicked()), this, SLOT (commandsPressed()));
 
-    connect(ui->fetchButton, SIGNAL (pressed()), this, SLOT (extendPressed()));
+    connect(ui->fetchButton, SIGNAL (clicked()), this, SLOT (fetchPressed()));
 
-    connect(ui->settingButton, SIGNAL (pressed()), this, SLOT (settingsPressed()));
+    connect(ui->settingButton, SIGNAL (clicked()), this, SLOT (settingsPressed()));
 
-    connect(ui->tutorialButton, SIGNAL (pressed()), this, SLOT (tutorialPressed()));
+    connect(ui->tutorialButton, SIGNAL (clicked()), this, SLOT (tutorialPressed()));
 
-    connect(ui->backButton, SIGNAL (pressed()), this, SLOT (backPressed()));
+    connect(ui->backButton, SIGNAL (clicked()), this, SLOT (backPressed()));
 
-    connect(ui->backButton_2, SIGNAL (pressed()), this, SLOT (backPressed()));
+    connect(ui->backButton_2, SIGNAL (clicked()), this, SLOT (backPressed()));
 
-    connect(ui->backButton_3, SIGNAL (pressed()), this, SLOT (backPressed()));
+    connect(ui->backButton_3, SIGNAL (clicked()), this, SLOT (backPressed()));
 
-    connect(ui->tutorialButton, SIGNAL (pressed()), this, SLOT (tutorialPressed()));
+    connect(ui->tutorialButton, SIGNAL (clicked()), this, SLOT (tutorialPressed()));
 
-    connect(ui->hover_time_up_button, SIGNAL (pressed()), this, SLOT (hover_time_up()));
+    connect(ui->hover_time_up_button, SIGNAL (clicked()), this, SLOT (hover_time_up()));
 
-    connect(ui->hover_time_down_button, SIGNAL (pressed()), this, SLOT (hover_time_down()));
+    connect(ui->hover_time_down_button, SIGNAL (clicked()), this, SLOT (hover_time_down()));
 
     connect(ui->hoverButton, SIGNAL (changeLabel()), this, SLOT (changeLabel()));
 
-    connect(ui->upButton, SIGNAL (pressed()), this, SLOT (move_up()));
+    connect(ui->upButton, SIGNAL (clicked()), this, SLOT (move_up()));
 
-    connect(ui->downButton, SIGNAL (pressed()), this, SLOT (move_down()));
+    connect(ui->downButton, SIGNAL (clicked()), this, SLOT (move_down()));
 
-    connect(ui->leftButton, SIGNAL (pressed()), this, SLOT (move_left()));
+    connect(ui->leftButton, SIGNAL (clicked()), this, SLOT (move_left()));
 
-    connect(ui->rightButton, SIGNAL (pressed()), this, SLOT (move_right()));
+    connect(ui->rightButton, SIGNAL (clicked()), this, SLOT (move_right()));
 
-    connect(ui->forwardButton, SIGNAL (pressed()), this, SLOT (move_forward()));
+    connect(ui->forwardButton, SIGNAL (clicked()), this, SLOT (move_forward()));
 
-    connect(ui->backwardButton, SIGNAL (pressed()), this, SLOT (move_backward()));
+    connect(ui->backwardButton, SIGNAL (clicked()), this, SLOT (move_backward()));
 
-    connect(ui->releaseButton, SIGNAL (pressed()), this, SLOT (move_finished()));
+    connect(ui->releaseButton, SIGNAL (clicked()), this, SLOT (move_finished()));
 
-    connect(ui->autoButton, SIGNAL (pressed()), this, SLOT (auto_move()));
+    connect(ui->clawLeft, SIGNAL (clicked()), this, SLOT (on_clawLeft_pressed()));
 
-    connect(ui->clawLeft, SIGNAL (pressed()), this, SLOT (on_clawLeft_pressed()));
+    connect(ui->clawRight, SIGNAL (clicked()), this, SLOT (on_clawRight_pressed()));
 
-    connect(ui->clawRight, SIGNAL (pressed()), this, SLOT (on_clawRight_pressed()));
+    connect(ui->stopButton, SIGNAL (clicked()), this, SLOT (stopPressed()));
 
-    connect(ui->stopButton, SIGNAL (pressed()), this, SLOT (stopPressed()));
+    connect(ui->hoverButton, SIGNAL (clicked()), this, SLOT (hoverButtonEntered()));
+
+    connect(ui->change_fetch_vals_button, SIGNAL (clicked()), this, SLOT (toggle_change_to_fetch_vals()));
+
+    connect(ui->claw_rotation_up_button, SIGNAL (clicked()), this, SLOT (claw_movement_degrees_up()));
+
+    connect(ui->claw_rotation_down_button, SIGNAL (clicked()), this, SLOT (claw_movement_degrees_down()));
+
+    connect(ui->arm_rotation_up_button, SIGNAL (clicked()), this, SLOT (arm_movement_degrees_up()));
+
+    connect(ui->arm_rotation_down_button, SIGNAL (clicked()), this, SLOT (arm_movement_degrees_down()));
+
+    connect(ui->move_delay_up_button, SIGNAL (clicked()), this, SLOT (move_delay_up()));
+
+    connect(ui->move_delay_down_button, SIGNAL (clicked()), this, SLOT (move_delay_down()));
 
     //Open serial port
     port.setPortName("/dev/cu.usbmodem1421");
@@ -256,6 +261,7 @@ MainWindow::~MainWindow()
     if (port.isOpen()){
         port.close();
     }
+    write_settings();
     //this->sock->close();
     delete ui;
 }
@@ -275,15 +281,15 @@ void MainWindow::commandsPressed(){
     }
 }
 
-void MainWindow::extendPressed(){
+void MainWindow::fetchPressed(){
     //change_values(x_pos, y_pos, z_pos);
     move_direction = "extend";
     reset_targets();
 
-    push_command("0", 10, x_pos);
-    push_command("1", 0, y_pos);
-    push_command("2", 0, z_pos);
-    push_command("3", 0, claw_pos); // TODO - target_claw
+    push_command("0", fetch_x, x_pos);
+    push_command("1", fetch_y, y_pos);
+    push_command("2", fetch_z, z_pos);
+    push_command("3", fetch_claw, claw_pos); // TODO - target_claw
 
     write_to_arduino();
 }
@@ -294,6 +300,12 @@ void MainWindow::tutorialPressed(){
 
 void MainWindow::settingsPressed(){
     ui->stackedWidget->setCurrentIndex(2);
+    if (change_hover_vals){
+        ui->change_fetch_vals_button->setText("ON");
+    }
+    else{
+        ui->change_fetch_vals_button->setText("OFF");
+    }
 }
 
 void MainWindow::backPressed(){
@@ -313,16 +325,21 @@ void MainWindow::hover_time_down(){
 
 void MainWindow::hover_time_up(){
     QHoverSensitiveButton::hoverTime += 200;
-
     QString display = QString::number(double(QHoverSensitiveButton::hoverTime) / 1000.0, 'f', 1) + " secs";
     ui->hover_time_label->setText(display);
+
 }
+
 
 void MainWindow::move_delay_up() {
     int new_move_delay = move_delay + 10;
     if (new_move_delay <= 999){
+        move_delay = new_move_delay;
         qDebug() << "Move delay: " + QString::number(new_move_delay);
         command_queue.push_back(QPair<QString, int>("4", new_move_delay));
+
+        ui->move_delay_label->setText(QString::number(double(move_delay) / 1000.0, 'f', 2) + " secs");
+
         write_to_arduino();
     }
 }
@@ -330,9 +347,39 @@ void MainWindow::move_delay_up() {
 void MainWindow::move_delay_down() {
     int new_move_delay = move_delay - 10;
     if (new_move_delay >= 0) {
+        move_delay = new_move_delay;
         qDebug() << "Move delay: " + QString::number(new_move_delay);
         command_queue.push_back(QPair<QString, int>("4", new_move_delay));
+        ui->move_delay_label->setText(QString::number(double(move_delay) / 1000.0, 'f', 2) + " secs");
         write_to_arduino();
+    }
+}
+
+void MainWindow::arm_movement_degrees_up() {
+    if (arm_movement_degrees + 1 <= 15) {
+        qDebug() << "Arm movement degrees: " + QString::number(++arm_movement_degrees);
+        ui->arm_rotation_label->setText(QString::number(arm_movement_degrees) + " degrees");
+    }
+}
+
+void MainWindow::arm_movement_degrees_down() {
+    if (arm_movement_degrees - 1 >= 3) {
+        qDebug() << "Arm movement degrees: " + QString::number(--arm_movement_degrees);
+        ui->arm_rotation_label->setText(QString::number(arm_movement_degrees) + " degrees");
+    }
+}
+
+void MainWindow::claw_movement_degrees_up() {
+    if (claw_movement_degrees + 1 <= 10) {
+        qDebug() << "Claw movement degrees: " + QString::number(++claw_movement_degrees);
+        ui->claw_rotation_label->setText(QString::number(claw_movement_degrees) + " degrees");
+    }
+}
+
+void MainWindow::claw_movement_degrees_down() {
+    if (claw_movement_degrees - 1 >= 3) {
+        qDebug() << "Claw movement degrees: " + QString::number(--claw_movement_degrees);
+        ui->claw_rotation_label->setText(QString::number(claw_movement_degrees) + " degrees");
     }
 }
 
@@ -348,16 +395,6 @@ void MainWindow::changeLabel(){
 }
 
 
-void MainWindow::auto_move(){
-    auto_movement = !auto_movement;
-    if (auto_movement){
-        ui->autoButton->setText("ON");
-    }
-    else{
-        ui->autoButton->setText("OFF");
-    }
-}
-
 // Called when we receive confirmation that the Arduino has finished processing a message
 void MainWindow::received_confimation(){
     QByteArray data = port.readAll();
@@ -365,12 +402,11 @@ void MainWindow::received_confimation(){
 
     if (data == "X"){
         qDebug() << "Success";
+        ready_to_send = true;
+        write_to_arduino();
     }
 
-    // Check that the data was correct/from Arduino?
 
-    ready_to_send = true;
-    write_to_arduino();
 
 }
 
@@ -427,7 +463,7 @@ void MainWindow::move_down(){
         reset_targets();
     }
 
-    target_y += move_speed;
+    target_y += arm_movement_degrees;
     if (target_y <= 35){
         command_queue.push_back(QPair<QString, int>("1", target_y));
 
@@ -445,7 +481,7 @@ void MainWindow::move_up(){
         reset_targets();
     }
 
-    target_y -= move_speed;
+    target_y -= arm_movement_degrees;
     if (target_y >= 0){
         command_queue.push_back(QPair<QString, int>("1", target_y));
         write_to_arduino();
@@ -460,7 +496,7 @@ void MainWindow::move_left(){
         reset_targets();
     }
     //ui->leftButton->setStyleSheet("QPushButton { background-color: red; }\n");
-    target_x += move_speed;
+    target_x += arm_movement_degrees;
     if (target_x <= 180){
         command_queue.push_back(QPair<QString, int>("0", target_x));
         write_to_arduino();
@@ -473,7 +509,7 @@ void MainWindow::move_right(){
         move_direction = "right";
         reset_targets();
     }
-    target_x -= move_speed;
+    target_x -= arm_movement_degrees;
     if (target_x >= 0){
         command_queue.push_back(QPair<QString, int>("0", target_x));
 
@@ -487,7 +523,7 @@ void MainWindow::move_forward() {
         move_direction = "forward";
         reset_targets();
     }
-    target_z -= move_speed;
+    target_z -= arm_movement_degrees;
     if (target_z >= 0) {
         command_queue.push_back(QPair<QString, int>("2", target_z));
         write_to_arduino();
@@ -503,7 +539,7 @@ void MainWindow::move_backward() {
         move_direction = "backward";
         reset_targets();
     }
-    target_z += move_speed;
+    target_z += arm_movement_degrees;
     if (target_z <= 60){
         command_queue.push_back(QPair<QString, int>("2", target_z));
 
@@ -512,11 +548,18 @@ void MainWindow::move_backward() {
 }
 
 void MainWindow::move_finished(){
-    // TODO!!!!!
     qDebug() << "Retract";
     reset_targets();
     ui->stackedWidget->setCurrentIndex(4);
     QHoverSensitiveButton::activationTime.setHMS(-1,-1,-1,-1);
+
+    if (change_hover_vals){
+        fetch_x = x_pos;
+        fetch_y = y_pos;
+        fetch_z = z_pos;
+        fetch_claw = claw_pos;
+    }
+
 
     bool restore = QHoverSensitiveButton::hoverMode;
     QHoverSensitiveButton::hoverMode = false;
@@ -526,18 +569,18 @@ void MainWindow::move_finished(){
     this->ui->countdownLabel->setText(display);
     this->ui->countdownLabel2->setText("seconds remaining");
 
-    while (countdown > 0){
-        delay(1000);
-        countdown--;
-        display = QString::number(countdown);
-        this->ui->countdownLabel->setText(display);
-    }
-
     while (!ready_to_send){
         qDebug() << "ERROR - Can't move arm yet\n";
         this->ui->countdownLabel->setText("");
         this->ui->countdownLabel2->setText("Oops! Please wait...");
         delay(200);
+    }
+
+    while (countdown > 0){
+        delay(1000);
+        countdown--;
+        display = QString::number(countdown);
+        this->ui->countdownLabel->setText(display);
     }
 
     push_command("0", 90, x_pos);
@@ -566,7 +609,7 @@ void MainWindow::on_clawLeft_pressed() {
         move_direction = "claw_left";
         reset_targets();
     }
-    target_claw += rotation_degrees;
+    target_claw += claw_movement_degrees;
 
     if (target_claw <= 140){
         command_queue.push_back(QPair<QString, int>("3", target_claw));
@@ -583,10 +626,10 @@ void MainWindow::on_clawRight_pressed() {
         move_direction = "claw_right";
         reset_targets();
     }
-    target_claw -= rotation_degrees;
+    target_claw -= claw_movement_degrees;
     if (target_claw >= 17){
         command_queue.push_back(QPair<QString, int>("3", target_claw));
-        //ui->rightButton->setStyleSheet("QPushButton { background-color: red; }\n");
+        ui->rightButton->setStyleSheet("QPushButton { background-color: red; }\n");
         //qDebug() << "TARGET CLAW POS: " + QString::number(target_claw);
         write_to_arduino();
     }
@@ -594,10 +637,15 @@ void MainWindow::on_clawRight_pressed() {
 }
 
 void MainWindow::invalid_commands(QByteArray TCP_data){
-    QString invalid_data = QTextCodec::codecForMib(1015)->toUnicode(TCP_data);
-
-    this->ui->ready_label->setText("Vocal Input: " + invalid_data);
-
+    QString full_voice_transcript = QTextCodec::codecForMib(1015)->toUnicode(TCP_data);
+    // Check to see if the first two characters are "m:"
+    // If yes, this is the full transcript. Otherwise, this is an invalid command.
+    if (full_voice_transcript.size() > 2 && full_voice_transcript.chopped(2) == "m:") {
+        ui->ready_label->setText(full_voice_transcript.mid(2));
+        this->ui->ready_label->setText("You said: " + full_voice_transcript);
+    } else {
+        qDebug() << "Error in parse_TCP_command: Could not recognize TCP_Data";
+    }
 }
 
 void MainWindow::stopPressed() {
@@ -612,3 +660,20 @@ void MainWindow::reset_targets(){
     target_claw = claw_pos;
     command_queue.clear();
 }
+
+void MainWindow::hoverButtonEntered(){
+        QHoverSensitiveButton::hoverMode = !QHoverSensitiveButton::hoverMode;
+
+        emit changeLabel();
+}
+
+void MainWindow::toggle_change_to_fetch_vals(){
+    change_hover_vals = !change_hover_vals;
+    if (change_hover_vals){
+        ui->change_fetch_vals_button->setText("ON");
+    }
+    else{
+        ui->change_fetch_vals_button->setText("OFF");
+    }
+}
+
