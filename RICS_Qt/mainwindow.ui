@@ -24,7 +24,7 @@
        <string notr="true">background: rgba(51, 64, 88, 0%);</string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="startPage">
        <property name="styleSheet">
@@ -578,7 +578,7 @@ color: white;
          <string>Left</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="stopButton">
+       <widget class="QHoverSensitiveButton" name="stopButton">
         <property name="geometry">
          <rect>
           <x>410</x>
@@ -605,7 +605,7 @@ border: solid;</string>
          </size>
         </property>
        </widget>
-       <widget class="QPushButton" name="fetchButton">
+       <widget class="QHoverSensitiveButton" name="fetchButton">
         <property name="geometry">
          <rect>
           <x>730</x>
