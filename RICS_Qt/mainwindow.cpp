@@ -27,7 +27,8 @@ int MainWindow::fetch_y;
 int MainWindow::fetch_z;
 int MainWindow::fetch_claw;
 
-/* X SERVO: 0
+/*
+ * X SERVO: 0
  * Y SERVO: 1
  * Z SERVO: 2
  * CLAW SERVO: 3
@@ -49,7 +50,6 @@ void MainWindow::establish_TCP_connection(){
     else{
         qDebug() << "TCP connected";
     }
-
 }
 
 void MainWindow::connection(){
@@ -510,7 +510,6 @@ void MainWindow::move_forward() {
 
 }
 void MainWindow::move_backward() {
-
     if (move_direction != "backward") {
         move_direction = "backward";
         reset_targets();
@@ -535,7 +534,6 @@ void MainWindow::move_finished(){
         fetch_z = z_pos;
         fetch_claw = claw_pos;
     }
-
 
     bool restore = QHoverSensitiveButton::hoverMode;
     QHoverSensitiveButton::hoverMode = false;
@@ -579,7 +577,6 @@ void MainWindow::move_finished(){
 }
 
 void MainWindow::on_clawLeft_pressed() {
-
     qDebug() << "on_clawLeft_pressed()";
     if (move_direction != "claw_left"){
         move_direction = "claw_left";
