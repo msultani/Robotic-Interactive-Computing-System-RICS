@@ -1,0 +1,885 @@
+MAINWINDOW.UI:
+
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>406</width>
+    <height>326</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <property name="styleSheet">
+    <string notr="true">background: rgb(67, 83, 106);</string>
+   </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QStackedWidget" name="stackedWidget">
+      <property name="styleSheet">
+       <string notr="true">background: rgb(67, 83, 106);</string>
+      </property>
+      <property name="currentIndex">
+       <number>1</number>
+      </property>
+      <widget class="QWidget" name="startPage">
+       <property name="styleSheet">
+        <string notr="true">background: rgb(67, 83, 106)</string>
+       </property>
+       <widget class="QHoverSensitiveButton" name="fetchButton">
+        <property name="geometry">
+         <rect>
+          <x>90</x>
+          <y>60</y>
+          <width>211</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial Rounded MT Bold</family>
+          <pointsize>30</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="mouseTracking">
+         <bool>true</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(0, 0, 255);
+border-style: solid;
+
+</string>
+        </property>
+        <property name="text">
+         <string>Fetch</string>
+        </property>
+       </widget>
+       <widget class="QHoverSensitiveButton" name="settingButton">
+        <property name="geometry">
+         <rect>
+          <x>240</x>
+          <y>160</y>
+          <width>100</width>
+          <height>100</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial Rounded MT Bold</family>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 233, 39);
+border-style: solid;
+max-width:100px;
+max-height:100px;
+min-width:100px;
+min-height:100px;
+</string>
+        </property>
+        <property name="text">
+         <string>Settings</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>10</y>
+          <width>71</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial Narrow</family>
+          <pointsize>15</pointsize>
+          <underline>true</underline>
+         </font>
+        </property>
+        <property name="text">
+         <string>Hover + Hold</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_2">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>30</y>
+          <width>51</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial Narrow</family>
+          <pointsize>15</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>to Select</string>
+        </property>
+       </widget>
+       <widget class="QHoverSensitiveButton" name="tutorialButton">
+        <property name="geometry">
+         <rect>
+          <x>50</x>
+          <y>160</y>
+          <width>100</width>
+          <height>100</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial Rounded MT Bold</family>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(90, 225, 143);
+border-style: solid;
+max-width:100px;
+max-height:100px;
+min-width:100px;
+min-height:100px;
+</string>
+        </property>
+        <property name="text">
+         <string>Tutorials</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="movementPage">
+       <widget class="QHoverSensitiveButton" name="releaseButton">
+        <property name="geometry">
+         <rect>
+          <x>250</x>
+          <y>170</y>
+          <width>122</width>
+          <height>102</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial Rounded MT Bold</family>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(90, 225, 143);
+border-style: solid;
+ border-width:1px;
+ border-radius:50px;
+ border-color: rgb(18, 121, 65);
+ max-width:120px;
+ max-height:100px;
+ min-width:120px;
+ min-height:100px;</string>
+        </property>
+        <property name="text">
+         <string>Release</string>
+        </property>
+       </widget>
+       <widget class="QHoverSensitiveButton" name="backButton_3">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>51</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: red;
+border: solid;</string>
+        </property>
+        <property name="text">
+         <string>Back</string>
+        </property>
+       </widget>
+       <widget class="QHoverSensitiveButton" name="forwardButton">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>160</y>
+          <width>131</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(240, 223, 51);
+border: solid;</string>
+        </property>
+        <property name="text">
+         <string>Forward</string>
+        </property>
+       </widget>
+       <widget class="QHoverSensitiveButton" name="backwardButton">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>230</y>
+          <width>131</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(29, 241, 240);
+border: solid;</string>
+        </property>
+        <property name="text">
+         <string>Backward</string>
+        </property>
+       </widget>
+       <widget class="QHoverSensitiveButton" name="upButton">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>10</y>
+          <width>81</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(205, 205, 205);
+border: solid;</string>
+        </property>
+        <property name="text">
+         <string>Up</string>
+        </property>
+       </widget>
+       <widget class="QHoverSensitiveButton" name="leftButton">
+        <property name="geometry">
+         <rect>
+          <x>100</x>
+          <y>60</y>
+          <width>81</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(205, 205, 205);
+border: solid;</string>
+        </property>
+        <property name="text">
+         <string>Left</string>
+        </property>
+       </widget>
+       <widget class="QHoverSensitiveButton" name="rightButton">
+        <property name="geometry">
+         <rect>
+          <x>220</x>
+          <y>60</y>
+          <width>81</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(205, 205, 205);
+border: solid;</string>
+        </property>
+        <property name="text">
+         <string>Right</string>
+        </property>
+       </widget>
+       <widget class="QHoverSensitiveButton" name="downButton">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>110</y>
+          <width>81</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(205, 205, 205);
+border: solid;</string>
+        </property>
+        <property name="text">
+         <string>Down</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="settingsPage">
+       <property name="styleSheet">
+        <string notr="true">background: rgb(67, 83, 106)</string>
+       </property>
+       <widget class="QLabel" name="label_3">
+        <property name="geometry">
+         <rect>
+          <x>6</x>
+          <y>30</y>
+          <width>391</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial Rounded MT Bold</family>
+          <pointsize>25</pointsize>
+         </font>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">qproperty-alignment: AlignCenter;</string>
+        </property>
+        <property name="text">
+         <string>SETTINGS</string>
+        </property>
+       </widget>
+       <widget class="QHoverSensitiveButton" name="backButton">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>51</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: red;
+border: solid;</string>
+        </property>
+        <property name="text">
+         <string>Back</string>
+        </property>
+       </widget>
+       <widget class="QHoverSensitiveButton" name="hoverButton">
+        <property name="geometry">
+         <rect>
+          <x>31</x>
+          <y>90</y>
+          <width>121</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>ON/OFF</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_4">
+        <property name="geometry">
+         <rect>
+          <x>240</x>
+          <y>100</y>
+          <width>91</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial Rounded MT Bold</family>
+          <pointsize>15</pointsize>
+         </font>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">qproperty-alignment: AlignCenter;</string>
+        </property>
+        <property name="text">
+         <string>Hover Mode</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="hover_time_label">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>155</y>
+          <width>101</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">qproperty-alignment: AlignCenter;</string>
+        </property>
+        <property name="text">
+         <string>3 secs</string>
+        </property>
+       </widget>
+       <widget class="QHoverSensitiveButton" name="hover_time_up_button">
+        <property name="geometry">
+         <rect>
+          <x>150</x>
+          <y>140</y>
+          <width>51</width>
+          <height>32</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(240, 223, 51);
+border: 1px solid black;</string>
+        </property>
+        <property name="text">
+         <string>U</string>
+        </property>
+       </widget>
+       <widget class="QHoverSensitiveButton" name="hover_time_down_button">
+        <property name="geometry">
+         <rect>
+          <x>150</x>
+          <y>170</y>
+          <width>51</width>
+          <height>32</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(29, 241, 240);
+border: 1px solid black;</string>
+        </property>
+        <property name="text">
+         <string>D</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_6">
+        <property name="geometry">
+         <rect>
+          <x>230</x>
+          <y>160</y>
+          <width>101</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial Rounded MT Bold</family>
+          <pointsize>15</pointsize>
+         </font>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">qproperty-alignment: AlignCenter;</string>
+        </property>
+        <property name="text">
+         <string>Hover Time</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tutorialPage">
+       <widget class="QLabel" name="label_5">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>30</y>
+          <width>57</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Tutorials</string>
+        </property>
+       </widget>
+       <widget class="QHoverSensitiveButton" name="backButton_2">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>51</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: red;
+border: solid;</string>
+        </property>
+        <property name="text">
+         <string>Back</string>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>QHoverSensitiveButton</class>
+   <extends>QPushButton</extends>
+   <header>qhoversensitivebutton.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
+
+
+
+
+--------------------
+qhover...cpp
+
+#include "qhoversensitivebutton.h"
+#include "ui_mainwindow.h"
+
+bool QHoverSensitiveButton::hoverMode = true;
+bool QHoverSensitiveButton::hoverPending = false;
+QString QHoverSensitiveButton::hoverButton = "";
+int QHoverSensitiveButton::hoverTime = 3000;
+
+
+QHoverSensitiveButton::QHoverSensitiveButton(QWidget *parent) : QPushButton(parent)
+{
+    setMouseTracking(true);
+    setAttribute(Qt::WA_Hover);
+}
+
+
+void QHoverSensitiveButton::hoverEnter(QHoverEvent *){
+
+    qDebug() << "Hover Enter";
+
+    if (this->objectName() == "hoverButton"){
+        if (hoverPending){
+            return;
+        }
+        t.start();
+        hoverPending = true;
+        hoverButton = this->objectName();
+        hoverButtonEntered();
+    }
+
+    if (!hoverMode){
+        return;
+    }
+
+    t.start();
+    hoverButton = this->objectName();
+    buttonEntered();
+    //emit hovered();
+}
+
+void QHoverSensitiveButton::hoverLeave(QHoverEvent *){
+
+    qDebug() << "Hover Leave";
+    hoverPending = false;
+    hoverButton = "";
+    t.setHMS(-1,-1,-1,-1);
+
+}
+
+void QHoverSensitiveButton::hoverButtonEntered(){
+    while (t.isValid() && t.elapsed() < hoverTime){
+        QCoreApplication::processEvents( QEventLoop::AllEvents, 100 );
+    }
+    if (t.isValid() && hoverButton == this->objectName()){
+        qDebug() << "Hover mode toggled";
+        hoverMode = !hoverMode;
+        emit changeLabel();
+    }
+}
+
+void QHoverSensitiveButton::buttonEntered(){
+    while (t.isValid() && t.elapsed() < hoverTime){
+        QCoreApplication::processEvents( QEventLoop::AllEvents, 100 );
+    }
+    if (t.isValid() && hoverButton == this->objectName()){
+        qDebug() << "Button pressed";
+        emit hovered();
+    }
+}
+
+bool QHoverSensitiveButton::event(QEvent *event)
+{
+    switch(event->type())
+    {
+    case QEvent::HoverEnter:
+        hoverEnter(static_cast<QHoverEvent*>(event));
+        return true;
+        break;
+    case QEvent::HoverLeave:
+        hoverLeave(static_cast<QHoverEvent*>(event));
+        return true;
+        break;
+    default:
+        break;
+    }
+    return QWidget::event(event);
+}
+
+
+-----------------
+q mainwindow.cpp
+
+
+
+#include "mainwindow.h"
+#include "ui_mainwindow.h"
+
+MainWindow::MainWindow(QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::MainWindow)
+{
+    ui->setupUi(this);
+    ui->stackedWidget->setCurrentIndex(0);
+
+    // List of signals and the appropriate slot that they should connect to
+    connect(ui->fetchButton, SIGNAL (pressed()), this, SLOT (fetchPressed()));
+    connect(ui->fetchButton, SIGNAL (hovered()), this, SLOT (fetchPressed()));
+
+    connect(ui->settingButton, SIGNAL (pressed()), this, SLOT (settingsPressed()));
+    connect(ui->settingButton, SIGNAL (hovered()), this, SLOT (settingsPressed()));
+
+    connect(ui->tutorialButton, SIGNAL (pressed()), this, SLOT (tutorialPressed()));
+    connect(ui->tutorialButton, SIGNAL (hovered()), this, SLOT (tutorialPressed()));
+
+    connect(ui->backButton, SIGNAL (pressed()), this, SLOT (backPressed()));
+    connect(ui->backButton, SIGNAL (hovered()), this, SLOT (backPressed()));
+    connect(ui->backButton_2, SIGNAL (pressed()), this, SLOT (backPressed()));
+    connect(ui->backButton_2, SIGNAL (hovered()), this, SLOT (backPressed()));
+    connect(ui->backButton_3, SIGNAL (pressed()), this, SLOT (backPressed()));
+    connect(ui->backButton_3, SIGNAL (hovered()), this, SLOT (backPressed()));
+
+    connect(ui->tutorialButton, SIGNAL (pressed()), this, SLOT (tutorialPressed()));
+    connect(ui->tutorialButton, SIGNAL (hovered()), this, SLOT (tutorialPressed()));
+
+    connect(ui->hover_time_up_button, SIGNAL (pressed()), this, SLOT (hover_time_up()));
+    connect(ui->hover_time_up_button, SIGNAL (hovered()), this, SLOT (hover_time_up()));
+
+    connect(ui->hover_time_down_button, SIGNAL (pressed()), this, SLOT (hover_time_down()));
+    connect(ui->hover_time_down_button, SIGNAL (hovered()), this, SLOT (hover_time_down()));
+
+    connect(ui->hoverButton, SIGNAL (changeLabel()), this, SLOT (changeLabel()));
+
+    connect(ui->upButton, SIGNAL (pressed()), this, SLOT (move_up()));
+    connect(ui->upButton, SIGNAL (hovered()), this, SLOT (move_up()));
+
+    connect(ui->downButton, SIGNAL (pressed()), this, SLOT (move_down()));
+    connect(ui->downButton, SIGNAL (hovered()), this, SLOT (move_down()));
+
+    connect(ui->leftButton, SIGNAL (pressed()), this, SLOT (move_left()));
+    connect(ui->leftButton, SIGNAL (hovered()), this, SLOT (move_left()));
+
+    connect(ui->rightButton, SIGNAL (pressed()), this, SLOT (move_right()));
+    connect(ui->rightButton, SIGNAL (hovered()), this, SLOT (move_right()));
+
+    connect(ui->forwardButton, SIGNAL (pressed()), this, SLOT (move_forward()));
+    connect(ui->forwardButton, SIGNAL (hovered()), this, SLOT (move_forward()));
+
+    connect(ui->backwardButton, SIGNAL (pressed()), this, SLOT (move_backward()));
+    connect(ui->backwardButton, SIGNAL (hovered()), this, SLOT (move_backward()));
+
+}
+
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+}
+
+
+void MainWindow::fetchPressed(){
+    ui->stackedWidget->setCurrentIndex(1);
+}
+
+void MainWindow::tutorialPressed(){
+    ui->stackedWidget->setCurrentIndex(3);
+}
+
+void MainWindow::settingsPressed(){
+    ui->stackedWidget->setCurrentIndex(2);
+}
+
+void MainWindow::backPressed(){
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+void MainWindow::hover_time_down(){
+
+    QHoverSensitiveButton::hoverTime -= 1000;
+
+    if (QHoverSensitiveButton::hoverTime <= 0){
+        QHoverSensitiveButton::hoverTime = 0;
+    }
+    QString display = QString::number(QHoverSensitiveButton::hoverTime / 1000) + " secs";
+    ui->hover_time_label->setText(display);
+}
+
+void MainWindow::hover_time_up(){
+    QHoverSensitiveButton::hoverTime += 1000;
+
+    QString display = QString::number(QHoverSensitiveButton::hoverTime / 1000) + " secs";
+    ui->hover_time_label->setText(display);
+}
+
+void MainWindow::changeLabel(){
+    if (ui->label->text() == "Hover + Hold"){
+        ui->label->setText("Press Button");
+    }
+    else{
+        ui->label->setText("Hover + Hold");
+    }
+}
+
+void MainWindow::move_up(){
+    qDebug() << "Move up";
+}
+void MainWindow::move_down(){
+    qDebug() << "Move down";
+}
+void MainWindow::move_left(){
+    qDebug() << "Move left";
+}
+void MainWindow::move_right(){
+    qDebug() << "Move right";
+}
+void MainWindow::move_forward(){
+    qDebug() << "Move forward";
+}
+void MainWindow::move_backward(){
+    qDebug() << "Move backward";
+}
+
+
+
+
+--------------
+hover.h
+
+
+
+#ifndef QHOVERSENSATIVEBUTTON_H
+#define QHOVERSENSATIVEBUTTON_H
+#include "mainwindow.h"
+#include <QtWidgets>
+#include <QTime>
+
+#include <QWidget>
+#include <QDebug>
+#include <QPushButton>
+#include <QSerialPort>
+#include <QSerialPortInfo>
+#include <QEnterEvent>
+
+#include <QtCore>
+#include <QMessageBox>
+
+#include <QWaitCondition>
+
+
+class QHoverSensitiveButton : public QPushButton
+{
+    friend class MainWindow;
+    Q_OBJECT
+public:
+    explicit QHoverSensitiveButton(QWidget *parent = 0);
+    static bool hoverMode;
+    static bool hoverPending;
+    static QString hoverButton;
+    static int hoverTime;
+
+    void hoverWait();
+
+signals:
+    void hovered();
+    void changeLabel();
+
+
+private:
+    void hoverButtonEntered();
+    void buttonEntered();
+    QTime t;
+
+protected:
+    void hoverEnter(QHoverEvent *event);
+    void hoverLeave(QHoverEvent *event);
+    bool event(QEvent *event);
+
+
+signals:
+
+public slots:
+};
+
+#endif // QHOVERSENSATIVEBUTTON_H
+
+
+
+
+-------------
+mainwindow.h
+
+
+#ifndef MAINWINDOW_H
+#define MAINWINDOW_H
+
+#include <QMainWindow>
+
+#include <QDebug>
+#include <QPushButton>
+#include <QSerialPort>
+#include <QSerialPortInfo>
+#include <QEnterEvent>
+
+#include <QIODevice>
+
+#include <QCoreApplication>
+#include <iostream>
+
+#include <QtCore>
+#include <QMessageBox>
+
+#include <QString>
+#include <string>
+
+namespace Ui {
+class MainWindow;
+}
+
+class MainWindow : public QMainWindow
+{
+    friend class QHoverSensitiveButton;
+    Q_OBJECT
+
+public:
+    explicit MainWindow(QWidget *parent = 0);
+    ~MainWindow();
+    int countdown = 10;
+
+
+public slots:
+    void fetchPressed();
+    void tutorialPressed();
+    void settingsPressed();
+    void backPressed();
+    void hover_time_up();
+    void hover_time_down();
+    void changeLabel();
+
+    void move_up();
+    void move_backward();
+    void move_down();
+    void move_forward();
+    void move_left();
+    void move_right();
+
+private:
+    Ui::MainWindow *ui;
+};
+
+#endif // MAINWINDOW_H
+
+
+
+
+
