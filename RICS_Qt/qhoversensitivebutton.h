@@ -47,6 +47,8 @@ private:
     void buttonEntered();
     static QTime activationTime;
     static QList<QString> active_buttons;
+    void mousePressEvent(QMouseEvent *e);
+    void mouseReleaseEvent(QMouseEvent *e);
 
 
     //enum Robot_cmd{stop,forward,backward,left,right,rotate_clockwise,rotate_anticlockwise,set_speed}Command;

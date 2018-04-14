@@ -14,7 +14,16 @@ QHoverSensitiveButton::QHoverSensitiveButton(QWidget *parent) : QPushButton(pare
 {
     setMouseTracking(true);
     setAttribute(Qt::WA_Hover);
-    setCheckable(true);
+}
+
+void QHoverSensitiveButton::mousePressEvent(QMouseEvent *e) {
+    setStyleSheet("QPushButton { border-style: solid; border-width: 5px; border-color: red;}");
+    QPushButton::mousePressEvent(e);
+}
+
+void QHoverSensitiveButton::mouseReleaseEvent(QMouseEvent *e) {
+    setStyleSheet("QPushButton {}");
+    QPushButton::mouseReleaseEvent(e);
 }
 
 void QHoverSensitiveButton::hoverEnter(QHoverEvent *){
@@ -25,7 +34,6 @@ void QHoverSensitiveButton::hoverEnter(QHoverEvent *){
         activationTime.start();
         hoverPending = true;
         hoverButton = this->objectName();
-        hoverButtonEntered();
     }
 
     if (!hoverMode || active_buttons.contains(this->objectName())){
