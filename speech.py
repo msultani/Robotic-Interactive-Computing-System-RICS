@@ -92,6 +92,10 @@ try:
                 print("You said {}".format(value))
             # RICS code
             val = format(value)
+
+            if activated:
+                send_message("m:" + str(val))
+
             valid = process_text(val)
             print(valid)
             for word in valid:
