@@ -69,6 +69,7 @@ def send_message(command_value):
         sender.sendall(command_value)
         sender.close()
 
+# print("I was called from C++!")
 
 try:
     print("A moment of silence, please...")

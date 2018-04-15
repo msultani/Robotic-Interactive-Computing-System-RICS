@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QSettings>
-#include <Python.h>
 
 bool MainWindow::popup_open = false;
 
@@ -234,6 +233,22 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->move_delay_up_button, SIGNAL (clicked()), this, SLOT (move_delay_up()));
 
     connect(ui->move_delay_down_button, SIGNAL (clicked()), this, SLOT (move_delay_down()));
+
+    // Start speech.py
+//    system("python --version");
+    // system("python3 /Users/marksultani/Documents/College/eecs498/RICS/speech.py");
+    // FILE *speech;
+    // speech = fopen("speech.py", "r");
+    // qDebug() << "Can we even open speech.py as a file pointer?\n";
+    // if (speech == NULL)
+    //     perror("Error opening speech.py");
+    // else {
+    //     Py_SetProgramName("speech.py");
+    //     Py_Initialize();
+    //     qDebug() << "Right before PyRun_SimpleFile()\n";
+    //     PyRun_SimpleFile(speech, "speech.py");
+    //     Py_Finalize();
+    // }
 
     //Open serial port
     port.setPortName("/dev/cu.usbmodem1421");
