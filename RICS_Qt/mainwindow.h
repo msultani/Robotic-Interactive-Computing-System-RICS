@@ -70,7 +70,6 @@ public:
 
 
 public slots:
-    void readTCPData();
     void connection();
     void fetchPressed();
     void backPressed();
@@ -96,7 +95,7 @@ public slots:
     void move_left();
     void move_right();
     void move_finished();
-    void invalid_commands(QByteArray TCP_data);
+    void invalid_commands(QByteArray TCP_info);
     void message_too_long_error();
     void parsing_error();
     void received_confimation();
@@ -114,12 +113,12 @@ private:
     QSerialPort port;
     QByteArray ard_data;
     static bool voice_command_given;
-    static QByteArray TCP_data;
+    //static QByteArray TCP_data;
     static QString move_direction;
     static bool change_hover_vals;
 
-    QTcpSocket *sock;
-    void parse_TCP_command(QByteArray TCP_data);
+    //QTcpSocket *sock;
+    void parse_TCP_command(QByteArray TCP_info);
     void write_to_arduino();
     void send_next_command();
     static bool ready_to_send;

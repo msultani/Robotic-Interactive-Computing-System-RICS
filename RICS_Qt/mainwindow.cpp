@@ -17,7 +17,7 @@ int MainWindow::target_claw = claw_pos;
 int MainWindow::arm_movement_degrees;
 int MainWindow::claw_movement_degrees = 3;
 int MainWindow::move_delay = 150;
-QByteArray MainWindow::TCP_data = "";
+//QByteArray MainWindow::TCP_data = "";
 QVector<QPair<QString, int> > MainWindow::command_queue;
 QString MainWindow::move_direction = "";
 bool MainWindow::ready_to_send = true;
@@ -53,31 +53,23 @@ void MainWindow::establish_TCP_connection(){
 }
 
 void MainWindow::connection(){
-    qDebug() << "Establishing connection";
-    sock = t->nextPendingConnection();
-
-    connect(sock, SIGNAL(readyRead()), this, SLOT(readTCPData()));
-
-    //qDebug() << "closing socket";
-    //sock->close();
-}
-
-void MainWindow::readTCPData(){
-    qDebug() << "here";
-    TCP_data = this->sock->readAll();
+    //qDebug() << "Establishing connection";
+    QTcpSocket *sock = t->nextPendingConnection();
+    sock->waitForReadyRead();
+    QByteArray TCP_data = sock->readAll();
     qDebug() << "TCP command is:" << TCP_data;
-    this->sock->close();
+    sock->close();
     parse_TCP_command(TCP_data);
-
 }
 
-void MainWindow::parse_TCP_command(QByteArray TCP_data){
+
+void MainWindow::parse_TCP_command(QByteArray TCP_info){
 
     this->ui->ready_label->setText("Receiving Vocal Input...");
     //ui->stackedWidget->setCurrentIndex(1);
-    qDebug() << TCP_data;
+    qDebug() << TCP_info;
 
-    switch(voice_commands.indexOf(TCP_data)){
+    switch(voice_commands.indexOf(TCP_info)){
         case 0:
             ui->fetchButton->click();
             break;
@@ -118,7 +110,7 @@ void MainWindow::parse_TCP_command(QByteArray TCP_data){
             parsing_error();
             break;
         default:
-            invalid_commands(TCP_data);
+            invalid_commands(TCP_info);
             break;
     }
 }
@@ -601,13 +593,16 @@ void MainWindow::on_clawRight_pressed() {
 
 }
 
-void MainWindow::invalid_commands(QByteArray TCP_data){
-    QString full_voice_transcript = QTextCodec::codecForMib(1015)->toUnicode(TCP_data);
+void MainWindow::invalid_commands(QByteArray TCP_info){
+    //QString full_voice_transcript = QTextCodec::codecForMib(1015)->toUnicode(TCP_data);
+    QString full_voice_transcript = TCP_info;
     // Check to see if the first two characters are "m:"
     // If yes, this is the full transcript. Otherwise, this is an invalid command.
-    if (full_voice_transcript.size() > 2 && full_voice_transcript.chopped(2) == "m:") {
+    qDebug() << full_voice_transcript;
+    qDebug() << full_voice_transcript.left(2);
+    if (full_voice_transcript.size() > 2 && full_voice_transcript.left(2) == "m:") {
         //ui->ready_label->setText(full_voice_transcript.mid(2));
-        this->ui->voice_label->setText("You said: " + full_voice_transcript.mid(2));
+        this->ui->voice_label->setText("You said: " + full_voice_transcript.right(full_voice_transcript.size() - 2));
     } else {
         qDebug() << "Error in parse_TCP_command: Could not recognize TCP_Data";
     }
