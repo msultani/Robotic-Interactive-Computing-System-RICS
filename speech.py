@@ -12,7 +12,8 @@ import time
 r = sr.Recognizer()
 m = sr.Microphone()
 
-DEBUG = 0 # 1 for debugging, 0 for release
+tcp_on = 0  # 1 for release
+            # 0 to use without sending TCP
 
 commands = ["retract",
             "extend",
@@ -33,7 +34,8 @@ hints = ["Echo start",  # activation word
 
 hints.extend(commands)
 
-activated = False # True for debugging, False for release
+activated = True    # False for release
+                    # True to skip "Echo start"
 
 def process_text(text):
     global activated
@@ -60,7 +62,7 @@ def process_text(text):
 
 
 def send_message(command_value):
-    if not DEBUG:
+    if tcp_on:
         sender = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sender.connect(("0.0.0.0", 6000))
         # print("sending " + str(command_value))
