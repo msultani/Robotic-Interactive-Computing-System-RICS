@@ -33,9 +33,9 @@
        <widget class="QHoverSensitiveButton" name="commandButton">
         <property name="geometry">
          <rect>
-          <x>230</x>
+          <x>220</x>
           <y>80</y>
-          <width>451</width>
+          <width>461</width>
           <height>151</height>
          </rect>
         </property>
@@ -76,7 +76,7 @@ border-style: solid;
           <x>520</x>
           <y>270</y>
           <width>171</width>
-          <height>161</height>
+          <height>171</height>
          </rect>
         </property>
         <property name="font">
@@ -688,14 +688,15 @@ border: solid;
        <widget class="QHoverSensitiveButton" name="hoverButton">
         <property name="geometry">
          <rect>
-          <x>20</x>
+          <x>70</x>
           <y>150</y>
           <width>141</width>
           <height>71</height>
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">font: 36pt &quot;.Helvetica Neue DeskInterface&quot;;</string>
+         <string notr="true">font: 36pt &quot;.Helvetica Neue DeskInterface&quot;;
+background-color: rgb(183, 183, 183);</string>
         </property>
         <property name="text">
          <string>ON</string>
@@ -704,9 +705,9 @@ border: solid;
        <widget class="QLabel" name="label_4">
         <property name="geometry">
          <rect>
-          <x>170</x>
+          <x>220</x>
           <y>170</y>
-          <width>191</width>
+          <width>181</width>
           <height>41</height>
          </rect>
         </property>
@@ -734,9 +735,9 @@ color: white;</string>
        <widget class="QLabel" name="hover_time_label">
         <property name="geometry">
          <rect>
-          <x>0</x>
-          <y>340</y>
-          <width>101</width>
+          <x>20</x>
+          <y>310</y>
+          <width>111</width>
           <height>31</height>
          </rect>
         </property>
@@ -761,9 +762,9 @@ color: white;</string>
        <widget class="QHoverSensitiveButton" name="hover_time_up_button">
         <property name="geometry">
          <rect>
-          <x>120</x>
-          <y>290</y>
-          <width>61</width>
+          <x>140</x>
+          <y>260</y>
+          <width>71</width>
           <height>61</height>
          </rect>
         </property>
@@ -789,9 +790,9 @@ border: solid;</string>
        <widget class="QHoverSensitiveButton" name="hover_time_down_button">
         <property name="geometry">
          <rect>
-          <x>120</x>
-          <y>360</y>
-          <width>61</width>
+          <x>140</x>
+          <y>320</y>
+          <width>71</width>
           <height>61</height>
          </rect>
         </property>
@@ -817,8 +818,8 @@ border: solid</string>
        <widget class="QLabel" name="label_6">
         <property name="geometry">
          <rect>
-          <x>200</x>
-          <y>330</y>
+          <x>230</x>
+          <y>300</y>
           <width>151</width>
           <height>41</height>
          </rect>
@@ -847,9 +848,9 @@ color: white;</string>
        <widget class="QPushButton" name="pushButton_2">
         <property name="geometry">
          <rect>
-          <x>330</x>
+          <x>380</x>
           <y>0</y>
-          <width>331</width>
+          <width>221</width>
           <height>91</height>
          </rect>
         </property>
@@ -867,7 +868,7 @@ border: solid;
         </property>
         <property name="iconSize">
          <size>
-          <width>100</width>
+          <width>150</width>
           <height>100</height>
          </size>
         </property>
@@ -875,9 +876,9 @@ border: solid;
        <widget class="QHoverSensitiveButton" name="change_fetch_vals_button">
         <property name="geometry">
          <rect>
-          <x>450</x>
-          <y>90</y>
-          <width>161</width>
+          <x>60</x>
+          <y>410</y>
+          <width>141</width>
           <height>71</height>
          </rect>
         </property>
@@ -888,10 +889,10 @@ border: solid;
        <widget class="QLabel" name="label_7">
         <property name="geometry">
          <rect>
-          <x>630</x>
-          <y>110</y>
-          <width>291</width>
-          <height>41</height>
+          <x>210</x>
+          <y>410</y>
+          <width>201</width>
+          <height>61</height>
          </rect>
         </property>
         <property name="font">
@@ -912,15 +913,16 @@ font: 29pt &quot;Helvetica&quot;;
 color: white;</string>
         </property>
         <property name="text">
-         <string>Set New Fetch Values</string>
+         <string>Save Current
+ Settings</string>
         </property>
        </widget>
        <widget class="QLabel" name="label_5">
         <property name="geometry">
          <rect>
-          <x>630</x>
-          <y>190</y>
-          <width>291</width>
+          <x>680</x>
+          <y>120</y>
+          <width>221</width>
           <height>41</height>
          </rect>
         </property>
@@ -948,9 +950,9 @@ color: white;</string>
        <widget class="QHoverSensitiveButton" name="claw_rotation_up_button">
         <property name="geometry">
          <rect>
-          <x>520</x>
-          <y>180</y>
-          <width>61</width>
+          <x>600</x>
+          <y>90</y>
+          <width>71</width>
           <height>61</height>
          </rect>
         </property>
@@ -976,9 +978,9 @@ border: solid</string>
        <widget class="QHoverSensitiveButton" name="claw_rotation_down_button">
         <property name="geometry">
          <rect>
-          <x>590</x>
-          <y>180</y>
-          <width>61</width>
+          <x>600</x>
+          <y>150</y>
+          <width>71</width>
           <height>61</height>
          </rect>
         </property>
@@ -1004,9 +1006,9 @@ border: solid</string>
        <widget class="QHoverSensitiveButton" name="move_delay_up_button">
         <property name="geometry">
          <rect>
-          <x>520</x>
+          <x>600</x>
           <y>370</y>
-          <width>61</width>
+          <width>71</width>
           <height>61</height>
          </rect>
         </property>
@@ -1032,9 +1034,9 @@ border: solid</string>
        <widget class="QHoverSensitiveButton" name="move_delay_down_button">
         <property name="geometry">
          <rect>
-          <x>590</x>
-          <y>370</y>
-          <width>61</width>
+          <x>600</x>
+          <y>430</y>
+          <width>71</width>
           <height>61</height>
          </rect>
         </property>
@@ -1060,9 +1062,9 @@ border: solid</string>
        <widget class="QLabel" name="label_9">
         <property name="geometry">
          <rect>
-          <x>650</x>
-          <y>380</y>
-          <width>251</width>
+          <x>700</x>
+          <y>410</y>
+          <width>171</width>
           <height>41</height>
          </rect>
         </property>
@@ -1090,9 +1092,9 @@ color: white;</string>
        <widget class="QLabel" name="claw_rotation_label">
         <property name="geometry">
          <rect>
-          <x>350</x>
-          <y>180</y>
-          <width>161</width>
+          <x>460</x>
+          <y>120</y>
+          <width>131</width>
           <height>31</height>
          </rect>
         </property>
@@ -1117,9 +1119,9 @@ color: white;</string>
        <widget class="QLabel" name="move_delay_label">
         <property name="geometry">
          <rect>
-          <x>350</x>
-          <y>380</y>
-          <width>161</width>
+          <x>460</x>
+          <y>420</y>
+          <width>131</width>
           <height>31</height>
          </rect>
         </property>
@@ -1144,9 +1146,9 @@ color: white;</string>
        <widget class="QLabel" name="arm_rotation_label">
         <property name="geometry">
          <rect>
-          <x>350</x>
-          <y>290</y>
-          <width>161</width>
+          <x>460</x>
+          <y>270</y>
+          <width>131</width>
           <height>31</height>
          </rect>
         </property>
@@ -1171,9 +1173,9 @@ color: white;</string>
        <widget class="QHoverSensitiveButton" name="arm_rotation_up_button">
         <property name="geometry">
          <rect>
-          <x>520</x>
-          <y>280</y>
-          <width>61</width>
+          <x>600</x>
+          <y>230</y>
+          <width>71</width>
           <height>61</height>
          </rect>
         </property>
@@ -1199,9 +1201,9 @@ border: solid</string>
        <widget class="QLabel" name="label_10">
         <property name="geometry">
          <rect>
-          <x>630</x>
-          <y>290</y>
-          <width>291</width>
+          <x>690</x>
+          <y>270</y>
+          <width>191</width>
           <height>41</height>
          </rect>
         </property>
@@ -1229,9 +1231,9 @@ color: white;</string>
        <widget class="QHoverSensitiveButton" name="arm_rotation_down_button">
         <property name="geometry">
          <rect>
-          <x>590</x>
-          <y>280</y>
-          <width>61</width>
+          <x>600</x>
+          <y>290</y>
+          <width>71</width>
           <height>61</height>
          </rect>
         </property>

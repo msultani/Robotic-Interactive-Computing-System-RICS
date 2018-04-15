@@ -25,5 +25,6 @@
         <file>help.png</file>
         <file>minus.png</file>
         <file>plus.png</file>
+        <file>grey.png</file>
     </qresource>
 </RCC>
