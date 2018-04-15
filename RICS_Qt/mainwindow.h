@@ -73,10 +73,9 @@ public slots:
     void readTCPData();
     void connection();
     void fetchPressed();
-    void commandsPressed();
+    void backPressed();
     void tutorialPressed();
     void settingsPressed();
-    void backPressed();
     void hover_time_up();
     void hover_time_down();
     void move_delay_up();
@@ -107,6 +106,7 @@ private slots:
     void on_clawLeft_pressed();
 
     void on_clawRight_pressed();
+
 
 private:
     QProcess p;
