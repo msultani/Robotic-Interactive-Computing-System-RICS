@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QSettings>
+#include <Python.h>
 
 bool MainWindow::popup_open = false;
 
@@ -35,7 +36,7 @@ int MainWindow::fetch_claw;
  * DELAY: 4
  */
 
-// PYTHON COMMANDS: retract, rise, down, left, right,
+// PYTHON COMMANDS: retract, extend, rise, down, left, right,
     // forward, backward, cancel, near, away
 
 
