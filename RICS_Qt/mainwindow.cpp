@@ -74,7 +74,7 @@ void MainWindow::readTCPData(){
 void MainWindow::parse_TCP_command(QByteArray TCP_data){
 
     this->ui->ready_label->setText("Receiving Vocal Input...");
-    ui->stackedWidget->setCurrentIndex(1);
+    //ui->stackedWidget->setCurrentIndex(1);
     qDebug() << TCP_data;
 
     switch(voice_commands.indexOf(TCP_data)){
@@ -161,7 +161,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->stackedWidget->setCurrentIndex(0);
+    ui->stackedWidget->setCurrentIndex(1);
 
     read_settings();
 
@@ -179,7 +179,6 @@ MainWindow::MainWindow(QWidget *parent) :
     establish_TCP_connection();
 
     // List of signals and the appropriate slot that they should connect to
-    connect(ui->commandButton, SIGNAL (clicked()), this, SLOT (commandsPressed()));
 
     connect(ui->fetchButton, SIGNAL (clicked()), this, SLOT (fetchPressed()));
 
@@ -190,8 +189,6 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->backButton, SIGNAL (clicked()), this, SLOT (backPressed()));
 
     connect(ui->backButton_2, SIGNAL (clicked()), this, SLOT (backPressed()));
-
-    connect(ui->backButton_3, SIGNAL (clicked()), this, SLOT (backPressed()));
 
     connect(ui->tutorialButton, SIGNAL (clicked()), this, SLOT (tutorialPressed()));
 
@@ -268,7 +265,9 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+/*
 void MainWindow::commandsPressed(){
+    qDebug() << "commandsPressed";
     bool changed = check_hovermode();
 
     ui->stackedWidget->setCurrentIndex(1);
@@ -282,10 +281,11 @@ void MainWindow::commandsPressed(){
         ui->ready_label->setText("Ready for commands!");
     }
 }
-
+*/
 void MainWindow::fetchPressed(){
     //change_values(x_pos, y_pos, z_pos);
     move_direction = "extend";
+
     reset_targets();
 
     push_command("0", fetch_x, x_pos);
@@ -308,10 +308,6 @@ void MainWindow::settingsPressed(){
     else{
         ui->change_fetch_vals_button->setText("OFF");
     }
-}
-
-void MainWindow::backPressed(){
-    ui->stackedWidget->setCurrentIndex(0);
 }
 
 void MainWindow::hover_time_down(){
@@ -618,11 +614,11 @@ void MainWindow::invalid_commands(QByteArray TCP_data){
 }
 
 void MainWindow::message_too_long_error() {
-    ui->ready_label->setText("Uh oh! Couldn't request results from Google Speech Recognition service");
+    ui->voice_label->setText("Uh oh! Couldn't request results from Google Speech Recognition service");
 }
 
 void MainWindow::parsing_error(){
-    ui->ready_label->setText("Oops! I couldn't understand. Please retry your message.");
+    ui->voice_label->setText("Oops! I couldn't understand. Please retry your message.");
 }
 
 void MainWindow::stopPressed() {
@@ -653,3 +649,6 @@ void MainWindow::toggle_change_to_fetch_vals(){
     }
 }
 
+void MainWindow::backPressed(){
+    ui->stackedWidget->setCurrentIndex(1);
+}

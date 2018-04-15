@@ -30,81 +30,6 @@
        <property name="styleSheet">
         <string notr="true">background: rgb(67, 83, 106)</string>
        </property>
-       <widget class="QHoverSensitiveButton" name="commandButton">
-        <property name="geometry">
-         <rect>
-          <x>220</x>
-          <y>80</y>
-          <width>461</width>
-          <height>151</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Arial Rounded MT Bold</family>
-          <pointsize>30</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="mouseTracking">
-         <bool>true</bool>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background: rgba(51, 64, 88, 0%);
-border-style: solid;
-
-</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="icon">
-         <iconset resource="resources.qrc">
-          <normaloff>:/images/controls.png</normaloff>:/images/controls.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>450</width>
-          <height>400</height>
-         </size>
-        </property>
-       </widget>
-       <widget class="QHoverSensitiveButton" name="settingButton">
-        <property name="geometry">
-         <rect>
-          <x>520</x>
-          <y>270</y>
-          <width>171</width>
-          <height>171</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Arial Rounded MT Bold</family>
-          <pointsize>20</pointsize>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background: rgba(51, 64, 88, 0%);
-border-style: solid;
-
-</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="icon">
-         <iconset resource="resources.qrc">
-          <normaloff>:/images/settings.png</normaloff>:/images/settings.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>150</width>
-          <height>170</height>
-         </size>
-        </property>
-       </widget>
        <widget class="QLabel" name="label">
         <property name="geometry">
          <rect>
@@ -157,41 +82,6 @@ color: white;</string>
          <string>to Select</string>
         </property>
        </widget>
-       <widget class="QHoverSensitiveButton" name="tutorialButton">
-        <property name="geometry">
-         <rect>
-          <x>230</x>
-          <y>270</y>
-          <width>171</width>
-          <height>171</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Arial Rounded MT Bold</family>
-          <pointsize>20</pointsize>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background: rgba(51, 64, 88, 0%);
-border-style: solid;
-
-</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="icon">
-         <iconset resource="resources.qrc">
-          <normaloff>:/images/tutorials.png</normaloff>:/images/tutorials.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>150</width>
-          <height>200</height>
-         </size>
-        </property>
-       </widget>
       </widget>
       <widget class="QWidget" name="movementPage">
        <widget class="QHoverSensitiveButton" name="releaseButton">
@@ -228,33 +118,6 @@ border-style: solid;
          <size>
           <width>120</width>
           <height>120</height>
-         </size>
-        </property>
-       </widget>
-       <widget class="QHoverSensitiveButton" name="backButton_3">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>10</y>
-          <width>141</width>
-          <height>71</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: rgba(0, 0, 0, 0%);
-border: solid;</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="icon">
-         <iconset resource="resources.qrc">
-          <normaloff>:/images/back.png</normaloff>:/images/back.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>100</width>
-          <height>100</height>
          </size>
         </property>
        </widget>
@@ -650,6 +513,32 @@ color: white;
         </property>
         <property name="text">
          <string/>
+        </property>
+       </widget>
+       <widget class="QHoverSensitiveButton" name="tutorialButton">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>0</y>
+          <width>81</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>?</string>
+        </property>
+       </widget>
+       <widget class="QHoverSensitiveButton" name="settingButton">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>50</y>
+          <width>81</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>S</string>
         </property>
        </widget>
       </widget>
