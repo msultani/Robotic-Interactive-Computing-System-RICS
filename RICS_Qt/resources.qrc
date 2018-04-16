@@ -12,12 +12,10 @@
         <file>tutorials.png</file>
         <file>claw_right.png</file>
         <file>claw_left.png</file>
-        <file>tutorial_page.png</file>
         <file>settings-title.png</file>
         <file>controls.png</file>
         <file>away.png</file>
         <file>near.png</file>
-        <file>tutorial-new.png</file>
         <file>cancel.png</file>
         <file>retract.png</file>
         <file>fetch-2.png</file>
@@ -27,5 +25,7 @@
         <file>plus.png</file>
         <file>grey.png</file>
         <file>settings-help.png</file>
+        <file>tutorial_new.png</file>
+        <file>extend.png</file>
     </qresource>
 </RCC>
