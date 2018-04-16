@@ -35,7 +35,6 @@ public:
     static int y_pos;
     static int z_pos;
 */
-    void hoverWait();
 
 signals:
     //void hovered();

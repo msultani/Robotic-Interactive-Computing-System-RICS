@@ -276,6 +276,7 @@ void MainWindow::commandsPressed(){
 */
 void MainWindow::fetchPressed(){
     //change_values(x_pos, y_pos, z_pos);
+    qDebug() << "Fetch pressed";
     move_direction = "extend";
 
     reset_targets();
@@ -437,6 +438,7 @@ void MainWindow::write_to_arduino(){
 }
 
 void MainWindow::move_down(){
+    qDebug() << "Down pressed";
     if (move_direction != "down"){
         move_direction = "down";
         reset_targets();
@@ -448,6 +450,7 @@ void MainWindow::move_down(){
     }
 }
 void MainWindow::move_up(){
+    qDebug() << "Up pressed";
     if (move_direction != "rise"){
         move_direction = "rise";
         reset_targets();
@@ -460,6 +463,7 @@ void MainWindow::move_up(){
 }
 
 void MainWindow::move_left(){
+    qDebug() << "Left pressed";
     if (move_direction != "left"){
         move_direction = "left";
         reset_targets();
@@ -472,6 +476,7 @@ void MainWindow::move_left(){
 
 }
 void MainWindow::move_right(){
+    qDebug() << "Right pressed";
     if (move_direction != "right"){
         move_direction = "right";
         reset_targets();
@@ -483,6 +488,7 @@ void MainWindow::move_right(){
     }
 }
 void MainWindow::move_forward() {
+    qDebug() << "Forward pressed";
     if (move_direction != "forward") {
         move_direction = "forward";
         reset_targets();
@@ -498,6 +504,7 @@ void MainWindow::move_forward() {
 
 }
 void MainWindow::move_backward() {
+    qDebug() << "Backward pressed";
     if (move_direction != "backward") {
         move_direction = "backward";
         reset_targets();
@@ -565,7 +572,7 @@ void MainWindow::move_finished(){
 }
 
 void MainWindow::on_clawLeft_pressed() {
-    qDebug() << "on_clawLeft_pressed()";
+    qDebug() << "Claw left pressed";
     if (move_direction != "claw_left"){
         move_direction = "claw_left";
         reset_targets();
@@ -580,7 +587,7 @@ void MainWindow::on_clawLeft_pressed() {
 }
 
 void MainWindow::on_clawRight_pressed() {
-    qDebug() << "on_clawRight_pressed()";
+    qDebug() << "Claw right pressed";
     if (move_direction != "claw_right"){
         move_direction = "claw_right";
         reset_targets();
@@ -617,7 +624,7 @@ void MainWindow::parsing_error(){
 }
 
 void MainWindow::stopPressed() {
-    qDebug() << "STOP PRESSED";
+    qDebug() << "Stop pressed";
     reset_targets();
 }
 
@@ -630,8 +637,9 @@ void MainWindow::reset_targets(){
 }
 
 void MainWindow::hoverButtonEntered(){
-        QHoverSensitiveButton::hoverMode = !QHoverSensitiveButton::hoverMode;
-        emit changeLabel();
+    QHoverSensitiveButton::hoverMode = !QHoverSensitiveButton::hoverMode;
+    emit changeLabel();
+    qDebug() << "Hover button toggled";
 }
 
 void MainWindow::toggle_change_to_fetch_vals(){
