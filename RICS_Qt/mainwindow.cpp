@@ -42,6 +42,7 @@ int MainWindow::fetch_claw;
 void MainWindow::establish_TCP_connection(){
     qDebug() << "Establishing TCP connection";
     t = new QTcpServer( this );
+
     connect(t, SIGNAL (newConnection()), this, SLOT (connection()));
 
     if (!t->listen(QHostAddress::Any, 6000)){
@@ -65,7 +66,6 @@ void MainWindow::connection(){
 
 void MainWindow::parse_TCP_command(QByteArray TCP_info){
 
-    this->ui->ready_label->setText("Receiving Vocal Input...");
     //ui->stackedWidget->setCurrentIndex(1);
     qDebug() << TCP_info;
 
@@ -98,10 +98,11 @@ void MainWindow::parse_TCP_command(QByteArray TCP_info){
             ui->clawRight->click();
             break;
         case 9:
-            //TODO - add recording symbol
+            this->ui->ready_label->setText("Receiving Vocal Input...");
             break;
         case 10:
-            //TODO - remove recording symbol
+            this->ui->ready_label->setText("Got it! Parsing Input...");
+            ui->voice_label->setText("");
             break;
         case 11:
             message_too_long_error();
@@ -123,7 +124,7 @@ void MainWindow::read_settings(){
     fetch_x = settings.value("fetch_x", 10).toInt();
     fetch_y = settings.value("fetch_y", 0).toInt();
     fetch_z = settings.value("fetch_z", 0).toInt();
-    fetch_claw = settings.value("fetch_claw", 0).toInt();
+    fetch_claw = settings.value("fetch_claw", 120).toInt();
     change_hover_vals = settings.value("change_hover_vals", true).toBool();
 
     arm_movement_degrees = settings.value("arm_movement_degrees", 10).toInt();
@@ -192,7 +193,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->hover_time_down_button, SIGNAL (clicked()), this, SLOT (hover_time_down()));
 
-    connect(ui->hoverButton, SIGNAL (changeLabel()), this, SLOT (changeLabel()));
+    //connect(ui->hoverButton, SIGNAL (clicked()), this, SLOT (changeLabel()));
 
     connect(ui->upButton, SIGNAL (clicked()), this, SLOT (move_up()));
 
@@ -305,6 +306,7 @@ void MainWindow::settingsHelpPressed(){
 }
 
 void MainWindow::settingsPressed(){
+    //QHoverSensitiveButton::hoverMode = false;
     ui->stackedWidget->setCurrentIndex(2);
     if (change_hover_vals){
         ui->change_fetch_vals_button->setText("ON");
@@ -542,9 +544,6 @@ void MainWindow::move_finished(){
         fetch_claw = claw_pos;
     }
 
-    bool restore = QHoverSensitiveButton::hoverMode;
-    QHoverSensitiveButton::hoverMode = false;
-
     int countdown = 5;
     QString display = QString::number(countdown);
     this->ui->countdownLabel->setText(display);
@@ -577,9 +576,6 @@ void MainWindow::move_finished(){
 
      ui->stackedWidget->setCurrentIndex(1);
 
-     if (restore){
-         QHoverSensitiveButton::hoverMode = true;
-     }
 }
 
 void MainWindow::on_clawLeft_pressed() {
@@ -612,10 +608,12 @@ void MainWindow::on_clawRight_pressed() {
 }
 
 void MainWindow::invalid_commands(QByteArray TCP_info){
+
     //QString full_voice_transcript = QTextCodec::codecForMib(1015)->toUnicode(TCP_data);
     QString full_voice_transcript = TCP_info;
     // Check to see if the first two characters are "m:"
     // If yes, this is the full transcript. Otherwise, this is an invalid command.
+
     qDebug() << full_voice_transcript;
     qDebug() << full_voice_transcript.left(2);
     if (full_voice_transcript.size() > 2 && full_voice_transcript.left(2) == "m:") {
