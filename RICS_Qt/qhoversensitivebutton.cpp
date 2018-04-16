@@ -39,9 +39,7 @@ void QHoverSensitiveButton::hoverEnter(QHoverEvent *) {
 }
 
 void QHoverSensitiveButton::hoverLeave(QHoverEvent *) {
-    if (!hoverMode) {
-        return;
-    }
+
     setStyleSheet("QPushButton {}");
     active_buttons.removeAll(this->objectName());
     hoverPending = false;

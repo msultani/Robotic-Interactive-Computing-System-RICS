@@ -20,7 +20,6 @@ bool check_hovermode(){
 }
 
 
-// TODO - how will this work???
 void push_command(QString command_char, int target_pos, int current_pos){
 
     if (target_pos > current_pos){

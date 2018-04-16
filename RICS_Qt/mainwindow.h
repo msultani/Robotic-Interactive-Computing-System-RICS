@@ -87,6 +87,7 @@ public slots:
     void hoverButtonEntered();
     void toggle_change_to_fetch_vals();
     //void hover_pressed();
+    void retract_cancel();
 
     void move_up();
     void move_backward();

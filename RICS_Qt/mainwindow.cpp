@@ -226,6 +226,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->move_delay_down_button, SIGNAL (clicked()), this, SLOT (move_delay_down()));
 
+    connect(ui->retract_cancel_button, SIGNAL (clicked()), this, SLOT (retract_cancel()));
+
     //Open serial port
     port.setPortName("/dev/cu.usbmodem1421");
     port.setBaudRate(QSerialPort::Baud9600);
@@ -275,6 +277,7 @@ void MainWindow::commandsPressed(){
 }
 */
 void MainWindow::fetchPressed(){
+    qDebug() << "FETCH";
     //change_values(x_pos, y_pos, z_pos);
     move_direction = "extend";
 
@@ -387,10 +390,10 @@ void MainWindow::changeLabel(){
 // Called when we receive confirmation that the Arduino has finished processing a message
 void MainWindow::received_confimation(){
     QByteArray data = port.readAll();
-    qDebug() << "Arduino movement completed";
+    qDebug() << "data is " << data;
 
     if (data == "X"){
-        qDebug() << "Success";
+        qDebug() << "Arduino movement completed";
         ready_to_send = true;
         write_to_arduino();
     }
@@ -437,6 +440,7 @@ void MainWindow::write_to_arduino(){
 }
 
 void MainWindow::move_down(){
+    qDebug() << "MOVE DOWN";
     if (move_direction != "down"){
         move_direction = "down";
         reset_targets();
@@ -448,6 +452,7 @@ void MainWindow::move_down(){
     }
 }
 void MainWindow::move_up(){
+    qDebug() << "MOVE UP";
     if (move_direction != "rise"){
         move_direction = "rise";
         reset_targets();
@@ -460,6 +465,7 @@ void MainWindow::move_up(){
 }
 
 void MainWindow::move_left(){
+    qDebug() << "MOVE LEFT";
     if (move_direction != "left"){
         move_direction = "left";
         reset_targets();
@@ -472,17 +478,20 @@ void MainWindow::move_left(){
 
 }
 void MainWindow::move_right(){
+    qDebug() << "Right pressed";
     if (move_direction != "right"){
         move_direction = "right";
         reset_targets();
     }
     target_x -= arm_movement_degrees;
     if (target_x >= 0){
+        qDebug() << "Pushing x pos " << QString::number(target_x);
         command_queue.push_back(QPair<QString, int>("0", target_x));
         write_to_arduino();
     }
 }
 void MainWindow::move_forward() {
+    qDebug() << "MOVE FORWARD";
     if (move_direction != "forward") {
         move_direction = "forward";
         reset_targets();
@@ -498,6 +507,7 @@ void MainWindow::move_forward() {
 
 }
 void MainWindow::move_backward() {
+    qDebug() << "MOVE BACK";
     if (move_direction != "backward") {
         move_direction = "backward";
         reset_targets();
@@ -549,7 +559,6 @@ void MainWindow::move_finished(){
     push_command("1", 35, y_pos);
     push_command("2", 35, z_pos);
     write_to_arduino();
-    // Actually send the correct values
 
 /*      x_pos = 93;
         y_pos = 40;
@@ -557,7 +566,7 @@ void MainWindow::move_finished(){
         write_to_arduino();
  */
 
-     ui->stackedWidget->setCurrentIndex(0);
+     ui->stackedWidget->setCurrentIndex(1);
 
      if (restore){
          QHoverSensitiveButton::hoverMode = true;
@@ -645,5 +654,10 @@ void MainWindow::toggle_change_to_fetch_vals(){
 }
 
 void MainWindow::backPressed(){
+    ui->stackedWidget->setCurrentIndex(1);
+}
+
+void MainWindow::retract_cancel(){
+    reset_targets();
     ui->stackedWidget->setCurrentIndex(1);
 }
