@@ -24,7 +24,7 @@
        <string notr="true">background: rgba(51, 64, 88, 0%);</string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="startPage">
        <property name="styleSheet">
@@ -956,8 +956,8 @@ border: solid</string>
         </property>
         <property name="iconSize">
          <size>
-          <width>60</width>
-          <height>60</height>
+          <width>71</width>
+          <height>61</height>
          </size>
         </property>
        </widget>
@@ -1356,7 +1356,7 @@ color: white;</string>
           <x>380</x>
           <y>360</y>
           <width>211</width>
-          <height>121</height>
+          <height>118</height>
          </rect>
         </property>
         <property name="text">
@@ -1368,7 +1368,7 @@ color: white;</string>
         </property>
         <property name="iconSize">
          <size>
-          <width>215</width>
+          <width>205</width>
           <height>125</height>
          </size>
         </property>

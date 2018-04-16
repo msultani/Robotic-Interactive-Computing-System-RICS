@@ -66,11 +66,13 @@ void QHoverSensitiveButton::buttonEntered() {
 bool QHoverSensitiveButton::event(QEvent *event) {
     switch(event->type())
     {
-    case QEvent::HoverEnter:
+    //case QEvent::HoverEnter:
+    case QEvent::Enter:
         hoverEnter(static_cast<QHoverEvent*>(event));
         return true;
         break;
-    case QEvent::HoverLeave:
+    //case QEvent::HoverLeave:
+    case QEvent::Leave:
         hoverLeave(static_cast<QHoverEvent*>(event));
         return true;
         break;
