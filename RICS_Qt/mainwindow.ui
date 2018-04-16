@@ -33,7 +33,7 @@
        <widget class="QHoverSensitiveButton" name="backButton_3">
         <property name="geometry">
          <rect>
-          <x>30</x>
+          <x>20</x>
           <y>10</y>
           <width>141</width>
           <height>71</height>
@@ -1214,7 +1214,7 @@ border: solid</string>
          </size>
         </property>
        </widget>
-       <widget class="QPushButton" name="settingsTutorial">
+       <widget class="QHoverSensitiveButton" name="settingsTutorial">
         <property name="geometry">
          <rect>
           <x>820</x>

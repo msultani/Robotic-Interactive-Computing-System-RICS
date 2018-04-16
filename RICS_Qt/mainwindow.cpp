@@ -178,9 +178,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->tutorialButton, SIGNAL (clicked()), this, SLOT (tutorialPressed()));
 
+    connect(ui->settingsTutorial, SIGNAL (clicked()), this, SLOT (settingsHelpPressed()));
+
     connect(ui->backButton, SIGNAL (clicked()), this, SLOT (backPressed()));
 
     connect(ui->backButton_2, SIGNAL (clicked()), this, SLOT (backPressed()));
+
+    connect(ui->backButton_3, SIGNAL (clicked()), this, SLOT (settingsPressed()));
 
     connect(ui->tutorialButton, SIGNAL (clicked()), this, SLOT (tutorialPressed()));
 
@@ -295,6 +299,10 @@ void MainWindow::tutorialPressed(){
     ui->stackedWidget->setCurrentIndex(3);
 }
 
+void MainWindow::settingsHelpPressed(){
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
 void MainWindow::settingsPressed(){
     ui->stackedWidget->setCurrentIndex(2);
     if (change_hover_vals){
@@ -375,16 +383,16 @@ void MainWindow::claw_movement_degrees_down() {
     }
 }
 
-void MainWindow::changeLabel(){
-    if (ui->label->text() == "Hover + Hold"){
-        ui->label->setText("Press Button");
-        ui->hoverButton->setText("OFF");
-    }
-    else{
-        ui->label->setText("Hover + Hold");
-        ui->hoverButton->setText("ON");
-    }
-}
+//void MainWindow::changeLabel(){
+//    if (ui->label->text() == "Hover + Hold"){
+//        ui->label->setText("Press Button");
+//        ui->hoverButton->setText("OFF");
+//    }
+//    else{
+//        ui->label->setText("Hover + Hold");
+//        ui->hoverButton->setText("ON");
+//    }
+//}
 
 
 // Called when we receive confirmation that the Arduino has finished processing a message
@@ -640,7 +648,7 @@ void MainWindow::reset_targets(){
 
 void MainWindow::hoverButtonEntered(){
         QHoverSensitiveButton::hoverMode = !QHoverSensitiveButton::hoverMode;
-        emit changeLabel();
+//        emit changeLabel();
 }
 
 void MainWindow::toggle_change_to_fetch_vals(){

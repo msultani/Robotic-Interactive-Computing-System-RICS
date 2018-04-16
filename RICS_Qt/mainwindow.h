@@ -74,6 +74,7 @@ public slots:
     void fetchPressed();
     void backPressed();
     void tutorialPressed();
+    void settingsHelpPressed();
     void settingsPressed();
     void hover_time_up();
     void hover_time_down();
@@ -83,7 +84,7 @@ public slots:
     void arm_movement_degrees_down();
     void claw_movement_degrees_up();
     void claw_movement_degrees_down();
-    void changeLabel();
+//    void changeLabel();
     void hoverButtonEntered();
     void toggle_change_to_fetch_vals();
     //void hover_pressed();
