@@ -124,7 +124,7 @@ void MainWindow::read_settings(){
     fetch_x = settings.value("fetch_x", 10).toInt();
     fetch_y = settings.value("fetch_y", 0).toInt();
     fetch_z = settings.value("fetch_z", 0).toInt();
-    fetch_claw = settings.value("fetch_claw", 0).toInt();
+    fetch_claw = settings.value("fetch_claw", 120).toInt();
     change_hover_vals = settings.value("change_hover_vals", true).toBool();
 
     arm_movement_degrees = settings.value("arm_movement_degrees", 10).toInt();
