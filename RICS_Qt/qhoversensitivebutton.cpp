@@ -31,8 +31,9 @@ void QHoverSensitiveButton::hoverEnter(QHoverEvent *) {
     if (!hoverMode || active_buttons.contains(this->objectName())) {
         return;
     }
-    //qDebug() << "Hover entered: " << this->objectName();
+    qDebug() << "Hover entered: " << this->objectName();
     setStyleSheet("QPushButton { border-style: solid; border-width: 5px; border-color: red;}");
+
     active_buttons.append(this->objectName());
     activationTime.start();
     hoverButton = this->objectName();
@@ -41,10 +42,10 @@ void QHoverSensitiveButton::hoverEnter(QHoverEvent *) {
 
 void QHoverSensitiveButton::hoverLeave(QHoverEvent *) {
     // Only trigger the leave event handling if i
-    if (!hoverMode || !active_buttons.contains(this->objectName())) {
+    if (/*!hoverMode ||*/ !active_buttons.contains(this->objectName())) {
         return;
     }
-    //qDebug() << "Hover left: " << this->objectName();
+    qDebug() << "Hover left: " << this->objectName();
     setStyleSheet("QPushButton {}");
     active_buttons.removeAll(this->objectName());
     hoverPending = false;
@@ -58,21 +59,25 @@ void QHoverSensitiveButton::buttonEntered() {
     }
     if (activationTime.isValid() && hoverButton == this->objectName()){
         emit clicked();
-        activationTime.start();
-        buttonEntered();
+        delay(1000);
+        if (hoverTime){
+            qDebug() << "restarting button";
+            activationTime.start();
+            buttonEntered();
+        }
     }
 }
 
 bool QHoverSensitiveButton::event(QEvent *event) {
     switch(event->type())
     {
-    //case QEvent::HoverEnter:
-    case QEvent::Enter:
+    case QEvent::HoverEnter:
+    //case QEvent::Enter:
         hoverEnter(static_cast<QHoverEvent*>(event));
         return true;
         break;
-    //case QEvent::HoverLeave:
-    case QEvent::Leave:
+    case QEvent::HoverLeave:
+    //case QEvent::Leave:
         hoverLeave(static_cast<QHoverEvent*>(event));
         return true;
         break;

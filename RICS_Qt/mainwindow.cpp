@@ -646,8 +646,16 @@ void MainWindow::reset_targets(){
 }
 
 void MainWindow::hoverButtonEntered(){
+    qDebug() << "changing hovermode";
     QHoverSensitiveButton::hoverMode = !QHoverSensitiveButton::hoverMode;
 //    emit changeLabel();
+
+    if (QHoverSensitiveButton::hoverMode){
+        ui->hoverButton->setText("ON");
+    }
+    else {
+        ui->hoverButton->setText("OFF");
+    }
     qDebug() << "Hover button toggled";
 }
 
