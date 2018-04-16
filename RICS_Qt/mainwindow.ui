@@ -24,62 +24,66 @@
        <string notr="true">background: rgba(51, 64, 88, 0%);</string>
       </property>
       <property name="currentIndex">
-       <number>4</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="startPage">
        <property name="styleSheet">
         <string notr="true">background: rgb(67, 83, 106)</string>
        </property>
-       <widget class="QLabel" name="label">
+       <widget class="QHoverSensitiveButton" name="backButton_3">
         <property name="geometry">
          <rect>
-          <x>400</x>
+          <x>30</x>
           <y>10</y>
-          <width>121</width>
-          <height>20</height>
+          <width>141</width>
+          <height>71</height>
          </rect>
         </property>
-        <property name="font">
-         <font>
-          <family>.Helvetica Neue DeskInterface</family>
-          <pointsize>20</pointsize>
-          <weight>50</weight>
-          <italic>false</italic>
-          <bold>false</bold>
-         </font>
-        </property>
         <property name="styleSheet">
-         <string notr="true">font: 20pt &quot;.Helvetica Neue DeskInterface&quot;;
-color: white;</string>
+         <string notr="true">background-color: rgba(0, 0, 0, 0%);
+border: solid;
+</string>
         </property>
         <property name="text">
-         <string>Hover + Hold</string>
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/images/back.png</normaloff>:/images/back.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>100</width>
+          <height>100</height>
+         </size>
         </property>
        </widget>
-       <widget class="QLabel" name="label_2">
+       <widget class="QPushButton" name="pushButton_3">
         <property name="geometry">
          <rect>
-          <x>420</x>
-          <y>40</y>
-          <width>81</width>
-          <height>20</height>
+          <x>180</x>
+          <y>10</y>
+          <width>661</width>
+          <height>491</height>
          </rect>
         </property>
-        <property name="font">
-         <font>
-          <family>.Helvetica Neue DeskInterface</family>
-          <pointsize>20</pointsize>
-          <weight>50</weight>
-          <italic>false</italic>
-          <bold>false</bold>
-         </font>
-        </property>
         <property name="styleSheet">
-         <string notr="true">font: 20pt &quot;.Helvetica Neue DeskInterface&quot;;
-color: white;</string>
+         <string notr="true">background-color: rgba(0, 0, 0, 0%);
+border: solid;
+</string>
         </property>
         <property name="text">
-         <string>to Select</string>
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/images/settings-help.png</normaloff>:/images/settings-help.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>600</width>
+          <height>500</height>
+         </size>
         </property>
        </widget>
       </widget>
@@ -772,7 +776,7 @@ border: solid</string>
        <widget class="QLabel" name="label_6">
         <property name="geometry">
          <rect>
-          <x>230</x>
+          <x>240</x>
           <y>420</y>
           <width>151</width>
           <height>41</height>
@@ -1206,6 +1210,34 @@ border: solid</string>
         <property name="iconSize">
          <size>
           <width>60</width>
+          <height>60</height>
+         </size>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="settingsTutorial">
+        <property name="geometry">
+         <rect>
+          <x>820</x>
+          <y>10</y>
+          <width>81</width>
+          <height>81</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgba(29, 241, 240, 0%);
+font: 30pt &quot;.Helvetica Neue DeskInterface&quot;;
+border: solid</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/images/help.png</normaloff>:/images/help.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>80</width>
           <height>60</height>
          </size>
         </property>

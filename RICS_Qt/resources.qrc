@@ -26,5 +26,6 @@
         <file>minus.png</file>
         <file>plus.png</file>
         <file>grey.png</file>
+        <file>settings-help.png</file>
     </qresource>
 </RCC>
