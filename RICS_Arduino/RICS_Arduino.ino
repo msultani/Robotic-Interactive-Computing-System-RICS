@@ -129,7 +129,7 @@ void MeArm::moveServo(Servo servo, int startPt, int endPt) {
         delay(moveDelay);
       }
     }
-    Serial.print("aaaa");
+    Serial.print("X");
 }
 
 bool MeArm::commandHasErrors(String command) {
