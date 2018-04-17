@@ -151,6 +151,8 @@ void MainWindow::read_settings(){
     claw_movement_degrees = settings.value("claw_movement_degrees", 3).toInt();
     move_delay = settings.value("move_delay", 150).toInt();
 
+    ui->change_fetch_vals_button->setChecked(change_hover_vals);
+    ui->hoverButton->setChecked(QHoverSensitiveButton::hoverMode);
 }
 
 void MainWindow::write_settings(){
