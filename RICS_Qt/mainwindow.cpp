@@ -260,7 +260,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->reset_button, SIGNAL (clicked()), this, SLOT (reset_settings()));
 
     //Open serial port
-    port.setPortName("/dev/cu.usbmodem1421");
+    port.setPortName("/dev/cu.usbmodem14441");
     port.setBaudRate(QSerialPort::Baud9600);
     port.setDataBits(QSerialPort::Data8);
     port.setParity(QSerialPort::NoParity);
