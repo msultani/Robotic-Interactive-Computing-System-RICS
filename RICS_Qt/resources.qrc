@@ -28,5 +28,7 @@
         <file>tutorial_new.png</file>
         <file>extend.png</file>
         <file>X.png</file>
+        <file>no-red-dot.png</file>
+        <file>red-dot.png</file>
     </qresource>
 </RCC>
