@@ -906,7 +906,7 @@ color: white;</string>
         </property>
         <property name="text">
          <string>Save Current
- Settings</string>
+Position</string>
         </property>
        </widget>
        <widget class="QLabel" name="label_5">
@@ -1281,7 +1281,7 @@ border: solid</string>
          <rect>
           <x>220</x>
           <y>230</y>
-          <width>181</width>
+          <width>201</width>
           <height>41</height>
          </rect>
         </property>
@@ -1303,10 +1303,10 @@ font: 29pt &quot;Helvetica&quot;;
 color: white;</string>
         </property>
         <property name="text">
-         <string>Reset</string>
+         <string>Reset Settings</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="reset_button">
+       <widget class="QHoverSensitiveButton" name="reset_button">
         <property name="geometry">
          <rect>
           <x>60</x>
