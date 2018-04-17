@@ -24,7 +24,7 @@
        <string notr="true">background: rgba(51, 64, 88, 0%);</string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="startPage">
        <property name="styleSheet">
@@ -688,10 +688,23 @@ border: solid;
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true"/>
+         <string notr="true">background-color: rgba(29, 241, 240, 0%);
+font: 30pt &quot;.Helvetica Neue DeskInterface&quot;;
+border: solid</string>
         </property>
         <property name="text">
-         <string>ON</string>
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/images/off.png</normaloff>
+          <normalon>:/images/on.png</normalon>:/images/off.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>100</width>
+          <height>100</height>
+         </size>
         </property>
        </widget>
        <widget class="QLabel" name="label_4">
@@ -874,8 +887,24 @@ border: solid;
           <height>71</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgba(29, 241, 240, 0%);
+font: 30pt &quot;.Helvetica Neue DeskInterface&quot;;
+border: solid</string>
+        </property>
         <property name="text">
          <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/images/off.png</normaloff>
+          <normalon>:/images/on.png</normalon>:/images/off.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>100</width>
+          <height>100</height>
+         </size>
         </property>
        </widget>
        <widget class="QLabel" name="label_7">
@@ -1315,8 +1344,23 @@ color: white;</string>
           <height>71</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgba(29, 241, 240, 0%);
+font: 30pt &quot;.Helvetica Neue DeskInterface&quot;;
+border: solid</string>
+        </property>
         <property name="text">
          <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/images/reset.png</normaloff>:/images/reset.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>100</width>
+          <height>100</height>
+         </size>
         </property>
        </widget>
       </widget>

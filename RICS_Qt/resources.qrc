@@ -32,5 +32,8 @@
         <file>red-dot.png</file>
         <file>settings-w-reset.png</file>
         <file>logo.png</file>
+        <file>off.png</file>
+        <file>on.png</file>
+        <file>reset.png</file>
     </qresource>
 </RCC>

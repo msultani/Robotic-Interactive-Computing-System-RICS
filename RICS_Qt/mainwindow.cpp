@@ -334,12 +334,12 @@ void MainWindow::settingsHelpPressed(){
 void MainWindow::settingsPressed(){
     //QHoverSensitiveButton::hoverMode = false;
     ui->stackedWidget->setCurrentIndex(2);
-    if (change_hover_vals){
-        ui->change_fetch_vals_button->setText("ON");
-    }
-    else{
-        ui->change_fetch_vals_button->setText("OFF");
-    }
+//    if (change_hover_vals){
+//        ui->change_fetch_vals_button->setText("ON");
+//    }
+//    else{
+//        ui->change_fetch_vals_button->setText("OFF");
+//    }
 }
 
 void MainWindow::hover_time_down(){
@@ -678,23 +678,23 @@ void MainWindow::reset_targets(){
 void MainWindow::hoverButtonEntered(){
     qDebug() << "changing hovermode";
     QHoverSensitiveButton::hoverMode = !QHoverSensitiveButton::hoverMode;
-    if (QHoverSensitiveButton::hoverMode){
-        ui->hoverButton->setText("ON");
-    }
-    else {
-        ui->hoverButton->setText("OFF");
-    }
+//    if (QHoverSensitiveButton::hoverMode){
+//        ui->hoverButton->setText("ON");
+//    }
+//    else {
+//        ui->hoverButton->setText("OFF");
+//    }
     qDebug() << "Hover button toggled";
 }
 
 void MainWindow::toggle_change_to_fetch_vals(){
     change_hover_vals = !change_hover_vals;
-    if (change_hover_vals){
-        ui->change_fetch_vals_button->setText("ON");
-    }
-    else{
-        ui->change_fetch_vals_button->setText("OFF");
-    }
+//    if (change_hover_vals){
+//        ui->change_fetch_vals_button->setText("ON");
+//    }
+//    else{
+//        ui->change_fetch_vals_button->setText("OFF");
+//    }
 }
 
 void MainWindow::backPressed(){

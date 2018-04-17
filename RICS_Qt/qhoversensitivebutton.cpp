@@ -12,6 +12,7 @@ QList<QString> QHoverSensitiveButton::active_buttons;
 
 QHoverSensitiveButton::QHoverSensitiveButton(QWidget *parent) : QPushButton(parent) {
     setMouseTracking(true);
+    setCheckable(true);
     setAttribute(Qt::WA_Hover);
     setAttribute(Qt::WA_StyleSheet);
 }
@@ -57,6 +58,7 @@ void QHoverSensitiveButton::buttonEntered() {
     }
     if (activationTime.isValid() && hoverButton == this->objectName()){
         setStyleSheet("QPushButton { border-style: solid; border-width: 5px; border-color: red;}");
+        setChecked(!isChecked());
         emit clicked();
         delay(1000);
         if (hoverTime){
