@@ -24,7 +24,7 @@
        <string notr="true">background: rgba(51, 64, 88, 0%);</string>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="startPage">
        <property name="styleSheet">
@@ -33,7 +33,7 @@
        <widget class="QHoverSensitiveButton" name="backButton_3">
         <property name="geometry">
          <rect>
-          <x>780</x>
+          <x>730</x>
           <y>10</y>
           <width>51</width>
           <height>51</height>
@@ -86,6 +86,8 @@ border: solid;
          </size>
         </property>
        </widget>
+       <zorder>pushButton_3</zorder>
+       <zorder>backButton_3</zorder>
       </widget>
       <widget class="QWidget" name="movementPage">
        <widget class="QHoverSensitiveButton" name="releaseButton">
@@ -522,7 +524,7 @@ color: white;
        <widget class="QHoverSensitiveButton" name="tutorialButton">
         <property name="geometry">
          <rect>
-          <x>830</x>
+          <x>850</x>
           <y>0</y>
           <width>61</width>
           <height>101</height>
@@ -549,8 +551,8 @@ border: solid;</string>
        <widget class="QHoverSensitiveButton" name="settingButton">
         <property name="geometry">
          <rect>
-          <x>720</x>
-          <y>0</y>
+          <x>840</x>
+          <y>100</y>
           <width>81</width>
           <height>91</height>
          </rect>
@@ -1249,7 +1251,7 @@ border: solid</string>
        <widget class="QHoverSensitiveButton" name="settingsTutorial">
         <property name="geometry">
          <rect>
-          <x>820</x>
+          <x>840</x>
           <y>10</y>
           <width>81</width>
           <height>81</height>
@@ -1279,7 +1281,7 @@ border: solid</string>
        <widget class="QHoverSensitiveButton" name="backButton_2">
         <property name="geometry">
          <rect>
-          <x>800</x>
+          <x>730</x>
           <y>10</y>
           <width>71</width>
           <height>61</height>
@@ -1331,6 +1333,8 @@ border-style: solid;
          </size>
         </property>
        </widget>
+       <zorder>pushButton</zorder>
+       <zorder>backButton_2</zorder>
       </widget>
       <widget class="QWidget" name="countdown">
        <widget class="QLabel" name="countdownLabel">
