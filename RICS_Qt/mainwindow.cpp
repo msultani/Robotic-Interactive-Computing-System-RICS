@@ -4,7 +4,7 @@
 
 bool MainWindow::popup_open = false;
 
-int MainWindow::x_pos = 90;
+int MainWindow::x_pos = 80;
 int MainWindow::y_pos = 35;
 int MainWindow::z_pos = 35;
 int MainWindow::target_x = x_pos;
@@ -121,7 +121,7 @@ void MainWindow::read_settings(){
 
     arm_movement_degrees = settings.value("arm_movement_degrees", 5).toInt();
     QHoverSensitiveButton::hoverTime = settings.value("hoverTime", 3000).toInt();
-    fetch_x = settings.value("fetch_x", 10).toInt();
+    fetch_x = settings.value("fetch_x", 180).toInt();
     fetch_y = settings.value("fetch_y", 0).toInt();
     fetch_z = settings.value("fetch_z", 0).toInt();
     fetch_claw = settings.value("fetch_claw", 120).toInt();
@@ -166,7 +166,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->move_delay_label->setText(QString::number(double(move_delay) / 1000.0, 'f', 2) + " secs");
 
     //Initialize voice_commands list
-    voice_commands << "retract" << "rise" << "down" << "left" << "right" << "forward" << "backward" << "near" << "away" << "Recording on" << "Recording off" << "message_too_long" << "unintelligible_message";
+    voice_commands << "retract" << "rise" << "down" << "left" << "right" << "forward" << "backward" << "near" << "away" << "Recording on" << "Recording off" << "message_too_long" << "unintelligible_message" << "Activate" << "Deactivate";
     directional_commands << "X" << "Y" << "Z";
 
     establish_TCP_connection();

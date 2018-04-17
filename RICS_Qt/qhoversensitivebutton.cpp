@@ -32,7 +32,7 @@ void QHoverSensitiveButton::hoverEnter(QHoverEvent *) {
         return;
     }
     qDebug() << "Hover entered: " << this->objectName();
-    setStyleSheet("QPushButton { border-style: solid; border-width: 5px; border-color: red;}");
+    //setStyleSheet("QPushButton { border-style: solid; border-width: 5px; border-color: red;}");
 
     active_buttons.append(this->objectName());
     activationTime.start();
@@ -58,10 +58,10 @@ void QHoverSensitiveButton::buttonEntered() {
         QCoreApplication::processEvents( QEventLoop::AllEvents, 100 );
     }
     if (activationTime.isValid() && hoverButton == this->objectName()){
+        setStyleSheet("QPushButton { border-style: solid; border-width: 5px; border-color: red;}");
         emit clicked();
         delay(1000);
         if (hoverTime){
-            qDebug() << "restarting button";
             activationTime.start();
             buttonEntered();
         }
