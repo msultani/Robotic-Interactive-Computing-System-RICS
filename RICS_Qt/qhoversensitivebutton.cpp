@@ -44,7 +44,7 @@ void QHoverSensitiveButton::hoverLeave(QHoverEvent *) {
         return;
     }
     // qDebug() << "Hover left: " << this->objectName();
-    setStyleSheet("QPushButton {}");
+    setStyleSheet("QPushButton { border: 0 }");
     active_buttons.removeAll(this->objectName());
     hoverPending = false;
     hoverButton = "";
