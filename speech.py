@@ -12,7 +12,11 @@ import time
 r = sr.Recognizer()
 m = sr.Microphone()
 
+<<<<<<< HEAD
 tcp_on = 1  # 1 for release
+=======
+tcp_on = 1 # 1 for release
+>>>>>>> edits to mainwindow and speech.py
             # 0 to use without sending TCP
 
 commands = ["retract",
