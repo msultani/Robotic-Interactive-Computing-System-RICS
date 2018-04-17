@@ -207,6 +207,7 @@ DIST          = ../../Qt5.10.1/5.10.1/clang_64/mkspecs/features/spec_pre.prf \
 		../../Qt5.10.1/5.10.1/clang_64/mkspecs/features/qt_config.prf \
 		../../Qt5.10.1/5.10.1/clang_64/mkspecs/macx-clang/qmake.conf \
 		../../Qt5.10.1/5.10.1/clang_64/mkspecs/features/spec_post.prf \
+		../RICS_Qt/.qmake.stash \
 		../../Qt5.10.1/5.10.1/clang_64/mkspecs/features/exclusive_builds.prf \
 		../../Qt5.10.1/5.10.1/clang_64/mkspecs/features/mac/sdk.prf \
 		../../Qt5.10.1/5.10.1/clang_64/mkspecs/features/toolchain.prf \
@@ -401,6 +402,7 @@ Makefile: ../RICS_Qt/RICSapp.pro ../../Qt5.10.1/5.10.1/clang_64/mkspecs/macx-cla
 		../../Qt5.10.1/5.10.1/clang_64/mkspecs/features/qt_config.prf \
 		../../Qt5.10.1/5.10.1/clang_64/mkspecs/macx-clang/qmake.conf \
 		../../Qt5.10.1/5.10.1/clang_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../Qt5.10.1/5.10.1/clang_64/mkspecs/features/exclusive_builds.prf \
 		../../Qt5.10.1/5.10.1/clang_64/mkspecs/features/mac/sdk.prf \
 		../../Qt5.10.1/5.10.1/clang_64/mkspecs/features/toolchain.prf \
@@ -580,6 +582,7 @@ Makefile: ../RICS_Qt/RICSapp.pro ../../Qt5.10.1/5.10.1/clang_64/mkspecs/macx-cla
 ../../Qt5.10.1/5.10.1/clang_64/mkspecs/features/qt_config.prf:
 ../../Qt5.10.1/5.10.1/clang_64/mkspecs/macx-clang/qmake.conf:
 ../../Qt5.10.1/5.10.1/clang_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../Qt5.10.1/5.10.1/clang_64/mkspecs/features/exclusive_builds.prf:
 ../../Qt5.10.1/5.10.1/clang_64/mkspecs/features/mac/sdk.prf:
 ../../Qt5.10.1/5.10.1/clang_64/mkspecs/features/toolchain.prf:
@@ -657,6 +660,7 @@ clean: compiler_clean
 
 distclean: clean 
 	-$(DEL_FILE) -r RICSapp.app
+	-$(DEL_FILE) .qmake.stash
 	-$(DEL_FILE) Makefile
 
 
@@ -676,25 +680,39 @@ compiler_rcc_clean:
 qrc_resources.cpp: ../RICS_Qt/resources.qrc \
 		../../Qt5.10.1/5.10.1/clang_64/bin/rcc \
 		../RICS_Qt/claw_right.png \
+		../RICS_Qt/help.png \
 		../RICS_Qt/fetch.png \
 		../RICS_Qt/claw_left.png \
 		../RICS_Qt/away.png \
+		../RICS_Qt/off.png \
+		../RICS_Qt/tutorial_new.png \
+		../RICS_Qt/on.png \
+		../RICS_Qt/settings-help.png \
 		../RICS_Qt/controls.png \
 		../RICS_Qt/up.png \
 		../RICS_Qt/fetch-2.png \
 		../RICS_Qt/backward.png \
 		../RICS_Qt/near.png \
+		../RICS_Qt/grey.png \
 		../RICS_Qt/tutorials.png \
+		../RICS_Qt/red-dot.png \
 		../RICS_Qt/settings.png \
+		../RICS_Qt/settings-w-reset.png \
 		../RICS_Qt/down.png \
-		../RICS_Qt/tutorial-new.png \
+		../RICS_Qt/reset.png \
 		../RICS_Qt/retract.png \
+		../RICS_Qt/extend.png \
+		../RICS_Qt/plus.png \
+		../RICS_Qt/X.png \
 		../RICS_Qt/right.png \
-		../RICS_Qt/left.png \
+		../RICS_Qt/minus.png \
+		../RICS_Qt/no-red-dot.png \
 		../RICS_Qt/cancel.png \
+		../RICS_Qt/left.png \
+		../RICS_Qt/gear.png \
 		../RICS_Qt/back.png \
-		../RICS_Qt/tutorial_page.png \
 		../RICS_Qt/settings-title.png \
+		../RICS_Qt/logo.png \
 		../RICS_Qt/forward.png
 	/Users/kathrynclark/Qt5.10.1/5.10.1/clang_64/bin/rcc -name resources ../RICS_Qt/resources.qrc -o qrc_resources.cpp
 

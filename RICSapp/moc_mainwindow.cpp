@@ -22,7 +22,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
     QByteArrayData data[35];
-    char stringdata0[546];
+    char stringdata0[556];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -32,57 +32,58 @@ struct qt_meta_stringdata_MainWindow_t {
 static const qt_meta_stringdata_MainWindow_t qt_meta_stringdata_MainWindow = {
     {
 QT_MOC_LITERAL(0, 0, 10), // "MainWindow"
-QT_MOC_LITERAL(1, 11, 11), // "readTCPData"
-QT_MOC_LITERAL(2, 23, 0), // ""
-QT_MOC_LITERAL(3, 24, 10), // "connection"
-QT_MOC_LITERAL(4, 35, 12), // "fetchPressed"
-QT_MOC_LITERAL(5, 48, 15), // "commandsPressed"
-QT_MOC_LITERAL(6, 64, 15), // "tutorialPressed"
-QT_MOC_LITERAL(7, 80, 15), // "settingsPressed"
-QT_MOC_LITERAL(8, 96, 11), // "backPressed"
-QT_MOC_LITERAL(9, 108, 13), // "hover_time_up"
-QT_MOC_LITERAL(10, 122, 15), // "hover_time_down"
-QT_MOC_LITERAL(11, 138, 13), // "move_delay_up"
-QT_MOC_LITERAL(12, 152, 15), // "move_delay_down"
-QT_MOC_LITERAL(13, 168, 23), // "arm_movement_degrees_up"
-QT_MOC_LITERAL(14, 192, 25), // "arm_movement_degrees_down"
-QT_MOC_LITERAL(15, 218, 24), // "claw_movement_degrees_up"
-QT_MOC_LITERAL(16, 243, 26), // "claw_movement_degrees_down"
-QT_MOC_LITERAL(17, 270, 11), // "changeLabel"
-QT_MOC_LITERAL(18, 282, 18), // "hoverButtonEntered"
-QT_MOC_LITERAL(19, 301, 27), // "toggle_change_to_fetch_vals"
-QT_MOC_LITERAL(20, 329, 7), // "move_up"
-QT_MOC_LITERAL(21, 337, 13), // "move_backward"
-QT_MOC_LITERAL(22, 351, 9), // "move_down"
-QT_MOC_LITERAL(23, 361, 12), // "move_forward"
-QT_MOC_LITERAL(24, 374, 9), // "move_left"
-QT_MOC_LITERAL(25, 384, 10), // "move_right"
-QT_MOC_LITERAL(26, 395, 13), // "move_finished"
-QT_MOC_LITERAL(27, 409, 16), // "invalid_commands"
-QT_MOC_LITERAL(28, 426, 8), // "TCP_data"
-QT_MOC_LITERAL(29, 435, 22), // "message_too_long_error"
-QT_MOC_LITERAL(30, 458, 13), // "parsing_error"
-QT_MOC_LITERAL(31, 472, 20), // "received_confimation"
-QT_MOC_LITERAL(32, 493, 11), // "stopPressed"
-QT_MOC_LITERAL(33, 505, 19), // "on_clawLeft_pressed"
-QT_MOC_LITERAL(34, 525, 20) // "on_clawRight_pressed"
+QT_MOC_LITERAL(1, 11, 10), // "connection"
+QT_MOC_LITERAL(2, 22, 0), // ""
+QT_MOC_LITERAL(3, 23, 12), // "fetchPressed"
+QT_MOC_LITERAL(4, 36, 11), // "backPressed"
+QT_MOC_LITERAL(5, 48, 15), // "tutorialPressed"
+QT_MOC_LITERAL(6, 64, 19), // "settingsHelpPressed"
+QT_MOC_LITERAL(7, 84, 15), // "settingsPressed"
+QT_MOC_LITERAL(8, 100, 13), // "hover_time_up"
+QT_MOC_LITERAL(9, 114, 15), // "hover_time_down"
+QT_MOC_LITERAL(10, 130, 13), // "move_delay_up"
+QT_MOC_LITERAL(11, 144, 15), // "move_delay_down"
+QT_MOC_LITERAL(12, 160, 23), // "arm_movement_degrees_up"
+QT_MOC_LITERAL(13, 184, 25), // "arm_movement_degrees_down"
+QT_MOC_LITERAL(14, 210, 24), // "claw_movement_degrees_up"
+QT_MOC_LITERAL(15, 235, 26), // "claw_movement_degrees_down"
+QT_MOC_LITERAL(16, 262, 18), // "hoverButtonEntered"
+QT_MOC_LITERAL(17, 281, 27), // "toggle_change_to_fetch_vals"
+QT_MOC_LITERAL(18, 309, 14), // "retract_cancel"
+QT_MOC_LITERAL(19, 324, 7), // "move_up"
+QT_MOC_LITERAL(20, 332, 13), // "move_backward"
+QT_MOC_LITERAL(21, 346, 9), // "move_down"
+QT_MOC_LITERAL(22, 356, 12), // "move_forward"
+QT_MOC_LITERAL(23, 369, 9), // "move_left"
+QT_MOC_LITERAL(24, 379, 10), // "move_right"
+QT_MOC_LITERAL(25, 390, 13), // "move_finished"
+QT_MOC_LITERAL(26, 404, 16), // "invalid_commands"
+QT_MOC_LITERAL(27, 421, 8), // "TCP_info"
+QT_MOC_LITERAL(28, 430, 22), // "message_too_long_error"
+QT_MOC_LITERAL(29, 453, 13), // "parsing_error"
+QT_MOC_LITERAL(30, 467, 20), // "received_confimation"
+QT_MOC_LITERAL(31, 488, 11), // "stopPressed"
+QT_MOC_LITERAL(32, 500, 14), // "reset_settings"
+QT_MOC_LITERAL(33, 515, 19), // "on_clawLeft_pressed"
+QT_MOC_LITERAL(34, 535, 20) // "on_clawRight_pressed"
 
     },
-    "MainWindow\0readTCPData\0\0connection\0"
-    "fetchPressed\0commandsPressed\0"
-    "tutorialPressed\0settingsPressed\0"
-    "backPressed\0hover_time_up\0hover_time_down\0"
+    "MainWindow\0connection\0\0fetchPressed\0"
+    "backPressed\0tutorialPressed\0"
+    "settingsHelpPressed\0settingsPressed\0"
+    "hover_time_up\0hover_time_down\0"
     "move_delay_up\0move_delay_down\0"
     "arm_movement_degrees_up\0"
     "arm_movement_degrees_down\0"
     "claw_movement_degrees_up\0"
-    "claw_movement_degrees_down\0changeLabel\0"
+    "claw_movement_degrees_down\0"
     "hoverButtonEntered\0toggle_change_to_fetch_vals\0"
-    "move_up\0move_backward\0move_down\0"
-    "move_forward\0move_left\0move_right\0"
-    "move_finished\0invalid_commands\0TCP_data\0"
-    "message_too_long_error\0parsing_error\0"
-    "received_confimation\0stopPressed\0"
+    "retract_cancel\0move_up\0move_backward\0"
+    "move_down\0move_forward\0move_left\0"
+    "move_right\0move_finished\0invalid_commands\0"
+    "TCP_info\0message_too_long_error\0"
+    "parsing_error\0received_confimation\0"
+    "stopPressed\0reset_settings\0"
     "on_clawLeft_pressed\0on_clawRight_pressed"
 };
 #undef QT_MOC_LITERAL
@@ -125,8 +126,8 @@ static const uint qt_meta_data_MainWindow[] = {
       23,    0,  195,    2, 0x0a /* Public */,
       24,    0,  196,    2, 0x0a /* Public */,
       25,    0,  197,    2, 0x0a /* Public */,
-      26,    0,  198,    2, 0x0a /* Public */,
-      27,    1,  199,    2, 0x0a /* Public */,
+      26,    1,  198,    2, 0x0a /* Public */,
+      28,    0,  201,    2, 0x0a /* Public */,
       29,    0,  202,    2, 0x0a /* Public */,
       30,    0,  203,    2, 0x0a /* Public */,
       31,    0,  204,    2, 0x0a /* Public */,
@@ -159,8 +160,8 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void, QMetaType::QByteArray,   27,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QByteArray,   28,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -177,36 +178,36 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         MainWindow *_t = static_cast<MainWindow *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->readTCPData(); break;
-        case 1: _t->connection(); break;
-        case 2: _t->fetchPressed(); break;
-        case 3: _t->commandsPressed(); break;
-        case 4: _t->tutorialPressed(); break;
+        case 0: _t->connection(); break;
+        case 1: _t->fetchPressed(); break;
+        case 2: _t->backPressed(); break;
+        case 3: _t->tutorialPressed(); break;
+        case 4: _t->settingsHelpPressed(); break;
         case 5: _t->settingsPressed(); break;
-        case 6: _t->backPressed(); break;
-        case 7: _t->hover_time_up(); break;
-        case 8: _t->hover_time_down(); break;
-        case 9: _t->move_delay_up(); break;
-        case 10: _t->move_delay_down(); break;
-        case 11: _t->arm_movement_degrees_up(); break;
-        case 12: _t->arm_movement_degrees_down(); break;
-        case 13: _t->claw_movement_degrees_up(); break;
-        case 14: _t->claw_movement_degrees_down(); break;
-        case 15: _t->changeLabel(); break;
-        case 16: _t->hoverButtonEntered(); break;
-        case 17: _t->toggle_change_to_fetch_vals(); break;
-        case 18: _t->move_up(); break;
-        case 19: _t->move_backward(); break;
-        case 20: _t->move_down(); break;
-        case 21: _t->move_forward(); break;
-        case 22: _t->move_left(); break;
-        case 23: _t->move_right(); break;
-        case 24: _t->move_finished(); break;
-        case 25: _t->invalid_commands((*reinterpret_cast< QByteArray(*)>(_a[1]))); break;
-        case 26: _t->message_too_long_error(); break;
-        case 27: _t->parsing_error(); break;
-        case 28: _t->received_confimation(); break;
-        case 29: _t->stopPressed(); break;
+        case 6: _t->hover_time_up(); break;
+        case 7: _t->hover_time_down(); break;
+        case 8: _t->move_delay_up(); break;
+        case 9: _t->move_delay_down(); break;
+        case 10: _t->arm_movement_degrees_up(); break;
+        case 11: _t->arm_movement_degrees_down(); break;
+        case 12: _t->claw_movement_degrees_up(); break;
+        case 13: _t->claw_movement_degrees_down(); break;
+        case 14: _t->hoverButtonEntered(); break;
+        case 15: _t->toggle_change_to_fetch_vals(); break;
+        case 16: _t->retract_cancel(); break;
+        case 17: _t->move_up(); break;
+        case 18: _t->move_backward(); break;
+        case 19: _t->move_down(); break;
+        case 20: _t->move_forward(); break;
+        case 21: _t->move_left(); break;
+        case 22: _t->move_right(); break;
+        case 23: _t->move_finished(); break;
+        case 24: _t->invalid_commands((*reinterpret_cast< QByteArray(*)>(_a[1]))); break;
+        case 25: _t->message_too_long_error(); break;
+        case 26: _t->parsing_error(); break;
+        case 27: _t->received_confimation(); break;
+        case 28: _t->stopPressed(); break;
+        case 29: _t->reset_settings(); break;
         case 30: _t->on_clawLeft_pressed(); break;
         case 31: _t->on_clawRight_pressed(); break;
         default: ;
