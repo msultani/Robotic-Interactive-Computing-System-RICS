@@ -12,11 +12,7 @@ import time
 r = sr.Recognizer()
 m = sr.Microphone()
 
-<<<<<<< HEAD
-tcp_on = 1  # 1 for release
-=======
 tcp_on = 1 # 1 for release
->>>>>>> edits to mainwindow and speech.py
             # 0 to use without sending TCP
 
 commands = ["retract",
@@ -71,7 +67,7 @@ def send_message(command_value):
     if tcp_on:
         sender = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sender.connect(("0.0.0.0", 6000))
-        print("sending " + str(command_value))
+        # print("sending " + str(command_value))
         sender.sendall(command_value)
         sender.close()
 
