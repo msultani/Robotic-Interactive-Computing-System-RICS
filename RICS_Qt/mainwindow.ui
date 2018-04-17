@@ -24,7 +24,7 @@
        <string notr="true">background: rgba(51, 64, 88, 0%);</string>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="startPage">
        <property name="styleSheet">
@@ -309,7 +309,7 @@ color: white;
 </string>
         </property>
         <property name="text">
-         <string>Ready for commands!</string>
+         <string>Voice Commands Deactivated</string>
         </property>
        </widget>
        <widget class="QHoverSensitiveButton" name="clawLeft">
@@ -503,10 +503,10 @@ border-style: solid;
        <widget class="QLabel" name="voice_label">
         <property name="geometry">
          <rect>
-          <x>150</x>
-          <y>40</y>
-          <width>731</width>
-          <height>31</height>
+          <x>20</x>
+          <y>80</y>
+          <width>211</width>
+          <height>151</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -609,6 +609,38 @@ color: white;
         </property>
         <property name="text">
          <string>Near</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="redDot">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>0</y>
+          <width>41</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="resources.qrc">:/images/red-dot.png</pixmap>
+        </property>
+       </widget>
+       <widget class="QLabel" name="no_red_dot">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>0</y>
+          <width>41</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="resources.qrc">:/images/no-red-dot.png</pixmap>
         </property>
        </widget>
       </widget>

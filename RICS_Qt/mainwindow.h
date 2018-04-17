@@ -63,6 +63,7 @@ public:
     static int fetch_y;
     static int fetch_z;
     static int fetch_claw;
+    static bool voice_activated;
     QStringList voice_commands;
     QStringList directional_commands;
     static QVector<QPair<QString, int> > command_queue;

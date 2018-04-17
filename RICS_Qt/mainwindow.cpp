@@ -11,6 +11,7 @@ int MainWindow::target_x = x_pos;
 int MainWindow::target_y = y_pos;
 int MainWindow::target_z = z_pos;
 bool MainWindow::change_hover_vals;
+bool MainWindow::voice_activated = false;
 
 int MainWindow::claw_pos = 20;
 int MainWindow::target_claw = claw_pos;
@@ -98,11 +99,19 @@ void MainWindow::parse_TCP_command(QByteArray TCP_info){
             ui->clawRight->click();
             break;
         case 9:
-            this->ui->ready_label->setText("Receiving Vocal Input...");
+            if (voice_activated){
+                this->ui->ready_label->setText("Ready for Voice Commands!");
+            }
+            ui->redDot->setVisible(true);
+            ui->no_red_dot->setVisible(false);
             break;
         case 10:
-            this->ui->ready_label->setText("Got it! Parsing Input...");
-            ui->voice_label->setText("");
+            if (voice_activated){
+                this->ui->ready_label->setText("Parsing Vocal Input...");
+                ui->voice_label->setText("");
+            }
+            ui->redDot->setVisible(false);
+            ui->no_red_dot->setVisible(true);
             break;
         case 11:
             message_too_long_error();
@@ -110,6 +119,17 @@ void MainWindow::parse_TCP_command(QByteArray TCP_info){
         case 12:
             parsing_error();
             break;
+        case 13:
+            voice_activated = true;
+            break;
+        case 14:
+            voice_activated = false;
+            this->ui->ready_label->setText("Vocal Commands Deactivated");
+            ui->voice_label->setText("");
+            break;
+        case 15:
+            move_finished();
+             break;
         default:
             invalid_commands(TCP_info);
             break;
@@ -125,7 +145,7 @@ void MainWindow::read_settings(){
     fetch_y = settings.value("fetch_y", 0).toInt();
     fetch_z = settings.value("fetch_z", 0).toInt();
     fetch_claw = settings.value("fetch_claw", 120).toInt();
-    change_hover_vals = settings.value("change_hover_vals", true).toBool();
+    change_hover_vals = settings.value("change_hover_vals", false).toBool();
 
     arm_movement_degrees = settings.value("arm_movement_degrees", 10).toInt();
     claw_movement_degrees = settings.value("claw_movement_degrees", 3).toInt();
@@ -156,6 +176,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     ui->stackedWidget->setCurrentIndex(1);
 
+    ui->redDot->setVisible(false);
+    ui->no_red_dot->setVisible(true);
+    ui->voice_label->setWordWrap(true);
+
     read_settings();
 
     // Set UI
@@ -166,7 +190,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->move_delay_label->setText(QString::number(double(move_delay) / 1000.0, 'f', 2) + " secs");
 
     //Initialize voice_commands list
-    voice_commands << "retract" << "rise" << "down" << "left" << "right" << "forward" << "backward" << "near" << "away" << "Recording on" << "Recording off" << "message_too_long" << "unintelligible_message" << "Activate" << "Deactivate";
+    voice_commands << "extend" << "rise" << "down" << "left" << "right" << "forward" << "backward" << "near" << "away" << "Recording on" << "Recording off" << "message_too_long" << "unintelligible_message" << "Activate" << "Deactivate" << "retract";
     directional_commands << "X" << "Y" << "Z";
 
     establish_TCP_connection();
@@ -619,6 +643,9 @@ void MainWindow::invalid_commands(QByteArray TCP_info){
     qDebug() << full_voice_transcript.left(2);
     if (full_voice_transcript.size() > 2 && full_voice_transcript.left(2) == "m:") {
         //ui->ready_label->setText(full_voice_transcript.mid(2));
+        if (full_voice_transcript.length() > 50){
+            full_voice_transcript = full_voice_transcript.left(50) + "...";
+        }
         this->ui->voice_label->setText("You said: " + full_voice_transcript.right(full_voice_transcript.size() - 2));
     } else {
         qDebug() << "Error in parse_TCP_command: Could not recognize TCP_Data";
