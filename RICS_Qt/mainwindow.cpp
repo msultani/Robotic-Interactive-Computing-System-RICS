@@ -257,6 +257,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->retract_cancel_button, SIGNAL (clicked()), this, SLOT (retract_cancel()));
 
+    connect(ui->reset_button, SIGNAL (clicked()), this, SLOT (reset_settings()));
+
     //Open serial port
     port.setPortName("/dev/cu.usbmodem1421");
     port.setBaudRate(QSerialPort::Baud9600);
@@ -702,4 +704,10 @@ void MainWindow::backPressed(){
 void MainWindow::retract_cancel(){
     reset_targets();
     ui->stackedWidget->setCurrentIndex(1);
+}
+
+void MainWindow::reset_settings(){
+    QSettings settings("RICS", "RICS");
+    settings.clear();
+    read_settings();
 }

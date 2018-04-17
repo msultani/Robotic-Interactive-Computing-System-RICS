@@ -103,6 +103,7 @@ public slots:
     void parsing_error();
     void received_confimation();
     void stopPressed();
+    void reset_settings();
 
 private slots:
     void on_clawLeft_pressed();

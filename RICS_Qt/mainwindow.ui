@@ -24,7 +24,7 @@
        <string notr="true">background: rgba(51, 64, 88, 0%);</string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="startPage">
        <property name="styleSheet">
@@ -682,7 +682,7 @@ border: solid;
         <property name="geometry">
          <rect>
           <x>60</x>
-          <y>240</y>
+          <y>290</y>
           <width>141</width>
           <height>71</height>
          </rect>
@@ -698,7 +698,7 @@ border: solid;
         <property name="geometry">
          <rect>
           <x>230</x>
-          <y>260</y>
+          <y>300</y>
           <width>181</width>
           <height>41</height>
          </rect>
@@ -1274,6 +1274,49 @@ border: solid</string>
           <width>80</width>
           <height>60</height>
          </size>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_8">
+        <property name="geometry">
+         <rect>
+          <x>220</x>
+          <y>230</y>
+          <width>181</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Helvetica</family>
+          <pointsize>29</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">qproperty-alignment: AlignCenter;
+font: 29pt &quot;Helvetica&quot;;
+color: white;</string>
+        </property>
+        <property name="text">
+         <string>Reset</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="reset_button">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>210</y>
+          <width>141</width>
+          <height>71</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string> </string>
         </property>
        </widget>
       </widget>
