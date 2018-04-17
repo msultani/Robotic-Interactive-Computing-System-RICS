@@ -566,6 +566,7 @@ void MainWindow::move_finished(){
     push_command("0", 90, x_pos);
     push_command("1", 35, y_pos);
     push_command("2", 35, z_pos);
+    push_command("4", 20, claw_pos);
     write_to_arduino();
 
 /*      x_pos = 93;
@@ -646,8 +647,14 @@ void MainWindow::reset_targets(){
 }
 
 void MainWindow::hoverButtonEntered(){
+    qDebug() << "changing hovermode";
     QHoverSensitiveButton::hoverMode = !QHoverSensitiveButton::hoverMode;
-//    emit changeLabel();
+    if (QHoverSensitiveButton::hoverMode){
+        ui->hoverButton->setText("ON");
+    }
+    else {
+        ui->hoverButton->setText("OFF");
+    }
     qDebug() << "Hover button toggled";
 }
 
